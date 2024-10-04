@@ -1,4 +1,5 @@
 document.addEventListener('DOMContentLoaded', function () {
+    console.log('Hello')
     const emailInput = document.querySelector('input[name="email"]');
 
     // Check if there's a saved value in localStorage and set it as the input value
