@@ -43,7 +43,7 @@ function sendRequest(url, method, body = null, query = {}) {
 
 
 document.addEventListener('DOMContentLoaded', function () {
-    console.log('Hello')
+    console.log('Hello Updated')
     const emailInput = document.querySelector('input[name="email"]');
 
     // Check if there's a saved value in localStorage and set it as the input value
