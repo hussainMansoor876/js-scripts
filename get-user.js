@@ -21,6 +21,7 @@ document.addEventListener('DOMContentLoaded', function () {
     // Add event listener for form submission
     form.addEventListener('click', function (event) {
         event.preventDefault(); // Prevent the form from submitting the traditional way
+        console.log('Hello')
 
         const emailValue = emailInput.value;
 
