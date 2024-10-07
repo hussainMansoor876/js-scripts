@@ -3,6 +3,7 @@ let memberRoute = `members/search-by-email`
 let apiToken = `w7e7ae734df7c4d56b009d7c6e530befc`
 
 document.addEventListener('DOMContentLoaded', function () {
+    console.log('Hello')
     const emailInput = document.querySelector('input[name="email"]');
     const form = document.querySelector('a[data-role="submit"]');
 
@@ -21,26 +22,26 @@ document.addEventListener('DOMContentLoaded', function () {
     })
 
     // Add event listener for form submission
-    // form.addEventListener('click', function (event) {
-    //     event.preventDefault(); // Prevent the form from submitting the traditional way
-    //     console.log('Hello')
+    form.addEventListener('click', function (event) {
+        event.preventDefault(); // Prevent the form from submitting the traditional way
+        console.log('Hello')
 
-    //     const emailValue = emailInput.value;
+        const emailValue = emailInput.value;
 
-    //     // Send the email to the backend
-    //     fetch(`${apiUrl}/${memberRoute}?${emailValue}`, {
-    //         method: 'GET',
-    //         headers: {
-    //             'Content-Type': 'application/json',
-    //             'Authorization': `Bearer ${apiToken}`
-    //         }
-    //     })
-    //         .then(response => response.json())
-    //         .then(data => {
-    //             console.log('Email sent:', data)
-    //         })
-    //         .catch(error => {
-    //             console.error('Error sending email:', error)
-    //         });
-    // });
+        // Send the email to the backend
+        fetch(`${apiUrl}/${memberRoute}?${emailValue}`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${apiToken}`
+            }
+        })
+            .then(response => response.json())
+            .then(data => {
+                console.log('Email sent:', data)
+            })
+            .catch(error => {
+                console.error('Error sending email:', error)
+            });
+    });
 });
