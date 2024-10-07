@@ -59,7 +59,7 @@ document.addEventListener('DOMContentLoaded', function () {
         if (validateEmail(emailValue)) {
             localStorage.setItem('email', emailValue)
 
-            let data = await sendRequest(`${apiUrl}/${memberRoute}?${emailValue}`, 'GET', null, { email: emailValue })
+            let data = await sendRequest(`${apiUrl}/${memberRoute}`, 'GET', null, { email: emailValue })
 
             console.log('data', data)
         }
