@@ -4,7 +4,7 @@ let apiToken = `w7e7ae734df7c4d56b009d7c6e530befc`
 
 document.addEventListener('DOMContentLoaded', function () {
     const emailInput = document.querySelector('input[name="email"]');
-    const form = document.getElementById('emailForm');
+    const form = document.querySelector('a[data-role="submit"]');
 
     // Check if there's a saved value in localStorage and set it as the input value
     const savedEmail = localStorage.getItem('email');
@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', function () {
     })
 
     // Add event listener for form submission
-    form.addEventListener('submit', function (event) {
+    form.addEventListener('click', function (event) {
         event.preventDefault(); // Prevent the form from submitting the traditional way
 
         const emailValue = emailInput.value;
