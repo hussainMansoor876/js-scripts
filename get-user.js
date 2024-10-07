@@ -1,4 +1,5 @@
-let apiUrl = `https://tyler-2.13357.wl.simvoly.com/api/site`
+// let apiUrl = `https://tyler-2.13357.wl.simvoly.com/api/site`
+let apiUrl = `https://shop.bigkclothing.ca/api/site`
 let memberRoute = `members/search-by-email`
 let apiToken = `w7e7ae734df7c4d56b009d7c6e530befc`
 
