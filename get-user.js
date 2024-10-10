@@ -59,6 +59,12 @@ const fetchUserByEmail = async (emailValue) => {
             let idData = await sendRequest(`${apiUrl}/${groupRoute}/${id}`, 'GET')
 
             console.log('idData', idData)
+
+            if (idData?.name) {
+                let percentage = Number(idData?.name?.split(' ')?.[1])
+
+                console.log('percentage', percentage)
+            }
         }
     }
 }
