@@ -41,6 +41,16 @@ function sendRequest(url, method, body = null, query = {}) {
         });
 }
 
+const fetchUserByEmail = async (emailValue) => {
+    if (validateEmail(emailValue)) {
+        localStorage.setItem('email', emailValue)
+
+        let data = await sendRequest(`${apiUrl}/${memberRoute}`, 'GET', null, { email: emailValue })
+
+        console.log('data', data)
+    }
+}
+
 
 document.addEventListener('DOMContentLoaded', function () {
     console.log('Hello !')
@@ -53,18 +63,14 @@ document.addEventListener('DOMContentLoaded', function () {
         emailInput.value = savedEmail;
     }
 
-    loginButton.addEventListener('click', () => console.log('Hello', emailInput?.value))
+    loginButton.addEventListener('click', () => {
+        fetchUserByEmail(emailInput?.value)
+    })
 
     // Add an event listener to save the value in localStorage whenever it changes
     emailInput.addEventListener('input', async function (event) {
         const emailValue = event.target.value
 
-        if (validateEmail(emailValue)) {
-            localStorage.setItem('email', emailValue)
-
-            let data = await sendRequest(`${apiUrl}/${memberRoute}`, 'GET', null, { email: emailValue })
-
-            console.log('data', data)
-        }
+        fetchUserByEmail(emailValue)
     })
 });
