@@ -56,12 +56,12 @@ document.addEventListener('DOMContentLoaded', function () {
     emailInput.addEventListener('input', async function (event) {
         const emailValue = event.target.value
 
-        // if (validateEmail(emailValue)) {
-        //     localStorage.setItem('email', emailValue)
+        if (validateEmail(emailValue)) {
+            localStorage.setItem('email', emailValue)
 
-        //     let data = await sendRequest(`${apiUrl}/${memberRoute}`, 'GET', null, { email: emailValue })
+            let data = await sendRequest(`${apiUrl}/${memberRoute}`, 'GET', null, { email: emailValue })
 
-        //     console.log('data', data)
-        // }
+            console.log('data', data)
+        }
     })
 });
