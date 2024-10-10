@@ -64,6 +64,8 @@ const fetchUserByEmail = async (emailValue) => {
                 let percentage = Number(idData?.name?.split(' ')?.[1]) / 100
 
                 console.log('percentage', percentage)
+
+                localStorage.setItem('percentage', percentage)
             }
         }
     }
