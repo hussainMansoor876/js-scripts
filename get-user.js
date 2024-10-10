@@ -1,6 +1,9 @@
 // let apiUrl = `https://tyler-2.13357.wl.simvoly.com/api/site`
 let apiUrl = `https://shop.bigkclothing.ca/api/site`
 let memberRoute = `members/search-by-email`
+let groupRoute = `member-groups`
+let PLUS5 = 4
+let PLUS10 = 5
 let apiToken = `w7e7ae734df7c4d56b009d7c6e530befc`
 
 function validateEmail(email) {
@@ -48,6 +51,15 @@ const fetchUserByEmail = async (emailValue) => {
         let data = await sendRequest(`${apiUrl}/${memberRoute}`, 'GET', null, { email: emailValue })
 
         console.log('data', data)
+
+        if (data?.groups?.length) {
+            let groups = data?.groups
+            let id = Math.max(...groups)
+
+            let idData = await sendRequest(`${apiUrl}/${groupRoute}/${id}`, 'GET')
+
+            console.log('idData', idData)
+        }
     }
 }
 
