@@ -60,8 +60,8 @@ const fetchUserByEmail = async (emailValue) => {
 
             console.log('idData', idData)
 
-            if (idData?.name) {
-                let percentage = Number(idData?.name?.split(' ')?.[1])
+            if (idData?.name && idData?.name?.toLowerCase()?.includes('plus')) {
+                let percentage = Number(idData?.name?.split(' ')?.[1]) / 100
 
                 console.log('percentage', percentage)
             }
