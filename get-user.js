@@ -53,7 +53,7 @@ document.addEventListener('DOMContentLoaded', function () {
         emailInput.value = savedEmail;
     }
 
-    loginButton.addEventListener('click', () => console.log('Hello', emailInput))
+    loginButton.addEventListener('click', () => console.log('Hello', emailInput?.value))
 
     // Add an event listener to save the value in localStorage whenever it changes
     emailInput.addEventListener('input', async function (event) {
