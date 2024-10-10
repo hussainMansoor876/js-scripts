@@ -43,7 +43,7 @@ function sendRequest(url, method, body = null, query = {}) {
 
 
 document.addEventListener('DOMContentLoaded', function () {
-    console.log('Hello')
+    console.log('Hello !')
     const emailInput = document.querySelector('input[name="email"]');
     const loginButton = document.querySelector('a[data-role="submit"]');
 
