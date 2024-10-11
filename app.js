@@ -265,9 +265,9 @@ const categories = [
     }
 ]
 
-const pathname = window.location.pathname?.slice(1,)
+const routeURL = window.location.pathname?.slice(1,)
 
-let isExist = categories.filter((v) => v?.url?.startsWith(pathname))
+let isExist = categories.find((v) => routeURL.includes(v?.url))
 
 console.log('categories', categories)
 console.log('pathname', pathname)
