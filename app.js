@@ -316,7 +316,7 @@ if (category && category?.id) {
 
         console.log('productLink updated div 1', productLink[0])
         console.log('productLink updated div 2', productLink[0].children)
-        console.log('productLink updated div', productLink[0]?.[0]?.[0])
+        console.log('productLink updated div', productLink[0]?.children?.[0]?.children)
 
     })
 }
