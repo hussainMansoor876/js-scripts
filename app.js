@@ -265,20 +265,11 @@ const categories = [
     }
 ]
 
-function sendRequest(url, method, body = null, queries = []) {
-    // Construct query string from multiple query objects
-    const queryParams = new URLSearchParams()
-
-    // Merge all query objects into one
-    queries.forEach(query => {
-        Object.entries(query).forEach(([key, value]) => {
-            queryParams.append(key, value)
-        })
-    })
-
-    const queryString = queryParams.toString()
+function sendRequest(url, method, body = null, query = {}) {
+    // Construct query string if there are query parameters
+    const queryString = new URLSearchParams(query).toString();
     console.log('queryString', queryString)
-    const fullUrl = queryString ? `${url}?${queryString}` : url
+    const fullUrl = queryString ? `${url}?${queryString}` : url;
 
     // Set up fetch options
     const options = {
@@ -287,23 +278,23 @@ function sendRequest(url, method, body = null, queries = []) {
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${apiToken}`
         }
-    }
+    };
 
     // Add body if the method is not GET and there is body data
     if (method !== 'GET' && body) {
-        options.body = JSON.stringify(body)
+        options.body = JSON.stringify(body);
     }
 
     return fetch(fullUrl, options)
         .then(response => {
             if (!response.ok) {
-                throw new Error(`HTTP error! Status: ${response.status}`)
+                throw new Error(`HTTP error! Status: ${response.status}`);
             }
-            return response.json()
+            return response.json();
         })
         .catch(error => {
-            console.error('Error:', error)
-        })
+            console.error('Error:', error);
+        });
 }
 
 let apiUrl = `${window.location.origin}/api/site`
@@ -319,12 +310,15 @@ console.log('pathname', routeURL)
 
 if (category && category?.id) {
     document.addEventListener('DOMContentLoaded', async function () {
-        let data = await sendRequest(`${apiUrl}/${productRoute}`, 'GET', null, [{ category_id: category?.id }, { limit: 100 }])
+        let data = await sendRequest(`${apiUrl}/${productRoute}`, 'GET', null, { category_id: category?.id })
 
         console.log('data', data)
         const productLink = document.querySelectorAll('div[data-type="StoreWidget"]')
 
-        console.log('productLink updated div', productLink[0]?.children?.[0]?.children?.[2]?.children?.[0])
+        setTimeout(() => {
+            console.log('productLink updated div', productLink[0]?.children?.[0]?.children?.[2]?.children?.[0])
+        }, 5000);
+
 
     })
 }
