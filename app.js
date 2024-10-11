@@ -318,9 +318,9 @@ if (category && category?.id) {
 
         // console.log('data', data)
         const productLink = document.querySelectorAll('div[data-type="StoreWidget"]')
-        let childData = productLink[0]?.children?.[0]?.children?.[2]
+        let parentDiv = productLink[0]?.children?.[0]?.children?.[2]
 
-        childData.addEventListener('DOMContentLoaded', () => console.log('data loaded'))
+        parentDiv.addEventListener('DOMContentLoaded', () => console.log('data loaded'))
         // grandChildData.addEventListener('DOMContentLoaded', () => console.log('child data loaded'))
 
         const observer = new MutationObserver(mutations => {
