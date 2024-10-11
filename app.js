@@ -1,4 +1,4 @@
-import categories from './productCategories.json' assert { type: 'json' }
+import categories from './productCategories.json'
 
 const pathname = window.location.pathname
 
