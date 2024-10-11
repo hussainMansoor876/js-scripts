@@ -296,7 +296,22 @@ function sendRequest(url, method, body = null, query = {}) {
         });
 }
 
+const getProductData = async (category) => {
+    let data = await sendRequest(`${apiUrl}/${productRoute}`, 'GET', null, { category_id: category?.id })
+
+    console.log('data', data)
+    document.addEventListener('DOMContentLoaded', async function () {
+        const productLink = document.querySelectorAll('div[data-type="StoreWidget"]')
+
+        console.log('productLink updated div 1', productLink[0])
+        console.log('productLink updated div 2', productLink[0]?.[2])
+        console.log('productLink updated div', productLink[0]?.[2]?.[0])
+
+    })
+}
+
 let apiUrl = `${window.location.origin}/api/site`
+let productRoute = `products`
 let apiToken = `w7e7ae734df7c4d56b009d7c6e530befc`
 
 const routeURL = window.location.pathname?.slice(1,)
@@ -306,13 +321,6 @@ let category = categories.find((v) => routeURL.includes(v?.url))
 console.log('categories', categories)
 console.log('pathname', routeURL)
 
-if (category) {
-    document.addEventListener('DOMContentLoaded', function () {
-        const productLink = document.querySelectorAll('div[data-type="StoreWidget"]')
-
-        console.log('productLink updated div 1', productLink[0])
-        console.log('productLink updated div 2', productLink[0]?.[2])
-        console.log('productLink updated div', productLink[0]?.[2]?.[0])
-
-    })
+if (category && category?.id) {
+    getProductData(category)
 }
