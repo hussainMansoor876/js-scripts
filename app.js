@@ -315,9 +315,8 @@ if (category && category?.id) {
         console.log('data', data)
         const productLink = document.querySelectorAll('div[data-type="StoreWidget"]')
 
-        setTimeout(() => {
-            console.log('productLink updated div', productLink[0]?.children?.[0]?.children?.[2]?.children?.[0])
-        }, 5000);
+        console.log('productLink updated div', productLink[0]?.children?.[0]?.children?.[2])
+        console.log('productLink updated div', productLink[0]?.children?.[0]?.children?.[2]?.children?.[0])
 
 
     })
