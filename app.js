@@ -296,6 +296,12 @@ function sendRequest(url, method, body = null, query = {}) {
         });
 }
 
+const getProductsByCategories = async (categories) => {
+    const productLink = document.querySelector('.product-item-description .title-price-wrapper-1 h3 a')
+
+    console.log('productLink', productLink)
+}
+
 let apiUrl = `${window.location.origin}/api/site`
 let apiToken = `w7e7ae734df7c4d56b009d7c6e530befc`
 
@@ -308,11 +314,4 @@ console.log('pathname', routeURL)
 
 if (category) {
     getProductsByCategories(category)
-}
-
-
-const getProductsByCategories = async (categories) => {
-    const productLink = document.querySelector('.product-item-description .title-price-wrapper-1 h3 a')
-
-    console.log('productLink', productLink)
 }
