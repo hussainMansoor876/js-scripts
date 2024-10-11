@@ -267,7 +267,7 @@ const categories = [
 
 const pathname = window.location.pathname?.slice(1,)
 
-let isExist = categories.find((v) => v?.url?.startsWith(pathname))
+let isExist = categories.filter((v) => v?.url?.startsWith(pathname))
 
 console.log('categories', categories)
 console.log('pathname', pathname)
