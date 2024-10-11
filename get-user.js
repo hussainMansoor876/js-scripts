@@ -77,8 +77,8 @@ const fetchUserByEmail = async (emailValue) => {
 
 document.addEventListener('DOMContentLoaded', function () {
     console.log('Hello !')
-    const emailInput = document.querySelector('input[name="email"]');
-    const loginButton = document.querySelector('a[data-role="submit"]');
+    const emailInput = document.querySelector('input[name="email"]')
+    const loginButton = document.querySelector('a[data-role="submit"]')
 
     // Check if there's a saved value in localStorage and set it as the input value
     const savedEmail = localStorage.getItem('email')
