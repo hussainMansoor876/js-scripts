@@ -296,20 +296,6 @@ function sendRequest(url, method, body = null, query = {}) {
         });
 }
 
-const getProductData = async (category) => {
-    let data = await sendRequest(`${apiUrl}/${productRoute}`, 'GET', null, { category_id: category?.id })
-
-    console.log('data', data)
-    document.addEventListener('DOMContentLoaded', async function () {
-        const productLink = document.querySelectorAll('div[data-type="StoreWidget"]')
-
-        console.log('productLink updated div 1', productLink[0])
-        console.log('productLink updated div 2', productLink[0]?.[0])
-        console.log('productLink updated div', productLink[0]?.[0]?.[0])
-
-    })
-}
-
 let apiUrl = `${window.location.origin}/api/site`
 let productRoute = `products`
 let apiToken = `w7e7ae734df7c4d56b009d7c6e530befc`
@@ -322,5 +308,15 @@ console.log('categories', categories)
 console.log('pathname', routeURL)
 
 if (category && category?.id) {
-    getProductData(category)
+    document.addEventListener('DOMContentLoaded', async function () {
+        let data = await sendRequest(`${apiUrl}/${productRoute}`, 'GET', null, { category_id: category?.id })
+
+        console.log('data', data)
+        const productLink = document.querySelectorAll('div[data-type="StoreWidget"]')
+
+        console.log('productLink updated div 1', productLink[0])
+        console.log('productLink updated div 2', productLink[0]?.[0])
+        console.log('productLink updated div', productLink[0]?.[0]?.[0])
+
+    })
 }
