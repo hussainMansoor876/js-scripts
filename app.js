@@ -318,7 +318,7 @@ if (category && category?.id) {
         let grandChildData = childData?.children?.[0]
 
         childData.addEventListener('DOMContentLoaded', () => console.log('data loaded'))
-        grandChildData.addEventListener('DOMContentLoaded', () => console.log('child data loaded'))
+        // grandChildData.addEventListener('DOMContentLoaded', () => console.log('child data loaded'))
 
         console.log('productLink updated div', productLink[0]?.children?.[0]?.children?.[2])
         console.log('productLink updated div', productLink[0]?.children?.[0]?.children?.[2]?.children?.[0])
