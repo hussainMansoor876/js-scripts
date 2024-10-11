@@ -311,5 +311,6 @@ if (category) {
         const productLink = document.querySelector('#store-widget-1714582254991 > div > div > div')
 
         console.log('productLink updated', productLink)
+        console.log('productLink updated vv', document.body)
     })
 }
