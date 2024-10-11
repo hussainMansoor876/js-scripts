@@ -310,7 +310,7 @@ if (category) {
     document.addEventListener('DOMContentLoaded', function () {
         const productLink = document.querySelectorAll('div[data-type="StoreWidget"]')
 
-        console.log('productLink updated gh', productLink)
+        console.log('productLink updated gh', productLink?.[0])
         console.log('productLink updated vv', document.body)
     })
 }
