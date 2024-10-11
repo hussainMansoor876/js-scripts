@@ -265,10 +265,54 @@ const categories = [
     }
 ]
 
+function sendRequest(url, method, body = null, query = {}) {
+    // Construct query string if there are query parameters
+    const queryString = new URLSearchParams(query).toString();
+    const fullUrl = queryString ? `${url}?${queryString}` : url;
+
+    // Set up fetch options
+    const options = {
+        method: method,
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${apiToken}`
+        }
+    };
+
+    // Add body if the method is not GET and there is body data
+    if (method !== 'GET' && body) {
+        options.body = JSON.stringify(body);
+    }
+
+    return fetch(fullUrl, options)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+            return response.json();
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+}
+
+let apiUrl = `${window.location.origin}/api/site`
+let apiToken = `w7e7ae734df7c4d56b009d7c6e530befc`
+
 const routeURL = window.location.pathname?.slice(1,)
 
-let isExist = categories.find((v) => routeURL.includes(v?.url))
+let category = categories.find((v) => routeURL.includes(v?.url))
 
 console.log('categories', categories)
 console.log('pathname', routeURL)
-console.log('isExist', isExist)
+
+if (category) {
+    getProductsByCategories(category)
+}
+
+
+const getProductsByCategories = async (categories) => {
+    const productLink = document.querySelector('.product-item-description .title-price-wrapper-1 h3 a')
+
+    console.log('productLink', productLink)
+}
