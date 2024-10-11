@@ -311,6 +311,8 @@ console.log('pathname', routeURL)
 function handleNewChild(child) {
     console.log('New child added:', child.children)
     console.log('New child added:', child.childNodes)
+    console.log('New child added:', child.firstElementChild)
+    console.log('New child added:', child.firstChild)
 }
 
 if (category && category?.id) {
