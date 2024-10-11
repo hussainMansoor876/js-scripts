@@ -270,5 +270,5 @@ const routeURL = window.location.pathname?.slice(1,)
 let isExist = categories.find((v) => routeURL.includes(v?.url))
 
 console.log('categories', categories)
-console.log('pathname', pathname)
+console.log('pathname', routeURL)
 console.log('isExist', isExist)
