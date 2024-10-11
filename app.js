@@ -267,9 +267,9 @@ const categories = [
 
 function sendRequest(url, method, body = null, query = {}) {
     // Construct query string if there are query parameters
-    const queryString = new URLSearchParams(query).toString();
+    const queryString = new URLSearchParams(query).toString()
     console.log('queryString', queryString)
-    const fullUrl = queryString ? `${url}?${queryString}` : url;
+    const fullUrl = queryString ? `${url}?${queryString}` : url
 
     // Set up fetch options
     const options = {
@@ -278,23 +278,23 @@ function sendRequest(url, method, body = null, query = {}) {
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${apiToken}`
         }
-    };
+    }
 
     // Add body if the method is not GET and there is body data
     if (method !== 'GET' && body) {
-        options.body = JSON.stringify(body);
+        options.body = JSON.stringify(body)
     }
 
     return fetch(fullUrl, options)
         .then(response => {
             if (!response.ok) {
-                throw new Error(`HTTP error! Status: ${response.status}`);
+                throw new Error(`HTTP error! Status: ${response.status}`)
             }
-            return response.json();
+            return response.json()
         })
         .catch(error => {
-            console.error('Error:', error);
-        });
+            console.error('Error:', error)
+        })
 }
 
 let apiUrl = `${window.location.origin}/api/site`
@@ -308,17 +308,33 @@ let category = categories.find((v) => routeURL.includes(v?.url))
 console.log('categories', categories)
 console.log('pathname', routeURL)
 
+function handleNewChild(child) {
+    console.log('New child added:', child)
+}
+
 if (category && category?.id) {
     document.addEventListener('DOMContentLoaded', async function () {
-        let data = await sendRequest(`${apiUrl}/${productRoute}`, 'GET', null, { category_id: category?.id })
+        // let data = await sendRequest(`${apiUrl}/${productRoute}`, 'GET', null, { category_id: category?.id })
 
-        console.log('data', data)
+        // console.log('data', data)
         const productLink = document.querySelectorAll('div[data-type="StoreWidget"]')
         let childData = productLink[0]?.children?.[0]?.children?.[2]
-        let grandChildData = childData?.children?.[0]
 
         childData.addEventListener('DOMContentLoaded', () => console.log('data loaded'))
         // grandChildData.addEventListener('DOMContentLoaded', () => console.log('child data loaded'))
+
+        const observer = new MutationObserver(mutations => {
+            mutations.forEach(mutation => {
+                mutation.addedNodes.forEach(node => {
+                    // Check if the added node is an element
+                    if (node.nodeType === 1) { // Node.ELEMENT_NODE
+                        handleNewChild(node)
+                    }
+                })
+            })
+        })
+
+        observer.observe(parentDiv, { childList: true })
 
         console.log('productLink updated div', productLink[0]?.children?.[0]?.children?.[2])
         console.log('productLink updated div', productLink[0]?.children?.[0]?.children?.[2]?.children?.[0])
