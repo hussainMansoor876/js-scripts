@@ -67,6 +67,9 @@ const fetchUserByEmail = async (emailValue) => {
 
                 localStorage.setItem('percentage', percentage)
             }
+            else {
+                localStorage.setItem('percentage', 0)
+            }
         }
     }
 }
