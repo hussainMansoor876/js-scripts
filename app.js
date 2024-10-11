@@ -323,9 +323,6 @@ if (category && category?.id) {
         const productLink = document.querySelectorAll('div[data-type="StoreWidget"]')
         let parentDiv = productLink[0]?.children?.[0]?.children?.[2]
 
-        parentDiv.addEventListener('DOMContentLoaded', () => console.log('data loaded'))
-        // grandChildData.addEventListener('DOMContentLoaded', () => console.log('child data loaded'))
-
         const observer = new MutationObserver(mutations => {
             mutations.forEach(mutation => {
                 mutation.addedNodes.forEach(node => {
@@ -338,10 +335,6 @@ if (category && category?.id) {
         })
 
         observer.observe(parentDiv, { childList: true })
-
-        console.log('productLink updated div', productLink[0]?.children?.[0]?.children?.[2])
-        console.log('productLink updated div', productLink[0]?.children?.[0]?.children?.[2]?.children?.[0])
-
 
     })
 }
