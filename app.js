@@ -297,9 +297,11 @@ function sendRequest(url, method, body = null, query = {}) {
 }
 
 const getProductsByCategories = async (categories) => {
-    const productLink = document.querySelector('.product-item-description .title-price-wrapper-1 h3 a')
+    document.addEventListener('DOMContentLoaded', function () {
+        const productLink = document.querySelector('.product-item-description .title-price-wrapper-1 h3 a')
 
-    console.log('productLink', productLink)
+        console.log('productLink', productLink)
+    })
 }
 
 let apiUrl = `${window.location.origin}/api/site`
