@@ -308,7 +308,7 @@ console.log('pathname', routeURL)
 
 if (category) {
     document.addEventListener('DOMContentLoaded', function () {
-        const productLink = document.querySelector('.product-list')
+        const productLink = document.querySelector('#store-widget-1714582254991 > div > div > div')
 
         console.log('productLink updated', productLink)
     })
