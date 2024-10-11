@@ -309,7 +309,7 @@ console.log('pathname', routeURL)
 
 if (category && category?.id) {
     document.addEventListener('DOMContentLoaded', async function () {
-        let data = await sendRequest(`${apiUrl}/${productRoute}`, 'GET', null, { category_id: category?.id })
+        let data = await sendRequest(`${apiUrl}/${productRoute}`, 'GET', null, { category_id: category?.id, limit: 100 })
 
         console.log('data', data)
         const productLink = document.querySelectorAll('div[data-type="StoreWidget"]')
