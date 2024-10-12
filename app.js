@@ -329,16 +329,12 @@ function calculateDiscountPercentage(originalPrice, discountedPrice) {
 }
 
 function handleNewChild(parentDiv) {
-    console.log('parentDiv', parentDiv)
     let percentage = JSON.parse(localStorage.getItem('percentage')) || 0
-    console.log('percentage', percentage)
     if (!percentage) {
         let firstProduct = parentDiv.firstElementChild
         let prices = firstProduct.children?.[1]?.children?.[0]?.children?.[0]?.children?.[2]?.firstElementChild?.childNodes
         let newPrice = parseFloat(prices?.[0]?.nodeValue?.slice(1,))
         let oldPrice = parseFloat(prices?.[1]?.innerHTML?.slice(1,))
-        console.log('price', oldPrice, newPrice)
-        console.log('calculateDiscountPercentage', calculateDiscountPercentage(oldPrice, newPrice))
         percentage = calculateDiscountPercentage(oldPrice, newPrice) / 100
         localStorage.setItem('percentage', JSON.stringify(percentage))
     }
@@ -348,6 +344,8 @@ function handleNewChild(parentDiv) {
         let newPrice = parseFloat(price.nodeValue?.slice(1,))
         price.nodeValue = `$${Math.ceil(newPrice + (newPrice * percentage))}`
     })
+
+    console.log('quick-view-wrapper', document.querySelectorAll('.quick-view-wrapper'))
 }
 
 if (isPlus && JSON.parse(isPlus) && category && category?.id) {
