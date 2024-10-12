@@ -340,7 +340,7 @@ function handleNewChild(parentDiv) {
     }
 
     Array.from(parentDiv.children).forEach(child => {
-        let prices = child?.children?.[1]?.children?.[0]?.children?.[0]?.children?.[2]?.firstElementChild?.childNodes?.[0]
+        let prices = child?.children?.[1]?.children?.[0]?.children?.[0]?.children?.[2]?.firstElementChild?.childNodes
         let price = parseFloat(prices?.[1].innerHTML?.slice(1,))
         prices[0].nodeValue = `$${(price + (price * percentage)).toFixed(2)}`
     })
