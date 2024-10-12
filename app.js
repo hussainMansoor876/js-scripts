@@ -321,11 +321,24 @@ let category = categories.find((v) => routeURL.includes(v?.url))
 console.log('categories', categories)
 console.log('pathname', routeURL)
 
+
+function calculateDiscountPercentage(originalPrice, discountedPrice) {
+    const discountAmount = originalPrice - discountedPrice;
+    const discountPercentage = (discountAmount / originalPrice) * 100
+    return discountPercentage.toFixed(0)
+}
+
 function handleNewChild(parentDiv) {
     console.log('parentDiv', parentDiv)
     let percentage = localStorage.getItem('percentage') || 0
+    if (percentage) {
+
+    }
+    else {
+
+    }
     let firstProduct = parentDiv.firstElementChild
-    let title = firstProduct.children?.[1]?.children?.[0]?.children?.[0]?.children?.[0]?.firstElementChild
+    let title = firstProduct.children?.[1]?.children?.[0]?.children?.[0]?.children?.[0]?.firstElementChild?.innerHTML
     console.log('title', title)
 }
 
