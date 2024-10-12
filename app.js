@@ -338,7 +338,6 @@ function handleNewChild(parentDiv) {
 
     Array.from(parentDiv.children).forEach(child => {
         let events = child?.firstElementChild?.firstElementChild?.firstElementChild?.firstElementChild
-        console.log('events', events?.children)
         events.children[1].addEventListener('click', () => console.log('Hello'))
         let prices = child?.children?.[1]?.children?.[0]?.children?.[0]?.children?.[2]?.firstElementChild?.childNodes
         console.log('prices', prices)
