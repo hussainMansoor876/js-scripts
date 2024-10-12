@@ -323,8 +323,10 @@ console.log('pathname', routeURL)
 
 function handleNewChild(parentDiv) {
     console.log('parentDiv', parentDiv)
+    let percentage = localStorage.getItem('percentage') || 0
     let firstProduct = parentDiv.firstElementChild
-    console.log('child', firstProduct.children?.[1]?.children?.[0]?.children?.[0]?.children?.[0])
+    let title = firstProduct.children?.[1]?.children?.[0]?.children?.[0]?.children?.[0]?.firstElementChild
+    console.log('title', title)
 }
 
 if (isPlus && JSON.parse(isPlus) && category && category?.id) {
