@@ -326,7 +326,7 @@ function handleNewChild(parentDiv) {
     console.log('New child added:', firstProduct.children?.[1])
 }
 
-if (category && category?.id) {
+if (isPlus && JSON.parse(isPlus) && category && category?.id) {
     document.addEventListener('DOMContentLoaded', async function () {
         try {
             let data = await sendRequest(`${apiUrl}/${productRoute}`, 'GET', null, [{ category_id: category?.id }, { limit: 50 }])
