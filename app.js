@@ -335,8 +335,8 @@ function handleNewChild(parentDiv) {
     if (!percentage) {
         let firstProduct = parentDiv.firstElementChild
         let prices = firstProduct.children?.[1]?.children?.[0]?.children?.[0]?.children?.[2]?.firstElementChild?.childNodes
-        let oldPrice = parseFloat(prices?.[1]?.innerHTML?.slice(1,))
         let newPrice = parseFloat(prices?.[0]?.nodeValue?.slice(1,))
+        let oldPrice = parseFloat(prices?.[1]?.innerHTML?.slice(1,))
         console.log('price', oldPrice, newPrice)
         console.log('calculateDiscountPercentage', calculateDiscountPercentage(oldPrice, newPrice))
         percentage = calculateDiscountPercentage(oldPrice, newPrice) / 100
@@ -345,6 +345,8 @@ function handleNewChild(parentDiv) {
 
     Array.from(parentDiv.children).forEach(child => {
         console.log('child', child?.children?.[1]?.children?.[0]?.children?.[0]?.children?.[2]?.firstElementChild?.childNodes)
+        let price = child?.children?.[1]?.children?.[0]?.children?.[0]?.children?.[2]?.firstElementChild?.childNodes?.[0]
+        price.nodeValue = 9
     })
 }
 
