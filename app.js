@@ -346,6 +346,10 @@ function handleNewChild(parentDiv, items) {
         percentage = calculateDiscountPercentage(oldPrice, newPrice) / 100
         localStorage.setItem('percentage', JSON.stringify(percentage))
     }
+
+    Array.from(parentDiv.children).forEach(child => {
+        console.log('child', child)
+    })
 }
 
 if (isPlus && JSON.parse(isPlus) && category && category?.id) {
