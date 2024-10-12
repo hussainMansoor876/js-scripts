@@ -336,8 +336,6 @@ if (isPlus && JSON.parse(isPlus) && category && category?.id) {
             const productLink = document.querySelectorAll('div[data-type="StoreWidget"]')
             let parentDiv = productLink[0]?.children?.[0]?.children?.[2]
 
-            console.log('parentDiv', parentDiv?.children?.length)
-
             if (parentDiv?.children?.length) {
                 console.log('if')
                 handleNewChild(parentDiv.children)
