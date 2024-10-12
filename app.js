@@ -323,7 +323,7 @@ console.log('pathname', routeURL)
 
 function handleNewChild(parentDiv) {
     let firstProduct = parentDiv.firstElementChild
-    console.log('New child added:', firstProduct.children?.[1]?.children?.[0]?.firstElementChild)
+    console.log('New child added:', firstProduct.children?.[1]?.children?.[0]?.firstElementChild?.firstElementChild)
 }
 
 if (isPlus && JSON.parse(isPlus) && category && category?.id) {
