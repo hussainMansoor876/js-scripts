@@ -338,7 +338,7 @@ function handleNewChild(parentDiv) {
     localStorage.setItem('percentage', JSON.stringify(percentage))
 
     Array.from(parentDiv.children).forEach(child => {
-        console.log('child?.children', child?.children)
+        console.log('child?.children', child?.children?.[2])
         let prices = child?.children?.[1]?.children?.[0]?.children?.[0]?.children?.[2]?.firstElementChild?.childNodes
         let price = parseFloat(prices?.[1].innerHTML?.slice(1,))
         prices[0].nodeValue = `$${(price + (price * percentage)).toFixed(2)}`
