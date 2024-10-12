@@ -344,7 +344,7 @@ function handleNewChild(parentDiv) {
         // prices[0].nodeValue = `$${(price + (price * percentage)).toFixed(2)}`
     })
 
-    console.log('quick-view-wrapper', document.querySelectorAll('.quick-view-wrapper'))
+    // console.log('quick-view-wrapper', document.querySelectorAll('.quick-view-wrapper'))
 }
 
 if (isPlus && JSON.parse(isPlus) && category && category?.id) {
