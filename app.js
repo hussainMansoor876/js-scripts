@@ -338,7 +338,7 @@ if (isPlus && JSON.parse(isPlus) && category && category?.id) {
 
             if (parentDiv?.children?.length) {
                 console.log('if')
-                handleNewChild(parentDiv.children)
+                handleNewChild(parentDiv.children?.[0])
             }
             else {
                 const observer = new MutationObserver(mutations => {
