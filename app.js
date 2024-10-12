@@ -335,6 +335,8 @@ if (isPlus && JSON.parse(isPlus) && category && category?.id) {
             const productLink = document.querySelectorAll('div[data-type="StoreWidget"]')
             let parentDiv = productLink[0]?.children?.[0]?.children?.[2]
 
+            console.log('parentDiv', parentDiv?.children?.length)
+
             const observer = new MutationObserver(mutations => {
                 mutations.forEach(mutation => {
                     mutation.addedNodes.forEach(node => {
