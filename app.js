@@ -265,9 +265,18 @@ const categories = [
     }
 ]
 
-function sendRequest(url, method, body = null, query = {}) {
-    // Construct query string if there are query parameters
-    const queryString = new URLSearchParams(query).toString()
+function sendRequest(url, method, body = null, queries = []) {
+    // Construct query string from multiple query objects
+    const queryParams = new URLSearchParams()
+
+    // Merge all query objects into one
+    queries.forEach(query => {
+        Object.entries(query).forEach(([key, value]) => {
+            queryParams.append(key, value)
+        })
+    })
+
+    const queryString = queryParams.toString()
     console.log('queryString', queryString)
     const fullUrl = queryString ? `${url}?${queryString}` : url
 
@@ -297,6 +306,7 @@ function sendRequest(url, method, body = null, query = {}) {
         })
 }
 
+
 let apiUrl = `${window.location.origin}/api/site`
 let productRoute = `products`
 let apiToken = `w7e7ae734df7c4d56b009d7c6e530befc`
@@ -309,17 +319,14 @@ console.log('categories', categories)
 console.log('pathname', routeURL)
 
 function handleNewChild(child) {
-    console.log('New child added:', child.children)
-    console.log('New child added:', child.childNodes)
-    console.log('New child added:', child.firstElementChild)
     console.log('New child added:', child.firstChild)
 }
 
 if (category && category?.id) {
     document.addEventListener('DOMContentLoaded', async function () {
-        // let data = await sendRequest(`${apiUrl}/${productRoute}`, 'GET', null, { category_id: category?.id })
+        let data = await sendRequest(`${apiUrl}/${productRoute}`, 'GET', null, [{ category_id: category?.id }, { limit: 50 }])
 
-        // console.log('data', data)
+        console.log('data', data)
         const productLink = document.querySelectorAll('div[data-type="StoreWidget"]')
         let parentDiv = productLink[0]?.children?.[0]?.children?.[2]
 
