@@ -337,18 +337,25 @@ if (isPlus && JSON.parse(isPlus) && category && category?.id) {
 
             console.log('parentDiv', parentDiv?.children?.length)
 
-            const observer = new MutationObserver(mutations => {
-                mutations.forEach(mutation => {
-                    mutation.addedNodes.forEach(node => {
-                        // Check if the added node is an element
-                        if (node.nodeType === 1) { // Node.ELEMENT_NODE
-                            handleNewChild(node)
-                        }
+            if (parentDiv?.children?.length) {
+                console.log('if')
+                handleNewChild(parentDiv.children)
+            }
+            else {
+                const observer = new MutationObserver(mutations => {
+                    mutations.forEach(mutation => {
+                        mutation.addedNodes.forEach(node => {
+                            // Check if the added node is an element
+                            if (node.nodeType === 1) { // Node.ELEMENT_NODE
+                                handleNewChild(node)
+                            }
+                        })
                     })
                 })
-            })
 
-            observer.observe(parentDiv, { childList: true })
+                observer.observe(parentDiv, { childList: true })
+            }
+
         }
         catch (e) {
             console.log('e', e)
