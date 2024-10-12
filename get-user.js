@@ -87,7 +87,8 @@ document.addEventListener('DOMContentLoaded', function () {
         emailInput.value = savedEmail;
     }
 
-    loginButton.addEventListener('click', () => {
+    loginButton.addEventListener('click', (event) => {
+        event.preventDefault()
         fetchUserByEmail(emailInput?.value)
     })
 
