@@ -331,8 +331,8 @@ function handleNewChild(parentDiv) {
     let percentage = JSON.parse(localStorage.getItem('percentage')) || 0
     let firstProduct = parentDiv.firstElementChild
     let prices = firstProduct.children?.[1]?.children?.[0]?.children?.[0]?.children?.[2]?.firstElementChild?.childNodes
-    let newPrice = parseFloat(prices?.[0]?.nodeValue?.slice(1,))
-    let oldPrice = parseFloat(prices?.[1]?.innerHTML?.slice(1,))
+    let newPrice = parseFloat(prices?.[0]?.nodeValue?.split('$')?.slice(-1,)[0])
+    let oldPrice = parseFloat(prices?.[1]?.innerHTML?.split('$')?.slice(-1,)[0])
     percentage = calculateDiscountPercentage(oldPrice, newPrice) / 100
     localStorage.setItem('percentage', JSON.stringify(percentage))
 
@@ -340,11 +340,11 @@ function handleNewChild(parentDiv) {
         console.log('child?.children', child?.children?.[2]?.children)
         let prices = child?.children?.[1]?.children?.[0]?.children?.[0]?.children?.[2]?.firstElementChild?.childNodes
         console.log('prices', prices)
-        // let price = parseFloat(prices?.[1].innerHTML?.slice(1,))
-        // prices[0].nodeValue = `$${(price + (price * percentage)).toFixed(2)}`
+        let price = parseFloat(prices?.[1].innerHTML?.split('$')?.slice(-1,)[0])
+        prices[0].nodeValue = `$${(price + (price * percentage)).toFixed(2)}`
     })
 
-    // console.log('quick-view-wrapper', document.querySelectorAll('.quick-view-wrapper'))
+    console.log('quick-view-wrapper', document.querySelectorAll('.quick-view-wrapper'))
 }
 
 if (isPlus && JSON.parse(isPlus) && category && category?.id) {
