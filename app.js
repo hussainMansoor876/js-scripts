@@ -337,7 +337,7 @@ function handleNewChild(parentDiv) {
     localStorage.setItem('percentage', JSON.stringify(percentage))
 
     Array.from(parentDiv.children).forEach(child => {
-        console.log('child?.children', child?.firstElementChild?.firstElementChild?.firstElementChild)
+        console.log('child?.children', child?.firstElementChild?.firstElementChild?.firstElementChild?.firstElementChild)
         let prices = child?.children?.[1]?.children?.[0]?.children?.[0]?.children?.[2]?.firstElementChild?.childNodes
         console.log('prices', prices)
         let textValue = prices?.[1].innerHTML?.split('$')?.[0] || ``
