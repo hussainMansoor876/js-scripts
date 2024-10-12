@@ -341,7 +341,7 @@ function handleNewChild(parentDiv) {
         let events = child?.children?.[0]?.children?.[0]?.children?.[0]?.children?.[0]
         console.log('events.children', events)
         console.log('events.children', events.children)
-        events.addEventListener('hover', (event) => {
+        events.addEventListener('mouseover', (event) => {
             event.preventDefault()
             console.log('Hello')
         })
