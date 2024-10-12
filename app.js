@@ -338,7 +338,7 @@ function handleNewChild(parentDiv) {
 
     Array.from(parentDiv.children).forEach(child => {
         let events = child?.firstElementChild?.firstElementChild?.firstElementChild?.firstElementChild
-        console.log('events', events)
+        console.log('events', events?.children)
         let prices = child?.children?.[1]?.children?.[0]?.children?.[0]?.children?.[2]?.firstElementChild?.childNodes
         console.log('prices', prices)
         let textValue = prices?.[1].innerHTML?.split('$')?.[0] || ``
