@@ -332,22 +332,20 @@ function handleNewChild(parentDiv, items) {
     console.log('parentDiv', parentDiv)
     let percentage = JSON.parse(localStorage.getItem('percentage')) || 0
     console.log('percentage', percentage)
-    if (percentage) {
-
+    if (!percentage) {
+        let firstProduct = parentDiv.firstElementChild
+        let title = firstProduct.children?.[1]?.children?.[0]?.children?.[0]?.children?.[0]?.firstElementChild?.innerHTML
+        let prices = firstProduct.children?.[1]?.children?.[0]?.children?.[0]?.children?.[2]?.firstElementChild?.childNodes
+        let oldPrice = parseFloat(prices?.[1]?.innerHTML?.slice(1,))
+        let newPrice = parseFloat(prices?.[0]?.nodeValue?.slice(1,))
+        let filteredData = items?.find((v) => v?.title === title)
+        console.log('title', title)
+        console.log('price', oldPrice, newPrice)
+        console.log('filteredData', filteredData)
+        console.log('calculateDiscountPercentage', calculateDiscountPercentage(oldPrice, newPrice))
+        percentage = calculateDiscountPercentage(oldPrice, newPrice) / 100
+        localStorage.setItem('percentage', JSON.stringify(percentage))
     }
-    else {
-    }
-
-    let firstProduct = parentDiv.firstElementChild
-    let title = firstProduct.children?.[1]?.children?.[0]?.children?.[0]?.children?.[0]?.firstElementChild?.innerHTML
-    let prices = firstProduct.children?.[1]?.children?.[0]?.children?.[0]?.children?.[2]?.firstElementChild?.childNodes
-    let oldPrice = parseFloat(prices?.[1]?.innerHTML?.slice(1,))
-    let newPrice = parseFloat(prices?.[0]?.nodeValue?.slice(1,))
-    let filteredData = items?.find((v) => v?.title === title)
-    console.log('title', title)
-    console.log('price', oldPrice, newPrice)
-    console.log('filteredData', filteredData)
-    console.log('calculateDiscountPercentage', calculateDiscountPercentage(oldPrice, newPrice))
 }
 
 if (isPlus && JSON.parse(isPlus) && category && category?.id) {
