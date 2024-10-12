@@ -330,14 +330,12 @@ function calculateDiscountPercentage(originalPrice, discountedPrice) {
 
 function handleNewChild(parentDiv) {
     let percentage = JSON.parse(localStorage.getItem('percentage')) || 0
-    if (!percentage) {
-        let firstProduct = parentDiv.firstElementChild
-        let prices = firstProduct.children?.[1]?.children?.[0]?.children?.[0]?.children?.[2]?.firstElementChild?.childNodes
-        let newPrice = parseFloat(prices?.[0]?.nodeValue?.slice(1,))
-        let oldPrice = parseFloat(prices?.[1]?.innerHTML?.slice(1,))
-        percentage = calculateDiscountPercentage(oldPrice, newPrice) / 100
-        localStorage.setItem('percentage', JSON.stringify(percentage))
-    }
+    let firstProduct = parentDiv.firstElementChild
+    let prices = firstProduct.children?.[1]?.children?.[0]?.children?.[0]?.children?.[2]?.firstElementChild?.childNodes
+    let newPrice = parseFloat(prices?.[0]?.nodeValue?.slice(1,))
+    let oldPrice = parseFloat(prices?.[1]?.innerHTML?.slice(1,))
+    percentage = calculateDiscountPercentage(oldPrice, newPrice) / 100
+    localStorage.setItem('percentage', JSON.stringify(percentage))
 
     Array.from(parentDiv.children).forEach(child => {
         let prices = child?.children?.[1]?.children?.[0]?.children?.[0]?.children?.[2]?.firstElementChild?.childNodes
