@@ -338,7 +338,7 @@ function handleNewChild(parentDiv) {
     localStorage.setItem('percentage', JSON.stringify(percentage))
 
     Array.from(parentDiv.children).forEach(child => {
-        let events = child?.children?.[0]
+        let events = child?.children?.[0]?.children?.[0]
         console.log('events.children', events)
         events.addEventListener('click', (event) => {
             event.preventDefault()
@@ -350,7 +350,7 @@ function handleNewChild(parentDiv) {
         prices[0].nodeValue = `${textValue}$${(price + (price * percentage)).toFixed(2)}`
     })
 
-    console.log('quick-view-wrapper', document.querySelectorAll('.quick-view-wrapper'))
+    // console.log('quick-view-wrapper', document.querySelectorAll('.quick-view-wrapper'))
 }
 
 
