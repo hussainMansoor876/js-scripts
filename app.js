@@ -340,28 +340,7 @@ function handleNewChild(parentDiv) {
     Array.from(parentDiv.children).forEach(child => {
         let events = child?.firstElementChild?.firstElementChild?.firstElementChild?.firstElementChild
         console.log('events.children', events.children)
-        const observer = new MutationObserver((mutations) => {
-            mutations.forEach((mutation) => {
-                // Check if nodes were added
-                if (mutation.addedNodes.length) {
-                    mutation.addedNodes.forEach((node) => {
-                        console.log('node', node)
-                        if (node.nodeType === Node.ELEMENT_NODE && node.matches('.quick-store-button')) {
-                            // Add a click event listener when the element appears
-                            node.addEventListener('click', (event) => {
-                                event.preventDefault()
-                                console.log('Button clicked via MutationObserver!')
-                            })
-                        }
-                    })
-                }
-            })
-        })
-        observer.observe(child, {
-            childList: true, // Monitor child elements being added or removed
-            subtree: true    // Monitor the entire subtree of the parent element
-        })
-        events.children[1].addEventListener('click', (event) => {
+        child.addEventListener('click', (event) => {
             event.preventDefault()
             console.log('Hello')
         })
