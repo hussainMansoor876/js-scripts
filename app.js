@@ -339,7 +339,6 @@ function handleNewChild(parentDiv) {
 
     Array.from(parentDiv.children).forEach(child => {
         let events = child?.firstElementChild?.firstElementChild?.firstElementChild?.firstElementChild
-        console.log('child', child)
         console.log('events.children', events.children)
         const observer = new MutationObserver((mutations) => {
             mutations.forEach((mutation) => {
