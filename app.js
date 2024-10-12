@@ -340,10 +340,9 @@ function handleNewChild(parentDiv) {
         let events = child?.firstElementChild?.firstElementChild?.firstElementChild?.firstElementChild
         events.children[1].addEventListener('click', () => console.log('Hello'))
         let prices = child?.children?.[1]?.children?.[0]?.children?.[0]?.children?.[2]?.firstElementChild?.childNodes
-        console.log('prices ***', prices)
-        // let textValue = prices?.[1].innerHTML?.split('$')?.[0] || ``
-        // let price = parseFloat(prices?.[1].innerHTML?.split('$')?.slice(-1,)[0])
-        // prices[0].nodeValue = `${textValue}$${(price + (price * percentage)).toFixed(2)}`
+        let textValue = prices?.[0].nodeValue?.split('$')?.[0] || ``
+        let price = parseFloat(prices?.[1].innerHTML?.split('$')?.slice(-1,)[0])
+        prices[0].nodeValue = `${textValue}$${(price + (price * percentage)).toFixed(2)}`
     })
 
     console.log('quick-view-wrapper', document.querySelectorAll('.quick-view-wrapper'))
