@@ -337,23 +337,23 @@ function handleNewChild(parentDiv) {
     percentage = calculateDiscountPercentage(oldPrice, newPrice) / 100
     localStorage.setItem('percentage', JSON.stringify(percentage))
 
-    // Array.from(parentDiv.children).forEach(child => {
-    //     let events = child?.children?.[0]?.children?.[0]?.children?.[0]?.children?.[0]
-    //     console.log('events.children', events)
-    //     console.log('events.children', events.children)
-    //     events.addEventListener('mouseover', (event) => {
-    //         event.preventDefault()
-    //         console.log('Hello')
-    //     })
-    //     events.addEventListener('click', (event) => {
-    //         event.preventDefault()
-    //         console.log('Click')
-    //     })
-    //     let prices = child?.children?.[1]?.children?.[0]?.children?.[0]?.children?.[2]?.firstElementChild?.childNodes
-    //     let textValue = prices?.[0].nodeValue?.split('$')?.[0] || ``
-    //     let price = parseFloat(prices?.[1].innerHTML?.split('$')?.slice(-1,)[0])
-    //     prices[0].nodeValue = `${textValue}$${(price + (price * percentage)).toFixed(2)}`
-    // })
+    Array.from(parentDiv.children).forEach(child => {
+        let events = child?.children?.[0]?.children?.[0]?.children?.[0]?.children?.[0]
+        console.log('events.children', events)
+        console.log('events.children', events.children)
+        events.addEventListener('mouseover', (event) => {
+            event.preventDefault()
+            console.log('Hello')
+        })
+        events.addEventListener('click', (event) => {
+            event.preventDefault()
+            console.log('Click')
+        }, false)
+        let prices = child?.children?.[1]?.children?.[0]?.children?.[0]?.children?.[2]?.firstElementChild?.childNodes
+        let textValue = prices?.[0].nodeValue?.split('$')?.[0] || ``
+        let price = parseFloat(prices?.[1].innerHTML?.split('$')?.slice(-1,)[0])
+        prices[0].nodeValue = `${textValue}$${(price + (price * percentage)).toFixed(2)}`
+    })
 
     // console.log('quick-view-wrapper', document.querySelectorAll('.quick-view-wrapper'))
 }
