@@ -322,7 +322,7 @@ console.log('pathname', routeURL)
 
 
 function calculateDiscountPercentage(originalPrice, discountedPrice) {
-    const discountAmount = originalPrice - discountedPrice;
+    const discountAmount = originalPrice - discountedPrice
     const discountPercentage = (discountAmount / originalPrice) * 100
     return discountPercentage.toFixed(0)
 }
@@ -341,6 +341,26 @@ function handleNewChild(parentDiv) {
         let events = child?.firstElementChild?.firstElementChild?.firstElementChild?.firstElementChild
         console.log('child', child)
         console.log('events.children', events.children)
+        const observer = new MutationObserver((mutations) => {
+            mutations.forEach((mutation) => {
+                // Check if nodes were added
+                if (mutation.addedNodes.length) {
+                    mutation.addedNodes.forEach((node) => {
+                        if (node.nodeType === Node.ELEMENT_NODE && node.matches('.quick-store-button')) {
+                            // Add a click event listener when the element appears
+                            node.addEventListener('click', (event) => {
+                                event.preventDefault()
+                                console.log('Button clicked via MutationObserver!')
+                            })
+                        }
+                    })
+                }
+            })
+        })
+        observer.observe(child, {
+            childList: true, // Monitor child elements being added or removed
+            subtree: true    // Monitor the entire subtree of the parent element
+        })
         events.children[1].addEventListener('click', (event) => {
             event.preventDefault()
             console.log('Hello')
@@ -354,14 +374,13 @@ function handleNewChild(parentDiv) {
     console.log('quick-view-wrapper', document.querySelectorAll('.quick-view-wrapper'))
 }
 
-console.log('category', category)
 
 if (isPlus && JSON.parse(isPlus) && category && category?.id) {
     document.addEventListener('DOMContentLoaded', async function () {
         try {
-            let data = await sendRequest(`${apiUrl}/${productRoute}`, 'GET', null, [{ category_id: category?.id }, { limit: 50 }])
+            // let data = await sendRequest(`${apiUrl}/${productRoute}`, 'GET', null, [{ category_id: category?.id }, { limit: 50 }])
 
-            console.log('data', data)
+            // console.log('data', data)
             const productLink = document.querySelectorAll('div[data-type="StoreWidget"]')
             let parentDiv = productLink[0]?.children?.[0]?.children?.[2]
 
