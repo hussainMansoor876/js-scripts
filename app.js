@@ -330,25 +330,23 @@ function calculateDiscountPercentage(originalPrice, discountedPrice) {
 function handleNewChild(parentDiv) {
     let percentage = JSON.parse(localStorage.getItem('percentage')) || 0
 
-    if (!percentage) {
-        let firstProduct = parentDiv.firstElementChild
-        let prices = firstProduct.children?.[1]?.children?.[0]?.children?.[0]?.children?.[2]?.firstElementChild?.childNodes
-        let newPrice = parseFloat(prices?.[0]?.nodeValue?.split('$')?.slice(-1,)[0])
-        let oldPrice = parseFloat(prices?.[1]?.innerHTML?.split('$')?.slice(-1,)[0])
-        percentage = calculateDiscountPercentage(oldPrice, newPrice) / 100
-        localStorage.setItem('percentage', JSON.stringify(percentage))
-    }
+    let firstProduct = parentDiv.firstElementChild
+    let prices = firstProduct.children?.[1]?.children?.[0]?.children?.[0]?.children?.[2]?.firstElementChild?.childNodes
+    let newPrice = parseFloat(prices?.[0]?.nodeValue?.split('$')?.slice(-1,)[0])
+    let oldPrice = parseFloat(prices?.[1]?.innerHTML?.split('$')?.slice(-1,)[0])
+    percentage = calculateDiscountPercentage(oldPrice, newPrice) / 100
+    localStorage.setItem('percentage', JSON.stringify(percentage))
 
     Array.from(parentDiv.children).forEach(child => {
         let events = child?.firstElementChild?.firstElementChild?.firstElementChild?.firstElementChild
-        console.log('events.children[1]', events.children[1])
+        console.log('child', child)
+        console.log('events.children', events.children)
         events.children[1].addEventListener('click', (event) => {
             event.preventDefault()
             console.log('Hello')
         })
         let prices = child?.children?.[1]?.children?.[0]?.children?.[0]?.children?.[2]?.firstElementChild?.childNodes
         let textValue = prices?.[0].nodeValue?.split('$')?.[0] || ``
-        console.log('price', prices)
         let price = parseFloat(prices?.[1].innerHTML?.split('$')?.slice(-1,)[0])
         prices[0].nodeValue = `${textValue}$${(price + (price * percentage)).toFixed(2)}`
     })
