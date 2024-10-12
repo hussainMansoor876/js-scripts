@@ -340,8 +340,9 @@ function handleNewChild(parentDiv) {
     Array.from(parentDiv.children).forEach(child => {
         console.log('child?.children', child?.children?.[2]?.children)
         let prices = child?.children?.[1]?.children?.[0]?.children?.[0]?.children?.[2]?.firstElementChild?.childNodes
-        let price = parseFloat(prices?.[1].innerHTML?.slice(1,))
-        prices[0].nodeValue = `$${(price + (price * percentage)).toFixed(2)}`
+        console.log('prices', prices)
+        // let price = parseFloat(prices?.[1].innerHTML?.slice(1,))
+        // prices[0].nodeValue = `$${(price + (price * percentage)).toFixed(2)}`
     })
 
     console.log('quick-view-wrapper', document.querySelectorAll('.quick-view-wrapper'))
