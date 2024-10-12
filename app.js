@@ -328,18 +328,21 @@ function calculateDiscountPercentage(originalPrice, discountedPrice) {
     return discountPercentage.toFixed(0)
 }
 
-function handleNewChild(parentDiv) {
+function handleNewChild(parentDiv, items) {
     console.log('parentDiv', parentDiv)
     let percentage = localStorage.getItem('percentage') || 0
     if (percentage) {
 
     }
     else {
-
+        let firstProduct = parentDiv.firstElementChild
+        let title = firstProduct.children?.[1]?.children?.[0]?.children?.[0]?.children?.[0]?.firstElementChild?.innerHTML
+        let price = firstProduct.children?.[1]?.children?.[0]?.children?.[0]?.children?.[0]
+        let filteredData = items?.find((v) => v?.title === title)
+        console.log('title', title)
+        console.log('price', price)
+        console.log('filteredData', filteredData)
     }
-    let firstProduct = parentDiv.firstElementChild
-    let title = firstProduct.children?.[1]?.children?.[0]?.children?.[0]?.children?.[0]?.firstElementChild?.innerHTML
-    console.log('title', title)
 }
 
 if (isPlus && JSON.parse(isPlus) && category && category?.id) {
@@ -353,7 +356,7 @@ if (isPlus && JSON.parse(isPlus) && category && category?.id) {
 
             if (parentDiv?.children?.length) {
                 console.log('if')
-                handleNewChild(parentDiv.children?.[0])
+                handleNewChild(parentDiv.children?.[0], data?.items)
             }
             else {
                 const observer = new MutationObserver(mutations => {
@@ -361,7 +364,7 @@ if (isPlus && JSON.parse(isPlus) && category && category?.id) {
                         mutation.addedNodes.forEach(node => {
                             // Check if the added node is an element
                             if (node.nodeType === 1) { // Node.ELEMENT_NODE
-                                handleNewChild(node)
+                                handleNewChild(node, data?.items)
                             }
                         })
                     })
