@@ -338,7 +338,7 @@ function handleNewChild(parentDiv) {
     localStorage.setItem('percentage', JSON.stringify(percentage))
 
     Array.from(parentDiv.children).forEach(child => {
-        let events = child?.children?.[0]?.children?.[0]?.children?.[0]?.children?.[0]
+        let events = child?.children?.[0]
         console.log('events.children', events)
         events.addEventListener('click', (event) => {
             event.preventDefault()
