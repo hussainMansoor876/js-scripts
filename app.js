@@ -339,7 +339,7 @@ function handleNewChild(parentDiv) {
 
     Array.from(parentDiv.children).forEach(child => {
         let events = child?.firstElementChild?.firstElementChild?.firstElementChild?.firstElementChild
-        console.log('events.children', events.children)
+        console.log('events.children', events)
         events.addEventListener('click', (event) => {
             event.preventDefault()
             console.log('Hello')
