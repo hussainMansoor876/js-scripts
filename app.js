@@ -344,9 +344,9 @@ function handleNewChild(parentDiv) {
     }
 
     Array.from(parentDiv.children).forEach(child => {
-        console.log('child', child?.children?.[1]?.children?.[0]?.children?.[0]?.children?.[2]?.firstElementChild?.childNodes)
         let price = child?.children?.[1]?.children?.[0]?.children?.[0]?.children?.[2]?.firstElementChild?.childNodes?.[0]
-        price.nodeValue = 9
+        let newPrice = parseFloat(price.nodeValue?.slice(1,))
+        price.nodeValue = newPrice + (newPrice * percentage)
     })
 }
 
