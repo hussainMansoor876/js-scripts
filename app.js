@@ -316,37 +316,40 @@ const routeURL = window.location.pathname?.slice(1,)
 const savedEmail = localStorage.getItem('email')
 const isPlus = localStorage.getItem('plus')
 
-console.log('isPlus', isPlus, typeof(isPlus))
-
 let category = categories.find((v) => routeURL.includes(v?.url))
 
 console.log('categories', categories)
 console.log('pathname', routeURL)
 
-function handleNewChild(child) {
-    console.log('New child added:', child.firstChild)
+function handleNewChild(parentDiv) {
+    let firstProduct = parentDiv.firstChild
+    console.log('New child added:', firstProduct.children?.[1])
 }
 
 if (category && category?.id) {
     document.addEventListener('DOMContentLoaded', async function () {
-        let data = await sendRequest(`${apiUrl}/${productRoute}`, 'GET', null, [{ category_id: category?.id }, { limit: 50 }])
+        try {
+            let data = await sendRequest(`${apiUrl}/${productRoute}`, 'GET', null, [{ category_id: category?.id }, { limit: 50 }])
 
-        console.log('data', data)
-        const productLink = document.querySelectorAll('div[data-type="StoreWidget"]')
-        let parentDiv = productLink[0]?.children?.[0]?.children?.[2]
+            console.log('data', data)
+            const productLink = document.querySelectorAll('div[data-type="StoreWidget"]')
+            let parentDiv = productLink[0]?.children?.[0]?.children?.[2]
 
-        const observer = new MutationObserver(mutations => {
-            mutations.forEach(mutation => {
-                mutation.addedNodes.forEach(node => {
-                    // Check if the added node is an element
-                    if (node.nodeType === 1) { // Node.ELEMENT_NODE
-                        handleNewChild(node)
-                    }
+            const observer = new MutationObserver(mutations => {
+                mutations.forEach(mutation => {
+                    mutation.addedNodes.forEach(node => {
+                        // Check if the added node is an element
+                        if (node.nodeType === 1) { // Node.ELEMENT_NODE
+                            handleNewChild(node)
+                        }
+                    })
                 })
             })
-        })
 
-        observer.observe(parentDiv, { childList: true })
-
+            observer.observe(parentDiv, { childList: true })
+        }
+        catch (e) {
+            console.log('e', e)
+        }
     })
 }
