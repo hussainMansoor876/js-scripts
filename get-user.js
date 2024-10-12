@@ -61,14 +61,10 @@ const fetchUserByEmail = async (emailValue) => {
             console.log('idData', idData)
 
             if (idData?.name && idData?.name?.toLowerCase()?.includes('plus')) {
-                let percentage = Number(idData?.name?.split(' ')?.[1]) / 100
-
-                console.log('percentage', percentage)
-
                 localStorage.setItem('plus', JSON.stringify(true))
+                localStorage.setItem('percentage', 0)
             }
             else {
-                // localStorage.setItem('percentage', 0)
                 localStorage.setItem('plus', JSON.stringify(false))
             }
         }
