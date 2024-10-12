@@ -313,6 +313,11 @@ let apiToken = `w7e7ae734df7c4d56b009d7c6e530befc`
 
 const routeURL = window.location.pathname?.slice(1,)
 
+const savedEmail = localStorage.getItem('email')
+const isPlus = localStorage.getItem('plus')
+
+console.log('isPlus', isPlus, typeof(isPlus))
+
 let category = categories.find((v) => routeURL.includes(v?.url))
 
 console.log('categories', categories)
