@@ -318,7 +318,6 @@ const isPlus = localStorage.getItem('plus')
 
 let category = categories.find((v) => routeURL.includes(v?.url))
 
-console.log('categories', categories)
 console.log('pathname', routeURL)
 
 
