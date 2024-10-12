@@ -341,8 +341,8 @@ function handleNewChild(parentDiv, items) {
     let firstProduct = parentDiv.firstElementChild
     let title = firstProduct.children?.[1]?.children?.[0]?.children?.[0]?.children?.[0]?.firstElementChild?.innerHTML
     let prices = firstProduct.children?.[1]?.children?.[0]?.children?.[0]?.children?.[2]?.firstElementChild?.childNodes
-    let oldPrice = prices?.[1]?.children
-    let newPrice = prices?.[0]?.nodeValue
+    let oldPrice = prices?.[1]
+    let newPrice = prices?.[0]?.nodeValue?.slice(1,)
     let filteredData = items?.find((v) => v?.title === title)
     console.log('title', title)
     console.log('price', oldPrice, newPrice)
