@@ -348,7 +348,7 @@ function handleNewChild(parentDiv, items) {
     }
 
     Array.from(parentDiv.children).forEach(child => {
-        console.log('child', child)
+        console.log('child', child?.children?.[1]?.children?.[0]?.children?.[0]?.children?.[2]?.firstElementChild?.childNodes)
     })
 }
 
