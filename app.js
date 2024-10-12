@@ -328,20 +328,16 @@ function calculateDiscountPercentage(originalPrice, discountedPrice) {
     return discountPercentage.toFixed(0)
 }
 
-function handleNewChild(parentDiv, items) {
+function handleNewChild(parentDiv) {
     console.log('parentDiv', parentDiv)
     let percentage = JSON.parse(localStorage.getItem('percentage')) || 0
     console.log('percentage', percentage)
     if (!percentage) {
         let firstProduct = parentDiv.firstElementChild
-        let title = firstProduct.children?.[1]?.children?.[0]?.children?.[0]?.children?.[0]?.firstElementChild?.innerHTML
         let prices = firstProduct.children?.[1]?.children?.[0]?.children?.[0]?.children?.[2]?.firstElementChild?.childNodes
         let oldPrice = parseFloat(prices?.[1]?.innerHTML?.slice(1,))
         let newPrice = parseFloat(prices?.[0]?.nodeValue?.slice(1,))
-        let filteredData = items?.find((v) => v?.title === title)
-        console.log('title', title)
         console.log('price', oldPrice, newPrice)
-        console.log('filteredData', filteredData)
         console.log('calculateDiscountPercentage', calculateDiscountPercentage(oldPrice, newPrice))
         percentage = calculateDiscountPercentage(oldPrice, newPrice) / 100
         localStorage.setItem('percentage', JSON.stringify(percentage))
@@ -355,15 +351,15 @@ function handleNewChild(parentDiv, items) {
 if (isPlus && JSON.parse(isPlus) && category && category?.id) {
     document.addEventListener('DOMContentLoaded', async function () {
         try {
-            let data = await sendRequest(`${apiUrl}/${productRoute}`, 'GET', null, [{ category_id: category?.id }, { limit: 50 }])
+            // let data = await sendRequest(`${apiUrl}/${productRoute}`, 'GET', null, [{ category_id: category?.id }, { limit: 50 }])
 
-            console.log('data', data)
+            // console.log('data', data)
             const productLink = document.querySelectorAll('div[data-type="StoreWidget"]')
             let parentDiv = productLink[0]?.children?.[0]?.children?.[2]
 
             if (parentDiv?.children?.length) {
                 console.log('if')
-                handleNewChild(parentDiv.children?.[0], data?.items)
+                handleNewChild(parentDiv.children?.[0])
             }
             else {
                 const observer = new MutationObserver(mutations => {
@@ -371,7 +367,7 @@ if (isPlus && JSON.parse(isPlus) && category && category?.id) {
                         mutation.addedNodes.forEach(node => {
                             // Check if the added node is an element
                             if (node.nodeType === 1) { // Node.ELEMENT_NODE
-                                handleNewChild(node, data?.items)
+                                handleNewChild(node)
                             }
                         })
                     })
