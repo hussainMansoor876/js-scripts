@@ -345,6 +345,7 @@ function handleNewChild(parentDiv) {
                 // Check if nodes were added
                 if (mutation.addedNodes.length) {
                     mutation.addedNodes.forEach((node) => {
+                        console.log('node', node)
                         if (node.nodeType === Node.ELEMENT_NODE && node.matches('.quick-store-button')) {
                             // Add a click event listener when the element appears
                             node.addEventListener('click', (event) => {
