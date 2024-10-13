@@ -340,7 +340,7 @@ function handleNewChild(parentDiv) {
     Array.from(parentDiv.children).forEach(child => {
         let events = child?.children?.[0]?.children?.[0]?.children?.[0]?.children?.[0]
         console.log('events.children', events)
-        console.log('events.children', events.children)
+        console.log('events.children', child.querySelectorAll('a.highlightColor'))
         events.addEventListener('mouseover', (event) => {
             event.preventDefault()
             console.log('Hello')
