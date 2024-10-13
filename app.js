@@ -332,6 +332,7 @@ function handleNewChild(parentDiv) {
 
     let firstProduct = parentDiv.firstElementChild
     let prices = firstProduct.children?.[1]?.children?.[0]?.children?.[0]?.children?.[2]?.firstElementChild?.childNodes
+    console.log('prices', prices)
     let newPrice = parseFloat(prices?.[0]?.nodeValue?.split('$')?.slice(-1,)[0])
     let oldPrice = parseFloat(prices?.[1]?.innerHTML?.split('$')?.slice(-1,)[0])
     percentage = calculateDiscountPercentage(oldPrice, newPrice) / 100
