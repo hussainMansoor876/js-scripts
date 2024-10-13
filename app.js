@@ -342,7 +342,7 @@ function handleNewChild(parentDiv) {
         let events = child?.children?.[0]?.children?.[0]?.children?.[0]?.children?.[0]
         console.log('events.children', events)
         console.log('events.children a', child.querySelectorAll('a.highlightColor'))
-        console.log('events.children div', child.querySelectorAll('div.product-photo-inner-wrapper'))
+        console.log('events.children div', child.querySelectorAll('div.quick-buttons-wrapper.flex.align-center.justify-center'))
         events.addEventListener('mouseover', (event) => {
             event.preventDefault()
             console.log('Hello')
