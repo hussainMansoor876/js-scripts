@@ -327,7 +327,7 @@ function calculateDiscountPercentage(originalPrice, discountedPrice) {
     return discountPercentage.toFixed(0)
 }
 
-function handleNewChild(parentDiv) {
+const handleNewChild = (parentDiv) => {
     let percentage = JSON.parse(localStorage.getItem('percentage')) || 0
 
     let firstProduct = parentDiv.firstElementChild
@@ -340,15 +340,14 @@ function handleNewChild(parentDiv) {
     Array.from(parentDiv.children).forEach(child => {
         // let events = child?.children?.[0]?.children?.[0]?.children?.[0]?.children?.[0]
         let events = child.querySelector('div.quick-buttons-wrapper.flex.align-center.justify-center')
-        console.log('events.children', events)
-        console.log('events.children a', child.querySelectorAll('a.highlightColor'))
-        console.log('events.children div', child.querySelectorAll('div.quick-buttons-wrapper.flex.align-center.justify-center'))
-        events.addEventListener('mouseover', (event) => {
+        let title = child.querySelector('a.highlightColor')?.innerHTML
+        events.addEventListener('mouseover', async (event) => {
             event.preventDefault()
-            console.log('Hello')
-        })
-        events.removeEventListener('click', () => {
-            console.log('Click')
+            if (title) {
+                let data = await sendRequest(`${apiUrl}/${productRoute}`, 'GET', null, [{ category_id: category?.id }, { limit: 50 }, { title }])
+
+                console.log('data', data)
+            }
         })
         let prices = child?.children?.[1]?.children?.[0]?.children?.[0]?.children?.[2]?.firstElementChild?.childNodes
         let textValue = prices?.[0].nodeValue?.split('$')?.[0] || ``
