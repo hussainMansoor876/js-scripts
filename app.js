@@ -347,10 +347,9 @@ function handleNewChild(parentDiv) {
             event.preventDefault()
             console.log('Hello')
         })
-        events.addEventListener('click', (event) => {
-            event.preventDefault()
+        events.removeEventListener('click', () => {
             console.log('Click')
-        }, true)
+        })
         let prices = child?.children?.[1]?.children?.[0]?.children?.[0]?.children?.[2]?.firstElementChild?.childNodes
         let textValue = prices?.[0].nodeValue?.split('$')?.[0] || ``
         let price = parseFloat(prices?.[1].innerHTML?.split('$')?.slice(-1,)[0])
