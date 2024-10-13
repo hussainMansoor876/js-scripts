@@ -342,19 +342,19 @@ const handleNewChild = (parentDiv) => {
         let events = child.querySelector('div.quick-buttons-wrapper.flex.align-center.justify-center')
         let title = child.querySelector('a.highlightColor')?.innerHTML
         var isMouseOver = false
-        events.onclick = ()=> console.log('Click')
-        events.addEventListener('mouseover', async () => {
-            if (title && !isMouseOver) {
-                let data = await sendRequest(`${apiUrl}/${productRoute}`, 'GET', null, [{ category_id: category?.id }, { limit: 50 }, { title }])
+        events.children = []
+        // events.addEventListener('mouseover', async () => {
+        //     if (title && !isMouseOver) {
+        //         let data = await sendRequest(`${apiUrl}/${productRoute}`, 'GET', null, [{ category_id: category?.id }, { limit: 50 }, { title }])
 
-                console.log('data', data)
-                isMouseOver = true
-            }
-        })
+        //         console.log('data', data)
+        //         isMouseOver = true
+        //     }
+        // })
 
-        events.addEventListener('mouseout', async (event) => {
-            isMouseOver = false
-        })
+        // events.addEventListener('mouseout', async (event) => {
+        //     isMouseOver = false
+        // })
         let prices = child?.children?.[1]?.children?.[0]?.children?.[0]?.children?.[2]?.firstElementChild?.childNodes
         let textValue = prices?.[0].nodeValue?.split('$')?.[0] || ``
         let price = parseFloat(prices?.[1].innerHTML?.split('$')?.slice(-1,)[0])
