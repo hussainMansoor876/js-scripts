@@ -342,7 +342,7 @@ const handleNewChild = (parentDiv) => {
         let events = child.querySelector('div.quick-buttons-wrapper.flex.align-center.justify-center')
         let title = child.querySelector('a.highlightColor')?.innerHTML
         var isMouseOver = false
-        events.children = []
+        events.innerHTML = ''
         // events.addEventListener('mouseover', async () => {
         //     if (title && !isMouseOver) {
         //         let data = await sendRequest(`${apiUrl}/${productRoute}`, 'GET', null, [{ category_id: category?.id }, { limit: 50 }, { title }])
