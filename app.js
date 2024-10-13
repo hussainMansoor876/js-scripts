@@ -341,13 +341,18 @@ const handleNewChild = (parentDiv) => {
         // let events = child?.children?.[0]?.children?.[0]?.children?.[0]?.children?.[0]
         let events = child.querySelector('div.quick-buttons-wrapper.flex.align-center.justify-center')
         let title = child.querySelector('a.highlightColor')?.innerHTML
-        events.addEventListener('mouseover', async (event) => {
-            event.preventDefault()
-            if (title) {
+        var isMouseOver = false
+        events.addEventListener('mouseover', async () => {
+            if (title && !isMouseOver) {
                 let data = await sendRequest(`${apiUrl}/${productRoute}`, 'GET', null, [{ category_id: category?.id }, { limit: 50 }, { title }])
 
                 console.log('data', data)
+                isMouseOver = true
             }
+        })
+
+        events.addEventListener('mouseout', async (event) => {
+            isMouseOver = false
         })
         let prices = child?.children?.[1]?.children?.[0]?.children?.[0]?.children?.[2]?.firstElementChild?.childNodes
         let textValue = prices?.[0].nodeValue?.split('$')?.[0] || ``
