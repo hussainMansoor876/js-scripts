@@ -339,7 +339,8 @@ function handleNewChild(parentDiv) {
     localStorage.setItem('percentage', JSON.stringify(percentage))
 
     Array.from(parentDiv.children).forEach(child => {
-        let events = child?.children?.[0]?.children?.[0]?.children?.[0]?.children?.[0]
+        // let events = child?.children?.[0]?.children?.[0]?.children?.[0]?.children?.[0]
+        let events = child.querySelector('div.quick-buttons-wrapper.flex.align-center.justify-center')
         console.log('events.children', events)
         console.log('events.children a', child.querySelectorAll('a.highlightColor'))
         console.log('events.children div', child.querySelectorAll('div.quick-buttons-wrapper.flex.align-center.justify-center'))
