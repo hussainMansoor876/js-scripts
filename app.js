@@ -342,6 +342,7 @@ const handleNewChild = (parentDiv) => {
         let events = child.querySelector('div.quick-buttons-wrapper.flex.align-center.justify-center')
         let title = child.querySelector('a.highlightColor')?.innerHTML
         var isMouseOver = false
+        console.log('events.innerHTML', events.innerHTML)
         events.innerHTML = ''
         // events.addEventListener('mouseover', async () => {
         //     if (title && !isMouseOver) {
