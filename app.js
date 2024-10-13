@@ -355,10 +355,10 @@ const handleNewChild = (parentDiv) => {
         // events.addEventListener('mouseout', async (event) => {
         //     isMouseOver = false
         // })
-        let prices = child?.children?.[1]?.children?.[0]?.children?.[0]?.children?.[2]?.firstElementChild?.childNodes
-        let textValue = prices?.[0].nodeValue?.split('$')?.[0] || ``
-        let price = parseFloat(prices?.[1].innerHTML?.split('$')?.slice(-1,)[0])
-        prices[0].nodeValue = `${textValue}$${(price + (price * percentage)).toFixed(2)}`
+        // let prices = child?.children?.[1]?.children?.[0]?.children?.[0]?.children?.[2]?.firstElementChild?.childNodes
+        // let textValue = prices?.[0].nodeValue?.split('$')?.[0] || ``
+        // let price = parseFloat(prices?.[1].innerHTML?.split('$')?.slice(-1,)[0])
+        // prices[0].nodeValue = `${textValue}$${(price + (price * percentage)).toFixed(2)}`
     })
 
     // console.log('quick-view-wrapper', document.querySelectorAll('.quick-view-wrapper'))
