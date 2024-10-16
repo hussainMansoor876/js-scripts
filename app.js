@@ -372,9 +372,9 @@ const handleNewChild = (parentDiv) => {
 if (isPlus && JSON.parse(isPlus) && category && category?.id) {
     document.addEventListener('DOMContentLoaded', async function () {
         try {
-            // let data = await sendRequest(`${apiUrl}/${productRoute}`, 'GET', null, [{ category_id: category?.id }, { limit: 50 }])
+            let data = await sendRequest(`${apiUrl}/${productRoute}`, 'GET', null, [{ category_id: category?.id }, { limit: 50 }])
 
-            // console.log('data', data)
+            console.log('data', data)
             const productLink = document.querySelectorAll('div[data-type="StoreWidget"]')
             let parentDiv = productLink[0]?.children?.[0]?.children?.[2]
 
