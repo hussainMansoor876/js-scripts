@@ -359,10 +359,9 @@ const handleNewChild = (parentDiv) => {
         //     isMouseOver = false
         // })
         let prices = child?.children?.[1]?.children?.[0]?.children?.[0]?.children?.[2]?.firstElementChild?.childNodes
-        console.log('prices', child?.children?.[1]?.children?.[0]?.children?.[0])
-        // let textValue = prices?.[0].nodeValue?.split('$')?.[0] || ``
-        // let price = parseFloat(prices?.[1].innerHTML?.split('$')?.slice(-1,)[0])
-        // prices[0].nodeValue = `${textValue}$${(price + (price * percentage)).toFixed(2)}`
+        let textValue = prices?.[0].nodeValue?.split('$')?.[0] || ``
+        let price = parseFloat(prices?.[1].innerHTML?.split('$')?.slice(-1,)[0])
+        prices[0].nodeValue = `${textValue}$${(price + (price * percentage)).toFixed(2)}`
     })
 
     // console.log('quick-view-wrapper', document.querySelectorAll('.quick-view-wrapper'))
@@ -372,9 +371,9 @@ const handleNewChild = (parentDiv) => {
 if (isPlus && JSON.parse(isPlus) && category && category?.id) {
     document.addEventListener('DOMContentLoaded', async function () {
         try {
-            let data = await sendRequest(`${apiUrl}/${productRoute}`, 'GET', null, [{ category_id: category?.id }, { limit: 50 }])
+            // let data = await sendRequest(`${apiUrl}/${productRoute}`, 'GET', null, [{ category_id: category?.id }, { limit: 50 }])
 
-            console.log('data', data)
+            // console.log('data', data)
             const productLink = document.querySelectorAll('div[data-type="StoreWidget"]')
             let parentDiv = productLink[0]?.children?.[0]?.children?.[2]
 
