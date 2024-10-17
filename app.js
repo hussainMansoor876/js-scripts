@@ -348,6 +348,7 @@ const handleNewChild = (parentDiv) => {
             console.log('v', v)
             v.addEventListener('click', () => {
                 console.log('title', title)
+                console.log('quick-view-overlay visible animate', document.getElementsByClassName('quick-view-overlay'))
             })
         }
         // events.addEventListener('mouseover', async () => {
