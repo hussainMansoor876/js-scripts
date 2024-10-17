@@ -311,7 +311,7 @@ let apiUrl = `${window.location.origin}/api/site`
 let productRoute = `products`
 let apiToken = `w7e7ae734df7c4d56b009d7c6e530befc`
 
-const routeURL = window.location.pathname?.slice(1,)?.split('/')
+let routeURL = window.location.pathname?.slice(1,)?.split('/')
 let subRoute = routeURL?.[1]
 routeURL = routeURL?.[0]
 
