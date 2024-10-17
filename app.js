@@ -372,6 +372,7 @@ if (isPlus && JSON.parse(isPlus) && category && category?.id) {
     document.addEventListener('DOMContentLoaded', async function () {
         try {
             let subRoute = routeURL?.split('/')?.[1]
+            console.log('subRoute', subRoute)
             if (subRoute?.length) {
                 let data = await sendRequest(`${apiUrl}/${productRoute}`, 'GET', null, [{ category_id: category?.id, url: subRoute }, { limit: 50 }])
 
