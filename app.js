@@ -347,6 +347,9 @@ const handleNewChild = (parentDiv) => {
         for (var v of events) {
             v.removeAttribute('data-role')
             console.log('v', v)
+            v.addEventListener('click', () => {
+                console.log('title', title)
+            })
         }
         // events.addEventListener('mouseover', async () => {
         //     if (title && !isMouseOver) {
