@@ -371,29 +371,37 @@ const handleNewChild = (parentDiv) => {
 if (isPlus && JSON.parse(isPlus) && category && category?.id) {
     document.addEventListener('DOMContentLoaded', async function () {
         try {
-            let data = await sendRequest(`${apiUrl}/${productRoute}`, 'GET', null, [{ category_id: category?.id }, { limit: 50 }])
+            let subRoute = routeURL?.split('/')?.[1]
+            if (subRoute?.length) {
+                let data = await sendRequest(`${apiUrl}/${productRoute}`, 'GET', null, [{ category_id: category?.id, url: subRoute }, { limit: 50 }])
 
-            console.log('data', data)
-            const productLink = document.querySelectorAll('div[data-type="StoreWidget"]')
-            let parentDiv = productLink[0]?.children?.[0]?.children?.[2]
-
-            if (parentDiv?.children?.length) {
-                console.log('if')
-                handleNewChild(parentDiv.children?.[0])
+                console.log('data subroute', data)
             }
             else {
-                const observer = new MutationObserver(mutations => {
-                    mutations.forEach(mutation => {
-                        mutation.addedNodes.forEach(node => {
-                            // Check if the added node is an element
-                            if (node.nodeType === 1) { // Node.ELEMENT_NODE
-                                handleNewChild(node)
-                            }
+                let data = await sendRequest(`${apiUrl}/${productRoute}`, 'GET', null, [{ category_id: category?.id }, { limit: 50 }])
+
+                console.log('data', data)
+                const productLink = document.querySelectorAll('div[data-type="StoreWidget"]')
+                let parentDiv = productLink[0]?.children?.[0]?.children?.[2]
+
+                if (parentDiv?.children?.length) {
+                    console.log('if')
+                    handleNewChild(parentDiv.children?.[0])
+                }
+                else {
+                    const observer = new MutationObserver(mutations => {
+                        mutations.forEach(mutation => {
+                            mutation.addedNodes.forEach(node => {
+                                // Check if the added node is an element
+                                if (node.nodeType === 1) { // Node.ELEMENT_NODE
+                                    handleNewChild(node)
+                                }
+                            })
                         })
                     })
-                })
 
-                observer.observe(parentDiv, { childList: true })
+                    observer.observe(parentDiv, { childList: true })
+                }
             }
 
         }
