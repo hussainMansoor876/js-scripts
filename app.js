@@ -376,6 +376,8 @@ if (isPlus && JSON.parse(isPlus) && category && category?.id) {
                 let data = await sendRequest(`${apiUrl}/${productRoute}`, 'GET', null, [{ category_id: category?.id, url: subRoute }, { limit: 50 }])
 
                 console.log('data subroute', data)
+                let productDetails = document.getElementsByClassName('product-body-container-inner')
+                console.log('productDetails', productDetails)
             }
             else {
                 let data = await sendRequest(`${apiUrl}/${productRoute}`, 'GET', null, [{ category_id: category?.id }, { limit: 50 }])
