@@ -343,8 +343,7 @@ const handleNewChild = (parentDiv) => {
         // let events = child?.children?.[0]?.children?.[0]?.children?.[0]?.children?.[0]
         let events = child.querySelector('div.quick-buttons-wrapper-inner.flex.align-center.justify-center')
         let title = child.querySelector('a.highlightColor')?.innerHTML
-        var isMouseOver = false
-        for (var v of events) {
+        for (var v of events.children) {
             v.removeAttribute('data-role')
             console.log('v', v)
             v.addEventListener('click', () => {
