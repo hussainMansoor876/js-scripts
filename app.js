@@ -419,5 +419,6 @@ if (isPlus && JSON.parse(isPlus)) {
 }
 
 console.log('WebPlatform', WebPlatform)
+console.log('window.ClientTools', window.ClientTools)
 
 // (function () {hat if (null !== T && !n.hasClass("disabled")) { if (e.onOptionSelected) return m(), void e.onOptionSelected(T); n.addClass("disabled"); var t = f || {}; h > -1 && (t.replaceIdx = h), t.orderId = t.orderId || "cart", t.option = JSON.stringify(T), t.process = g, WebPlatform.makeClientWebsiteRequest({ action: "addToCart", data: t, onOk: function (e) { var n = e.data; (WebPlatform.Store.reportAddToCart(e.uid, u, T, WebPlatform.Store.currency), W && !f) ? WebPlatform.Funnels.isInFunnel() && WebPlatform.Funnels.show("next", !0) || (window.location.href = (WebPlatform.Store.baseUrl || "/store") + "/checkout")
