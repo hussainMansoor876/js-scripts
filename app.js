@@ -368,7 +368,7 @@ const handleNewChild = (parentDiv) => {
 }
 
 
-if (isPlus && JSON.parse(isPlus) && category && category?.id) {
+if (isPlus && JSON.parse(isPlus)) {
     document.addEventListener('DOMContentLoaded', async function () {
         try {
             let subRoute = routeURL?.split('/')?.[1]
@@ -380,7 +380,7 @@ if (isPlus && JSON.parse(isPlus) && category && category?.id) {
                 let productDetails = document.getElementsByClassName('product-body-container-inner')
                 console.log('productDetails', productDetails)
             }
-            else {
+            else if (category && category?.id) {
                 let data = await sendRequest(`${apiUrl}/${productRoute}`, 'GET', null, [{ category_id: category?.id }, { limit: 50 }])
 
                 console.log('data', data)
