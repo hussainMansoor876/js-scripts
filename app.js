@@ -347,12 +347,12 @@ const handleNewChild = (parentDiv) => {
             // v.removeAttribute('data-role')
             // console.log('v', v)
 
-            v.addEventListener('click', () => {
-                console.log('title', title)
-                v.classList.add("disabled")
-                // console.log('quick-view-overlay visible animate', document.getElementsByClassName('quick-view-overlay'))
-                // document.getElementsByClassName('quick-view-overlay')[0].className = `quick-view-overlay visible animate`
-            })
+            // v.addEventListener('click', () => {
+            //     console.log('title', title)
+            //     v.classList.add("disabled")
+            //     // console.log('quick-view-overlay visible animate', document.getElementsByClassName('quick-view-overlay'))
+            //     // document.getElementsByClassName('quick-view-overlay')[0].className = `quick-view-overlay visible animate`
+            // })
         }
         // events.addEventListener('mouseover', async () => {
         //     if (title && !isMouseOver) {
