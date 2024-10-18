@@ -423,7 +423,7 @@ if (isPlus && JSON.parse(isPlus)) {
 
 const scripts = document.querySelectorAll('script')
 scripts.forEach(script => {
-    console.log('script', script)
+    console.log('script', script.src)
     if (script.src.includes('platform.client.min.js')) {
         script.parentNode.removeChild(script);
     }
