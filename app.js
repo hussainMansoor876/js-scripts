@@ -344,11 +344,11 @@ const handleNewChild = (parentDiv) => {
         let events = child.querySelector('div.quick-buttons-wrapper-inner.flex.align-center.justify-center')
         let title = child.querySelector('a.highlightColor')?.innerHTML
         for (var v of events.children) {
-            v.removeAttribute('data-role')
+            // v.removeAttribute('data-role')
             // console.log('v', v)
 
             v.addEventListener('click', () => {
-                console.log('title', title, e)
+                console.log('title', title)
                 v.classList.add("disabled")
                 // console.log('quick-view-overlay visible animate', document.getElementsByClassName('quick-view-overlay'))
                 // document.getElementsByClassName('quick-view-overlay')[0].className = `quick-view-overlay visible animate`
