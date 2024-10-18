@@ -421,6 +421,13 @@ if (isPlus && JSON.parse(isPlus)) {
     })
 }
 
+const scripts = document.querySelectorAll('script')
+scripts.forEach(script => {
+    if (script.src.includes('platform.client.min.js')) {
+        script.parentNode.removeChild(script);
+    }
+})
+
 console.log('WebPlatform', WebPlatform)
 console.log('window.ClientTools', window.ClientTools)
 
