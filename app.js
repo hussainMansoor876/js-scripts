@@ -348,7 +348,7 @@ const handleNewChild = (parentDiv) => {
             // console.log('v', v)
 
             v.addEventListener('click', () => {
-                console.log('title', title)
+                console.log('title', title, e)
                 v.classList.add("disabled")
                 // console.log('quick-view-overlay visible animate', document.getElementsByClassName('quick-view-overlay'))
                 // document.getElementsByClassName('quick-view-overlay')[0].className = `quick-view-overlay visible animate`
