@@ -344,12 +344,14 @@ const handleNewChild = (parentDiv) => {
         let events = child.querySelector('div.quick-buttons-wrapper-inner.flex.align-center.justify-center')
         let title = child.querySelector('a.highlightColor')?.innerHTML
         for (var v of events.children) {
-            // v.removeAttribute('data-role')
-            console.log('v', v)
+            v.removeAttribute('data-role')
+            // console.log('v', v)
+
             v.addEventListener('click', () => {
                 console.log('title', title)
-                console.log('quick-view-overlay visible animate', document.getElementsByClassName('quick-view-overlay'))
-                document.getElementsByClassName('quick-view-overlay')[0].className = `quick-view-overlay visible animate`
+                v.classList.add("disabled")
+                // console.log('quick-view-overlay visible animate', document.getElementsByClassName('quick-view-overlay'))
+                // document.getElementsByClassName('quick-view-overlay')[0].className = `quick-view-overlay visible animate`
             })
         }
         // events.addEventListener('mouseover', async () => {
@@ -421,4 +423,4 @@ if (isPlus && JSON.parse(isPlus)) {
 console.log('WebPlatform', WebPlatform)
 console.log('window.ClientTools', window.ClientTools)
 
-// (function () {hat if (null !== T && !n.hasClass("disabled")) { if (e.onOptionSelected) return m(), void e.onOptionSelected(T); n.addClass("disabled"); var t = f || {}; h > -1 && (t.replaceIdx = h), t.orderId = t.orderId || "cart", t.option = JSON.stringify(T), t.process = g, WebPlatform.makeClientWebsiteRequest({ action: "addToCart", data: t, onOk: function (e) { var n = e.data; (WebPlatform.Store.reportAddToCart(e.uid, u, T, WebPlatform.Store.currency), W && !f) ? WebPlatform.Funnels.isInFunnel() && WebPlatform.Funnels.show("next", !0) || (window.location.href = (WebPlatform.Store.baseUrl || "/store") + "/checkout")
+// (function(){if(null!==T&&!n.hasClass("disabled")){if(e.onOptionSelected)return m(),void e.onOptionSelected(T);n.addClass("disabled");var t=f||{};h>-1&&(t.replaceIdx=h),t.orderId=t.orderId||"cart",t.option=JSON.stringify(T),t.process=g,WebPlatform.makeClientWebsiteRequest({action:"addToCart",data:t,onOk:function(e){var n=e.data;(WebPlatform.Store.reportAddToCart(e.uid,u,T,WebPlatform.Store.currency),W&&!f)?WebPlatform.Funnels.isInFunnel()&&WebPlatform.Funnels.show("next",!0)||(window.location.href=(WebPlatform.Store.baseUrl||"/store")+"/checkout")
