@@ -430,6 +430,8 @@ scripts.forEach(script => {
     }
 })
 
+console.log('scripts', scripts)
+
 console.log('WebPlatform', WebPlatform)
 console.log('window.ClientTools', window.ClientTools)
 
