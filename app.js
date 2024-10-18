@@ -425,6 +425,7 @@ const scripts = document.querySelectorAll('script')
 scripts.forEach(script => {
     console.log('script', script.src)
     if (script.src.includes('platform.client.min.js')) {
+        console.log('removed')
         script.parentNode.removeChild(script);
     }
 })
