@@ -277,7 +277,6 @@ function sendRequest(url, method, body = null, queries = []) {
     })
 
     const queryString = queryParams.toString()
-    console.log('queryString', queryString)
     const fullUrl = queryString ? `${url}?${queryString}` : url
 
     // Set up fetch options
