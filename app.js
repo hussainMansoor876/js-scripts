@@ -344,7 +344,7 @@ const handleNewChild = (parentDiv) => {
         let events = child.querySelector('div.quick-buttons-wrapper-inner.flex.align-center.justify-center')
         let title = child.querySelector('a.highlightColor')?.innerHTML
         for (var v of events.children) {
-            v.setAttribute('data-role', 'addToCartNew')
+            // v.setAttribute('data-role', 'addToCartNew')
             // v.removeAttribute('data-role')
             // console.log('v', v)
 
