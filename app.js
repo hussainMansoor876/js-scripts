@@ -320,9 +320,6 @@ const isPlus = localStorage.getItem('plus')
 
 let category = categories.find((v) => routeURL.includes(v?.url))
 
-console.log('pathname', routeURL)
-
-
 function calculateDiscountPercentage(originalPrice, discountedPrice) {
     const discountAmount = originalPrice - discountedPrice
     const discountPercentage = (discountAmount / originalPrice) * 100
@@ -381,21 +378,20 @@ if (isPlus && JSON.parse(isPlus)) {
     document.addEventListener('DOMContentLoaded', async function () {
         try {
             if (subRoute?.length) {
-                let data = await sendRequest(`${apiUrl}/${productRoute}`, 'GET', null, [{ category_id: category?.id }, { url: subRoute }, { limit: 50 }])
+                // let data = await sendRequest(`${apiUrl}/${productRoute}`, 'GET', null, [{ category_id: category?.id }, { url: subRoute }, { limit: 50 }])
 
-                console.log('data subroute', data)
-                let productDetails = document.getElementsByClassName('product-body-container-inner')
-                console.log('productDetails', productDetails)
+                // console.log('data subroute', data)
+                // let productDetails = document.getElementsByClassName('product-body-container-inner')
             }
             else if (category && category?.id) {
                 let data = await sendRequest(`${apiUrl}/${productRoute}`, 'GET', null, [{ category_id: category?.id }, { limit: 50 }])
 
-                console.log('data', data)
+                // console.log('data', data)
                 const productLink = document.querySelectorAll('div[data-type="StoreWidget"]')
                 let parentDiv = productLink[0]?.children?.[0]?.children?.[2]
 
                 if (parentDiv?.children?.length) {
-                    console.log('if')
+                    // console.log('if')
                     handleNewChild(parentDiv.children?.[0])
                 }
                 else {
@@ -420,8 +416,3 @@ if (isPlus && JSON.parse(isPlus)) {
         }
     })
 }
-
-console.log('WebPlatform', WebPlatform)
-console.log('window.ClientTools', window.ClientTools)
-
-// (function(){if(null!==T&&!n.hasClass("disabled")){if(e.onOptionSelected)return m(),void e.onOptionSelected(T);n.addClass("disabled");var t=f||{};h>-1&&(t.replaceIdx=h),t.orderId=t.orderId||"cart",t.option=JSON.stringify(T),t.process=g,WebPlatform.makeClientWebsiteRequest({action:"addToCart",data:t,onOk:function(e){var n=e.data;(WebPlatform.Store.reportAddToCart(e.uid,u,T,WebPlatform.Store.currency),W&&!f)?WebPlatform.Funnels.isInFunnel()&&WebPlatform.Funnels.show("next",!0)||(window.location.href=(WebPlatform.Store.baseUrl||"/store")+"/checkout")
