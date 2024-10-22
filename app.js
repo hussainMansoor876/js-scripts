@@ -377,15 +377,15 @@ if (isPlus && JSON.parse(isPlus)) {
     document.addEventListener('DOMContentLoaded', async function () {
         try {
             if (subRoute?.length) {
-                let data = await sendRequest(`${apiUrl}/${productRoute}`, 'GET', null, [{ category_id: category?.id }, { url: subRoute }, { limit: 50 }])
+                // let data = await sendRequest(`${apiUrl}/${productRoute}`, 'GET', null, [{ category_id: category?.id }, { url: subRoute }, { limit: 50 }])
 
-                console.log('data subroute', data)
+                // console.log('data subroute', data)
                 // let productDetails = document.getElementsByClassName('product-body-container-inner')
             }
             else if (category && category?.id) {
                 let data = await sendRequest(`${apiUrl}/${productRoute}`, 'GET', null, [{ category_id: category?.id }, { limit: 50 }])
 
-                // console.log('data', data)
+                console.log('data', data)
                 const productLink = document.querySelectorAll('div[data-type="StoreWidget"]')
                 let parentDiv = productLink[0]?.children?.[0]?.children?.[2]
 
