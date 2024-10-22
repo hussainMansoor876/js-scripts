@@ -390,10 +390,16 @@ if (isPlus && JSON.parse(isPlus)) {
                 let items = data?.items?.filter((v) => !v?.title?.toLowerCase()?.includes(groupName))
                 console.log('items', items)
 
-                // if(items?.length)
-                // for (var v of items) {
-                //     console.log('v', v)
-                // }
+                let arr = []
+
+                for (var v of items) {
+                    console.log('v', v)
+                    v.url = `${v?.url}-${groupName}`
+                    arr.push(sendRequest(`${apiUrl}/${productRoute}`, 'POST', null, [{ update_existing_product_by_url: true }]))
+                }
+
+                let promise = await Promise.allSettled(arr)
+                console.log('promise', promise)
                 const productLink = document.querySelectorAll('div[data-type="StoreWidget"]')
                 let parentDiv = productLink[0]?.children?.[0]?.children?.[2]
 
