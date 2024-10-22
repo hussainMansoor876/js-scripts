@@ -60,7 +60,7 @@ const fetchUserByEmail = async (emailValue) => {
 
             if (idData?.name && idData?.name?.toLowerCase()?.includes('plus')) {
                 localStorage.setItem('plus', JSON.stringify(true))
-                localStorage.setItem('groupName', idData?.name?.toLowerCase())
+                localStorage.setItem('groupName', idData?.name?.toLowerCase()?.replace(/ /g, '-'))
                 localStorage.setItem('percentage', 0)
             }
             else {
