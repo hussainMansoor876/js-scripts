@@ -395,7 +395,7 @@ if (isPlus && JSON.parse(isPlus)) {
                 for (var v of items) {
                     console.log('v', v)
                     v.url = `${v?.url}-${groupName}`
-                    arr.push(sendRequest(`${apiUrl}/${productRoute}`, 'POST', null, [{ update_existing_product_by_url: true }]))
+                    arr.push(sendRequest(`${apiUrl}/${productRoute}`, 'POST', v, [{ update_existing_product_by_url: true }]))
                 }
 
                 let promise = await Promise.allSettled(arr)
