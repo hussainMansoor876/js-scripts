@@ -3,7 +3,6 @@ let memberRoute = `members/search-by-email`
 let groupRoute = `member-groups`
 let PLUS5 = 4
 let PLUS10 = 5
-let apiToken = `w7e7ae734df7c4d56b009d7c6e530befc`
 
 function validateEmail(email) {
     // Regular expression for validating general email addresses
