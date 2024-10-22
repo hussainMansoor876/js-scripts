@@ -87,6 +87,11 @@ document.addEventListener('DOMContentLoaded', function () {
         fetchUserByEmail(emailInput?.value)
     })
 
+    loginButton.addEventListener('submit', (event) => {
+        event.preventDefault()
+        fetchUserByEmail(emailInput?.value)
+    })
+
     // Add an event listener to save the value in localStorage whenever it changes
     emailInput.addEventListener('input', async function (event) {
         const emailValue = event.target.value
