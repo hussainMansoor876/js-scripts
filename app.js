@@ -387,14 +387,14 @@ if (isPlus && JSON.parse(isPlus)) {
                 let data = await sendRequest(`${apiUrl}/${productRoute}`, 'GET', null, [{ category_id: category?.id }, { limit: 50 }])
 
                 console.log('data', data)
-                let items = data?.items?.filter((v) => !v?.title?.toLowerCase()?.includes(groupName))
+                let items = data?.items?.filter((v) => v?.title?.toLowerCase()?.includes(groupName))
                 console.log('items', items)
 
                 let arr = []
 
                 for (var v of items) {
                     console.log('v', v)
-                    v.url = `${v?.url}-${groupName}`
+                    // v.url = `${v?.url}-${groupName}`
                     // arr.push(sendRequest(`${apiUrl}/${productRoute}`, 'POST', v, [{ update_existing_product_by_url: true }]))
                 }
 
