@@ -386,6 +386,10 @@ if (isPlus && JSON.parse(isPlus)) {
                 let data = await sendRequest(`${apiUrl}/${productRoute}`, 'GET', null, [{ category_id: category?.id }, { limit: 50 }])
 
                 console.log('data', data)
+                let items = data?.items
+                for (var v of items) {
+                    console.log('v', v)
+                }
                 const productLink = document.querySelectorAll('div[data-type="StoreWidget"]')
                 let parentDiv = productLink[0]?.children?.[0]?.children?.[2]
 
