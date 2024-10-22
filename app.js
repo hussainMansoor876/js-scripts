@@ -316,6 +316,7 @@ routeURL = routeURL?.[0]
 
 const savedEmail = localStorage.getItem('email')
 const isPlus = localStorage.getItem('plus')
+const groupName = localStorage.getItem('groupName')
 
 let category = categories.find((v) => routeURL.includes(v?.url))
 
@@ -382,14 +383,15 @@ if (isPlus && JSON.parse(isPlus)) {
                 // console.log('data subroute', data)
                 // let productDetails = document.getElementsByClassName('product-body-container-inner')
             }
-            else if (category && category?.id) {
+            else if (category && category?.id && groupName?.length) {
                 let data = await sendRequest(`${apiUrl}/${productRoute}`, 'GET', null, [{ category_id: category?.id }, { limit: 50 }])
 
                 console.log('data', data)
-                let items = data?.items
-                for (var v of items) {
-                    console.log('v', v)
-                }
+                let items = data?.items?.find((v) => v?.title?.includes(groupName))
+                console.log('items', items)
+                // for (var v of items) {
+                //     console.log('v', v)
+                // }
                 const productLink = document.querySelectorAll('div[data-type="StoreWidget"]')
                 let parentDiv = productLink[0]?.children?.[0]?.children?.[2]
 
