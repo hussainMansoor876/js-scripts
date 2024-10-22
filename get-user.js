@@ -56,7 +56,7 @@ const fetchUserByEmail = async (emailValue) => {
 
             let idData = await sendRequest(`${apiUrl}/${groupRoute}/${id}`, 'GET')
 
-            console.log('idData', idData)
+            console.log('Data', idData)
 
             if (idData?.name && idData?.name?.toLowerCase()?.includes('plus')) {
                 localStorage.setItem('plus', JSON.stringify(true))
