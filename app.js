@@ -387,7 +387,7 @@ if (isPlus && JSON.parse(isPlus)) {
                 let data = await sendRequest(`${apiUrl}/${productRoute}`, 'GET', null, [{ category_id: category?.id }, { limit: 50 }])
 
                 console.log('data', data)
-                let items = data?.items?.find((v) => v?.title?.includes(groupName))
+                let items = data?.items?.find((v) => v?.title?.toLowerCase()?.includes(groupName))
                 console.log('items', items)
                 // for (var v of items) {
                 //     console.log('v', v)
