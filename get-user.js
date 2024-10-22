@@ -65,6 +65,8 @@ const fetchUserByEmail = async (emailValue) => {
             }
             else {
                 localStorage.setItem('plus', JSON.stringify(false))
+                localStorage.removeItem('groupName')
+                localStorage.removeItem('email')
             }
         }
     }
