@@ -405,9 +405,10 @@ const updateProducts = async (e) => {
             arr.push(sendRequest(`${apiUrl}/${productRoute}`, 'POST', v, [{ update_existing_product_by_url: true }]))
         }
 
-        let promise = await Promise.allSettled(arr)
-        WebPlatform.Widgets.Store(e)
-        console.log('promise', promise)
+        // let promise = await Promise.allSettled(arr)
+        Promise.allSettled(arr)
+            .then(() => WebPlatform.Widgets.Store(e))
+        // console.log('promise', promise)
     }
 }
 
