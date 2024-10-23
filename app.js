@@ -404,7 +404,7 @@ if (isPlus && JSON.parse(isPlus)) {
                 for (var v of items) {
                     console.log('v', v)
                     for (var y of v?.variants) {
-                        console.log('calculateNewSalePrice', y?.price, calculateNewSalePrice(y?.price, 122.25))
+                        console.log('calculateNewSalePrice', y?.price, calculateNewSalePrice(40, 122.25))
                     }
                     // v.url = `${v?.url}-${groupName}`
                     // arr.push(sendRequest(`${apiUrl}/${productRoute}`, 'POST', v, [{ update_existing_product_by_url: true }]))
