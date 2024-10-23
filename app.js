@@ -408,8 +408,8 @@ if (isPlus && JSON.parse(isPlus)) {
                         }
                     }
                     console.log('v', v)
-                    // v.url = `${v?.url}-${groupName}`
-                    // arr.push(sendRequest(`${apiUrl}/${productRoute}`, 'POST', v, [{ update_existing_product_by_url: true }]))
+                    v.url = `${v?.url}-${groupName}`
+                    arr.push(sendRequest(`${apiUrl}/${productRoute}`, 'POST', v, [{ update_existing_product_by_url: true }]))
                 }
 
                 let promise = await Promise.allSettled(arr)
