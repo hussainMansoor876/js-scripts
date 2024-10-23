@@ -392,17 +392,24 @@ const updateProducts = async (e) => {
 
         e.storeItems = itemIds
 
-        for (var v of itemIds) {
-            WebPlatform.makeClientWebsiteRequest({
-                action: "getStoreProduct",
-                data: {
-                    id: v
-                },
-                onOk: function (e) {
-                    console.log('e', e)
-                }
-            })
+
+        if (itemIds?.length) {
+            let arrPromise = []
+
+            for (var v of itemIds) {
+                arrPromise.push(new Promise((resolve, reject) => {
+                    WebPlatform.makeClientWebsiteRequest({
+                        action: "getStoreProduct",
+                        data: {
+                            id: v
+                        },
+                        onOk: (e) => resolve(e)
+                    })
+                }))
+            }
         }
+
+        console.log('arrPromise', arrPromise)
 
 
         let arr = []
