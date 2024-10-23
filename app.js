@@ -384,19 +384,19 @@ if (isPlus && JSON.parse(isPlus)) {
                 // let productDetails = document.getElementsByClassName('product-body-container-inner')
             }
             else if (category && category?.id && groupName?.length) {
-                // let data = await sendRequest(`${apiUrl}/${productRoute}`, 'GET', null, [{ category_id: category?.id }, { limit: 50 }])
+                let data = await sendRequest(`${apiUrl}/${productRoute}`, 'GET', null, [{ category_id: category?.id }, { limit: 50 }])
 
-                // console.log('data', data)
-                // let items = data?.items?.filter((v) => !v?.url?.toLowerCase()?.includes(groupName))
-                // console.log('items', items)
+                console.log('data', data)
+                let items = data?.items?.filter((v) => !v?.url?.toLowerCase()?.includes(groupName))
+                console.log('items', items)
 
-                // let arr = []
+                let arr = []
 
-                // for (var v of items) {
-                //     console.log('v', v)
-                //     // v.url = `${v?.url}-${groupName}`
-                //     // arr.push(sendRequest(`${apiUrl}/${productRoute}`, 'POST', v, [{ update_existing_product_by_url: true }]))
-                // }
+                for (var v of items) {
+                    console.log('v', v)
+                    // v.url = `${v?.url}-${groupName}`
+                    // arr.push(sendRequest(`${apiUrl}/${productRoute}`, 'POST', v, [{ update_existing_product_by_url: true }]))
+                }
 
                 // let promise = await Promise.allSettled(arr)
                 // console.log('promise', promise)
