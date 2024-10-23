@@ -389,6 +389,7 @@ if (isPlus && JSON.parse(isPlus)) {
                 console.log('data', data)
                 let items = data?.items?.filter((v) => !v?.url?.toLowerCase()?.includes(groupName))
                 console.log('items', items)
+                console.log('e', e)
 
                 let arr = []
 
@@ -400,27 +401,27 @@ if (isPlus && JSON.parse(isPlus)) {
 
                 // let promise = await Promise.allSettled(arr)
                 // console.log('promise', promise)
-                const productLink = document.querySelectorAll('div[data-type="StoreWidget"]')
-                let parentDiv = productLink[0]?.children?.[0]?.children?.[2]
+                // const productLink = document.querySelectorAll('div[data-type="StoreWidget"]')
+                // let parentDiv = productLink[0]?.children?.[0]?.children?.[2]
 
-                if (parentDiv?.children?.length) {
-                    // console.log('if')
-                    handleNewChild(parentDiv.children?.[0])
-                }
-                else {
-                    const observer = new MutationObserver(mutations => {
-                        mutations.forEach(mutation => {
-                            mutation.addedNodes.forEach(node => {
-                                // Check if the added node is an element
-                                if (node.nodeType === 1) { // Node.ELEMENT_NODE
-                                    handleNewChild(node)
-                                }
-                            })
-                        })
-                    })
+                // if (parentDiv?.children?.length) {
+                //     // console.log('if')
+                //     handleNewChild(parentDiv.children?.[0])
+                // }
+                // else {
+                //     const observer = new MutationObserver(mutations => {
+                //         mutations.forEach(mutation => {
+                //             mutation.addedNodes.forEach(node => {
+                //                 // Check if the added node is an element
+                //                 if (node.nodeType === 1) { // Node.ELEMENT_NODE
+                //                     handleNewChild(node)
+                //                 }
+                //             })
+                //         })
+                //     })
 
-                    observer.observe(parentDiv, { childList: true })
-                }
+                //     observer.observe(parentDiv, { childList: true })
+                // }
             }
 
         }
