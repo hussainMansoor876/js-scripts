@@ -403,13 +403,14 @@ const updateProducts = async (e) => {
                         data: {
                             id: v
                         },
-                        onOk: (e) => resolve(e)
+                        onOk: (e) => resolve(e?.data)
                     })
                 }))
             }
         }
 
         let promise = await Promise.allSettled(arrPromise)
+        // promise = promise?.map((v) => )
         console.log('arrPromise', promise)
 
 
