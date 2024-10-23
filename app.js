@@ -317,6 +317,7 @@ routeURL = routeURL?.[0]
 const savedEmail = localStorage.getItem('email')
 const isPlus = localStorage.getItem('plus')
 const groupName = localStorage.getItem('groupName')
+let itemIds = []
 
 let category = categories.find((v) => routeURL.includes(v?.url))
 
@@ -387,8 +388,10 @@ if (isPlus && JSON.parse(isPlus)) {
                 let data = await sendRequest(`${apiUrl}/${productRoute}`, 'GET', null, [{ category_id: category?.id }, { limit: 50 }])
 
                 console.log('data', data)
-                let items = data?.items?.filter((v) => !v?.url?.toLowerCase()?.includes(groupName))
+                let items = data?.items?.filter((v) => !v?.url?.toLowerCase()?.includes('plus'))
+                itemIds = data?.items?.filter((v) => v?.url?.toLowerCase()?.includes(groupName))?.map((v) => v?.id)
                 console.log('items', items)
+                console.log('itemIds', itemIds)
 
                 let arr = []
 
