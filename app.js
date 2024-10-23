@@ -392,9 +392,9 @@ const updateProducts = async (e) => {
 
         e.storeItems = itemIds
 
+        let arrPromise = []
 
         if (itemIds?.length) {
-            let arrPromise = []
 
             for (var v of itemIds) {
                 arrPromise.push(new Promise((resolve, reject) => {
