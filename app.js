@@ -380,6 +380,37 @@ function calculateIncreasedPrice(targetPriceAfterDiscount, discountPercentage) {
     return parseFloat(increasedPrice.toFixed(2))
 }
 
+const updateProducts = async (e) => {
+    if (category && category?.id && groupName?.length) {
+        let data = await sendRequest(`${apiUrl}/${productRoute}`, 'GET', null, [{ category_id: category?.id }, { limit: 50 }])
+
+        console.log('data', data)
+        let items = data?.items?.filter((v) => !v?.url?.toLowerCase()?.includes('plus'))
+        itemIds = data?.items?.filter((v) => v?.url?.toLowerCase()?.includes(groupName))?.map((v) => v?.id)
+        console.log('items', items)
+        console.log('itemIds', itemIds)
+
+        e.storeItems = itemIds
+        WebPlatform.Widgets.Store(e)
+
+        let arr = []
+
+        for (var v of items) {
+            for (var y of v?.variants) {
+                if (y?.price) {
+                    y.price = calculateIncreasedPrice(y?.price * 1.1, 10)
+                }
+            }
+            console.log('v', v)
+            v.url = `${v?.url}-${groupName}`
+            arr.push(sendRequest(`${apiUrl}/${productRoute}`, 'POST', v, [{ update_existing_product_by_url: true }]))
+        }
+
+        let promise = await Promise.allSettled(arr)
+        console.log('promise', promise)
+    }
+}
+
 
 if (isPlus && JSON.parse(isPlus)) {
     document.addEventListener('DOMContentLoaded', async function () {
