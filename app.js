@@ -377,7 +377,7 @@ const handleNewChild = (parentDiv) => {
 function calculateNewSalePrice(originalPrice, percentageIncrease) {
     // Calculate the new sale price
     const newSalePrice = (percentageIncrease / 100) * originalPrice;
-    return newSalePrice;
+    return newSalePrice.toFixed(2)
 }
 
 
@@ -402,10 +402,12 @@ if (isPlus && JSON.parse(isPlus)) {
                 let arr = []
 
                 for (var v of items) {
-                    console.log('v', v)
                     for (var y of v?.variants) {
-                        console.log('calculateNewSalePrice', y?.price, calculateNewSalePrice(40, 122.25))
+                        if (y?.price) {
+                            y.price = calculateNewSalePrice(y?.price, 122.25)
+                        }
                     }
+                    console.log('v', v)
                     // v.url = `${v?.url}-${groupName}`
                     // arr.push(sendRequest(`${apiUrl}/${productRoute}`, 'POST', v, [{ update_existing_product_by_url: true }]))
                 }
