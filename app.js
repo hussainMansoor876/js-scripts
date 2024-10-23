@@ -377,7 +377,7 @@ const handleNewChild = (parentDiv) => {
 function calculateNewSalePrice(originalPrice, percentageIncrease) {
     // Calculate the new sale price
     const newSalePrice = (percentageIncrease / 100) * originalPrice;
-    return newSalePrice.toFixed(2)
+    return parseFloat(newSalePrice.toFixed(2))
 }
 
 
