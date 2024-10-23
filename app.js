@@ -391,7 +391,6 @@ const updateProducts = async (e) => {
         console.log('itemIds', itemIds)
 
         e.storeItems = itemIds
-        WebPlatform.Widgets.Store(e)
 
         let arr = []
 
@@ -407,6 +406,7 @@ const updateProducts = async (e) => {
         }
 
         let promise = await Promise.allSettled(arr)
+        WebPlatform.Widgets.Store(e)
         console.log('promise', promise)
     }
 }
