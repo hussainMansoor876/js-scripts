@@ -374,6 +374,12 @@ const handleNewChild = (parentDiv) => {
     // console.log('quick-view-wrapper', document.querySelectorAll('.quick-view-wrapper'))
 }
 
+function calculateNewSalePrice(originalPrice, percentageIncrease) {
+    // Calculate the new sale price
+    const newSalePrice = (percentageIncrease / 100) * originalPrice;
+    return newSalePrice;
+}
+
 
 if (isPlus && JSON.parse(isPlus)) {
     document.addEventListener('DOMContentLoaded', async function () {
@@ -397,6 +403,9 @@ if (isPlus && JSON.parse(isPlus)) {
 
                 for (var v of items) {
                     console.log('v', v)
+                    for (var y in v?.variants) {
+                        console.log('calculateNewSalePrice', calculateNewSalePrice(y?.price, 110))
+                    }
                     // v.url = `${v?.url}-${groupName}`
                     // arr.push(sendRequest(`${apiUrl}/${productRoute}`, 'POST', v, [{ update_existing_product_by_url: true }]))
                 }
