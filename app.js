@@ -392,6 +392,19 @@ const updateProducts = async (e) => {
 
         e.storeItems = itemIds
 
+        for (var v of itemIds) {
+            WebPlatform.makeClientWebsiteRequest({
+                action: "getStoreProduct",
+                data: {
+                    id: v
+                },
+                onOk: function (e) {
+                    console.log('e', e)
+                }
+            })
+        }
+
+
         let arr = []
 
         for (var v of items) {
