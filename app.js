@@ -391,29 +391,29 @@ if (isPlus && JSON.parse(isPlus)) {
                 // let productDetails = document.getElementsByClassName('product-body-container-inner')
             }
             else if (category && category?.id && groupName?.length) {
-                let data = await sendRequest(`${apiUrl}/${productRoute}`, 'GET', null, [{ category_id: category?.id }, { limit: 50 }])
+                // let data = await sendRequest(`${apiUrl}/${productRoute}`, 'GET', null, [{ category_id: category?.id }, { limit: 50 }])
 
-                console.log('data', data)
-                let items = data?.items?.filter((v) => !v?.url?.toLowerCase()?.includes('plus'))
-                itemIds = data?.items?.filter((v) => v?.url?.toLowerCase()?.includes(groupName))?.map((v) => v?.id)
-                console.log('items', items)
-                console.log('itemIds', itemIds)
+                // console.log('data', data)
+                // let items = data?.items?.filter((v) => !v?.url?.toLowerCase()?.includes('plus'))
+                // itemIds = data?.items?.filter((v) => v?.url?.toLowerCase()?.includes(groupName))?.map((v) => v?.id)
+                // console.log('items', items)
+                // console.log('itemIds', itemIds)
 
-                let arr = []
+                // let arr = []
 
-                for (var v of items) {
-                    for (var y of v?.variants) {
-                        if (y?.price) {
-                            y.price = calculateIncreasedPrice(y?.price * 1.1, 10)
-                        }
-                    }
-                    console.log('v', v)
-                    v.url = `${v?.url}-${groupName}`
-                    arr.push(sendRequest(`${apiUrl}/${productRoute}`, 'POST', v, [{ update_existing_product_by_url: true }]))
-                }
+                // for (var v of items) {
+                //     for (var y of v?.variants) {
+                //         if (y?.price) {
+                //             y.price = calculateIncreasedPrice(y?.price * 1.1, 10)
+                //         }
+                //     }
+                //     console.log('v', v)
+                //     v.url = `${v?.url}-${groupName}`
+                //     arr.push(sendRequest(`${apiUrl}/${productRoute}`, 'POST', v, [{ update_existing_product_by_url: true }]))
+                // }
 
-                let promise = await Promise.allSettled(arr)
-                console.log('promise', promise)
+                // let promise = await Promise.allSettled(arr)
+                // console.log('promise', promise)
                 // const productLink = document.querySelectorAll('div[data-type="StoreWidget"]')
                 // let parentDiv = productLink[0]?.children?.[0]?.children?.[2]
 
