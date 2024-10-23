@@ -410,7 +410,7 @@ const updateProducts = async (e) => {
         }
 
         let promise = await Promise.allSettled(arrPromise)
-        // promise = promise?.map((v) => )
+        promise = promise?.map((v) => v?.value)
         console.log('arrPromise', promise)
 
 
