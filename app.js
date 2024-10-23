@@ -403,7 +403,7 @@ if (isPlus && JSON.parse(isPlus)) {
 
                 for (var v of items) {
                     console.log('v', v)
-                    for (var y in v?.variants) {
+                    for (var y of v?.variants) {
                         console.log('calculateNewSalePrice', y?.price, calculateNewSalePrice(y?.price, 110))
                     }
                     // v.url = `${v?.url}-${groupName}`
