@@ -409,7 +409,8 @@ const updateProducts = async (e) => {
             }
         }
 
-        console.log('arrPromise', arrPromise)
+        let promise = await Promise.allSettled(arrPromise)
+        console.log('arrPromise', promise)
 
 
         let arr = []
