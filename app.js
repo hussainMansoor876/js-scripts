@@ -374,10 +374,10 @@ const handleNewChild = (parentDiv) => {
     // console.log('quick-view-wrapper', document.querySelectorAll('.quick-view-wrapper'))
 }
 
-function calculateNewSalePrice(originalPrice, percentageIncrease) {
-    // Calculate the new sale price
-    const newSalePrice = (percentageIncrease / 100) * originalPrice;
-    return parseFloat(newSalePrice.toFixed(2))
+function calculateIncreasedPrice(targetPriceAfterDiscount, discountPercentage) {
+    // Calculate the increased price before the discount
+    const increasedPrice = targetPriceAfterDiscount / (1 - discountPercentage / 100)
+    return parseFloat(increasedPrice.toFixed(2))
 }
 
 
@@ -404,12 +404,12 @@ if (isPlus && JSON.parse(isPlus)) {
                 for (var v of items) {
                     for (var y of v?.variants) {
                         if (y?.price) {
-                            y.price = calculateNewSalePrice(y?.price, 122.25)
+                            y.price = calculateIncreasedPrice(y?.price * 1.1, 10)
                         }
                     }
                     console.log('v', v)
-                    v.url = `${v?.url}-${groupName}`
-                    arr.push(sendRequest(`${apiUrl}/${productRoute}`, 'POST', v, [{ update_existing_product_by_url: true }]))
+                    // v.url = `${v?.url}-${groupName}`
+                    // arr.push(sendRequest(`${apiUrl}/${productRoute}`, 'POST', v, [{ update_existing_product_by_url: true }]))
                 }
 
                 let promise = await Promise.allSettled(arr)
