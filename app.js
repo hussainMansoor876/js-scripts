@@ -336,7 +336,44 @@ let groupPercentage = {
     }
 }
 
-let category = categories.find((v) => routeURL.includes(v?.url))
+let safetyVestRM = [
+    {
+        id: 14,
+        name: 'First Aid',
+        url: 'first-aid',
+        parentCategory: 8
+    },
+    {
+        id: 13,
+        name: 'Supervisor',
+        url: 'supervisor',
+        parentCategory: 8
+    },
+    {
+        id: 12,
+        name: 'Surveyor',
+        url: 'surveyor',
+        parentCategory: 8
+    },
+    {
+        id: 11,
+        name: 'Traffic',
+        url: 'traffic',
+        parentCategory: 8
+    },
+    {
+        id: 29,
+        name: 'Vests',
+        url: 'vests',
+        parentCategory: 28
+    }
+]
+
+let category = [categories.find((v) => routeURL.includes(v?.url))]
+console.log('safety-vests-r-m', safety - vests - r - m)
+if (routeURL === 'safety-vests-r-m') {
+    category = safetyVestRM
+}
 
 function calculateDiscountPercentage(originalPrice, discountedPrice) {
     const discountAmount = originalPrice - discountedPrice
