@@ -322,8 +322,14 @@ var groupName = localStorage.getItem('groupName')
 var isSessionExpired = false
 
 let groupPercentage = {
-    'plus-10': 1.1,
-    'plus-10': 1.05
+    'plus-10': {
+        percentage: 1.1,
+        discount: 10,
+    },
+    'plus-5': {
+        percentage: 1.05,
+        discount: 5,
+    }
 }
 
 let category = categories.find((v) => routeURL.includes(v?.url))
