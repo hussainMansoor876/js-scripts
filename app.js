@@ -319,6 +319,11 @@ const isPlus = localStorage.getItem('plus')
 var groupName = localStorage.getItem('groupName')
 var isSessionExpired = false
 
+let groupPercentage = {
+    'plus-10': 1.1,
+    'plus-10': 1.05
+}
+
 let category = categories.find((v) => routeURL.includes(v?.url))
 
 function calculateDiscountPercentage(originalPrice, discountedPrice) {
@@ -438,6 +443,32 @@ const updateProducts = async (e) => {
 if (isPlus && JSON.parse(isPlus)) {
     document.addEventListener('DOMContentLoaded', async function () {
         try {
+            const savedEmail = localStorage.getItem('email')
+            if (savedEmail) {
+                let data = await sendRequest(`${apiUrl}/${memberRoute}`, 'GET', null, [{ email: emailValue }])
+
+                console.log('user', data)
+
+                if (data?.groups?.length) {
+                    let groups = data?.groups
+                    let id = Math.max(...groups)
+
+                    let idData = await sendRequest(`${apiUrl}/${groupRoute}/${id}`, 'GET')
+
+                    console.log('Data', idData)
+
+                    if (idData?.name && idData?.name?.toLowerCase()?.includes('plus')) {
+                        localStorage.setItem('plus', JSON.stringify(true))
+                        localStorage.setItem('groupName', idData?.name?.toLowerCase()?.replace(/ /g, '-'))
+                        localStorage.setItem('percentage', 0)
+                    }
+                    else {
+                        localStorage.setItem('plus', JSON.stringify(false))
+                        localStorage.removeItem('groupName')
+                        localStorage.removeItem('email')
+                    }
+                }
+            }
             if (subRoute?.length) {
                 // let data = await sendRequest(`${apiUrl}/${productRoute}`, 'GET', null, [{ category_id: category?.id }, { url: subRoute }, { limit: 50 }])
 
