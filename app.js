@@ -529,7 +529,7 @@ if (isPlus && JSON.parse(isPlus)) {
                     isSessionExpired = true
                 }
 
-                if(!isSessionExpired && groupName){
+                if (!isSessionExpired && groupName && !window.location.pathname?.includes(groupName)) {
                     window.location.href = `${routeURL}/${subRoute}-${groupName}`
                 }
                 // let data = await sendRequest(`${apiUrl}/${productRoute}`, 'GET', null, [{ category_id: category?.id }, { url: subRoute }, { limit: 50 }])
