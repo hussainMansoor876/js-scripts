@@ -370,7 +370,6 @@ let safetyVestRM = [
 ]
 
 let category = [categories.find((v) => routeURL.includes(v?.url))]
-console.log('safety-vests-r-m', safety - vests - r - m)
 if (routeURL === 'safety-vests-r-m') {
     category = safetyVestRM
 }
