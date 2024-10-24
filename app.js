@@ -305,6 +305,10 @@ function sendRequest(url, method, body = null, queries = []) {
         })
 }
 
+function sortByKey(arr, key) {
+    return arr.sort((a, b) => a[key] - b[key])
+}
+
 
 let apiUrl = `${window.location.origin}/api/site`
 let productRoute = `products`
