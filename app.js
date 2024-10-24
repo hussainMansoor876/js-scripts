@@ -446,7 +446,7 @@ if (isPlus && JSON.parse(isPlus)) {
         try {
             const savedEmail = localStorage.getItem('email')
             if (savedEmail) {
-                let data = await sendRequest(`${apiUrl}/${memberRoute}`, 'GET', null, [{ email: emailValue }])
+                let data = await sendRequest(`${apiUrl}/${memberRoute}`, 'GET', null, [{ email: savedEmail }])
 
                 console.log('user', data)
 
