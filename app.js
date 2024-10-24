@@ -317,6 +317,7 @@ routeURL = routeURL?.[0]
 const savedEmail = localStorage.getItem('email')
 const isPlus = localStorage.getItem('plus')
 var groupName = localStorage.getItem('groupName')
+var isSessionExpired = false
 
 let category = categories.find((v) => routeURL.includes(v?.url))
 
