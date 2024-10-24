@@ -520,6 +520,7 @@ if (isPlus && JSON.parse(isPlus)) {
                 }
             }
             if (subRoute?.length) {
+                console.log('subRoute', subRoute)
                 // let data = await sendRequest(`${apiUrl}/${productRoute}`, 'GET', null, [{ category_id: category?.id }, { url: subRoute }, { limit: 50 }])
 
                 // console.log('data subroute', data)
