@@ -308,6 +308,7 @@ function sendRequest(url, method, body = null, queries = []) {
 
 let apiUrl = `${window.location.origin}/api/site`
 let productRoute = `products`
+var groupRoute = `member-groups`
 var memberRoute = `members/search-by-email`
 let apiToken = `w7e7ae734df7c4d56b009d7c6e530befc`
 
