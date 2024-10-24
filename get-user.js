@@ -48,7 +48,7 @@ const fetchUserByEmail = async (emailValue) => {
 
         let data = await sendRequest(`${apiUrl}/${memberRoute}`, 'GET', null, { email: emailValue })
 
-        console.log('data', data)
+        // console.log('data', data)
 
         if (data?.groups?.length) {
             let groups = data?.groups
@@ -56,7 +56,7 @@ const fetchUserByEmail = async (emailValue) => {
 
             let idData = await sendRequest(`${apiUrl}/${groupRoute}/${id}`, 'GET')
 
-            console.log('Data', idData)
+            // console.log('Data', idData)
 
             if (idData?.name && idData?.name?.toLowerCase()?.includes('plus')) {
                 localStorage.setItem('plus', JSON.stringify(true))

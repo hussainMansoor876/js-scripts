@@ -397,11 +397,11 @@ const updateProducts = async (e) => {
     if (category && category?.id && groupName?.length) {
         let data = await sendRequest(`${apiUrl}/${productRoute}`, 'GET', null, [{ category_id: category?.id }, { limit: 50 }])
 
-        console.log('data', data)
+        // console.log('data', data)
         let items = data?.items?.filter((v) => !v?.url?.toLowerCase()?.includes('plus'))
-        itemIds = data?.items?.filter((v) => v?.url?.toLowerCase()?.includes(groupName))?.map((v) => v?.id)
-        console.log('items', items)
-        console.log('itemIds', itemIds)
+        let itemIds = data?.items?.filter((v) => v?.url?.toLowerCase()?.includes(groupName))?.map((v) => v?.id)
+        // console.log('items', items)
+        // console.log('itemIds', itemIds)
 
         e.storeItems = itemIds
 
@@ -424,7 +424,7 @@ const updateProducts = async (e) => {
 
         let promise = await Promise.allSettled(arrPromise)
         promise = promise?.map((v) => v?.value)
-        console.log('arrPromise', promise)
+        // console.log('arrPromise', promise)
 
 
         let arr = []
@@ -435,7 +435,7 @@ const updateProducts = async (e) => {
                     y.price = calculateIncreasedPrice(y?.price * 1.1, 10)
                 }
             }
-            console.log('v', v)
+            // console.log('v', v)
             v.url = `${v?.url}-${groupName}`
             arr.push(sendRequest(`${apiUrl}/${productRoute}`, 'POST', v, [{ update_existing_product_by_url: true }]))
         }
@@ -455,7 +455,7 @@ if (isPlus && JSON.parse(isPlus)) {
             if (savedEmail) {
                 let data = await sendRequest(`${apiUrl}/${memberRoute}`, 'GET', null, [{ email: savedEmail }])
 
-                console.log('user', data)
+                // console.log('user', data)
 
                 if (data?.groups?.length) {
                     let groups = data?.groups
@@ -463,7 +463,7 @@ if (isPlus && JSON.parse(isPlus)) {
 
                     let idData = await sendRequest(`${apiUrl}/${groupRoute}/${id}`, 'GET')
 
-                    console.log('Data', idData)
+                    // console.log('Data', idData)
 
                     if (idData?.name && idData?.name?.toLowerCase()?.includes('plus')) {
                         localStorage.setItem('plus', JSON.stringify(true))
@@ -532,7 +532,7 @@ if (isPlus && JSON.parse(isPlus)) {
 
         }
         catch (e) {
-            console.log('e', e)
+            // console.log('e', e)
         }
     })
 }
