@@ -344,6 +344,8 @@ function calculateDiscountPercentage(originalPrice, discountedPrice) {
     return discountPercentage.toFixed(0)
 }
 
+console.log('category', category)
+
 const handleNewChild = (parentDiv) => {
     let percentage = JSON.parse(localStorage.getItem('percentage')) || 0
 
