@@ -317,7 +317,6 @@ routeURL = routeURL?.[0]
 const savedEmail = localStorage.getItem('email')
 const isPlus = localStorage.getItem('plus')
 const groupName = localStorage.getItem('groupName')
-let itemIds = []
 
 let category = categories.find((v) => routeURL.includes(v?.url))
 
