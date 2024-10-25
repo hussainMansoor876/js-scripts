@@ -382,8 +382,6 @@ function calculateDiscountPercentage(originalPrice, discountedPrice) {
     return discountPercentage.toFixed(0)
 }
 
-console.log('category', category)
-
 const handleNewChild = (parentDiv) => {
     let percentage = JSON.parse(localStorage.getItem('percentage')) || 0
 
@@ -447,7 +445,6 @@ const updateProduct = async (e) => {
     }
 
     data.url = `${data?.url}-${groupName}`
-    console.log('data', data)
     selectedProduct = await sendRequest(`${apiUrl}/${productRoute}`, 'POST', data, [{ update_existing_product_by_url: true }])
 
     return selectedProduct
