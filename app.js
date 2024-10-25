@@ -436,58 +436,18 @@ function calculateIncreasedPrice(targetPriceAfterDiscount, discountPercentage) {
     return parseFloat(increasedPrice.toFixed(2))
 }
 
-const updateProducts = async (e) => {
-    if (category && category?.id && groupName?.length) {
-        let data = await sendRequest(`${apiUrl}/${productRoute}`, 'GET', null, [{ category_id: category?.id }, { limit: 50 }])
-
-        // console.log('data', data)
-        let items = data?.items?.filter((v) => !v?.url?.toLowerCase()?.includes('plus'))
-        let itemIds = data?.items?.filter((v) => v?.url?.toLowerCase()?.includes(groupName))?.map((v) => v?.id)
-        // console.log('items', items)
-        // console.log('itemIds', itemIds)
-
-        e.storeItems = itemIds
-
-        let arrPromise = []
-
-        if (itemIds?.length) {
-
-            for (var v of itemIds) {
-                arrPromise.push(new Promise((resolve, reject) => {
-                    WebPlatform.makeClientWebsiteRequest({
-                        action: "getStoreProduct",
-                        data: {
-                            id: v
-                        },
-                        onOk: (e) => resolve(e?.data)
-                    })
-                }))
-            }
+const updateProduct = async (e) => {
+    let data = await sendRequest(`${apiUrl}/${productRoute}/${e?.data?.id}`, 'GET', null)
+    let roundedDiscountInPercent = e?.data?.roundedDiscountInPercent
+    for (var y of data?.variants) {
+        if (y?.price) {
+            y.price = calculateIncreasedPrice(y?.price * ((100 + roundedDiscountInPercent) / 100), roundedDiscountInPercent)
         }
-
-        let promise = await Promise.allSettled(arrPromise)
-        promise = promise?.map((v) => v?.value)
-        // console.log('arrPromise', promise)
-
-
-        let arr = []
-
-        for (var v of items) {
-            for (var y of v?.variants) {
-                if (y?.price) {
-                    y.price = calculateIncreasedPrice(y?.price * 1.1, 10)
-                }
-            }
-            // console.log('v', v)
-            v.url = `${v?.url}-${groupName}`
-            arr.push(sendRequest(`${apiUrl}/${productRoute}`, 'POST', v, [{ update_existing_product_by_url: true }]))
-        }
-
-        // let promise = await Promise.allSettled(arr)
-        Promise.allSettled(arr)
-            .then(() => WebPlatform.Widgets.Store(e))
-        // console.log('promise', promise)
     }
+
+    data.url = `${data?.url}-${groupName}`
+    console.log('data', data)
+    sendRequest(`${apiUrl}/${productRoute}`, 'POST', data, [{ update_existing_product_by_url: true }])
 }
 
 
