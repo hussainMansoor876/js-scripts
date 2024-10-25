@@ -325,6 +325,7 @@ var isPlus = localStorage.getItem('plus')
 isPlus = JSON.parse(isPlus) || false
 var groupName = localStorage.getItem('groupName')
 var isSessionExpired = false
+let selectedProduct = null
 
 let groupPercentage = {
     'plus-10': {
@@ -447,7 +448,7 @@ const updateProduct = async (e) => {
 
     data.url = `${data?.url}-${groupName}`
     console.log('data', data)
-    sendRequest(`${apiUrl}/${productRoute}`, 'POST', data, [{ update_existing_product_by_url: true }])
+    selectedProduct = await sendRequest(`${apiUrl}/${productRoute}`, 'POST', data, [{ update_existing_product_by_url: true }])
 }
 
 
