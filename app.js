@@ -321,7 +321,8 @@ let subRoute = routeURL?.[1]
 routeURL = routeURL?.[0]
 
 const savedEmail = localStorage.getItem('email')
-const isPlus = localStorage.getItem('plus')
+var isPlus = localStorage.getItem('plus')
+isPlus = JSON.parse(isPlus) || false
 var groupName = localStorage.getItem('groupName')
 var isSessionExpired = false
 
@@ -490,7 +491,7 @@ const updateProducts = async (e) => {
 }
 
 
-if (isPlus && JSON.parse(isPlus)) {
+if (isPlus) {
     document.addEventListener('DOMContentLoaded', async function () {
         try {
             const savedEmail = localStorage.getItem('email')
