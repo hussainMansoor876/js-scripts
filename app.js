@@ -486,13 +486,13 @@ if (isPlus) {
                 var sessionDetails = JSON.parse(localStorage.getItem('session-details')) || {}
                 // console.log('sessionDetails', sessionDetails)
 
-                if (sessionDetails?.sessionCutoffTime && Date.now() <= sessionDetails?.sessionCutoffTime) {
-                    isSessionExpired = true
-                }
+                // if (sessionDetails?.sessionCutoffTime && Date.now() <= sessionDetails?.sessionCutoffTime) {
+                //     isSessionExpired = true
+                // }
 
-                if (!isSessionExpired && groupName && !window.location.pathname?.includes(groupName)) {
-                    window.location.href = `${routeURL}/${subRoute}-${groupName}`
-                }
+                // if (!isSessionExpired && groupName && !window.location.pathname?.includes(groupName)) {
+                //     window.location.href = `${routeURL}/${subRoute}-${groupName}`
+                // }
                 // let data = await sendRequest(`${apiUrl}/${productRoute}`, 'GET', null, [{ category_id: category?.id }, { url: subRoute }, { limit: 50 }])
 
                 // console.log('data subroute', data)
