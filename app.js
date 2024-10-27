@@ -483,6 +483,7 @@ if (isPlus) {
                 console.log('subRoute', subRoute)
                 let isPlus = localStorage.getItem('plus')
                 var groupName = localStorage.getItem('groupName')
+                var percentage = JSON.parse(localStorage.getItem('percentage')) || 0
                 var sessionDetails = JSON.parse(localStorage.getItem('session-details')) || {}
                 console.log('sessionDetails', sessionDetails)
 
@@ -502,6 +503,8 @@ if (isPlus) {
                 try {
                     let productDetails = document.getElementsByClassName('product-body-container-inner')
                     let price = productDetails[0]?.querySelector('span.current-price')
+                    let p = parseFloat(prices?.[1]?.innerHTML?.split('$')?.slice(-1,)[0]).toFixed(2)
+                    price.innerHTML = `$${p + (p * percentage)}`
                     console.log('productDetails', price)
                 }
                 catch (e) {
