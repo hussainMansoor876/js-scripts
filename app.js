@@ -503,7 +503,7 @@ if (isPlus) {
                 try {
                     let productDetails = document.getElementsByClassName('product-body-container-inner')
                     let price = productDetails[0]?.querySelector('span.current-price')
-                    let p = parseFloat(price?.innerHTML?.split('$')?.slice(-1,)[0]).toFixed(2)
+                    let p = parseFloat(parseFloat(price?.innerHTML?.split('$')?.slice(-1,)[0]).toFixed(2))
                     console.log('p', p)
                     price.innerHTML = `$${p + (p * percentage)}`
                     console.log('productDetails', price)
