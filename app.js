@@ -496,7 +496,8 @@ if (isPlus) {
 
                     // console.log('data subroute', data)
                     let productDetails = document.getElementsByClassName('product-body-container-inner')
-                    console.log('productDetails', productDetails)
+                    let price = productDetails?.querySelector('product-price')
+                    console.log('productDetails', price)
                 }
             }
             else if (category && category?.id && groupName?.length) {
