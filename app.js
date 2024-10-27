@@ -495,10 +495,14 @@ if (isPlus) {
                     // let data = await sendRequest(`${apiUrl}/${productRoute}`, 'GET', null, [{ url: subRoute }, { limit: 50 }])
 
                     // console.log('data subroute', data)
-                    let productDetails = document.getElementsByClassName('product-body-container-inner')
-                    let price = productDetails?.querySelector('span.current-price')
-                    console.log('productDetails', price)
+                    // let productDetails = document.getElementsByClassName('product-body-container-inner')
+                    // let price = productDetails?.querySelector('span.current-price')
+                    // console.log('productDetails', price)
                 }
+
+                let productDetails = document.getElementsByClassName('product-body-container-inner')
+                let price = productDetails?.querySelector('span.current-price')
+                console.log('productDetails', price)
             }
             else if (category && category?.id && groupName?.length) {
                 // let data = await sendRequest(`${apiUrl}/${productRoute}`, 'GET', null, [{ category_id: category?.id }, { limit: 50 }])
