@@ -500,9 +500,15 @@ if (isPlus) {
                     // console.log('productDetails', price)
                 }
 
-                let productDetails = document.getElementsByClassName('product-body-container-inner')
-                let price = productDetails?.querySelector('span.current-price')
-                console.log('productDetails', price)
+                try {
+                    let productDetails = document.getElementsByClassName('product-body-container-inner')
+                    let price = productDetails?.querySelector('span.current-price')
+                    console.log('productDetails', price)
+                }
+                catch (e) {
+                    console.log('e', e)
+                }
+
             }
             else if (category && category?.id && groupName?.length) {
                 // let data = await sendRequest(`${apiUrl}/${productRoute}`, 'GET', null, [{ category_id: category?.id }, { limit: 50 }])
