@@ -492,8 +492,8 @@ if (isPlus) {
                 }
 
                 if (isPlus && groupName?.length && !isSessionExpired) {
-                    let data = await sendRequest(`${apiUrl}/${productRoute}`, 'GET', null, [{ category_id: category?.id }, { url: subRoute }, { limit: 50 }])
-    
+                    let data = await sendRequest(`${apiUrl}/${productRoute}`, 'GET', null, [{ url: subRoute }, { limit: 50 }])
+
                     console.log('data subroute', data)
                 }
                 // let productDetails = document.getElementsByClassName('product-body-container-inner')
