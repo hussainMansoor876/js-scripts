@@ -482,20 +482,20 @@ if (isPlus) {
             }
             if (subRoute?.length) {
                 console.log('subRoute', subRoute)
+                let isPlus = localStorage.getItem('plus')
                 var groupName = localStorage.getItem('groupName')
                 var sessionDetails = JSON.parse(localStorage.getItem('session-details')) || {}
-                // console.log('sessionDetails', sessionDetails)
+                console.log('sessionDetails', sessionDetails)
 
-                // if (sessionDetails?.sessionCutoffTime && Date.now() <= sessionDetails?.sessionCutoffTime) {
-                //     isSessionExpired = true
-                // }
+                if (sessionDetails?.sessionCutoffTime && Date.now() <= sessionDetails?.sessionCutoffTime) {
+                    isSessionExpired = true
+                }
 
-                // if (!isSessionExpired && groupName && !window.location.pathname?.includes(groupName)) {
-                //     window.location.href = `${routeURL}/${subRoute}-${groupName}`
-                // }
-                // let data = await sendRequest(`${apiUrl}/${productRoute}`, 'GET', null, [{ category_id: category?.id }, { url: subRoute }, { limit: 50 }])
-
-                // console.log('data subroute', data)
+                if (isPlus && groupName?.length && !isSessionExpired) {
+                    let data = await sendRequest(`${apiUrl}/${productRoute}`, 'GET', null, [{ category_id: category?.id }, { url: subRoute }, { limit: 50 }])
+    
+                    console.log('data subroute', data)
+                }
                 // let productDetails = document.getElementsByClassName('product-body-container-inner')
             }
             else if (category && category?.id && groupName?.length) {
