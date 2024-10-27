@@ -496,7 +496,7 @@ if (isPlus) {
 
                     // console.log('data subroute', data)
                     let productDetails = document.getElementsByClassName('product-body-container-inner')
-                    let price = productDetails?.querySelector('product-price')
+                    let price = productDetails?.querySelector('span.current-price')
                     console.log('productDetails', price)
                 }
             }
