@@ -502,7 +502,7 @@ if (isPlus) {
 
                 try {
                     let productDetails = document.getElementsByClassName('product-body-container-inner')
-                    let price = productDetails?.querySelector('span.current-price')
+                    let price = productDetails[0]?.querySelector('span.current-price')
                     console.log('productDetails', price)
                 }
                 catch (e) {
