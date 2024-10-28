@@ -500,6 +500,9 @@ if (isPlus) {
                             const selectedValue = event.target.value
                             if (productData?.combinations?.length) {
                                 let data = productData?.combinations?.filter((v) => v?.name === selectedValue)
+                                if (data?.length) {
+                                    price.innerHTML = `$${data[0]?.price}`
+                                }
                                 console.log('data', data)
                             }
                             console.log(`Selected size: ${selectedValue}`, productData)
@@ -511,7 +514,7 @@ if (isPlus) {
                                 productData.combinations = productData?.combinations?.map((v) => {
                                     return {
                                         ...v,
-                                        price: parseFloat((v?.price + (v?.price + (v?.price * percentage)) || v?.price).toFixed(2))
+                                        price: v?.price + (v?.price + (v?.price * percentage)) || v?.price
                                     }
                                 })
                             }
