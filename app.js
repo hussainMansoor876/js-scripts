@@ -492,6 +492,7 @@ document.addEventListener('DOMContentLoaded', async function () {
                     })
 
                     if (isPlus) {
+                        console.log('if')
                         if (selectedProduct?.price) {
                             spanElement.innerHTML = `$${((selectedProduct?.price + (selectedProduct?.price * percentage)).toFixed(2))}`
                             productPriceDiv.appendChild(spanElement)
