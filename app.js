@@ -472,7 +472,7 @@ document.addEventListener('DOMContentLoaded', async function () {
                     var sizeSelect = productDetails?.[0]?.querySelector('select.product-variation')
                     const spanElement = document.createElement('span')
 
-                    console.log('title', title)
+                    // console.log('title', title)
 
                     // Set the class and data-role attributes
                     spanElement.className = 'current-price'
@@ -486,15 +486,14 @@ document.addEventListener('DOMContentLoaded', async function () {
                             if (data?.length) {
                                 spanElement.innerHTML = `$${data[0]?.price}`
                             }
-                            console.log('data', data)
+                            // console.log('data', data)
                         }
-                        console.log(`Selected size: ${selectedValue}`, price)
+                        // console.log(`Selected size: ${selectedValue}`, price)
                     })
 
-                    console.log('selectedProduct', selectedProduct)
+                    // console.log('selectedProduct', selectedProduct)
 
                     if (isPlus) {
-                        console.log('if')
                         if (selectedProduct?.price) {
                             spanElement.innerHTML = `$${((selectedProduct?.price + (selectedProduct?.price * percentage)).toFixed(2))}`
                             productPriceDiv.appendChild(spanElement)
@@ -507,7 +506,6 @@ document.addEventListener('DOMContentLoaded', async function () {
                         }
                         else {
                             let p = parseFloat(parseFloat(price?.innerHTML?.split('$')?.slice(-1,)[0]).toFixed(2))
-                            console.log('p', p)
                             price.innerHTML = `$${(p + (p * percentage)).toFixed(2)}`
                         }
 
@@ -528,7 +526,6 @@ document.addEventListener('DOMContentLoaded', async function () {
                         }
                         else {
                             let p = parseFloat(parseFloat(price?.innerHTML?.split('$')?.slice(-1,)[0]).toFixed(2))
-                            console.log('p', p)
                             price.innerHTML = `$${(p - (p * percentage)).toFixed(2)}`
                         }
                     }
@@ -597,8 +594,6 @@ document.addEventListener('DOMContentLoaded', async function () {
 
                 let idData = await sendRequest(`${apiUrl}/${groupRoute}/${id}`, 'GET')
 
-                console.log('Data', idData)
-
                 if (idData?.name && idData?.name?.toLowerCase()?.includes('plus')) {
                     localStorage.setItem('plus', JSON.stringify(true))
                     localStorage.setItem('groupName', idData?.name?.toLowerCase()?.replace(/ /g, '-'))
@@ -606,7 +601,6 @@ document.addEventListener('DOMContentLoaded', async function () {
                 else {
                     localStorage.setItem('plus', JSON.stringify(false))
                     localStorage.removeItem('groupName')
-                    localStorage.removeItem('email')
                 }
             }
         }
