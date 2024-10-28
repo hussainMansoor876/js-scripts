@@ -481,8 +481,8 @@ document.addEventListener('DOMContentLoaded', async function () {
 
                     sizeSelect.addEventListener('change', (event) => {
                         const selectedValue = event.target.value
-                        if (productData?.combinations?.length) {
-                            let data = productData?.combinations?.filter((v) => v?.name === selectedValue)
+                        if (selectedProduct?.combinations?.length) {
+                            let data = selectedProduct?.combinations?.filter((v) => v?.name === selectedValue)
                             if (data?.length) {
                                 spanElement.innerHTML = `$${data[0]?.price}`
                             }
@@ -492,10 +492,10 @@ document.addEventListener('DOMContentLoaded', async function () {
                     })
 
                     if (isPlus) {
-                        if (productData?.price) {
-                            spanElement.innerHTML = `$${productData?.price + (productData?.price * percentage)}`
+                        if (selectedProduct?.price) {
+                            spanElement.innerHTML = `$${selectedProduct?.price + (selectedProduct?.price * percentage)}`
                             productPriceDiv.appendChild(spanElement)
-                            productData.combinations = productData?.combinations?.map((v) => {
+                            selectedProduct.combinations = selectedProduct?.combinations?.map((v) => {
                                 return {
                                     ...v,
                                     price: parseFloat((v?.price + (v?.price * percentage) || v?.price).toFixed(2))
@@ -510,12 +510,13 @@ document.addEventListener('DOMContentLoaded', async function () {
 
                         let data = await sendRequest(`${apiUrl}/${productRoute}`, 'GET', null, [{ title }])
                         console.log('data', data?.find((v) => v?.url?.includes(groupName)))
+                        console.log('selectedProduct', selectedProduct)
                     }
                     else {
-                        if (productData?.price) {
-                            spanElement.innerHTML = `$${productData?.price - (productData?.price * percentage)}`
+                        if (selectedProduct?.price) {
+                            spanElement.innerHTML = `$${selectedProduct?.price - (selectedProduct?.price * percentage)}`
                             productPriceDiv.appendChild(spanElement)
-                            productData.combinations = productData?.combinations?.map((v) => {
+                            selectedProduct.combinations = selectedProduct?.combinations?.map((v) => {
                                 return {
                                     ...v,
                                     price: parseFloat((v?.price - (v?.price * percentage) || v?.price).toFixed(2))
