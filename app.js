@@ -502,7 +502,7 @@ if (isPlus) {
                                 if (data?.length) {
                                     setTimeout(() => {
                                         price.innerHTML = `$${data[0]?.price}`
-                                    }, 200)
+                                    }, 150)
                                 }
                                 console.log('data', data)
                             }
