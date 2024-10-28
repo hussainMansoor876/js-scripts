@@ -505,7 +505,7 @@ if (isPlus) {
                                 }
                                 console.log('data', data)
                             }
-                            console.log(`Selected size: ${selectedValue}`, productData)
+                            console.log(`Selected size: ${selectedValue}`)
                         })
 
                         if (isPlus) {
