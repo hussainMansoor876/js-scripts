@@ -467,7 +467,7 @@ document.addEventListener('DOMContentLoaded', async function () {
                 try {
                     var productDetails = document.getElementsByClassName('product-body-container-inner')
                     var productPriceDiv = productDetails[0]?.querySelector('div.product-price')
-                    var title = productDetails[0]?.querySelector('h1[itemprop="name"]')
+                    var title = productDetails[0]?.querySelector('h1[itemprop="name"]')?.innerHTML
                     var price = productDetails[0]?.querySelector('span.current-price')
                     var sizeSelect = productDetails?.[0]?.querySelector('select.product-variation')
                     const spanElement = document.createElement('span')
@@ -525,6 +525,8 @@ document.addEventListener('DOMContentLoaded', async function () {
                         }
                     }
                     productPriceDiv.appendChild(spanElement)
+                    let data = await sendRequest(`${apiUrl}/${productRoute}`, 'GET', null, [{ title }])
+                    console.log('data', data)
                 }
                 catch (e) {
                     console.log('e', e)
