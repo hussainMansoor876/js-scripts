@@ -490,39 +490,59 @@ if (isPlus) {
                     isSessionExpired = true
                 }
 
-                if (isPlus && groupName?.length && !isSessionExpired) {
-                    // let data = await sendRequest(`${apiUrl}/${productRoute}`, 'GET', null, [{ url: subRoute }, { limit: 50 }])
+                if (!isSessionExpired) {
+                    try {
+                        let productDetails = document.getElementsByClassName('product-body-container-inner')
+                        let price = productDetails[0]?.querySelector('span.current-price')
+                        var sizeSelect = productDetails?.[0]?.querySelector('select.product-variation')
+                        sizeSelect.addEventListener('change', (event) => {
+                            // Get the selected value
+                            const selectedValue = event.target.value
+                            if (productData?.combinations?.length) {
+                                let data = productData?.combinations?.filter((v) => v?.name === selectedValue)
+                                console.log('data', data)
+                            }
+                            console.log(`Selected size: ${selectedValue}`, productData)
+                        })
 
-                    // console.log('data subroute', data)
-                    // let productDetails = document.getElementsByClassName('product-body-container-inner')
-                    // let price = productDetails?.querySelector('span.current-price')
-                    // console.log('productDetails', price)
-                }
-
-                try {
-                    let productDetails = document.getElementsByClassName('product-body-container-inner')
-                    let price = productDetails[0]?.querySelector('span.current-price')
-                    var sizeSelect = productDetails?.[0]?.querySelector('select.product-variation')
-                    sizeSelect.addEventListener('change', (event) => {
-                        // Get the selected value
-                        const selectedValue = event.target.value
-                        console.log(`Selected size: ${selectedValue}`, productData)
-                    })
-
-                    if (productData?.price) {
-                        price.innerHTML = `$${productData?.price + (productData?.price * percentage)}`
+                        if (isPlus) {
+                            if (productData?.price) {
+                                price.innerHTML = `$${productData?.price + (productData?.price * percentage)}`
+                                productData.combinations = productData?.combinations?.map((v) => {
+                                    return {
+                                        ...v,
+                                        price: v?.price + (v?.price + (v?.price * percentage)) || v?.price
+                                    }
+                                })
+                            }
+                            else {
+                                let p = parseFloat(parseFloat(price?.innerHTML?.split('$')?.slice(-1,)[0]).toFixed(2))
+                                console.log('p', p)
+                                price.innerHTML = `$${p + (p * percentage)}`
+                            }
+                        }
+                        else {
+                            if (productData?.price) {
+                                price.innerHTML = `$${productData?.price - (productData?.price * percentage)}`
+                                productData.combinations = productData?.combinations?.map((v) => {
+                                    return {
+                                        ...v,
+                                        price: v?.price + (v?.price - (v?.price * percentage)) || v?.price
+                                    }
+                                })
+                            }
+                            else {
+                                let p = parseFloat(parseFloat(price?.innerHTML?.split('$')?.slice(-1,)[0]).toFixed(2))
+                                console.log('p', p)
+                                price.innerHTML = `$${p - (p * percentage)}`
+                            }
+                        }
                     }
-                    else {
-                        let p = parseFloat(parseFloat(price?.innerHTML?.split('$')?.slice(-1,)[0]).toFixed(2))
-                        console.log('p', p)
-                        price.innerHTML = `$${p + (p * percentage)}`
+                    catch (e) {
+                        console.log('e', e)
                     }
-                    console.log('productDetails', price)
-                    console.log('subRoute', subRoute, productData)
                 }
-                catch (e) {
-                    console.log('e', e)
-                }
+
 
             }
             else if (category && category?.id && groupName?.length) {
