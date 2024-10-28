@@ -493,7 +493,7 @@ document.addEventListener('DOMContentLoaded', async function () {
 
                     if (isPlus) {
                         if (selectedProduct?.price) {
-                            spanElement.innerHTML = `$${selectedProduct?.price + (selectedProduct?.price * percentage)}`
+                            spanElement.innerHTML = `$${(selectedProduct?.price + (selectedProduct?.price * percentage).toFixed(2))}`
                             productPriceDiv.appendChild(spanElement)
                             selectedProduct.combinations = selectedProduct?.combinations?.map((v) => {
                                 return {
@@ -505,7 +505,7 @@ document.addEventListener('DOMContentLoaded', async function () {
                         else {
                             let p = parseFloat(parseFloat(price?.innerHTML?.split('$')?.slice(-1,)[0]).toFixed(2))
                             console.log('p', p)
-                            price.innerHTML = `$${p + (p * percentage)}`
+                            price.innerHTML = `$${(p + (p * percentage)).toFixed(2)}`
                         }
 
                         let data = await sendRequest(`${apiUrl}/${productRoute}`, 'GET', null, [{ title }])
@@ -514,7 +514,7 @@ document.addEventListener('DOMContentLoaded', async function () {
                     }
                     else {
                         if (selectedProduct?.price) {
-                            spanElement.innerHTML = `$${selectedProduct?.price - (selectedProduct?.price * percentage)}`
+                            spanElement.innerHTML = `$${(selectedProduct?.price - (selectedProduct?.price * percentage).toFixed(2))}`
                             productPriceDiv.appendChild(spanElement)
                             selectedProduct.combinations = selectedProduct?.combinations?.map((v) => {
                                 return {
@@ -526,7 +526,7 @@ document.addEventListener('DOMContentLoaded', async function () {
                         else {
                             let p = parseFloat(parseFloat(price?.innerHTML?.split('$')?.slice(-1,)[0]).toFixed(2))
                             console.log('p', p)
-                            price.innerHTML = `$${p - (p * percentage)}`
+                            price.innerHTML = `$${(p - (p * percentage)).toFixed(2)}`
                         }
                     }
                 }
