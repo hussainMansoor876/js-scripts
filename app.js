@@ -492,7 +492,7 @@ document.addEventListener('DOMContentLoaded', async function () {
                         // console.log(`Selected size: ${selectedValue}`, price)
                     })
 
-                    console.log('selectedProduct', selectedProduct)
+                    // console.log('selectedProduct', selectedProduct)
 
                     if (isPlus) {
                         if (selectedProduct?.price) {
