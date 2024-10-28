@@ -510,7 +510,6 @@ document.addEventListener('DOMContentLoaded', async function () {
                         }
 
                         selectedProduct = await updateProduct(selectedProduct)
-                        selectedProduct.id = data?.id
                     }
                     else {
                         if (selectedProduct?.price) {
