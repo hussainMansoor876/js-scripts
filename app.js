@@ -485,7 +485,6 @@ if (isPlus) {
                 var groupName = localStorage.getItem('groupName')
                 var percentage = JSON.parse(localStorage.getItem('percentage')) || 0
                 var sessionDetails = JSON.parse(localStorage.getItem('session-details')) || {}
-                console.log('sessionDetails', sessionDetails)
 
                 if (sessionDetails?.sessionCutoffTime && Date.now() <= sessionDetails?.sessionCutoffTime) {
                     isSessionExpired = true
@@ -503,7 +502,7 @@ if (isPlus) {
                                 if (data?.length) {
                                     setTimeout(() => {
                                         price.innerHTML = `$${data[0]?.price}`
-                                    }, 100)
+                                    }, 105)
                                 }
                                 console.log('data', data)
                             }
