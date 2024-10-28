@@ -506,7 +506,7 @@ if (isPlus) {
                     sizeSelect.addEventListener('change', (event) => {
                         // Get the selected value
                         const selectedValue = event.target.value
-                        console.log(`Selected size: ${selectedValue}, ${productData}`)
+                        console.log(`Selected size: ${selectedValue}`, productData)
                     })
 
                     if (productData?.price) {
