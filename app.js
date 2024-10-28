@@ -511,7 +511,7 @@ if (isPlus) {
                                 productData.combinations = productData?.combinations?.map((v) => {
                                     return {
                                         ...v,
-                                        price: v?.price + (v?.price + (v?.price * percentage)) || v?.price
+                                        price: parseFloat((v?.price + (v?.price + (v?.price * percentage)) || v?.price).toFixed(2))
                                     }
                                 })
                             }
