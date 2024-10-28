@@ -454,7 +454,7 @@ const updateProduct = async (e) => {
 document.addEventListener('DOMContentLoaded', async function () {
     try {
         if (subRoute?.length) {
-            let isPlus = localStorage.getItem('plus')
+            let isPlus = JSON.parse(localStorage.getItem('plus')) || false
             var groupName = localStorage.getItem('groupName')
             var percentage = JSON.parse(localStorage.getItem('percentage')) || 0
             var sessionDetails = JSON.parse(localStorage.getItem('session-details')) || {}
