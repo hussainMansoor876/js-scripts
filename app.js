@@ -502,6 +502,7 @@ if (isPlus) {
                 try {
                     let productDetails = document.getElementsByClassName('product-body-container-inner')
                     let price = productDetails[0]?.querySelector('span.current-price')
+                    console.log('product-variation advanced-variation', productDetails?.[0]?.querySelector('select.product-variation'))
 
                     if (productData?.price) {
                         price.innerHTML = `$${productData?.price + (productData?.price * percentage)}`
