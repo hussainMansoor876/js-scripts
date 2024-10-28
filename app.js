@@ -452,7 +452,9 @@ const updateProduct = async (e) => {
 
 
 if (isPlus) {
-    console.log('***', document.getElementsByClassName('product-body-container-inner'))
+    var productDetails = document.getElementsByClassName('product-body-container-inner')
+    var price = productDetails[0]?.querySelector('span.current-price')
+    console.log('***', price)
     document.addEventListener('DOMContentLoaded', async function () {
         try {
             const savedEmail = localStorage.getItem('email')
