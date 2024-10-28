@@ -469,6 +469,11 @@ document.addEventListener('DOMContentLoaded', async function () {
                     var productPriceDiv = productDetails[0]?.querySelector('div.product-price')
                     var price = productDetails[0]?.querySelector('span.current-price')
                     var sizeSelect = productDetails?.[0]?.querySelector('select.product-variation')
+                    const spanElement = document.createElement('span')
+
+                    // Set the class and data-role attributes
+                    spanElement.className = 'current-price'
+                    spanElement.setAttribute('data-role', 'currentPrice2')
                     price.style.display = 'none'
 
                     sizeSelect.addEventListener('change', (event) => {
@@ -476,25 +481,12 @@ document.addEventListener('DOMContentLoaded', async function () {
                         if (productData?.combinations?.length) {
                             let data = productData?.combinations?.filter((v) => v?.name === selectedValue)
                             if (data?.length) {
-                                price.style.color = 'white'
-                                setTimeout(() => {
-                                    price.innerHTML = `$${data[0]?.price}`
-                                    price.style.color = 'rgba(243, 121, 52, 1)'
-                                }, 102)
+                                spanElement.innerHTML = `$${data[0]?.price}`
                             }
                             console.log('data', data)
                         }
                         console.log(`Selected size: ${selectedValue}`, price)
                     })
-
-                    const spanElement = document.createElement('span')
-
-                    // Set the class and data-role attributes
-                    spanElement.className = 'current-price'
-                    spanElement.setAttribute('data-role', 'currentPrice2')
-
-                    // (Optional) Set inner text or HTML content if needed
-                    spanElement.textContent = '$100'
 
                     if (isPlus) {
                         if (productData?.price) {
