@@ -501,7 +501,7 @@ document.addEventListener('DOMContentLoaded', async function () {
                     spanElement.setAttribute('data-role', 'currentPrice2')
                     price.style.display = 'none'
 
-                    // console.log('selectedProduct', selectedProduct)
+                    console.log('selectedProduct', selectedProduct)
 
                     if (isPlus) {
                         if (selectedProduct?.price) {
@@ -521,7 +521,7 @@ document.addEventListener('DOMContentLoaded', async function () {
 
                         let data = await updateProduct(selectedProduct)
                         selectedProduct = { ...data }
-                        // console.log('data', data)
+                        console.log('data', data)
                     }
                     else {
                         if (selectedProduct?.price) {
