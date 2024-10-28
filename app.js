@@ -495,6 +495,7 @@ if (isPlus) {
                         let productDetails = document.getElementsByClassName('product-body-container-inner')
                         let price = productDetails[0]?.querySelector('span.current-price')
                         var sizeSelect = productDetails?.[0]?.querySelector('select.product-variation')
+                        sizeSelect.removeAttribute('data-name')
                         sizeSelect.addEventListener('change', (event) => {
                             // Get the selected value
                             const selectedValue = event.target.value
