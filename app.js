@@ -509,7 +509,7 @@ document.addEventListener('DOMContentLoaded', async function () {
                         }
 
                         let data = await sendRequest(`${apiUrl}/${productRoute}`, 'GET', null, [{ title }])
-                        console.log('data', groupName, data)
+                        console.log('data', data?.find((v) => v?.url?.includes(groupName)))
                     }
                     else {
                         if (productData?.price) {
