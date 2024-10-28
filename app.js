@@ -480,7 +480,7 @@ if (isPlus) {
                 }
             }
             if (subRoute?.length) {
-                console.log('subRoute', subRoute)
+                console.log('subRoute', subRoute, u)
                 let isPlus = localStorage.getItem('plus')
                 var groupName = localStorage.getItem('groupName')
                 var percentage = JSON.parse(localStorage.getItem('percentage')) || 0
