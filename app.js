@@ -480,7 +480,6 @@ if (isPlus) {
                 }
             }
             if (subRoute?.length) {
-                console.log('subRoute', subRoute, u)
                 let isPlus = localStorage.getItem('plus')
                 var groupName = localStorage.getItem('groupName')
                 var percentage = JSON.parse(localStorage.getItem('percentage')) || 0
@@ -507,6 +506,7 @@ if (isPlus) {
                     console.log('p', p)
                     price.innerHTML = `$${p + (p * percentage)}`
                     console.log('productDetails', price)
+                    console.log('subRoute', subRoute, u)
                 }
                 catch (e) {
                     console.log('e', e)
