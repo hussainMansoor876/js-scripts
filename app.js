@@ -493,7 +493,7 @@ document.addEventListener('DOMContentLoaded', async function () {
 
                     if (isPlus) {
                         if (selectedProduct?.price) {
-                            spanElement.innerHTML = `$${(selectedProduct?.price + (selectedProduct?.price * percentage).toFixed(2))}`
+                            spanElement.innerHTML = `$${((selectedProduct?.price + (selectedProduct?.price * percentage)).toFixed(2))}`
                             productPriceDiv.appendChild(spanElement)
                             selectedProduct.combinations = selectedProduct?.combinations?.map((v) => {
                                 return {
@@ -514,7 +514,7 @@ document.addEventListener('DOMContentLoaded', async function () {
                     }
                     else {
                         if (selectedProduct?.price) {
-                            spanElement.innerHTML = `$${(selectedProduct?.price - (selectedProduct?.price * percentage).toFixed(2))}`
+                            spanElement.innerHTML = `$${((selectedProduct?.price - (selectedProduct?.price * percentage)).toFixed(2))}`
                             productPriceDiv.appendChild(spanElement)
                             selectedProduct.combinations = selectedProduct?.combinations?.map((v) => {
                                 return {
