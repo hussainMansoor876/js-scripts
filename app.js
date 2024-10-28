@@ -499,7 +499,9 @@ document.addEventListener('DOMContentLoaded', async function () {
                     // Set the class and data-role attributes
                     spanElement.className = 'current-price'
                     spanElement.setAttribute('data-role', 'currentPrice2')
-                    price.style.display = 'none'
+                    if (price) {
+                        price.style.display = 'none'
+                    }
 
                     // console.log('selectedProduct', selectedProduct)
 

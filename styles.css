@@ -1,0 +1,22 @@
+.product-list-style-text-boxed .product-item-description .product-item-price, .product-list-style-text-boxed .product-item-description h3, .product-list-style-text-over .product-item-description .product-item-price, .product-list-style-text-over .product-item-description h3, .quick-view-wrapper .product-body-container h2, .quick-view-wrapper .product-price span {
+    color: 155134;
+}
+
+
+.theme .primaryColor, .theme .highlightColor:hover, .theme .smaller .highlightColor:hover, .theme .highlightColor.active, .portfolio-filter ul li.active a, .portfolio-filter ul li a:hover, .portfolio-list-wrapper .image-overlay a:hover, .portfolio-widget-item .primaryColor-bg2:hover, .tmdp-pagination [data-role]:hover i, .blog-back-btn:hover i, .products-filter-style-1 ul li.active a, .products-filter-style-1 ul li a:hover, .side-filter .products-filter section>ul>li.active>a, .side-filter .products-filter section>ul>li:hover>a, .side-filter .products-filter section ul li li:hover>a, .side-filter .products-filter section ul li li.active>a, .has-subcategories div:hover::before, .store6 .product-item-description .product-item-price, .post-category a, .login-question a, .promo-code-toggle-btn, .steps-nav-wrapper a.active, .steps-nav-wrapper a:hover, .steps-nav-wrapper a.active::after, .box-select h5, .quick-view-wrapper .product-body-container .quick-view-title a:hover, .theme .view-details-btn, .products-filter .search-form button:hover::after, .product-characteristics:hover, .product-reviews-link:hover, .theme .profile-sidebar li:hover a, .member-logout-button {
+    color: rgb(226, 120, 56) !important;
+}
+
+.theme .view-details-btn {
+    width: 100%;
+    text-align: left;
+    float: left;
+    margin-top: 10px;
+    font-size: 16px;
+    color: #999;
+    margin-bottom: 10px;
+}
+
+.scratched, .old-price, .checkout-old-price, .checkbox-wrapper {
+    display: none !important;
+}
