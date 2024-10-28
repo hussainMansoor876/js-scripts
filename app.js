@@ -451,157 +451,165 @@ const updateProduct = async (e) => {
 }
 
 
-if (isPlus) {
-    var productDetails = document.getElementsByClassName('product-body-container-inner')
-    var price = productDetails[0]?.querySelector('span.current-price')
-    const savedEmail = localStorage.getItem('email')
-    console.log('***', price)
-    document.addEventListener('DOMContentLoaded', async function () {
-        try {
-            if (subRoute?.length) {
-                let isPlus = localStorage.getItem('plus')
-                var groupName = localStorage.getItem('groupName')
-                var percentage = JSON.parse(localStorage.getItem('percentage')) || 0
-                var sessionDetails = JSON.parse(localStorage.getItem('session-details')) || {}
+document.addEventListener('DOMContentLoaded', async function () {
+    try {
+        if (subRoute?.length) {
+            let isPlus = localStorage.getItem('plus')
+            var groupName = localStorage.getItem('groupName')
+            var percentage = JSON.parse(localStorage.getItem('percentage')) || 0
+            var sessionDetails = JSON.parse(localStorage.getItem('session-details')) || {}
 
-                if (sessionDetails?.sessionCutoffTime && Date.now() <= sessionDetails?.sessionCutoffTime) {
-                    isSessionExpired = true
-                }
+            if (sessionDetails?.sessionCutoffTime && Date.now() <= sessionDetails?.sessionCutoffTime) {
+                isSessionExpired = true
+            }
 
-                if (!isSessionExpired) {
-                    try {
-                        var productDetails = document.getElementsByClassName('product-body-container-inner')
-                        var price = productDetails[0]?.querySelector('span.current-price')
-                        var sizeSelect = productDetails?.[0]?.querySelector('select.product-variation')
-                        sizeSelect.addEventListener('change', (event) => {
-                            const selectedValue = event.target.value
-                            if (productData?.combinations?.length) {
-                                let data = productData?.combinations?.filter((v) => v?.name === selectedValue)
-                                if (data?.length) {
-                                    price.style.color = 'white'
-                                    setTimeout(() => {
-                                        price.innerHTML = `$${data[0]?.price}`
-                                        price.style.color = 'rgba(243, 121, 52, 1)'
-                                    }, 102)
+            if (!isSessionExpired) {
+                try {
+                    var productDetails = document.getElementsByClassName('product-body-container-inner')
+                    var productPriceDiv = productDetails[0]?.querySelector('div.product-price')
+                    var price = productDetails[0]?.querySelector('span.current-price')
+                    var sizeSelect = productDetails?.[0]?.querySelector('select.product-variation')
+                    price.style.display = 'none'
+
+                    sizeSelect.addEventListener('change', (event) => {
+                        const selectedValue = event.target.value
+                        if (productData?.combinations?.length) {
+                            let data = productData?.combinations?.filter((v) => v?.name === selectedValue)
+                            if (data?.length) {
+                                price.style.color = 'white'
+                                setTimeout(() => {
+                                    price.innerHTML = `$${data[0]?.price}`
+                                    price.style.color = 'rgba(243, 121, 52, 1)'
+                                }, 102)
+                            }
+                            console.log('data', data)
+                        }
+                        console.log(`Selected size: ${selectedValue}`, price)
+                    })
+
+                    const spanElement = document.createElement('span')
+
+                    // Set the class and data-role attributes
+                    spanElement.className = 'current-price'
+                    spanElement.setAttribute('data-role', 'currentPrice2')
+
+                    // (Optional) Set inner text or HTML content if needed
+                    spanElement.textContent = '$100'
+
+                    if (isPlus) {
+                        if (productData?.price) {
+                            price.innerHTML = `$${productData?.price + (productData?.price * percentage)}`
+                            spanElement.innerHTML = price.innerHTML
+                            productData.combinations = productData?.combinations?.map((v) => {
+                                return {
+                                    ...v,
+                                    price: parseFloat((v?.price + (v?.price * percentage) || v?.price).toFixed(2))
                                 }
-                                console.log('data', data)
-                            }
-                            console.log(`Selected size: ${selectedValue}`, price)
-                        })
-
-                        if (isPlus) {
-                            if (productData?.price) {
-                                price.innerHTML = `$${productData?.price + (productData?.price * percentage)}`
-                                productData.combinations = productData?.combinations?.map((v) => {
-                                    return {
-                                        ...v,
-                                        price: parseFloat((v?.price + (v?.price * percentage) || v?.price).toFixed(2))
-                                    }
-                                })
-                            }
-                            else {
-                                let p = parseFloat(parseFloat(price?.innerHTML?.split('$')?.slice(-1,)[0]).toFixed(2))
-                                console.log('p', p)
-                                price.innerHTML = `$${p + (p * percentage)}`
-                            }
+                            })
                         }
                         else {
-                            if (productData?.price) {
-                                price.innerHTML = `$${productData?.price - (productData?.price * percentage)}`
-                                productData.combinations = productData?.combinations?.map((v) => {
-                                    return {
-                                        ...v,
-                                        price: parseFloat((v?.price - (v?.price * percentage) || v?.price).toFixed(2))
-                                    }
-                                })
-                            }
-                            else {
-                                let p = parseFloat(parseFloat(price?.innerHTML?.split('$')?.slice(-1,)[0]).toFixed(2))
-                                console.log('p', p)
-                                price.innerHTML = `$${p - (p * percentage)}`
-                            }
+                            let p = parseFloat(parseFloat(price?.innerHTML?.split('$')?.slice(-1,)[0]).toFixed(2))
+                            console.log('p', p)
+                            price.innerHTML = `$${p + (p * percentage)}`
                         }
                     }
-                    catch (e) {
-                        console.log('e', e)
-                    }
-                }
-
-
-            }
-            else if (category && category?.id && groupName?.length) {
-                // let data = await sendRequest(`${apiUrl}/${productRoute}`, 'GET', null, [{ category_id: category?.id }, { limit: 50 }])
-
-                // console.log('data', data)
-                // let items = data?.items?.filter((v) => !v?.url?.toLowerCase()?.includes('plus'))
-                // itemIds = data?.items?.filter((v) => v?.url?.toLowerCase()?.includes(groupName))?.map((v) => v?.id)
-                // console.log('items', items)
-                // console.log('itemIds', itemIds)
-
-                // let arr = []
-
-                // for (var v of items) {
-                //     for (var y of v?.variants) {
-                //         if (y?.price) {
-                //             y.price = calculateIncreasedPrice(y?.price * 1.1, 10)
-                //         }
-                //     }
-                //     console.log('v', v)
-                //     v.url = `${v?.url}-${groupName}`
-                //     arr.push(sendRequest(`${apiUrl}/${productRoute}`, 'POST', v, [{ update_existing_product_by_url: true }]))
-                // }
-
-                // let promise = await Promise.allSettled(arr)
-                // console.log('promise', promise)
-                // const productLink = document.querySelectorAll('div[data-type="StoreWidget"]')
-                // let parentDiv = productLink[0]?.children?.[0]?.children?.[2]
-
-                // if (parentDiv?.children?.length) {
-                //     // console.log('if')
-                //     handleNewChild(parentDiv.children?.[0])
-                // }
-                // else {
-                //     const observer = new MutationObserver(mutations => {
-                //         mutations.forEach(mutation => {
-                //             mutation.addedNodes.forEach(node => {
-                //                 // Check if the added node is an element
-                //                 if (node.nodeType === 1) { // Node.ELEMENT_NODE
-                //                     handleNewChild(node)
-                //                 }
-                //             })
-                //         })
-                //     })
-
-                //     observer.observe(parentDiv, { childList: true })
-                // }
-            }
-            if (savedEmail) {
-                let data = await sendRequest(`${apiUrl}/${memberRoute}`, 'GET', null, [{ email: savedEmail }])
-
-                // console.log('user', data)
-
-                if (data?.groups?.length) {
-                    let groups = data?.groups
-                    let id = Math.max(...groups)
-
-                    let idData = await sendRequest(`${apiUrl}/${groupRoute}/${id}`, 'GET')
-
-                    // console.log('Data', idData)
-
-                    if (idData?.name && idData?.name?.toLowerCase()?.includes('plus')) {
-                        localStorage.setItem('plus', JSON.stringify(true))
-                        localStorage.setItem('groupName', idData?.name?.toLowerCase()?.replace(/ /g, '-'))
-                    }
                     else {
-                        localStorage.setItem('plus', JSON.stringify(false))
-                        localStorage.removeItem('groupName')
-                        localStorage.removeItem('email')
+                        if (productData?.price) {
+                            price.innerHTML = `$${productData?.price - (productData?.price * percentage)}`
+                            productData.combinations = productData?.combinations?.map((v) => {
+                                return {
+                                    ...v,
+                                    price: parseFloat((v?.price - (v?.price * percentage) || v?.price).toFixed(2))
+                                }
+                            })
+                        }
+                        else {
+                            let p = parseFloat(parseFloat(price?.innerHTML?.split('$')?.slice(-1,)[0]).toFixed(2))
+                            console.log('p', p)
+                            price.innerHTML = `$${p - (p * percentage)}`
+                        }
                     }
+                    productPriceDiv.appendChild(spanElement)
+                }
+                catch (e) {
+                    console.log('e', e)
+                }
+            }
+
+
+        }
+        else if (category && category?.id && groupName?.length) {
+            // let data = await sendRequest(`${apiUrl}/${productRoute}`, 'GET', null, [{ category_id: category?.id }, { limit: 50 }])
+
+            // console.log('data', data)
+            // let items = data?.items?.filter((v) => !v?.url?.toLowerCase()?.includes('plus'))
+            // itemIds = data?.items?.filter((v) => v?.url?.toLowerCase()?.includes(groupName))?.map((v) => v?.id)
+            // console.log('items', items)
+            // console.log('itemIds', itemIds)
+
+            // let arr = []
+
+            // for (var v of items) {
+            //     for (var y of v?.variants) {
+            //         if (y?.price) {
+            //             y.price = calculateIncreasedPrice(y?.price * 1.1, 10)
+            //         }
+            //     }
+            //     console.log('v', v)
+            //     v.url = `${v?.url}-${groupName}`
+            //     arr.push(sendRequest(`${apiUrl}/${productRoute}`, 'POST', v, [{ update_existing_product_by_url: true }]))
+            // }
+
+            // let promise = await Promise.allSettled(arr)
+            // console.log('promise', promise)
+            // const productLink = document.querySelectorAll('div[data-type="StoreWidget"]')
+            // let parentDiv = productLink[0]?.children?.[0]?.children?.[2]
+
+            // if (parentDiv?.children?.length) {
+            //     // console.log('if')
+            //     handleNewChild(parentDiv.children?.[0])
+            // }
+            // else {
+            //     const observer = new MutationObserver(mutations => {
+            //         mutations.forEach(mutation => {
+            //             mutation.addedNodes.forEach(node => {
+            //                 // Check if the added node is an element
+            //                 if (node.nodeType === 1) { // Node.ELEMENT_NODE
+            //                     handleNewChild(node)
+            //                 }
+            //             })
+            //         })
+            //     })
+
+            //     observer.observe(parentDiv, { childList: true })
+            // }
+        }
+        if (savedEmail) {
+            let data = await sendRequest(`${apiUrl}/${memberRoute}`, 'GET', null, [{ email: savedEmail }])
+
+            // console.log('user', data)
+
+            if (data?.groups?.length) {
+                let groups = data?.groups
+                let id = Math.max(...groups)
+
+                let idData = await sendRequest(`${apiUrl}/${groupRoute}/${id}`, 'GET')
+
+                // console.log('Data', idData)
+
+                if (idData?.name && idData?.name?.toLowerCase()?.includes('plus')) {
+                    localStorage.setItem('plus', JSON.stringify(true))
+                    localStorage.setItem('groupName', idData?.name?.toLowerCase()?.replace(/ /g, '-'))
+                }
+                else {
+                    localStorage.setItem('plus', JSON.stringify(false))
+                    localStorage.removeItem('groupName')
+                    localStorage.removeItem('email')
                 }
             }
         }
-        catch (e) {
-            // console.log('e', e)
-        }
-    })
-}
+    }
+    catch (e) {
+        // console.log('e', e)
+    }
+})
