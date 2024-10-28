@@ -476,23 +476,25 @@ document.addEventListener('DOMContentLoaded', async function () {
                     console.log('productDetails', productDetails)
                     console.log('productPriceDiv', productPriceDiv)
 
+                    if (sizeSelect) {
+                        sizeSelect.addEventListener('change', (event) => {
+                            const selectedValue = event.target.value
+                            if (selectedProduct?.combinations?.length) {
+                                let data = selectedProduct?.combinations?.filter((v) => v?.name === selectedValue)
+                                if (data?.length) {
+                                    spanElement.innerHTML = `$${data[0]?.price}`
+                                }
+                                // console.log('data', data)
+                            }
+                            // console.log(`Selected size: ${selectedValue}`, price)
+                        })
+                    }
+
 
                     // Set the class and data-role attributes
                     spanElement.className = 'current-price'
                     spanElement.setAttribute('data-role', 'currentPrice2')
                     price.style.display = 'none'
-
-                    sizeSelect.addEventListener('change', (event) => {
-                        const selectedValue = event.target.value
-                        if (selectedProduct?.combinations?.length) {
-                            let data = selectedProduct?.combinations?.filter((v) => v?.name === selectedValue)
-                            if (data?.length) {
-                                spanElement.innerHTML = `$${data[0]?.price}`
-                            }
-                            // console.log('data', data)
-                        }
-                        // console.log(`Selected size: ${selectedValue}`, price)
-                    })
 
                     // console.log('selectedProduct', selectedProduct)
 
