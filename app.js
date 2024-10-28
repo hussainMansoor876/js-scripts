@@ -478,9 +478,11 @@ if (isPlus) {
                             if (productData?.combinations?.length) {
                                 let data = productData?.combinations?.filter((v) => v?.name === selectedValue)
                                 if (data?.length) {
+                                    price.style.display = 'none'
                                     setTimeout(() => {
                                         price.innerHTML = `$${data[0]?.price}`
-                                    }, 101)
+                                        price.style.display = 'block'
+                                    }, 102)
                                 }
                                 console.log('data', data)
                             }
