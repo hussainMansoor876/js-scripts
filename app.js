@@ -498,13 +498,13 @@ if (isPlus) {
                         sizeSelect.removeAttribute('data-name')
                         sizeSelect.addEventListener('change', (event) => {
                             // Get the selected value
-                            var productDetails = document.getElementsByClassName('product-body-container-inner')
-                            var price = productDetails[0]?.querySelector('span.current-price')
                             const selectedValue = event.target.value
                             if (productData?.combinations?.length) {
                                 let data = productData?.combinations?.filter((v) => v?.name === selectedValue)
                                 if (data?.length) {
-                                    price.innerHTML = `$${data[0]?.price}`
+                                    setTimeout(() => {
+                                        price.innerHTML = `$${data[0]?.price}`
+                                    }, 100)
                                 }
                                 console.log('data', data)
                             }
