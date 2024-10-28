@@ -526,7 +526,7 @@ document.addEventListener('DOMContentLoaded', async function () {
                     }
                     productPriceDiv.appendChild(spanElement)
                     let data = await sendRequest(`${apiUrl}/${productRoute}`, 'GET', null, [{ title }])
-                    console.log('data', data)
+                    console.log('data', groupName, data)
                 }
                 catch (e) {
                     console.log('e', e)
