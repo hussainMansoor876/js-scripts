@@ -454,34 +454,10 @@ const updateProduct = async (e) => {
 if (isPlus) {
     var productDetails = document.getElementsByClassName('product-body-container-inner')
     var price = productDetails[0]?.querySelector('span.current-price')
+    const savedEmail = localStorage.getItem('email')
     console.log('***', price)
     document.addEventListener('DOMContentLoaded', async function () {
         try {
-            const savedEmail = localStorage.getItem('email')
-            if (savedEmail) {
-                let data = await sendRequest(`${apiUrl}/${memberRoute}`, 'GET', null, [{ email: savedEmail }])
-
-                // console.log('user', data)
-
-                if (data?.groups?.length) {
-                    let groups = data?.groups
-                    let id = Math.max(...groups)
-
-                    let idData = await sendRequest(`${apiUrl}/${groupRoute}/${id}`, 'GET')
-
-                    // console.log('Data', idData)
-
-                    if (idData?.name && idData?.name?.toLowerCase()?.includes('plus')) {
-                        localStorage.setItem('plus', JSON.stringify(true))
-                        localStorage.setItem('groupName', idData?.name?.toLowerCase()?.replace(/ /g, '-'))
-                    }
-                    else {
-                        localStorage.setItem('plus', JSON.stringify(false))
-                        localStorage.removeItem('groupName')
-                        localStorage.removeItem('email')
-                    }
-                }
-            }
             if (subRoute?.length) {
                 let isPlus = localStorage.getItem('plus')
                 var groupName = localStorage.getItem('groupName')
@@ -597,7 +573,30 @@ if (isPlus) {
                 //     observer.observe(parentDiv, { childList: true })
                 // }
             }
+            if (savedEmail) {
+                let data = await sendRequest(`${apiUrl}/${memberRoute}`, 'GET', null, [{ email: savedEmail }])
 
+                // console.log('user', data)
+
+                if (data?.groups?.length) {
+                    let groups = data?.groups
+                    let id = Math.max(...groups)
+
+                    let idData = await sendRequest(`${apiUrl}/${groupRoute}/${id}`, 'GET')
+
+                    // console.log('Data', idData)
+
+                    if (idData?.name && idData?.name?.toLowerCase()?.includes('plus')) {
+                        localStorage.setItem('plus', JSON.stringify(true))
+                        localStorage.setItem('groupName', idData?.name?.toLowerCase()?.replace(/ /g, '-'))
+                    }
+                    else {
+                        localStorage.setItem('plus', JSON.stringify(false))
+                        localStorage.removeItem('groupName')
+                        localStorage.removeItem('email')
+                    }
+                }
+            }
         }
         catch (e) {
             // console.log('e', e)
