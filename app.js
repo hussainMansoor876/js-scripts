@@ -478,10 +478,10 @@ if (isPlus) {
                             if (productData?.combinations?.length) {
                                 let data = productData?.combinations?.filter((v) => v?.name === selectedValue)
                                 if (data?.length) {
-                                    price.style.display = 'none'
+                                    price.style.color = 'white'
                                     setTimeout(() => {
                                         price.innerHTML = `$${data[0]?.price}`
-                                        price.style.display = 'block'
+                                        price.style.color = 'rgba(243, 121, 52, 1)'
                                     }, 102)
                                 }
                                 console.log('data', data)
