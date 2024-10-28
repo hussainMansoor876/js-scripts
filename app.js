@@ -437,7 +437,8 @@ function calculateIncreasedPrice(targetPriceAfterDiscount, discountPercentage) {
 
 const updateProduct = async (e) => {
     let data = await sendRequest(`${apiUrl}/${productRoute}/${e?.id}`, 'GET', null)
-    let roundedDiscountInPercent = e?.roundedDiscountInPercent
+    var percentage = JSON.parse(localStorage.getItem('percentage')) || 0
+    let roundedDiscountInPercent = e?.roundedDiscountInPercent || (percentage * 100)
     for (var y of data?.variants) {
         if (y?.price) {
             y.price = calculateIncreasedPrice(y?.price * ((100 + roundedDiscountInPercent) / 100), roundedDiscountInPercent)
