@@ -460,6 +460,11 @@ document.addEventListener('DOMContentLoaded', async function () {
             var percentage = JSON.parse(localStorage.getItem('percentage')) || 0
             var sessionDetails = JSON.parse(localStorage.getItem('session-details')) || {}
 
+            if (!percentage && groupName?.length) {
+                percentage = groupName === 'plus-5' ? 0.05 : 0.1
+                localStorage.setItem('percentage', JSON.stringify(percentage))
+            }
+
             if (sessionDetails?.sessionCutoffTime && Date.now() <= sessionDetails?.sessionCutoffTime) {
                 isSessionExpired = true
             }
