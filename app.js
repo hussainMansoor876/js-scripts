@@ -506,7 +506,7 @@ if (isPlus) {
                     console.log('p', p)
                     price.innerHTML = `$${p + (p * percentage)}`
                     console.log('productDetails', price)
-                    console.log('subRoute', subRoute, u)
+                    console.log('subRoute', subRoute, productData)
                 }
                 catch (e) {
                     console.log('e', e)
