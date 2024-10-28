@@ -452,6 +452,7 @@ const updateProduct = async (e) => {
 
 
 if (isPlus) {
+    console.log('***', document.getElementsByClassName('product-body-container-inner'))
     document.addEventListener('DOMContentLoaded', async function () {
         try {
             const savedEmail = localStorage.getItem('email')
