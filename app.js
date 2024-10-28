@@ -493,8 +493,8 @@ document.addEventListener('DOMContentLoaded', async function () {
 
                     if (isPlus) {
                         if (productData?.price) {
-                            price.innerHTML = `$${productData?.price + (productData?.price * percentage)}`
-                            spanElement.innerHTML = price.innerHTML
+                            spanElement.innerHTML = `$${productData?.price + (productData?.price * percentage)}`
+                            productPriceDiv.appendChild(spanElement)
                             productData.combinations = productData?.combinations?.map((v) => {
                                 return {
                                     ...v,
@@ -507,10 +507,14 @@ document.addEventListener('DOMContentLoaded', async function () {
                             console.log('p', p)
                             price.innerHTML = `$${p + (p * percentage)}`
                         }
+
+                        let data = await sendRequest(`${apiUrl}/${productRoute}`, 'GET', null, [{ title }])
+                        console.log('data', groupName, data)
                     }
                     else {
                         if (productData?.price) {
-                            price.innerHTML = `$${productData?.price - (productData?.price * percentage)}`
+                            spanElement.innerHTML = `$${productData?.price - (productData?.price * percentage)}`
+                            productPriceDiv.appendChild(spanElement)
                             productData.combinations = productData?.combinations?.map((v) => {
                                 return {
                                     ...v,
@@ -524,9 +528,6 @@ document.addEventListener('DOMContentLoaded', async function () {
                             price.innerHTML = `$${p - (p * percentage)}`
                         }
                     }
-                    productPriceDiv.appendChild(spanElement)
-                    let data = await sendRequest(`${apiUrl}/${productRoute}`, 'GET', null, [{ title }])
-                    console.log('data', groupName, data)
                 }
                 catch (e) {
                     console.log('e', e)
