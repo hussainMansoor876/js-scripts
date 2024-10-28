@@ -495,18 +495,14 @@ if (isPlus) {
                         var productDetails = document.getElementsByClassName('product-body-container-inner')
                         var price = productDetails[0]?.querySelector('span.current-price')
                         var sizeSelect = productDetails?.[0]?.querySelector('select.product-variation')
-                        var divVariation = productDetails?.[0]?.querySelector('div.variation-wrapper')
-                        divVariation.removeAttribute('data-name')
-                        console.log('divVariation', divVariation)
                         sizeSelect.addEventListener('change', (event) => {
-                            // Get the selected value
                             const selectedValue = event.target.value
                             if (productData?.combinations?.length) {
                                 let data = productData?.combinations?.filter((v) => v?.name === selectedValue)
                                 if (data?.length) {
                                     setTimeout(() => {
                                         price.innerHTML = `$${data[0]?.price}`
-                                    }, 1000)
+                                    }, 200)
                                 }
                                 console.log('data', data)
                             }
