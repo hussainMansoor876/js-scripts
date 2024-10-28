@@ -509,8 +509,7 @@ document.addEventListener('DOMContentLoaded', async function () {
                             price.innerHTML = `$${(p + (p * percentage)).toFixed(2)}`
                         }
 
-                        let data = await sendRequest(`${apiUrl}/${productRoute}`, 'GET', null, [{ title }])
-                        data = data?.items?.find((v) => v?.url?.includes(groupName))
+                        selectedProduct = await updateProduct(selectedProduct)
                         selectedProduct.id = data?.id
                     }
                     else {
