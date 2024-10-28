@@ -597,7 +597,7 @@ document.addEventListener('DOMContentLoaded', async function () {
 
                 let idData = await sendRequest(`${apiUrl}/${groupRoute}/${id}`, 'GET')
 
-                // console.log('Data', idData)
+                console.log('Data', idData)
 
                 if (idData?.name && idData?.name?.toLowerCase()?.includes('plus')) {
                     localStorage.setItem('plus', JSON.stringify(true))
