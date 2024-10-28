@@ -467,9 +467,12 @@ document.addEventListener('DOMContentLoaded', async function () {
                 try {
                     var productDetails = document.getElementsByClassName('product-body-container-inner')
                     var productPriceDiv = productDetails[0]?.querySelector('div.product-price')
+                    var title = productDetails[0]?.querySelector('h1[itemprop="name"]')
                     var price = productDetails[0]?.querySelector('span.current-price')
                     var sizeSelect = productDetails?.[0]?.querySelector('select.product-variation')
                     const spanElement = document.createElement('span')
+
+                    console.log('title', title)
 
                     // Set the class and data-role attributes
                     spanElement.className = 'current-price'
