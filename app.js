@@ -509,7 +509,8 @@ document.addEventListener('DOMContentLoaded', async function () {
                             price.innerHTML = `$${(p + (p * percentage)).toFixed(2)}`
                         }
 
-                        selectedProduct = await updateProduct(selectedProduct)
+                        let data = await updateProduct(selectedProduct)
+                        console.log('data', data)
                     }
                     else {
                         if (selectedProduct?.price) {
