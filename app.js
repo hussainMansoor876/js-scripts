@@ -502,9 +502,15 @@ if (isPlus) {
                 try {
                     let productDetails = document.getElementsByClassName('product-body-container-inner')
                     let price = productDetails[0]?.querySelector('span.current-price')
-                    let p = parseFloat(parseFloat(price?.innerHTML?.split('$')?.slice(-1,)[0]).toFixed(2))
-                    console.log('p', p)
-                    price.innerHTML = `$${p + (p * percentage)}`
+
+                    if (productData?.price) {
+                        price.innerHTML = `$${productData?.price + (productData?.price * percentage)}`
+                    }
+                    else {
+                        let p = parseFloat(parseFloat(price?.innerHTML?.split('$')?.slice(-1,)[0]).toFixed(2))
+                        console.log('p', p)
+                        price.innerHTML = `$${p + (p * percentage)}`
+                    }
                     console.log('productDetails', price)
                     console.log('subRoute', subRoute, productData)
                 }
