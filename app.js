@@ -486,9 +486,10 @@ document.addEventListener('DOMContentLoaded', async function () {
                     if (sizeSelect) {
                         sizeSelect.addEventListener('change', (event) => {
                             productDetails = document.getElementsByClassName('product-body-container-inner')
+                            price = productDetails[0]?.querySelector('h1[data-role="currentPrice2"]')
                             const selectedValue = event.target.value
                             console.log('selectedValue', selectedValue)
-                            console.log('selectedProduct', productDetails)
+                            console.log('price', price)
                             if (selectedProduct?.combinations?.length) {
                                 let data = selectedProduct?.combinations?.filter((v) => v?.name === selectedValue)
                                 if (data?.length) {
