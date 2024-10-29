@@ -488,7 +488,7 @@ document.addEventListener('DOMContentLoaded', async function () {
                             productDetails = document.getElementsByClassName('product-body-container-inner')
                             price = productDetails[0]?.querySelector('span[data-role="currentPrice2"]')
                             const selectedValue = event.target.value
-                            console.log('selectedValue', selectedValue)
+                            console.log('selectedProduct', selectedProduct)
                             console.log('price', price)
                             if (selectedProduct?.combinations?.length) {
                                 let data = selectedProduct?.combinations?.filter((v) => v?.name === selectedValue)
