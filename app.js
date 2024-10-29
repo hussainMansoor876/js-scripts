@@ -493,7 +493,7 @@ document.addEventListener('DOMContentLoaded', async function () {
                             if (selectedProduct?.combinations?.length) {
                                 let data = selectedProduct?.combinations?.filter((v) => v?.name === selectedValue)
                                 if (data?.length) {
-                                    spanElement.innerHTML = `$${data[0]?.price}`
+                                    price.innerHTML = `$${data[0]?.price}`
                                 }
                                 // console.log('data', data)
                             }
