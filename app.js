@@ -485,9 +485,10 @@ document.addEventListener('DOMContentLoaded', async function () {
 
                     if (sizeSelect) {
                         sizeSelect.addEventListener('change', (event) => {
+                            productDetails = document.getElementsByClassName('product-body-container-inner')
                             const selectedValue = event.target.value
                             console.log('selectedValue', selectedValue)
-                            console.log('selectedProduct', selectedProduct)
+                            console.log('selectedProduct', productDetails)
                             if (selectedProduct?.combinations?.length) {
                                 let data = selectedProduct?.combinations?.filter((v) => v?.name === selectedValue)
                                 if (data?.length) {
