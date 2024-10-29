@@ -486,7 +486,7 @@ document.addEventListener('DOMContentLoaded', async function () {
                     if (sizeSelect) {
                         sizeSelect.addEventListener('change', (event) => {
                             productDetails = document.getElementsByClassName('product-body-container-inner')
-                            price = productDetails[0]?.querySelector('h1[data-role="currentPrice2"]')
+                            price = productDetails[0]?.querySelector('span[data-role="currentPrice2"]')
                             const selectedValue = event.target.value
                             console.log('selectedValue', selectedValue)
                             console.log('price', price)
