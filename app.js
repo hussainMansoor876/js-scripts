@@ -491,7 +491,7 @@ document.addEventListener('DOMContentLoaded', async function () {
                             console.log('selectedProduct', selectedProduct)
                             console.log('price', price)
                             if (selectedProduct?.combinations?.length) {
-                                let data = selectedProduct?.combinations?.filter((v) => v?.name === selectedValue)
+                                let data = selectedProduct?.combinations?.filter((v) => v?.name === selectedValue || v?.options?.includes(selectedValue))
                                 if (data?.length) {
                                     price.innerHTML = `$${data[0]?.price}`
                                 }
