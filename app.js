@@ -446,6 +446,7 @@ const updateProduct = async (e) => {
     }
 
     data.url = `${data?.url}-${groupName}`
+    data.hidden = true
     let selectedProduct = await sendRequest(`${apiUrl}/${productRoute}`, 'POST', data, [{ update_existing_product_by_url: true }])
 
     return selectedProduct
