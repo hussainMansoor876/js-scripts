@@ -326,6 +326,7 @@ isPlus = JSON.parse(isPlus) || false
 var groupName = localStorage.getItem('groupName')
 var isSessionExpired = false
 let selectedProduct = null
+let selectedProductData = null
 
 let groupPercentage = {
     'plus-10': {
@@ -447,7 +448,7 @@ const updateProduct = async (e) => {
 
     data.url = `${data?.url}-${groupName}`
     data.hidden = true
-    let selectedProduct = await sendRequest(`${apiUrl}/${productRoute}`, 'POST', data, [{ update_existing_product_by_url: true }])
+    selectedProduct = await sendRequest(`${apiUrl}/${productRoute}`, 'POST', data, [{ update_existing_product_by_url: true }])
 
     return selectedProduct
 }
@@ -486,8 +487,8 @@ document.addEventListener('DOMContentLoaded', async function () {
                             productDetails = document.getElementsByClassName('product-body-container-inner')
                             price = productDetails[0]?.querySelector('span[data-role="currentPrice2"]')
                             const selectedValue = event.target.value
-                            if (selectedProduct?.combinations?.length) {
-                                let data = (selectedProduct?.combinations || selectedProduct?.variants)?.filter((v) => v?.name === selectedValue)
+                            if (selectedProductData?.combinations?.length) {
+                                let data = selectedProductData?.combinations?.filter((v) => v?.name === selectedValue)
                                 if (data?.length) {
                                     price.innerHTML = `$${data[0]?.price}`
                                 }
@@ -508,10 +509,10 @@ document.addEventListener('DOMContentLoaded', async function () {
                     // console.log('selectedProduct', selectedProduct)
 
                     if (isPlus) {
-                        if (selectedProduct?.price) {
-                            spanElement.innerHTML = `$${((selectedProduct?.price + (selectedProduct?.price * percentage)).toFixed(2))}`
+                        if (selectedProductData?.price) {
+                            spanElement.innerHTML = `$${((selectedProductData?.price + (selectedProductData?.price * percentage)).toFixed(2))}`
                             productPriceDiv.appendChild(spanElement)
-                            selectedProduct.combinations = selectedProduct?.combinations?.map((v) => {
+                            selectedProductData.combinations = selectedProductData?.combinations?.map((v) => {
                                 return {
                                     ...v,
                                     price: parseFloat((v?.price + (v?.price * percentage) || v?.price).toFixed(2))
@@ -523,15 +524,15 @@ document.addEventListener('DOMContentLoaded', async function () {
                             price.innerHTML = `$${(p + (p * percentage)).toFixed(2)}`
                         }
 
-                        let data = await updateProduct(selectedProduct)
-                        selectedProduct = { ...selectedProduct, id: data?.id }
+                        let data = await updateProduct(selectedProductData)
+                        selectedProductData = { ...selectedProductData, id: data?.id }
                         // console.log('data', data)
                     }
                     else {
-                        if (selectedProduct?.price) {
-                            spanElement.innerHTML = `$${((selectedProduct?.price - (selectedProduct?.price * percentage)).toFixed(2))}`
+                        if (selectedProductData?.price) {
+                            spanElement.innerHTML = `$${((selectedProductData?.price - (selectedProductData?.price * percentage)).toFixed(2))}`
                             productPriceDiv.appendChild(spanElement)
-                            selectedProduct.combinations = selectedProduct?.combinations?.map((v) => {
+                            selectedProductData.combinations = selectedProductData?.combinations?.map((v) => {
                                 return {
                                     ...v,
                                     price: parseFloat((v?.price - (v?.price * percentage) || v?.price).toFixed(2))
