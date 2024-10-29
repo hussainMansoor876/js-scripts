@@ -473,12 +473,9 @@ document.addEventListener('DOMContentLoaded', async function () {
                 try {
                     var productDetails = document.getElementsByClassName('product-body-container-inner')
                     var productPriceDiv = productDetails[0]?.querySelector('div.product-price')
-                    var title = productDetails[0]?.querySelector('h1[itemprop="name"]')?.innerHTML
                     var price = productDetails[0]?.querySelector('span.current-price')
                     var sizeSelect = productDetails?.[0]?.querySelector('select.product-variation')
                     const spanElement = document.createElement('span')
-
-                    console.log('sizeSelect', sizeSelect)
 
                     // console.log('productDetails', productDetails)
                     // console.log('productPriceDiv', productPriceDiv)
@@ -488,8 +485,6 @@ document.addEventListener('DOMContentLoaded', async function () {
                             productDetails = document.getElementsByClassName('product-body-container-inner')
                             price = productDetails[0]?.querySelector('span[data-role="currentPrice2"]')
                             const selectedValue = event.target.value
-                            console.log('selectedProduct', selectedProduct)
-                            console.log('price', price)
                             if (selectedProduct?.combinations?.length) {
                                 let data = (selectedProduct?.combinations || selectedProduct?.variants)?.filter((v) => v?.name === selectedValue)
                                 if (data?.length) {
