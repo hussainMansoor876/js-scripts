@@ -478,6 +478,8 @@ document.addEventListener('DOMContentLoaded', async function () {
                     var sizeSelect = productDetails?.[0]?.querySelector('select.product-variation')
                     const spanElement = document.createElement('span')
 
+                    console.log('sizeSelect', sizeSelect)
+
                     // console.log('productDetails', productDetails)
                     // console.log('productPriceDiv', productPriceDiv)
 
