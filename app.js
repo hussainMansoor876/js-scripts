@@ -495,7 +495,7 @@ document.addEventListener('DOMContentLoaded', async function () {
                                 if (data?.length) {
                                     price.innerHTML = `$${data[0]?.price}`
                                 }
-                                // console.log('data', data)
+                                console.log('data', data)
                             }
                             // console.log(`Selected size: ${selectedValue}`, price)
                         })
