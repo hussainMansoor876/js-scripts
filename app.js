@@ -322,10 +322,10 @@ let routeURL = window.location.pathname?.slice(1,)?.split('/')
 let subRoute = routeURL?.[1]
 routeURL = routeURL?.[0]
 
-const savedEmail = sessionStorage.getItem('email')
-var isPlus = sessionStorage.getItem('plus')
+const savedEmail = localStorage.getItem('email')
+var isPlus = localStorage.getItem('plus')
 isPlus = JSON.parse(isPlus) || false
-var groupName = sessionStorage.getItem('groupName')
+var groupName = localStorage.getItem('groupName')
 var isSessionExpired = false
 let selectedProduct = null
 let selectedProductData = null
@@ -386,14 +386,14 @@ function calculateDiscountPercentage(originalPrice, discountedPrice) {
 }
 
 const handleNewChild = (parentDiv) => {
-    let percentage = JSON.parse(sessionStorage.getItem('percentage')) || 0
+    let percentage = JSON.parse(localStorage.getItem('percentage')) || 0
 
     let firstProduct = parentDiv.firstElementChild
     let prices = firstProduct.children?.[1]?.children?.[0]?.children?.[0]?.children?.[2]?.firstElementChild?.childNodes
     let newPrice = parseFloat(prices?.[0]?.nodeValue?.split('$')?.slice(-1,)[0])
     let oldPrice = parseFloat(prices?.[1]?.innerHTML?.split('$')?.slice(-1,)[0])
     percentage = calculateDiscountPercentage(oldPrice, newPrice) / 100
-    sessionStorage.setItem('percentage', JSON.stringify(percentage))
+    localStorage.setItem('percentage', JSON.stringify(percentage))
 
     Array.from(parentDiv.children).forEach(child => {
         // let events = child?.children?.[0]?.children?.[0]?.children?.[0]?.children?.[0]
@@ -440,7 +440,7 @@ function calculateIncreasedPrice(targetPriceAfterDiscount, discountPercentage) {
 
 const updateProduct = async (e) => {
     let data = await sendRequest(`${apiUrl}/${productRoute}/${e?.id}`, 'GET', null)
-    var percentage = JSON.parse(sessionStorage.getItem('percentage')) || 0
+    var percentage = JSON.parse(localStorage.getItem('percentage')) || 0
     let roundedDiscountInPercent = e?.roundedDiscountInPercent || (percentage * 100)
     for (var y of data?.variants) {
         if (y?.price) {
@@ -463,8 +463,9 @@ function validateEmail(email) {
 }
 
 const fetchUserByEmail = async (emailValue) => {
+    alert('Hello')
     if (validateEmail(emailValue)) {
-        sessionStorage.setItem('email', emailValue)
+        localStorage.setItem('email', emailValue)
         sessionStorage.setItem('email', emailValue)
 
         let data = await sendRequest(`${apiUrl}/${memberRoute}`, 'GET', null, [{ email: emailValue }])
@@ -480,14 +481,14 @@ const fetchUserByEmail = async (emailValue) => {
             // console.log('Data', idData)
 
             if (idData?.name && idData?.name?.toLowerCase()?.includes('plus')) {
-                sessionStorage.setItem('plus', JSON.stringify(true))
-                sessionStorage.setItem('groupName', idData?.name?.toLowerCase()?.replace(/ /g, '-'))
-                sessionStorage.setItem('percentage', 0)
+                localStorage.setItem('plus', JSON.stringify(true))
+                localStorage.setItem('groupName', idData?.name?.toLowerCase()?.replace(/ /g, '-'))
+                localStorage.setItem('percentage', 0)
             }
             else {
-                sessionStorage.setItem('plus', JSON.stringify(false))
-                sessionStorage.removeItem('groupName')
-                sessionStorage.removeItem('email')
+                localStorage.setItem('plus', JSON.stringify(false))
+                localStorage.removeItem('groupName')
+                localStorage.removeItem('email')
             }
         }
     }
@@ -497,17 +498,17 @@ const fetchUserByEmail = async (emailValue) => {
 document.addEventListener('DOMContentLoaded', async function () {
     try {
         if (subRoute?.length) {
-            let isPlus = JSON.parse(sessionStorage.getItem('plus')) || false
-            var groupName = sessionStorage.getItem('groupName')
-            var percentage = JSON.parse(sessionStorage.getItem('percentage')) || 0
+            let isPlus = JSON.parse(localStorage.getItem('plus')) || false
+            var groupName = localStorage.getItem('groupName')
+            var percentage = JSON.parse(localStorage.getItem('percentage')) || 0
             var sessionDetails = JSON.parse(localStorage.getItem('session-details')) || {}
-            var email = sessionStorage.getItem('email')
+            var email = localStorage.getItem('email')
 
             alert(`Email: ${email}`)
 
             if (!percentage && groupName?.length) {
                 percentage = groupName === 'plus-5' ? 0.05 : 0.1
-                sessionStorage.setItem('percentage', JSON.stringify(percentage))
+                localStorage.setItem('percentage', JSON.stringify(percentage))
             }
 
             if (sessionDetails?.sessionCutoffTime && Date.now() <= sessionDetails?.sessionCutoffTime) {
@@ -653,12 +654,12 @@ document.addEventListener('DOMContentLoaded', async function () {
                 let idData = await sendRequest(`${apiUrl}/${groupRoute}/${id}`, 'GET')
 
                 if (idData?.name && idData?.name?.toLowerCase()?.includes('plus')) {
-                    sessionStorage.setItem('plus', JSON.stringify(true))
-                    sessionStorage.setItem('groupName', idData?.name?.toLowerCase()?.replace(/ /g, '-'))
+                    localStorage.setItem('plus', JSON.stringify(true))
+                    localStorage.setItem('groupName', idData?.name?.toLowerCase()?.replace(/ /g, '-'))
                 }
                 else {
-                    sessionStorage.setItem('plus', JSON.stringify(false))
-                    sessionStorage.removeItem('groupName')
+                    localStorage.setItem('plus', JSON.stringify(false))
+                    localStorage.removeItem('groupName')
                 }
             }
         }
