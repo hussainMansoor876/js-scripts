@@ -463,7 +463,6 @@ function validateEmail(email) {
 }
 
 const fetchUserByEmail = async (emailValue) => {
-    alert(`Email: ${emailValue}`)
     if (typeof localStorage === "undefined") {
         alert(`LocalStorage not supported`)
     }
@@ -505,7 +504,7 @@ document.addEventListener('DOMContentLoaded', async function () {
             var percentage = JSON.parse(localStorage.getItem('percentage')) || 0
             var sessionDetails = JSON.parse(localStorage.getItem('session-details')) || {}
 
-            alert(sessionDetails?.sessionCutoffTime)
+            console.log('email', localStorage.getItem('email'))
 
             if (!percentage && groupName?.length) {
                 percentage = groupName === 'plus-5' ? 0.05 : 0.1
