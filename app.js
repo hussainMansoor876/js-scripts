@@ -495,6 +495,8 @@ const fetchUserByEmail = async (emailValue) => {
 
 document.addEventListener('DOMContentLoaded', async function () {
     try {
+        var email = localStorage.getItem('email')
+        alert(`Email: ${email}`)
         if (subRoute?.length) {
             let isPlus = JSON.parse(localStorage.getItem('plus')) || false
             var groupName = localStorage.getItem('groupName')
