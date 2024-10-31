@@ -463,7 +463,7 @@ function validateEmail(email) {
 }
 
 const fetchUserByEmail = async (emailValue) => {
-    alert('Hello')
+    // alert('Hello')
     if (validateEmail(emailValue)) {
         localStorage.setItem('email', emailValue)
         sessionStorage.setItem('email', emailValue)
@@ -502,9 +502,9 @@ document.addEventListener('DOMContentLoaded', async function () {
             var groupName = localStorage.getItem('groupName')
             var percentage = JSON.parse(localStorage.getItem('percentage')) || 0
             var sessionDetails = JSON.parse(localStorage.getItem('session-details')) || {}
-            var email = localStorage.getItem('email')
+            // var email = localStorage.getItem('email')
 
-            alert(`Email: ${email}`)
+            // alert(`Email: ${email}`)
 
             if (!percentage && groupName?.length) {
                 percentage = groupName === 'plus-5' ? 0.05 : 0.1
