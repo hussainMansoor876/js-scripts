@@ -464,6 +464,9 @@ function validateEmail(email) {
 
 const fetchUserByEmail = async (emailValue) => {
     alert(`Email: ${emailValue}`)
+    if (typeof localStorage === "undefined") {
+        alert(`LocalStorage not supported`)
+    }
     if (validateEmail(emailValue)) {
         localStorage.setItem('email', emailValue)
 
