@@ -466,7 +466,7 @@ const fetchUserByEmail = async (emailValue) => {
 
         let data = await sendRequest(`${apiUrl}/${memberRoute}`, 'GET', null, { email: emailValue })
 
-        // console.log('data', data)
+        console.log('data', data)
 
         if (data?.groups?.length) {
             let groups = data?.groups
