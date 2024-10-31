@@ -314,6 +314,8 @@ let apiUrl = `${window.location.origin}/api/site`
 let productRoute = `products`
 var groupRoute = `member-groups`
 var memberRoute = `members/search-by-email`
+let PLUS5 = 4
+let PLUS10 = 5
 let apiToken = `w7e7ae734df7c4d56b009d7c6e530befc`
 
 let routeURL = window.location.pathname?.slice(1,)?.split('/')
@@ -464,7 +466,7 @@ const fetchUserByEmail = async (emailValue) => {
     if (validateEmail(emailValue)) {
         localStorage.setItem('email', emailValue)
 
-        let data = await sendRequest(`${apiUrl}/${memberRoute}`, 'GET', null, { email: emailValue })
+        let data = await sendRequest(`${apiUrl}/${memberRoute}`, 'GET', null, [{ email: emailValue }])
 
         console.log('data', data)
 
