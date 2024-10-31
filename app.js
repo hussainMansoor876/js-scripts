@@ -453,6 +453,43 @@ const updateProduct = async (e) => {
     return selectedProduct
 }
 
+function validateEmail(email) {
+    // Regular expression for validating general email addresses
+    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
+
+    return emailRegex.test(email)
+}
+
+const fetchUserByEmail = async (emailValue) => {
+    if (validateEmail(emailValue)) {
+        localStorage.setItem('email', emailValue)
+
+        let data = await sendRequest(`${apiUrl}/${memberRoute}`, 'GET', null, { email: emailValue })
+
+        // console.log('data', data)
+
+        if (data?.groups?.length) {
+            let groups = data?.groups
+            let id = Math.max(...groups)
+
+            let idData = await sendRequest(`${apiUrl}/${groupRoute}/${id}`, 'GET')
+
+            // console.log('Data', idData)
+
+            if (idData?.name && idData?.name?.toLowerCase()?.includes('plus')) {
+                localStorage.setItem('plus', JSON.stringify(true))
+                localStorage.setItem('groupName', idData?.name?.toLowerCase()?.replace(/ /g, '-'))
+                localStorage.setItem('percentage', 0)
+            }
+            else {
+                localStorage.setItem('plus', JSON.stringify(false))
+                localStorage.removeItem('groupName')
+                localStorage.removeItem('email')
+            }
+        }
+    }
+}
+
 
 document.addEventListener('DOMContentLoaded', async function () {
     try {

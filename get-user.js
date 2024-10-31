@@ -73,31 +73,31 @@ const fetchUserByEmail = async (emailValue) => {
 }
 
 
-document.addEventListener('DOMContentLoaded', function () {
-    console.log('Hello !')
-    const emailInput = document.querySelector('input[name="email"]')
-    const loginButton = document.querySelector('a[data-role="submit"]')
+// document.addEventListener('DOMContentLoaded', function () {
+//     console.log('Hello !')
+//     const emailInput = document.querySelector('input[name="email"]')
+//     const loginButton = document.querySelector('a[data-role="submit"]')
 
-    // Check if there's a saved value in localStorage and set it as the input value
-    const savedEmail = localStorage.getItem('email')
-    if (savedEmail) {
-        emailInput.value = savedEmail;
-    }
+//     // Check if there's a saved value in localStorage and set it as the input value
+//     const savedEmail = localStorage.getItem('email')
+//     if (savedEmail) {
+//         emailInput.value = savedEmail;
+//     }
 
-    loginButton.addEventListener('click', (event) => {
-        event.preventDefault()
-        fetchUserByEmail(emailInput?.value)
-    })
+//     loginButton.addEventListener('click', (event) => {
+//         event.preventDefault()
+//         fetchUserByEmail(emailInput?.value)
+//     })
 
-    loginButton.addEventListener('submit', (event) => {
-        event.preventDefault()
-        fetchUserByEmail(emailInput?.value)
-    })
+//     loginButton.addEventListener('submit', (event) => {
+//         event.preventDefault()
+//         fetchUserByEmail(emailInput?.value)
+//     })
 
-    // Add an event listener to save the value in localStorage whenever it changes
-    emailInput.addEventListener('input', async function (event) {
-        const emailValue = event.target.value
+//     // Add an event listener to save the value in localStorage whenever it changes
+//     emailInput.addEventListener('input', async function (event) {
+//         const emailValue = event.target.value
 
-        fetchUserByEmail(emailValue)
-    })
-});
+//         fetchUserByEmail(emailValue)
+//     })
+// });
