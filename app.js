@@ -529,6 +529,17 @@ document.addEventListener('DOMContentLoaded', async function () {
                         console.log('price', price)
                         console.log('productDetails', productDetails)
                         productPriceDiv.style.display = 'none'
+
+                        const addToCartDiv = productDetails.querySelector('.addtocart-wrapper')
+                        const clickLogin = () => console.log('Checking');
+                        addToCartDiv.firstElementChild.style.display = 'none'
+                        addToCartDiv.children[1].innerHTML = ''
+                        const loginLink = document.createElement('a')
+                        loginLink.className = 'primaryColor-bg2 add-to-cart'
+                        loginLink.textContent = 'Login'
+                        loginLink.onclick = clickLogin
+
+                        addToCartDiv.children[1].appendChild(loginLink)
                     }
                     catch (e) {
                         console.log('e', e)
