@@ -524,8 +524,8 @@ document.addEventListener('DOMContentLoaded', async function () {
                     var sizeSelect = productDetails?.[0]?.querySelector('select.product-variation')
                     const spanElement = document.createElement('span')
 
-                    // console.log('productDetails', productDetails)
-                    // console.log('productPriceDiv', productPriceDiv)
+                    console.log('price', price)
+                    console.log('productDetails', productDetails)
 
                     if (sizeSelect) {
                         sizeSelect.addEventListener('change', (event) => {
