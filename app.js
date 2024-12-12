@@ -528,6 +528,7 @@ document.addEventListener('DOMContentLoaded', async function () {
                     try {
                         console.log('price', price)
                         console.log('productDetails', productDetails)
+                        productPriceDiv.style.display = 'none'
                     }
                     catch (e) {
                         console.log('e', e)
