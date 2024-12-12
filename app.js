@@ -533,7 +533,8 @@ document.addEventListener('DOMContentLoaded', async function () {
                         const addToCartDiv = productDetails.querySelector('.addtocart-wrapper').querySelector('.col20.flex.add-to-cart-inner')
                         console.log('addToCartDiv', addToCartDiv)
                         const clickLogin = () => {
-                            window.location.href = `https://${window.location.hostname}/signin?backTo=%2F${routeURL}%2F${subRoute}`
+                            // window.location.href = `https://${window.location.hostname}/signin?backTo=%2F${routeURL}%2F${subRoute}`
+                            window.location.href = `https://${window.location.hostname}/safety-jackets-r-m`
                         };
                         addToCartDiv.firstElementChild.style.display = 'none'
                         addToCartDiv.children[1].innerHTML = ''
