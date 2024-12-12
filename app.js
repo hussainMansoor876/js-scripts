@@ -494,7 +494,7 @@ const fetchUserByEmail = async (emailValue) => {
     }
 }
 
-
+console.log('***', document.getElementsByClassName('product-body-container-inner'))
 document.addEventListener('DOMContentLoaded', async function () {
     try {
         if (subRoute?.length) {
