@@ -535,7 +535,7 @@ document.addEventListener('DOMContentLoaded', async function () {
                         addToCartDiv.firstElementChild.style.display = 'none'
                         addToCartDiv.children[1].innerHTML = ''
                         const loginLink = document.createElement('a')
-                        loginLink.className = 'primaryColor-bg2 add-to-cart'
+                        loginLink.className = 'primaryColor-bg2 add-to-cart t-center col20'
                         loginLink.textContent = 'Login'
                         loginLink.onclick = clickLogin
 
