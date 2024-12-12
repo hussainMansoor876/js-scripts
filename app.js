@@ -633,7 +633,8 @@ document.addEventListener('DOMContentLoaded', async function () {
 
                         let data = await updateProduct(selectedProductData)
                         selectedProductData = { ...selectedProductData, id: data?.id }
-                        // console.log('data', data)
+                        console.log('selectedProductData', selectedProductData)
+                        console.log('data', data)
                     }
                     else {
                         if (selectedProductData?.price) {
