@@ -530,7 +530,7 @@ document.addEventListener('DOMContentLoaded', async function () {
                         console.log('productDetails', productDetails)
                         productPriceDiv.style.display = 'none'
 
-                        const addToCartDiv = productDetails.querySelector('.addtocart-wrapper')
+                        const addToCartDiv = productDetails.querySelector('.addtocart-wrapper').querySelector('.col20.flex.add-to-cart-inner')
                         console.log('addToCartDiv', addToCartDiv)
                         // const clickLogin = () => console.log('Checking');
                         // addToCartDiv.firstElementChild.style.display = 'none'
