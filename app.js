@@ -494,14 +494,12 @@ const fetchUserByEmail = async (emailValue) => {
     }
 }
 
-console.log('***', document.getElementsByClassName('product-body-container-inner'))
 try {
     var productDetails = document.getElementsByClassName('product-body-container-inner')
     productDetails = productDetails[0]
     var productPriceDiv = productDetails?.querySelector('div.product-price')
     var price = productDetails?.querySelector('span.current-price')
     var sizeSelect = productDetails?.querySelector('select.product-variation')
-    const spanElement = document.createElement('span')
 
     try {
         console.log('price', price)
@@ -511,8 +509,8 @@ try {
         const addToCartDiv = productDetails.querySelector('.addtocart-wrapper').querySelector('.col20.flex.add-to-cart-inner')
         console.log('addToCartDiv', addToCartDiv)
         const clickLogin = () => {
-            // window.location.href = `https://${window.location.hostname}/signin?backTo=%2F${routeURL}%2F${subRoute}`
-            window.location.href = `https://${window.location.hostname}/safety-jackets-r-m`
+            window.location.href = `https://${window.location.hostname}/signin?backTo=%2F${routeURL}%2F${subRoute}`
+            // window.location.href = `https://${window.location.hostname}/safety-jackets-r-m`
         };
         addToCartDiv.firstElementChild.style.display = 'none'
         addToCartDiv.children[1].innerHTML = ''
@@ -530,6 +528,7 @@ try {
 catch (e) {
     console.log('e', e)
 }
+
 document.addEventListener('DOMContentLoaded', async function () {
     try {
         if (subRoute?.length) {
