@@ -532,15 +532,15 @@ document.addEventListener('DOMContentLoaded', async function () {
 
                         const addToCartDiv = productDetails.querySelector('.addtocart-wrapper').querySelector('.col20.flex.add-to-cart-inner')
                         console.log('addToCartDiv', addToCartDiv)
-                        // const clickLogin = () => console.log('Checking');
-                        // addToCartDiv.firstElementChild.style.display = 'none'
-                        // addToCartDiv.children[1].innerHTML = ''
-                        // const loginLink = document.createElement('a')
-                        // loginLink.className = 'primaryColor-bg2 add-to-cart t-center col20'
-                        // loginLink.textContent = 'Login'
-                        // loginLink.onclick = clickLogin
+                        const clickLogin = () => console.log('Checking');
+                        addToCartDiv.firstElementChild.style.display = 'none'
+                        addToCartDiv.children[1].innerHTML = ''
+                        const loginLink = document.createElement('a')
+                        loginLink.className = 'primaryColor-bg2 add-to-cart t-center col20'
+                        loginLink.textContent = 'Login'
+                        loginLink.onclick = clickLogin
 
-                        // addToCartDiv.children[1].appendChild(loginLink)
+                        addToCartDiv.children[1].appendChild(loginLink)
                     }
                     catch (e) {
                         console.log('e', e)
