@@ -495,6 +495,7 @@ const fetchUserByEmail = async (emailValue) => {
 }
 
 try {
+    var sessionDetails = JSON.parse(localStorage.getItem('session-details')) || {}
     if (sessionDetails?.sessionCutoffTime && Date.now() <= sessionDetails?.sessionCutoffTime) {
         isSessionExpired = true
     }
