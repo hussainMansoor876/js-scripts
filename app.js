@@ -519,18 +519,25 @@ document.addEventListener('DOMContentLoaded', async function () {
             if (!isSessionExpired) {
                 try {
                     var productDetails = document.getElementsByClassName('product-body-container-inner')
-                    var productPriceDiv = productDetails[0]?.querySelector('div.product-price')
-                    var price = productDetails[0]?.querySelector('span.current-price')
-                    var sizeSelect = productDetails?.[0]?.querySelector('select.product-variation')
+                    productDetails = productDetails[0]
+                    var productPriceDiv = productDetails?.querySelector('div.product-price')
+                    var price = productDetails?.querySelector('span.current-price')
+                    var sizeSelect = productDetails?.querySelector('select.product-variation')
                     const spanElement = document.createElement('span')
 
-                    console.log('price', price)
-                    console.log('productDetails', productDetails)
+                    try {
+                        console.log('price', price)
+                        console.log('productDetails', productDetails)
+                    }
+                    catch (e) {
+                        console.log('e', e)
+                    }
+
 
                     if (sizeSelect) {
                         sizeSelect.addEventListener('change', (event) => {
                             productDetails = document.getElementsByClassName('product-body-container-inner')
-                            price = productDetails[0]?.querySelector('span[data-role="currentPrice2"]')
+                            price = productDetails?.querySelector('span[data-role="currentPrice2"]')
                             const selectedValue = event.target.value
                             if (selectedProductData?.combinations?.length) {
                                 let data = selectedProductData?.combinations?.filter((v) => v?.name === selectedValue)
