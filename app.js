@@ -532,7 +532,9 @@ document.addEventListener('DOMContentLoaded', async function () {
 
                         const addToCartDiv = productDetails.querySelector('.addtocart-wrapper').querySelector('.col20.flex.add-to-cart-inner')
                         console.log('addToCartDiv', addToCartDiv)
-                        const clickLogin = () => console.log('Checking');
+                        const clickLogin = () => {
+                            window.location.pathname = `/signin?backTo=%2Fsafety-products-catalog%2Fbkneckfan-r-m-2`
+                        };
                         addToCartDiv.firstElementChild.style.display = 'none'
                         addToCartDiv.children[1].innerHTML = ''
                         const loginLink = document.createElement('a')
