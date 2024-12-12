@@ -495,34 +495,37 @@ const fetchUserByEmail = async (emailValue) => {
 }
 
 try {
-    var productDetails = document.getElementsByClassName('product-body-container-inner')
-    productDetails = productDetails[0]
-    var productPriceDiv = productDetails?.querySelector('div.product-price')
-    var price = productDetails?.querySelector('span.current-price')
-    var sizeSelect = productDetails?.querySelector('select.product-variation')
-
-    try {
-        console.log('price', price)
-        console.log('productDetails', productDetails)
-        productPriceDiv.style.display = 'none'
-
-        const addToCartDiv = productDetails.querySelector('.addtocart-wrapper').querySelector('.col20.flex.add-to-cart-inner')
-        console.log('addToCartDiv', addToCartDiv)
-        const clickLogin = () => {
-            window.location.href = `https://${window.location.hostname}/signin?backTo=%2F${routeURL}%2F${subRoute}`
-            // window.location.href = `https://${window.location.hostname}/safety-jackets-r-m`
-        };
-        addToCartDiv.firstElementChild.style.display = 'none'
-        // addToCartDiv.children[1].innerHTML = ''
-        // const loginLink = document.createElement('a')
-        // loginLink.className = 'primaryColor-bg2 add-to-cart t-center col20'
-        // loginLink.textContent = 'Login'
-        // loginLink.onclick = clickLogin
-
-        // addToCartDiv.children[1].appendChild(loginLink)
+    if (sessionDetails?.sessionCutoffTime && Date.now() <= sessionDetails?.sessionCutoffTime) {
+        isSessionExpired = true
     }
-    catch (e) {
-        console.log('e', e)
+    if (subRoute?.length && isSessionExpired) {
+        try {
+            var productDetails = document.getElementsByClassName('product-body-container-inner')
+            productDetails = productDetails[0]
+            var productPriceDiv = productDetails?.querySelector('div.product-price')
+            var price = productDetails?.querySelector('span.current-price')
+            var sizeSelect = productDetails?.querySelector('select.product-variation')
+            console.log('price', price)
+            console.log('productDetails', productDetails)
+            productPriceDiv.style.display = 'none'
+
+            const addToCartDiv = productDetails.querySelector('.addtocart-wrapper').querySelector('.col20.flex.add-to-cart-inner')
+            console.log('addToCartDiv', addToCartDiv)
+            const clickLogin = () => {
+                window.location.href = `https://${window.location.hostname}/signin?backTo=%2F${routeURL}%2F${subRoute}`
+            }
+            addToCartDiv.firstElementChild.style.display = 'none'
+            // addToCartDiv.children[1].innerHTML = ''
+            // const loginLink = document.createElement('a')
+            // loginLink.className = 'primaryColor-bg2 add-to-cart t-center col20'
+            // loginLink.textContent = 'Login'
+            // loginLink.onclick = clickLogin
+
+            // addToCartDiv.children[1].appendChild(loginLink)
+        }
+        catch (e) {
+            console.log('e', e)
+        }
     }
 }
 catch (e) {
