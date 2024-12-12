@@ -591,22 +591,27 @@ document.addEventListener('DOMContentLoaded', async function () {
 
                     if (sizeSelect) {
                         sizeSelect.addEventListener('change', (event) => {
-                            console.log('hello')
-                            productDetails = document.getElementsByClassName('product-body-container-inner')
-                            price = productDetails?.querySelector('span[data-role="currentPrice2"]')
-                            const selectedValue = event.target.value
-                            console.log('price***', price)
-                            console.log('selectedValue', selectedValue)
-                            console.log('selectedProductData', selectedProductData)
-                            if (selectedProductData?.combinations?.length) {
-                                let data = selectedProductData?.combinations?.filter((v) => v?.name === selectedValue)
-                                console.log('data', data)
-                                if (data?.length) {
-                                    price.innerHTML = `$${data[0]?.price}`
+                            try {
+                                console.log('hello')
+                                productDetails = document.getElementsByClassName('product-body-container-inner')
+                                price = productDetails?.querySelector('span[data-role="currentPrice2"]')
+                                const selectedValue = event.target.value
+                                console.log('price***', price)
+                                console.log('selectedValue', selectedValue)
+                                console.log('selectedProductData', selectedProductData)
+                                if (selectedProductData?.combinations?.length) {
+                                    let data = selectedProductData?.combinations?.filter((v) => v?.name === selectedValue)
+                                    console.log('data', data)
+                                    if (data?.length) {
+                                        price.innerHTML = `$${data[0]?.price}`
+                                    }
+                                    // console.log('data', data)
                                 }
-                                // console.log('data', data)
+                                // console.log(`Selected size: ${selectedValue}`, price)
                             }
-                            // console.log(`Selected size: ${selectedValue}`, price)
+                            catch (e) {
+                                console.log('e', e)
+                            }
                         })
                     }
 
