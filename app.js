@@ -495,10 +495,44 @@ const fetchUserByEmail = async (emailValue) => {
 }
 
 console.log('***', document.getElementsByClassName('product-body-container-inner'))
+try {
+    var productDetails = document.getElementsByClassName('product-body-container-inner')
+    productDetails = productDetails[0]
+    var productPriceDiv = productDetails?.querySelector('div.product-price')
+    var price = productDetails?.querySelector('span.current-price')
+    var sizeSelect = productDetails?.querySelector('select.product-variation')
+    const spanElement = document.createElement('span')
+
+    try {
+        console.log('price', price)
+        console.log('productDetails', productDetails)
+        productPriceDiv.style.display = 'none'
+
+        const addToCartDiv = productDetails.querySelector('.addtocart-wrapper').querySelector('.col20.flex.add-to-cart-inner')
+        console.log('addToCartDiv', addToCartDiv)
+        const clickLogin = () => {
+            // window.location.href = `https://${window.location.hostname}/signin?backTo=%2F${routeURL}%2F${subRoute}`
+            window.location.href = `https://${window.location.hostname}/safety-jackets-r-m`
+        };
+        addToCartDiv.firstElementChild.style.display = 'none'
+        addToCartDiv.children[1].innerHTML = ''
+        const loginLink = document.createElement('a')
+        loginLink.className = 'primaryColor-bg2 add-to-cart t-center col20'
+        loginLink.textContent = 'Login'
+        loginLink.onclick = clickLogin
+
+        addToCartDiv.children[1].appendChild(loginLink)
+    }
+    catch (e) {
+        console.log('e', e)
+    }
+}
+catch (e) {
+    console.log('e', e)
+}
 document.addEventListener('DOMContentLoaded', async function () {
     try {
         if (subRoute?.length) {
-            console.log('Hello', subRoute, routeURL)
             let isPlus = JSON.parse(localStorage.getItem('plus')) || false
             var groupName = localStorage.getItem('groupName')
             var percentage = JSON.parse(localStorage.getItem('percentage')) || 0
@@ -525,30 +559,29 @@ document.addEventListener('DOMContentLoaded', async function () {
                     var sizeSelect = productDetails?.querySelector('select.product-variation')
                     const spanElement = document.createElement('span')
 
-                    try {
-                        console.log('price', price)
-                        console.log('productDetails', productDetails)
-                        productPriceDiv.style.display = 'none'
+                    // try {
+                    //     console.log('price', price)
+                    //     console.log('productDetails', productDetails)
+                    //     productPriceDiv.style.display = 'none'
 
-                        const addToCartDiv = productDetails.querySelector('.addtocart-wrapper').querySelector('.col20.flex.add-to-cart-inner')
-                        console.log('addToCartDiv', addToCartDiv)
-                        const clickLogin = () => {
-                            // window.location.href = `https://${window.location.hostname}/signin?backTo=%2F${routeURL}%2F${subRoute}`
-                            window.location.href = `https://${window.location.hostname}/safety-jackets-r-m`
-                        };
-                        addToCartDiv.firstElementChild.style.display = 'none'
-                        addToCartDiv.children[1].innerHTML = ''
-                        const loginLink = document.createElement('a')
-                        loginLink.className = 'primaryColor-bg2 add-to-cart t-center col20'
-                        loginLink.textContent = 'Login'
-                        loginLink.onclick = clickLogin
+                    //     const addToCartDiv = productDetails.querySelector('.addtocart-wrapper').querySelector('.col20.flex.add-to-cart-inner')
+                    //     console.log('addToCartDiv', addToCartDiv)
+                    //     const clickLogin = () => {
+                    //         // window.location.href = `https://${window.location.hostname}/signin?backTo=%2F${routeURL}%2F${subRoute}`
+                    //         window.location.href = `https://${window.location.hostname}/safety-jackets-r-m`
+                    //     };
+                    //     addToCartDiv.firstElementChild.style.display = 'none'
+                    //     addToCartDiv.children[1].innerHTML = ''
+                    //     const loginLink = document.createElement('a')
+                    //     loginLink.className = 'primaryColor-bg2 add-to-cart t-center col20'
+                    //     loginLink.textContent = 'Login'
+                    //     loginLink.onclick = clickLogin
 
-                        addToCartDiv.children[1].appendChild(loginLink)
-                    }
-                    catch (e) {
-                        console.log('e', e)
-                    }
-
+                    //     addToCartDiv.children[1].appendChild(loginLink)
+                    // }
+                    // catch (e) {
+                    //     console.log('e', e)
+                    // }
 
                     if (sizeSelect) {
                         sizeSelect.addEventListener('change', (event) => {
