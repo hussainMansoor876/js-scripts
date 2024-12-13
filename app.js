@@ -550,9 +550,7 @@ document.addEventListener('DOMContentLoaded', async function () {
         console.log('logoutButton', logoutButton)
 
         if (logoutButton?.length) {
-            logoutButton[0].addEventListener('click', () => {
-                console.log('Hello')
-            })
+            logoutButton[0].addEventListener('click', () => localStorage.clear())
         }
     }
     catch (e) {
