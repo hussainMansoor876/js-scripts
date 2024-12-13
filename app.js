@@ -501,22 +501,6 @@ try {
     if (sessionDetails?.sessionCutoffTime && Date.now() <= sessionDetails?.sessionCutoffTime) {
         isSessionExpired = true
     }
-    
-    var logoutButton = document.getElementsByClassName('member-logout-button')
-
-    console.log('logoutButton', logoutButton)
-}
-catch (e) {
-    console.log('e', e)
-}
-
-try {
-    var sessionDetails = JSON.parse(localStorage.getItem('session-details')) || {}
-    var email = localStorage.getItem('email')
-
-    if (sessionDetails?.sessionCutoffTime && Date.now() <= sessionDetails?.sessionCutoffTime) {
-        isSessionExpired = true
-    }
 
     if (subRoute?.length && (!validateEmail(email) || isSessionExpired)) {
         try {
@@ -553,6 +537,28 @@ catch (e) {
 }
 
 document.addEventListener('DOMContentLoaded', async function () {
+    try {
+        var sessionDetails = JSON.parse(localStorage.getItem('session-details')) || {}
+        var email = localStorage.getItem('email')
+
+        if (sessionDetails?.sessionCutoffTime && Date.now() <= sessionDetails?.sessionCutoffTime) {
+            isSessionExpired = true
+        }
+
+        var logoutButton = document.getElementsByClassName('member-logout-button')
+
+        console.log('logoutButton', logoutButton)
+
+        if (logoutButton?.length) {
+            logoutButton[0].addEventListener('click', () => {
+                console.log('Hello')
+            })
+        }
+    }
+    catch (e) {
+        console.log('e', e)
+    }
+
     try {
         if (subRoute?.length) {
             let isPlus = JSON.parse(localStorage.getItem('plus')) || false
