@@ -538,20 +538,22 @@ catch (e) {
 
 document.addEventListener('DOMContentLoaded', async function () {
     try {
-        var sessionDetails = JSON.parse(localStorage.getItem('session-details')) || {}
-        var email = localStorage.getItem('email')
+        setTimeout(() => {
+            var sessionDetails = JSON.parse(localStorage.getItem('session-details')) || {}
+            var email = localStorage.getItem('email')
 
-        if (sessionDetails?.sessionCutoffTime && Date.now() <= sessionDetails?.sessionCutoffTime) {
-            isSessionExpired = true
-        }
+            if (sessionDetails?.sessionCutoffTime && Date.now() <= sessionDetails?.sessionCutoffTime) {
+                isSessionExpired = true
+            }
 
-        var logoutButton = document.getElementsByClassName('member-logout-button')
+            var logoutButton = document.getElementsByClassName('member-logout-button')
 
-        console.log('logoutButton', logoutButton?.length)
+            console.log('logoutButton', logoutButton?.length)
 
-        if (logoutButton?.length) {
-            logoutButton[0].addEventListener('click', () => localStorage.clear())
-        }
+            if (logoutButton?.length) {
+                logoutButton[0].addEventListener('click', () => localStorage.clear())
+            }
+        }, 500)
     }
     catch (e) {
         console.log('e', e)
