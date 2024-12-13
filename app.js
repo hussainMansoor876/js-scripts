@@ -539,16 +539,7 @@ catch (e) {
 document.addEventListener('DOMContentLoaded', async function () {
     try {
         setTimeout(() => {
-            var sessionDetails = JSON.parse(localStorage.getItem('session-details')) || {}
-            var email = localStorage.getItem('email')
-
-            if (sessionDetails?.sessionCutoffTime && Date.now() <= sessionDetails?.sessionCutoffTime) {
-                isSessionExpired = true
-            }
-
             var logoutButton = document.getElementsByClassName('member-logout-button')
-
-            console.log('logoutButton', logoutButton?.length)
 
             if (logoutButton?.length) {
                 logoutButton[0].addEventListener('click', () => localStorage.clear())
