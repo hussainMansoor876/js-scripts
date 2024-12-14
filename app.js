@@ -541,6 +541,8 @@ document.addEventListener('DOMContentLoaded', async function () {
         setTimeout(() => {
             var logoutButton = document.getElementsByClassName('member-logout-button')
 
+            console.log('logoutButton', logoutButton)
+
             if (logoutButton?.length) {
                 logoutButton[0].addEventListener('click', () => localStorage.clear())
             }
