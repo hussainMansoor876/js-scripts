@@ -466,7 +466,6 @@ const fetchUserByEmail = async (emailValue) => {
     // alert('Hello')
     if (validateEmail(emailValue)) {
         localStorage.setItem('email', emailValue)
-        sessionStorage.setItem('email', emailValue)
 
         let data = await sendRequest(`${apiUrl}/${memberRoute}`, 'GET', null, [{ email: emailValue }])
 
