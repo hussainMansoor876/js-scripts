@@ -537,6 +537,17 @@ catch (e) {
 document.addEventListener('DOMContentLoaded', async function () {
     try {
         setTimeout(() => {
+            var shippingText = document.querySelector('.subtotal-price.shipping-value')
+
+            shippingText.innerHTML = 'TBD'
+        }, 500)
+    }
+    catch (e) {
+        console.log('e', e)
+    }
+
+    try {
+        setTimeout(() => {
             var logoutButton = document.getElementsByClassName('member-logout-button')
 
             if (logoutButton?.length) {
