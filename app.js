@@ -326,7 +326,7 @@ const savedEmail = localStorage.getItem('email')
 var isPlus = localStorage.getItem('plus')
 isPlus = JSON.parse(isPlus) || false
 var groupName = localStorage.getItem('groupName')
-var isSessionExpired = true
+var isSessionExpired = false
 let selectedProduct = null
 let selectedProductData = null
 
@@ -539,7 +539,10 @@ document.addEventListener('DOMContentLoaded', async function () {
         setTimeout(() => {
             var shippingText = document.querySelector('.subtotal-price.shipping-value')
 
-            shippingText.innerHTML = 'TBD'
+            if (shippingText) {
+                shippingText.innerHTML = 'TBD'
+            }
+
         }, 500)
     }
     catch (e) {
