@@ -326,7 +326,7 @@ const savedEmail = localStorage.getItem('email')
 var isPlus = localStorage.getItem('plus')
 isPlus = JSON.parse(isPlus) || false
 var groupName = localStorage.getItem('groupName')
-var isSessionExpired = false
+var isSessionExpired = true
 let selectedProduct = null
 let selectedProductData = null
 
