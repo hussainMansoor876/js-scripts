@@ -556,7 +556,7 @@ document.addEventListener('DOMContentLoaded', async function () {
             if (cartDiv?.children?.length) {
                 console.log('cartDiv', cartDiv.children)
                 for (var v of cartDiv?.children) {
-                    console.log('v', v.querySelector('product-info'))
+                    console.log('v', v)
                 }
             }
 
