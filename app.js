@@ -551,6 +551,18 @@ document.addEventListener('DOMContentLoaded', async function () {
 
     try {
         setTimeout(() => {
+            var cartDiv = document.querySelector('.col20.f-left.cart-table')
+
+            console.log('cartDiv', cartDiv)
+
+        }, 500)
+    }
+    catch (e) {
+        console.log('e', e)
+    }
+
+    try {
+        setTimeout(() => {
             var logoutButton = document.getElementsByClassName('member-logout-button')
 
             if (logoutButton?.length) {
