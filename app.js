@@ -553,7 +553,7 @@ document.addEventListener('DOMContentLoaded', async function () {
         setTimeout(() => {
             var cartDiv = document.querySelector('.col20.f-left.cart-table')
 
-            console.log('cartDiv', cartDiv)
+            console.log('cartDiv', cartDiv.children)
 
         }, 500)
     }
