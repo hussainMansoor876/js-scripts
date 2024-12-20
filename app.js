@@ -558,6 +558,15 @@ catch (e) {
     console.log('e', e)
 }
 
+try {
+    if (subRoute?.length && (subRoute === 'cart' || subRoute === 'checkout')) {
+        console.log('Hello')
+    }
+}
+catch (e) {
+    console.log('e', e)
+}
+
 document.addEventListener('DOMContentLoaded', async function () {
     try {
         setTimeout(() => {
@@ -583,11 +592,8 @@ document.addEventListener('DOMContentLoaded', async function () {
                     if (link?.href?.endsWith('-plus-5') || link?.href?.endsWith('-plus-10')) {
                         link.href = link?.href?.replace(/-plus-(5|10)$/, '')
                     }
-
-                    console.log('link', link)
                 })
             }
-
         }, 500)
     }
     catch (e) {
@@ -805,5 +811,3 @@ document.addEventListener('DOMContentLoaded', async function () {
         // console.log('e', e)
     }
 })
-
-console.log('subRoute', subRoute)
