@@ -580,7 +580,8 @@ document.addEventListener('DOMContentLoaded', async function () {
             if (cartDiv?.children?.length) {
                 console.log('cartDiv', cartDiv.children)
                 for (var v of cartDiv?.children) {
-                    console.log('v', v.children[1].querySelector('h4 a'))
+                    var a = v.children[1].querySelector('h4 a')
+                    console.log('v', a.href)
                 }
             }
 
