@@ -577,6 +577,8 @@ document.addEventListener('DOMContentLoaded', async function () {
         setTimeout(() => {
             var cartDiv = document.querySelector('.col20.f-left.cart-table')
 
+            console.log('cartDiv', cartDiv)
+
             if (cartDiv?.children?.length) {
                 console.log('cartDiv', cartDiv.children)
                 for (var v of cartDiv?.children) {
