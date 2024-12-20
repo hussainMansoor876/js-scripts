@@ -550,9 +550,9 @@ catch (e) {
 try {
     let lastActivity = localStorage.getItem('lastActivity')
 
-        console.log('lastActivity', lastActivity)
+    console.log('lastActivity', lastActivity)
 
-        localStorage.setItem('lastActivity', Date.now())
+    localStorage.setItem('lastActivity', Date.now())
 }
 catch (e) {
     console.log('e', e)
@@ -581,7 +581,11 @@ document.addEventListener('DOMContentLoaded', async function () {
                 console.log('cartDiv', cartDiv.children)
                 for (var v of cartDiv?.children) {
                     var a = v.children[1].querySelector('h4 a')
-                    console.log('v', a.href)
+                    if (a?.href?.endsWith('-plus-5') || a?.href?.endsWith('-plus-10')) {
+                        a.href = a?.href?.replace(/-plus-(5|10)$/, '')
+                    }
+
+                    console.log('a', a)
                 }
             }
 
