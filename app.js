@@ -548,11 +548,25 @@ catch (e) {
 }
 
 try {
-    let lastActivity = localStorage.getItem('lastActivity')
+    let lastActivity = JSON.parse(localStorage.getItem('lastActivity'))
 
-    console.log('lastActivity', lastActivity)
+    if (lastActivity) {
+        const oneHour = 60 * 60 * 1000 // One hour in milliseconds
+        const currentTime = Date.now() // Get current time in milliseconds
 
-    localStorage.setItem('lastActivity', Date.now())
+        // Check if more than one hour has passed
+        if (currentTime - lastActivity > oneHour) {
+            // localStorage.removeItem('email') // Remove email from local storage
+            console.log('Email removed from local storage due to inactivity.')
+        }
+        else {
+            console.log('Last activity is within the last hour.')
+            localStorage.setItem('lastActivity', Date.now())
+        }
+    }
+    else {
+        console.log('No lastActivity found in localStorage.')
+    }
 }
 catch (e) {
     console.log('e', e)
