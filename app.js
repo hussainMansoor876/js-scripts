@@ -584,16 +584,16 @@ catch (e) {
 document.addEventListener('DOMContentLoaded', async () => {
     try {
         console.log('routeURL', routeURL)
-        // if (routeURL !== 'signin')
-            // setTimeout(() => {
-            //     if ()
-            //         var signinButton = document.getElementsByClassName('signin-button')
+        if (routeURL !== 'signin') {
+            setTimeout(() => {
+                var signinButton = document.getElementsByClassName('signin-button')
+                console.log('signinButton', signinButton)
 
-            //     if (shippingText) {
-            //         shippingText.innerHTML = 'TBD'
-            //     }
-
-            // }, 2000)
+                // if (shippingText) {
+                //     shippingText.innerHTML = 'TBD'
+                // }
+            }, 2000)
+        }
     }
     catch (e) {
         console.log('e', e)
