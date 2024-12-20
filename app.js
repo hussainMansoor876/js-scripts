@@ -577,18 +577,15 @@ document.addEventListener('DOMContentLoaded', async function () {
         setTimeout(() => {
             var cartDiv = document.querySelector('.col20.f-left.cart-table')
 
-            console.log('cartDiv', cartDiv)
-
             if (cartDiv?.children?.length) {
-                console.log('cartDiv', cartDiv.children)
-                for (var v of cartDiv?.children) {
-                    var a = v.children[1].querySelector('h4 a')
-                    if (a?.href?.endsWith('-plus-5') || a?.href?.endsWith('-plus-10')) {
-                        a.href = a?.href?.replace(/-plus-(5|10)$/, '')
+                var links = cartDiv.querySelectorAll('a')
+                links.forEach((link) => {
+                    if (link?.href?.endsWith('-plus-5') || link?.href?.endsWith('-plus-10')) {
+                        link.href = link?.href?.replace(/-plus-(5|10)$/, '')
                     }
 
-                    console.log('a', a)
-                }
+                    console.log('link', link)
+                })
             }
 
         }, 500)
