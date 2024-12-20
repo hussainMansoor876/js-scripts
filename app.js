@@ -464,31 +464,44 @@ function validateEmail(email) {
 
 const fetchUserByEmail = async (emailValue) => {
     // alert('Hello')
-    if (validateEmail(emailValue)) {
-        localStorage.setItem('email', emailValue)
+    try {
+        if (validateEmail(emailValue)) {
+            localStorage.setItem('email', emailValue)
 
-        let data = await sendRequest(`${apiUrl}/${memberRoute}`, 'GET', null, [{ email: emailValue }])
+            let data = await sendRequest(`${apiUrl}/${memberRoute}`, 'GET', null, [{ email: emailValue }])
 
-        console.log('data', data)
+            console.log('data', data)
 
-        if (data?.groups?.length) {
-            let groups = data?.groups
-            let id = Math.max(...groups)
+            if (data?.email?.length) {
+                localStorage.setItem('lastActivity', Date.now())
+                if (data?.groups?.length) {
+                    let groups = data?.groups
+                    let id = Math.max(...groups)
 
-            let idData = await sendRequest(`${apiUrl}/${groupRoute}/${id}`, 'GET')
+                    let idData = await sendRequest(`${apiUrl}/${groupRoute}/${id}`, 'GET')
 
-            // console.log('Data', idData)
+                    // console.log('Data', idData)
 
-            if (idData?.name && idData?.name?.toLowerCase()?.includes('plus')) {
-                localStorage.setItem('plus', JSON.stringify(true))
-                localStorage.setItem('groupName', idData?.name?.toLowerCase()?.replace(/ /g, '-'))
-                localStorage.setItem('percentage', 0)
+                    if (idData?.name && idData?.name?.toLowerCase()?.includes('plus')) {
+                        localStorage.setItem('plus', JSON.stringify(true))
+                        localStorage.setItem('groupName', idData?.name?.toLowerCase()?.replace(/ /g, '-'))
+                        localStorage.setItem('percentage', 0)
+                    }
+                    else {
+                        localStorage.setItem('plus', JSON.stringify(false))
+                        localStorage.removeItem('groupName')
+                    }
+                }
             }
             else {
-                localStorage.setItem('plus', JSON.stringify(false))
-                localStorage.removeItem('groupName')
+                localStorage.removeItem('email')
+                localStorage.removeItem('lastActivity')
             }
+
         }
+    }
+    catch (e) {
+        console.log('e', e)
     }
 }
 
