@@ -581,7 +581,24 @@ catch (e) {
     console.log('e', e)
 }
 
-document.addEventListener('DOMContentLoaded', async function () {
+document.addEventListener('DOMContentLoaded', async () => {
+    try {
+        console.log('routeURL', routeURL)
+        // if (routeURL !== 'signin')
+            // setTimeout(() => {
+            //     if ()
+            //         var signinButton = document.getElementsByClassName('signin-button')
+
+            //     if (shippingText) {
+            //         shippingText.innerHTML = 'TBD'
+            //     }
+
+            // }, 2000)
+    }
+    catch (e) {
+        console.log('e', e)
+    }
+
     try {
         setTimeout(() => {
             var shippingText = document.querySelector('.subtotal-price.shipping-value')
