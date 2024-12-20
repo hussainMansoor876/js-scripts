@@ -547,6 +547,17 @@ catch (e) {
     console.log('e', e)
 }
 
+try {
+    let lastActivity = localStorage.getItem('lastActivity')
+
+        console.log('lastActivity', lastActivity)
+
+        localStorage.setItem('lastActivity', Date.now())
+}
+catch (e) {
+    console.log('e', e)
+}
+
 document.addEventListener('DOMContentLoaded', async function () {
     try {
         setTimeout(() => {
