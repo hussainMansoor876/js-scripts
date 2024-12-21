@@ -556,8 +556,12 @@ try {
 
         // Check if more than one hour has passed
         if (currentTime - lastActivity > oneHour) {
-            // localStorage.removeItem('email') // Remove email from local storage
-            console.log('Email removed from local storage due to inactivity.')
+            if (savedEmail?.length) {
+                localStorage.removeItem('email') // Remove email from local storage
+                console.log('Email removed from local storage due to inactivity.')
+
+                window.location.reload()
+            }
         }
         else {
             console.log('Last activity is within the last hour.')
@@ -565,6 +569,12 @@ try {
         }
     }
     else {
+        if (savedEmail?.length) {
+            localStorage.removeItem('email') // Remove email from local storage
+            console.log('Email removed from local storage due to inactivity.')
+
+            window.location.reload()
+        }
         console.log('No lastActivity found in localStorage.')
     }
 }
