@@ -584,8 +584,7 @@ catch (e) {
 
 try {
     if (subRoute?.length && (subRoute === 'cart' || subRoute === 'checkout')) {
-        console.log('Hello')
-        window.location.href = `https://${window.location.hostname}/signin?backTo=%2F${routeURL}%2F${subRoute}`
+        window.location.href = `https://${window.location.hostname}/signin`
     }
 }
 catch (e) {
@@ -597,16 +596,13 @@ document.addEventListener('DOMContentLoaded', async () => {
         console.log('routeURL', routeURL)
         if (routeURL !== 'signin') {
             setTimeout(() => {
-                let lastActivity = JSON.parse(localStorage.getItem('lastActivity'))
                 var signinButton = document.getElementsByClassName('signin-button')
-                console.log('signinButton', signinButton)
-
                 if (signinButton && savedEmail) {
                     console.log('session expired')
-                    // localStorage.removeItem('email')
-                    // localStorage.removeItem('lastActivity')
+                    localStorage.removeItem('email')
+                    localStorage.removeItem('lastActivity')
 
-                    // window.location.reload()
+                    window.location.reload()
                 }
             }, 2000)
         }
