@@ -585,6 +585,7 @@ catch (e) {
 try {
     if (subRoute?.length && (subRoute === 'cart' || subRoute === 'checkout')) {
         console.log('Hello')
+        window.location.href = `https://${window.location.hostname}/signin?backTo=%2F${routeURL}%2F${subRoute}`
     }
 }
 catch (e) {
