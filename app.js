@@ -584,7 +584,10 @@ catch (e) {
 
 try {
     if (subRoute?.length && (subRoute === 'cart' || subRoute === 'checkout')) {
-        window.location.href = `https://${window.location.hostname}`
+        const email = localStorage.getItem('email')
+        if (!validateEmail(email)) {
+            window.location.href = `https://${window.location.hostname}`
+        }
     }
 }
 catch (e) {
