@@ -472,7 +472,7 @@ const fetchUserByEmail = async (emailValue) => {
 
             console.log('data', data)
 
-            if (data?.email?.length) {
+            if (data?.email?.length && data?.approved) {
                 localStorage.setItem('lastActivity', Date.now())
                 if (data?.groups?.length) {
                     let groups = data?.groups
