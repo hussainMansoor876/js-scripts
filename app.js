@@ -584,7 +584,7 @@ catch (e) {
 
 try {
     if (subRoute?.length && (subRoute === 'cart' || subRoute === 'checkout')) {
-        window.location.href = `https://${window.location.hostname}/signin`
+        window.location.href = `https://${window.location.hostname}`
     }
 }
 catch (e) {
