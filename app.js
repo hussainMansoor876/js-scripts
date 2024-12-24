@@ -595,24 +595,25 @@ catch (e) {
 }
 
 document.addEventListener('DOMContentLoaded', async () => {
-    try {
-        console.log('routeURL', routeURL)
-        if (routeURL !== 'signin') {
-            setTimeout(() => {
-                var signinButton = document.getElementsByClassName('signin-button')
-                if (signinButton && savedEmail) {
-                    console.log('session expired')
-                    localStorage.removeItem('email')
-                    localStorage.removeItem('lastActivity')
+    // try {
+    //     console.log('routeURL', routeURL)
+    //     if (routeURL !== 'signin') {
+    //         setTimeout(() => {
+    //             var signinButton = document.getElementsByClassName('signin-button')
+    //             console.log('signinButton', signinButton)
+    //             if (signinButton && savedEmail) {
+    //                 console.log('session expired')
+    //                 localStorage.removeItem('email')
+    //                 localStorage.removeItem('lastActivity')
 
-                    // window.location.reload()
-                }
-            }, 2000)
-        }
-    }
-    catch (e) {
-        console.log('e', e)
-    }
+    //                 // window.location.reload()
+    //             }
+    //         }, 2000)
+    //     }
+    // }
+    // catch (e) {
+    //     console.log('e', e)
+    // }
 
     try {
         setTimeout(() => {
