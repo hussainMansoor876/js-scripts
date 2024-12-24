@@ -558,7 +558,7 @@ try {
         if (currentTime - lastActivity > oneHour) {
             if (savedEmail?.length) {
                 localStorage.removeItem('email') // Remove email from local storage
-                console.log('Email removed from local storage due to inactivity 1.')
+                console.log('Email removed from local storage due to inactivity.')
 
                 window.location.reload()
             }
@@ -573,7 +573,7 @@ try {
             localStorage.removeItem('email') // Remove email from local storage
             console.log('Email removed from local storage due to inactivity.')
 
-            // window.location.reload()
+            window.location.reload()
         }
         console.log('No lastActivity found in localStorage.')
     }
