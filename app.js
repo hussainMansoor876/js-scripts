@@ -617,6 +617,18 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     try {
         setTimeout(() => {
+            var searchInput = document.querySelector('input.search-input.border-type-all')
+
+            console.log('searchInput', searchInput)
+
+        }, 500)
+    }
+    catch (e) {
+        console.log('e', e)
+    }
+
+    try {
+        setTimeout(() => {
             var shippingText = document.querySelector('.subtotal-price.shipping-value')
 
             if (shippingText) {
