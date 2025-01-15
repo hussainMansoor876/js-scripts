@@ -709,6 +709,7 @@ const validateSearch = async () => {
 
             console.log('divData', divData.children)
             divData.appendChild(htmlData)
+            console.log('divData', divData.children)
 
             // divData.innerHTML = htmlData
         }
