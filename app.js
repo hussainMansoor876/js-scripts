@@ -709,13 +709,13 @@ const validateSearch = async () => {
 
             console.log('divData', divData.children)
             divData.appendChild(htmlData)
-            console.log('divData', divData.children)
+            console.log('***', divData.children)
 
             // divData.innerHTML = htmlData
         }
     }
     catch (e) {
-
+        console.log('e', e)
     }
 }
 
