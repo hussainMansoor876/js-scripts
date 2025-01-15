@@ -604,7 +604,9 @@ const validateSearch = async () => {
 
             console.log('data', data)
 
-            var divData = document.querySelector('.products-list')
+            var divData = document.querySelector('.content-wrapper')
+
+            console.log('divData', divData)
 
             let htmlData = `<div class="grid-row">
             <div class="grid-content">
