@@ -711,6 +711,8 @@ const validateSearch = async () => {
             </div>`
 
             console.log('htmlData', htmlData)
+
+            divData.innerHTML = htmlData
         }
     }
     catch (e) {
