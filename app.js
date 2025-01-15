@@ -606,8 +606,6 @@ const validateSearch = async () => {
 
             var divData = document.querySelector('.content-wrapper')
 
-            console.log('divData', divData)
-
             let htmlData = `<div class="grid-row">
         <div class="grid-content">
             <div class="grid-column col20">
@@ -618,7 +616,6 @@ const validateSearch = async () => {
                             <div class="products-list">`
 
             for (var v of data?.items) {
-                console.log('v', v)
                 htmlData += `<div class="product-item fit-height " data-slide="" data-idx="0" data-id="207"
                                     style="background: transparent; padding: 0px 0px; border-radius: 0px; width: 30%; margin: 0 5% 0 0; ">
                                     <div class="product-main-photo has-badge"
@@ -710,7 +707,7 @@ const validateSearch = async () => {
                 </div>
             </div>`
 
-            console.log('divData', divData)
+            console.log('divData', divData.children)
 
             // divData.innerHTML = htmlData
         }
