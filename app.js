@@ -594,6 +594,18 @@ catch (e) {
     console.log('e', e)
 }
 
+try {
+    if (location?.pathname === '/search') {
+        var searchQuery = new URLSearchParams(location?.search)?.get('q')
+        var searchInput = document.querySelector('input.search-input.border-type-all')
+
+        console.log('searchQuery', searchQuery)
+    }
+}
+catch (e) {
+
+}
+
 document.addEventListener('DOMContentLoaded', async () => {
     // try {
     //     console.log('routeURL', routeURL)
@@ -620,20 +632,6 @@ document.addEventListener('DOMContentLoaded', async () => {
             var searchInput = document.querySelector('input.search-input.border-type-all')
 
             console.log('searchInput', searchInput)
-
-        }, 500)
-    }
-    catch (e) {
-        console.log('e', e)
-    }
-
-    try {
-        setTimeout(() => {
-            var shippingText = document.querySelector('.subtotal-price.shipping-value')
-
-            if (shippingText) {
-                shippingText.innerHTML = 'TBD'
-            }
 
         }, 500)
     }
