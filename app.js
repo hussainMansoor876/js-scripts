@@ -710,7 +710,7 @@ const validateSearch = async () => {
                 </div>
             </div>`
 
-            console.log('htmlData', htmlData)
+            console.log('divData', divData)
 
             // divData.innerHTML = htmlData
         }
