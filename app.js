@@ -603,6 +603,10 @@ const validateSearch = async () => {
             let data = await sendRequest(`${apiUrl}/${productRoute}?title${searchQuery}`, 'GET', null)
 
             console.log('data', data)
+
+            var divData = document.querySelector('.products-list')
+
+            console.log('divData', divData)
         }
     }
     catch (e) {
