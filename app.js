@@ -712,7 +712,7 @@ const validateSearch = async () => {
 
             console.log('htmlData', htmlData)
 
-            divData.innerHTML = htmlData
+            // divData.innerHTML = htmlData
         }
     }
     catch (e) {
