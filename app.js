@@ -594,17 +594,23 @@ catch (e) {
     console.log('e', e)
 }
 
-try {
-    if (location?.pathname === '/search') {
-        var searchQuery = new URLSearchParams(location?.search)?.get('q')
-        var searchInput = document.querySelector('input.search-input.border-type-all')
+const validateSearch = async () => {
+    try {
+        if (location?.pathname === '/search') {
+            var searchQuery = new URLSearchParams(location?.search)?.get('q')
+            var searchInput = document.querySelector('input.search-input.border-type-all')
 
-        console.log('searchQuery', searchQuery)
+            let data = await sendRequest(`${apiUrl}/${productRoute}?title${searchQuery}`, 'GET', null)
+
+            console.log('data', data)
+        }
+    }
+    catch (e) {
+
     }
 }
-catch (e) {
 
-}
+validateSearch()
 
 document.addEventListener('DOMContentLoaded', async () => {
     // try {
