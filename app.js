@@ -601,9 +601,27 @@ const validateSearch = async () => {
             var searchInput = document.querySelector('input.search-input.border-type-all')
 
             let data = await sendRequest(`${apiUrl}/${productRoute}?title=${searchQuery}&limit=50`, 'GET', null)
+            let items = data?.items
 
             console.log('data', data)
             console.log('searchQuery', searchQuery)
+
+            let isPlus = JSON.parse(localStorage.getItem('plus')) || false
+            var groupName = localStorage.getItem('groupName')
+            var percentage = JSON.parse(localStorage.getItem('percentage')) || 0
+            var sessionDetails = JSON.parse(localStorage.getItem('session-details')) || {}
+            // var email = localStorage.getItem('email')
+
+            // alert(`Email: ${email}`)
+
+            if (!percentage && groupName?.length) {
+                percentage = groupName === 'plus-5' ? 0.05 : 0.1
+                localStorage.setItem('percentage', JSON.stringify(percentage))
+            }
+
+            if (sessionDetails?.sessionCutoffTime && Date.now() <= sessionDetails?.sessionCutoffTime) {
+                isSessionExpired = true
+            }
 
             var divData = document.querySelector('.content-wrapper')
 
@@ -710,7 +728,7 @@ const validateSearch = async () => {
                                                         </svg> </div> <a href="" class="product-reviews-link">84
                                                         Reviews</a>
                                                 </div>
-                                                <span class="product-item-price "><a href="/safety-products-catalog/${v?.url}">From&nbsp;$42.35<span class="scratched">$42.35</span></a></span>
+                                                <span class="product-item-price "><a href="/safety-products-catalog/${v?.url}">From&nbsp;$${v?.variants?.[0]?.price}</a></span>
                                             </div>
                                         </div>
                                     </div>
