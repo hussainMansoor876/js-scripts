@@ -730,11 +730,10 @@ const validateSearch = async () => {
             // newElement.innerHTML = htmlData
             console.log('***', divData.children)
 
-            divData.addEventListener('change', () => console.log('Hello'))
 
             // divData.appendChild(newElement)
 
-            // divData.innerHTML = htmlData
+            divData.innerHTML = htmlData
         }
     }
     catch (e) {
