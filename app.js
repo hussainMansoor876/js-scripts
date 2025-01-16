@@ -626,6 +626,9 @@ const validateSearch = async () => {
             if (isSessionExpired) {
                 items = items?.filter((v) => !v?.url?.toLowerCase()?.includes('plus'))
             }
+            else {
+                items = items?.filter((v) => v?.url?.toLowerCase()?.includes(groupName))
+            }
 
             var divData = document.querySelector('.content-wrapper')
 
