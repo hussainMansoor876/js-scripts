@@ -604,7 +604,6 @@ const validateSearch = async () => {
             let items = data?.items
 
             console.log('data', data)
-            console.log('searchQuery', searchQuery)
 
             let isPlus = JSON.parse(localStorage.getItem('plus')) || false
             var groupName = localStorage.getItem('groupName')
@@ -629,6 +628,8 @@ const validateSearch = async () => {
             else {
                 items = items?.filter((v) => v?.url?.toLowerCase()?.includes(groupName))
             }
+
+            console.log('items', items)
 
             var divData = document.querySelector('.content-wrapper')
 
