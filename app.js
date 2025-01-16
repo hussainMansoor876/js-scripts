@@ -739,7 +739,7 @@ const validateSearch = async () => {
                                                         </svg> </div> <a href="" class="product-reviews-link">84
                                                         Reviews</a>
                                                 </div>`
-                if (isSessionExpired) {
+                if (!isSessionExpired) {
                     htmlData += `<span class="product-item-price "><a href="/safety-products-catalog/${v?.url}">From&nbsp;$${v?.variants?.[0]?.price}</a></span>
                             </div>
                         </div>
