@@ -600,7 +600,7 @@ const validateSearch = async () => {
             var searchQuery = new URLSearchParams(location?.search)?.get('q')
             var searchInput = document.querySelector('input.search-input.border-type-all')
 
-            let data = await sendRequest(`${apiUrl}/${productRoute}?title=${searchQuery}`, 'GET', null)
+            let data = await sendRequest(`${apiUrl}/${productRoute}?title=${searchQuery}&limit=50`, 'GET', null)
 
             console.log('data', data)
             console.log('searchQuery', searchQuery)
