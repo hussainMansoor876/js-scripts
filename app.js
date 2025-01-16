@@ -622,11 +622,11 @@ const validateSearch = async () => {
                 isSessionExpired = true
             }
 
-            if (isSessionExpired) {
-                items = items?.filter((v) => !v?.url?.toLowerCase()?.includes('plus'))
+            if (groupName?.length && isPlus && !isSessionExpired) {
+                items = items?.filter((v) => v?.url?.toLowerCase()?.includes(groupName))
             }
             else {
-                items = items?.filter((v) => v?.url?.toLowerCase()?.includes(groupName))
+                items = items?.filter((v) => !v?.url?.toLowerCase()?.includes('plus'))
             }
 
             console.log('isSessionExpired', isSessionExpired)
