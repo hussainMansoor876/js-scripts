@@ -618,7 +618,7 @@ const validateSearch = async () => {
                 <div class="grid-column col20">
                 <div class="widget-row">
                     <h1>Search results:</h1>
-                    <span>traffic</span>
+                    <span>${searchQuery}</span>
                 </div>
                 </div>
             </div>
