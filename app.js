@@ -606,7 +606,23 @@ const validateSearch = async () => {
 
             var divData = document.querySelector('.content-wrapper')
 
-            let htmlData = `<div class="grid-row">
+            const newContent = document.createElement('div')
+            newContent.className = 'content'
+            newContent.innerHTML = ``
+
+            let htmlData = `
+            <div class="content">
+            <div class="grid-row search-results-title">
+            <div class="grid-content">
+                <div class="grid-column col20">
+                <div class="widget-row">
+                    <h1>Search results:</h1>
+                    <span>traffic</span>
+                </div>
+                </div>
+            </div>
+            </div>
+            <div class="grid-row">
         <div class="grid-content">
             <div class="grid-column col20">
                 <div class="widget-row">
@@ -706,16 +722,17 @@ const validateSearch = async () => {
                         </div>
                     </div>
                 </div>
+                </div>
             </div>`
 
-            console.log('divData', divData.children)
-            const newElement = document.createElement('div')
-            newElement.innerHTML = htmlData
+            // console.log('divData', divData.children)
+            // const newElement = document.createElement('div')
+            // newElement.innerHTML = htmlData
             console.log('***', divData.children)
 
-            divData.appendChild(newElement)
+            // divData.appendChild(newElement)
 
-            // divData.innerHTML = htmlData
+            divData.innerHTML = htmlData
         }
     }
     catch (e) {
