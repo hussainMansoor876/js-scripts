@@ -738,12 +738,20 @@ const validateSearch = async () => {
                                                             </path>
                                                         </svg> </div> <a href="" class="product-reviews-link">84
                                                         Reviews</a>
-                                                </div>
-                                                <span class="product-item-price "><a href="/safety-products-catalog/${v?.url}">From&nbsp;$${v?.variants?.[0]?.price}</a></span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>`
+                                                </div>`
+                if (isSessionExpired) {
+                    htmlData += `<span class="product-item-price "><a href="/safety-products-catalog/${v?.url}">From&nbsp;$${v?.variants?.[0]?.price}</a></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>`
+                }
+                else {
+                    htmlData += `</div>
+                        </div>
+                    </div>
+                </div>`
+                }
             }
 
             htmlData += `           </div>
