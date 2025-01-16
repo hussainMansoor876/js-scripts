@@ -693,6 +693,7 @@ const validateSearch = async () => {
                                                         </svg> </div> <a href="" class="product-reviews-link">84
                                                         Reviews</a>
                                                 </div>
+                                                <span class="product-item-price "><a href="/safety-products-catalog/bk895blk">From&nbsp;$42.35<span class="scratched">$42.35</span></a></span>
                                             </div>
                                         </div>
                                     </div>
