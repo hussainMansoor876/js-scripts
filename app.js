@@ -663,7 +663,7 @@ const validateSearch = async () => {
                                                         </svg></a>
                                                 </div>
                                             </div><a href="/safety-products-catalog/bk895org"><img
-                                                    src="https://content.app-sources.com/s/535524365072486201/uploads/Jacket_Safety_Wear/BK895ORG-1-7019337.png?format=webp"
+                                                    src="${v?.images?.[0]}"
                                                     alt="" style="border-radius: 10px;"></a>
                                         </div>
                                     </div>
