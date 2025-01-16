@@ -623,6 +623,8 @@ const validateSearch = async () => {
                 isSessionExpired = true
             }
 
+            console.log('isSessionExpired', isSessionExpired)
+
             var divData = document.querySelector('.content-wrapper')
 
             const newContent = document.createElement('div')
