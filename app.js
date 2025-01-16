@@ -603,7 +603,7 @@ const validateSearch = async () => {
             let data = await sendRequest(`${apiUrl}/${productRoute}?title${searchQuery}`, 'GET', null)
 
             console.log('data', data)
-            console.log('searchInput', searchInput)
+            console.log('searchQuery', searchQuery)
 
             var divData = document.querySelector('.content-wrapper')
 
@@ -764,18 +764,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     // catch (e) {
     //     console.log('e', e)
     // }
-
-    try {
-        setTimeout(() => {
-            var searchInput = document.querySelector('input.search-input.border-type-all')
-
-            console.log('searchInput', searchInput)
-
-        }, 500)
-    }
-    catch (e) {
-        console.log('e', e)
-    }
 
     try {
         setTimeout(() => {
