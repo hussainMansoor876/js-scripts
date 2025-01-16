@@ -708,8 +708,11 @@ const validateSearch = async () => {
             </div>`
 
             console.log('divData', divData.children)
-            divData.appendChild(htmlData)
+            const newElement = document.createElement('div')
+            newElement.innerHTML = htmlData
             console.log('***', divData.children)
+
+            divData.appendChild(newElement)
 
             // divData.innerHTML = htmlData
         }
