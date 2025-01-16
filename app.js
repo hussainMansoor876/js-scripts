@@ -671,7 +671,7 @@ const validateSearch = async () => {
                                         <div>
                                             <div class="title-price-wrapper-1">
                                                 <h3 class=""><a href="/safety-products-catalog/bk895org"
-                                                        class="highlightColor">BK895-ORG</a></h3>
+                                                        class="highlightColor">${v?.title}</a></h3>
                                                 <div class="col20 f-left product-stars flex align-center">
                                                     <div class="product-stars-inner"> <svg
                                                             xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
