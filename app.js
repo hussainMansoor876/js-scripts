@@ -623,7 +623,9 @@ const validateSearch = async () => {
                 isSessionExpired = true
             }
 
-            console.log('isSessionExpired', isSessionExpired)
+            if (isSessionExpired) {
+                items = items?.filter((v) => !v?.url?.toLowerCase()?.includes('plus'))
+            }
 
             var divData = document.querySelector('.content-wrapper')
 
@@ -652,7 +654,7 @@ const validateSearch = async () => {
                             class="product-list-wrapper full-width-layout col20 f-left products-per-row-3 style-2 center-align quick-view-1  image-positioned">
                             <div class="products-list">`
 
-            for (var v of data?.items) {
+            for (var v of items) {
                 htmlData += `<div class="product-item fit-height " data-slide="" data-idx="0" data-id="207"
                                     style="background: transparent; padding: 0px 0px; border-radius: 0px; width: 30%; margin: 0 5% 0 0; ">
                                     <div class="product-main-photo has-badge"
