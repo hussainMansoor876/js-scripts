@@ -784,7 +784,7 @@ const validateSearch = async () => {
 
             // divData.appendChild(newElement)
 
-            divData.innerHTML = htmlData
+            // divData.innerHTML = htmlData
         }
     }
     catch (e) {
