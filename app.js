@@ -631,7 +631,7 @@ const validateSearch = async () => {
                                 <form role="search" method="GET" enctype="application/x-www-form-urlencoded" action="/search"
                                     class="search-form search-results-form style-1">
                                     <input type="hidden" value="5" name="m">
-                                    <input type="text" name="q" value="895" class="search-input border-type-all"
+                                    <input type="text" name="q" value="${searchQuery}" class="search-input border-type-all"
                                         placeholder="Search for...">
                                     <button class="search-widget-icon"></button>
                                 </form>
