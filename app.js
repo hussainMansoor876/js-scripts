@@ -610,7 +610,7 @@ catch (e) {
 const validateSearch = async () => {
     try {
         console.log('WebPlatform._sessionDetails', WebPlatform)
-        console.log('email', WebPlatform._sessionDetails?.member?.email)
+        console.log('email', WebPlatform._sessionDetails)
         if (location?.pathname === '/search') {
             var divData = document.querySelector('.content-wrapper')
             var searchQuery = new URLSearchParams(location?.search)?.get('q')
