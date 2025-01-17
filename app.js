@@ -322,7 +322,7 @@ let routeURL = window.location.pathname?.slice(1,)?.split('/')
 let subRoute = routeURL?.[1]
 routeURL = routeURL?.[0]
 
-const savedEmail = localStorage.getItem('email')
+var savedEmail = localStorage.getItem('email')
 var isPlus = localStorage.getItem('plus')
 isPlus = JSON.parse(isPlus) || false
 var groupName = localStorage.getItem('groupName')
@@ -562,6 +562,7 @@ catch (e) {
 
 try {
     let lastActivity = JSON.parse(localStorage.getItem('lastActivity'))
+    var savedEmail = localStorage.getItem('email')
 
     if (lastActivity) {
         const oneHour = 60 * 60 * 1000 // One hour in milliseconds
@@ -649,8 +650,9 @@ const validateSearch = async () => {
 
             console.log('data', data)
 
+            var savedEmail = localStorage.getItem('email')
             var sessionEmail = WebPlatform?._sessionDetails?.member?.email
-            if (!validateEmail(sessionEmail)) {
+            if (!validateEmail(savedEmail)) {
                 await fetchUserByEmail(sessionEmail)
             }
 
@@ -1063,6 +1065,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             //     observer.observe(parentDiv, { childList: true })
             // }
         }
+        var savedEmail = localStorage.getItem('email')
         if (savedEmail) {
             let data = await sendRequest(`${apiUrl}/${memberRoute}`, 'GET', null, [{ email: savedEmail }])
 
