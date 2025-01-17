@@ -610,6 +610,10 @@ catch (e) {
 const validateSearch = async () => {
     try {
         if (location?.pathname === '/search') {
+            var divData = document.querySelector('.content-wrapper')
+
+            divData.innerHTML = ``
+            
             var searchQuery = new URLSearchParams(location?.search)?.get('q')
             var searchInput = document.querySelector('input.search-input.border-type-all')
 
@@ -646,12 +650,6 @@ const validateSearch = async () => {
             console.log('isSessionExpired', isSessionExpired)
 
             console.log('items', items)
-
-            var divData = document.querySelector('.content-wrapper')
-
-            const newContent = document.createElement('div')
-            newContent.className = 'content'
-            newContent.innerHTML = ``
 
             let htmlData = `
             <div class="content">
