@@ -652,7 +652,7 @@ const validateSearch = async () => {
 
             var savedEmail = localStorage.getItem('email')
             var sessionEmail = WebPlatform?._sessionDetails?.member?.email
-            if (!validateEmail(savedEmail)) {
+            if (!validateEmail(savedEmail) && validateEmail(sessionEmail)) {
                 await fetchUserByEmail(sessionEmail)
             }
 
