@@ -649,11 +649,16 @@ const validateSearch = async () => {
 
             console.log('data', data)
 
+            var sessionEmail = WebPlatform?._sessionDetails?.member?.email
+            if (!validateEmail(sessionEmail)) {
+                await fetchUserByEmail(sessionEmail)
+            }
+
             let isPlus = JSON.parse(localStorage.getItem('plus')) || false
             var groupName = localStorage.getItem('groupName')
             var percentage = JSON.parse(localStorage.getItem('percentage')) || 0
             var sessionDetails = JSON.parse(localStorage.getItem('session-details')) || {}
-            console.log('email', WebPlatform._sessionDetails)
+            console.log('email', WebPlatform?._sessionDetails?.member?.email)
             // var email = localStorage.getItem('email')
 
             // alert(`Email: ${email}`)
