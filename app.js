@@ -612,8 +612,8 @@ const validateSearch = async () => {
         if (location?.pathname === '/search') {
             var divData = document.querySelector('.content-wrapper')
 
-            divData.innerHTML = ``
-            
+            // divData.innerHTML = ``
+
             var searchQuery = new URLSearchParams(location?.search)?.get('q')
             var searchInput = document.querySelector('input.search-input.border-type-all')
 
