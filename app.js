@@ -483,7 +483,7 @@ const fetchUserByEmail = async (emailValue) => {
 
             let data = await sendRequest(`${apiUrl}/${memberRoute}`, 'GET', null, [{ email: emailValue }])
 
-            console.log('data', data)
+            // console.log('data', data)
 
             if (data?.email?.length && data?.approved) {
                 localStorage.setItem('lastActivity', Date.now())
@@ -610,45 +610,42 @@ catch (e) {
 
 const validateSearch = async () => {
     try {
-        console.log('WebPlatform._sessionDetails', WebPlatform)
         if (location?.pathname === '/search') {
             var divData = document.querySelector('.content-wrapper')
             var searchQuery = new URLSearchParams(location?.search)?.get('q')
 
-            divData.innerHTML = `<div class="content">
-                <div class="grid-row search-results-title">
-                    <div class="grid-content">
-                        <div class="grid-column col20">
-                            <div class="widget-row">
-                                <h1>Search results:</h1>
-                                <span>${searchQuery}</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="grid-row">
-                    <div class="grid-content">
-                        <div class="grid-column col20">
-                            <div class="widget-row no-results-wrapper">
-                                <form role="search" method="GET" enctype="application/x-www-form-urlencoded" action="/search"
-                                    class="search-form search-results-form style-1">
-                                    <input type="hidden" value="5" name="m">
-                                    <input type="text" name="q" value="${searchQuery}" class="search-input border-type-all"
-                                        placeholder="Search for...">
-                                    <button class="search-widget-icon"></button>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>`
+            // divData.innerHTML = `<div class="content">
+            //     <div class="grid-row search-results-title">
+            //         <div class="grid-content">
+            //             <div class="grid-column col20">
+            //                 <div class="widget-row">
+            //                     <h1>Search results:</h1>
+            //                     <span>${searchQuery}</span>
+            //                 </div>
+            //             </div>
+            //         </div>
+            //     </div>
+            //     <div class="grid-row">
+            //         <div class="grid-content">
+            //             <div class="grid-column col20">
+            //                 <div class="widget-row no-results-wrapper">
+            //                     <form role="search" method="GET" enctype="application/x-www-form-urlencoded" action="/search"
+            //                         class="search-form search-results-form style-1">
+            //                         <input type="hidden" value="5" name="m">
+            //                         <input type="text" name="q" value="${searchQuery}" class="search-input border-type-all"
+            //                             placeholder="Search for...">
+            //                         <button class="search-widget-icon"></button>
+            //                     </form>
+            //                 </div>
+            //             </div>
+            //         </div>
+            //     </div>
+            // </div>`
 
             var searchInput = document.querySelector('input.search-input.border-type-all')
 
             let data = await sendRequest(`${apiUrl}/${productRoute}?title=${searchQuery}&limit=50`, 'GET', null)
             let items = data?.items
-
-            console.log('data', data)
 
             var savedEmail = localStorage.getItem('email')
             var sessionEmail = WebPlatform?._sessionDetails?.member?.email
@@ -676,10 +673,6 @@ const validateSearch = async () => {
             else {
                 items = items?.filter((v) => !v?.url?.toLowerCase()?.includes('plus'))
             }
-
-            console.log('isSessionExpired', isSessionExpired)
-
-            console.log('items', items)
 
             let htmlData = `
             <div class="content">
@@ -822,12 +815,10 @@ const validateSearch = async () => {
             // console.log('divData', divData.children)
             // const newElement = document.createElement('div')
             // newElement.innerHTML = htmlData
-            console.log('***', divData.children)
-
 
             // divData.appendChild(newElement)
 
-            divData.innerHTML = htmlData
+            // divData.innerHTML = htmlData
         }
     }
     catch (e) {
