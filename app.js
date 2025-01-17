@@ -610,7 +610,6 @@ catch (e) {
 const validateSearch = async () => {
     try {
         console.log('WebPlatform._sessionDetails', WebPlatform)
-        console.log('email', WebPlatform._sessionDetails)
         if (location?.pathname === '/search') {
             var divData = document.querySelector('.content-wrapper')
             var searchQuery = new URLSearchParams(location?.search)?.get('q')
@@ -654,6 +653,7 @@ const validateSearch = async () => {
             var groupName = localStorage.getItem('groupName')
             var percentage = JSON.parse(localStorage.getItem('percentage')) || 0
             var sessionDetails = JSON.parse(localStorage.getItem('session-details')) || {}
+            console.log('email', WebPlatform._sessionDetails)
             // var email = localStorage.getItem('email')
 
             // alert(`Email: ${email}`)
