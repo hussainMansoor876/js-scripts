@@ -611,10 +611,27 @@ const validateSearch = async () => {
     try {
         if (location?.pathname === '/search') {
             var divData = document.querySelector('.content-wrapper')
-
-            // divData.innerHTML = ``
-
             var searchQuery = new URLSearchParams(location?.search)?.get('q')
+
+            divData.innerHTML = `<div class="content">
+                <div class="grid-row search-results-title">
+                    <div class="grid-content">
+                        <div class="grid-column col20">
+                            <div class="widget-row">
+                                <h1>Search results:</h1>
+                                <span>${searchQuery}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <form role="search" method="GET" enctype="application/x-www-form-urlencoded" action="/search"
+                class="search-form search-results-form style-1">
+                    <input type="hidden" value="5" name="m">
+                    <input type="text" name="q" value="895" class="search-input border-type-all" placeholder="Search for...">
+                    <button class="search-widget-icon"></button>
+                </form>
+            </div>`
+
             var searchInput = document.querySelector('input.search-input.border-type-all')
 
             let data = await sendRequest(`${apiUrl}/${productRoute}?title=${searchQuery}&limit=50`, 'GET', null)
