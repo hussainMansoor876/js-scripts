@@ -670,7 +670,6 @@ const validateSearch = async () => {
             }
             else {
                 items = items?.filter((v) => !v?.url?.toLowerCase()?.includes('plus'))
-                isSessionExpired = true
             }
 
             console.log('isSessionExpired', isSessionExpired)
