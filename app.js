@@ -660,10 +660,6 @@ const validateSearch = async () => {
             var groupName = localStorage.getItem('groupName')
             var percentage = JSON.parse(localStorage.getItem('percentage')) || 0
             var sessionDetails = JSON.parse(localStorage.getItem('session-details')) || {}
-            console.log('email', WebPlatform?._sessionDetails?.member?.email)
-            // var email = localStorage.getItem('email')
-
-            // alert(`Email: ${email}`)
 
             if (!percentage && groupName?.length) {
                 percentage = groupName === 'plus-5' ? 0.05 : 0.1
@@ -881,12 +877,21 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
 
     try {
-        setTimeout(() => {
+        setTimeout(async () => {
             var logoutButton = document.getElementsByClassName('member-logout-button')
 
             if (logoutButton?.length) {
                 logoutButton[0].addEventListener('click', () => localStorage.clear())
             }
+            else {
+                console.log('hello')
+                var savedEmail = localStorage.getItem('email')
+                var sessionEmail = WebPlatform?._sessionDetails?.member?.email
+                if (!validateEmail(savedEmail) && validateEmail(sessionEmail)) {
+                    await fetchUserByEmail(sessionEmail)
+                }
+            }
+
         }, 500)
     }
     catch (e) {
