@@ -438,6 +438,19 @@ function calculateIncreasedPrice(targetPriceAfterDiscount, discountPercentage) {
     return parseFloat(increasedPrice.toFixed(2))
 }
 
+function calculateDiscountedPrice(price, discount) {
+    // Check if the inputs are valid
+    if (price < 0 || discount < 0 || discount > 100) {
+        return price
+    }
+
+    // Calculate the discounted price
+    const discountedPrice = price - (price * discount);
+
+    // Return the result rounded to two decimal places
+    return Math.round(discountedPrice * 100) / 100;
+}
+
 const updateProduct = async (e) => {
     let data = await sendRequest(`${apiUrl}/${productRoute}/${e?.id}`, 'GET', null)
     var percentage = JSON.parse(localStorage.getItem('percentage')) || 0
@@ -740,7 +753,7 @@ const validateSearch = async () => {
                                                         Reviews</a>
                                                 </div>`
                 if (!isSessionExpired) {
-                    htmlData += `<span class="product-item-price "><a href="/safety-products-catalog/${v?.url}">From&nbsp;$${v?.variants?.[0]?.price}</a></span>
+                    htmlData += `<span class="product-item-price "><a href="/safety-products-catalog/${v?.url}">From&nbsp;$${calculateDiscountedPrice(v?.variants?.[0]?.price, percentage)}</a></span>
                             </div>
                         </div>
                     </div>
