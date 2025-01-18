@@ -653,6 +653,7 @@ const validateSearch = async () => {
                 await fetchUserByEmail(sessionEmail)
             }
 
+            savedEmail = localStorage.getItem('email')
             let isPlus = JSON.parse(localStorage.getItem('plus')) || false
             var groupName = localStorage.getItem('groupName')
             var percentage = JSON.parse(localStorage.getItem('percentage')) || 0
@@ -903,7 +904,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                 localStorage.setItem('percentage', JSON.stringify(percentage))
             }
 
-            if (sessionDetails?.sessionCutoffTime && Date.now() <= sessionDetails?.sessionCutoffTime) {
+            if ((sessionDetails?.sessionCutoffTime && Date.now() <= sessionDetails?.sessionCutoffTime) || !validateEmail(savedEmail)) {
                 isSessionExpired = true
             }
 
