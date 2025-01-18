@@ -664,7 +664,7 @@ const validateSearch = async () => {
                 localStorage.setItem('percentage', JSON.stringify(percentage))
             }
 
-            if (sessionDetails?.sessionCutoffTime && Date.now() <= sessionDetails?.sessionCutoffTime) {
+            if ((sessionDetails?.sessionCutoffTime && Date.now() <= sessionDetails?.sessionCutoffTime) || !validateEmail(savedEmail)) {
                 isSessionExpired = true
             }
 
