@@ -691,9 +691,8 @@ const validateSearch = async () => {
                     <div class="grid-content">
                         <div class="grid-column col20">
                             <div class="widget-row no-results-wrapper">
-                            <h1>Nothing found</h1>
-                            <span>Sorry but we couldn't find any matches for your search terms. Please try with a different
-                                keyword.</span>
+                            <h1></h1>
+                            <span></span>
                                 <h1>Nothing found</h1>
                                 <span>Sorry but we couldn't find any matches for your search terms. Please try with a different
                                     keyword.</span>
