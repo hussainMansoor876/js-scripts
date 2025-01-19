@@ -694,6 +694,9 @@ const validateSearch = async () => {
                             <h1>Nothing found</h1>
                             <span>Sorry but we couldn't find any matches for your search terms. Please try with a different
                                 keyword.</span>
+                                <h1>Nothing found</h1>
+                                <span>Sorry but we couldn't find any matches for your search terms. Please try with a different
+                                    keyword.</span>
                                 <form role="search" method="GET" enctype="application/x-www-form-urlencoded" action="/search"
                                     class="search-form search-results-form style-1">
                                     <input type="hidden" value="5" name="m">
