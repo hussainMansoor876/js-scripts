@@ -826,7 +826,7 @@ const validateSearch = async () => {
                     //                                 </div>`
 
                     htmlData += `<div class="product-item fit-image  with-quick-view " data-slide="" data-idx="0" data-id="470"
-                        style="background: transparent; padding: 25px 25px; border-radius: 0px; width: 23.5%; margin: 0 2% 0 0; ">
+                        style="background: transparent; padding: 25px 25px; border-radius: 0px; width: 23%; margin: 0 2% 0 0; ">
                         <div class="product-main-photo has-badge" style="padding-bottom: 80%;background-color: transparent;">
                             <div class="product-photo-inner-wrapper">
                                 <div class="quick-buttons-wrapper flex align-center justify-center">
