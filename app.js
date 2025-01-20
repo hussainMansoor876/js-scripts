@@ -744,11 +744,9 @@ const validateSearch = async () => {
                                 </form>
                             </div>
                         </div>
-                        <div class="widget-row no-results-wrapper" style="margin-left: 10px;">
+                        <div class="widget-row no-results-wrapper" style="margin-left: 10px; margin-top: 10px;">
                             <h1></h1>
                             <span></span>
-                            <br/>
-                            <br/>
                                 <h1>Nothing found</h1>
                                 <span>Sorry but we couldn't find any matches for your search terms. Please try with a different
                                     keyword.</span>
