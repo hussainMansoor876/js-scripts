@@ -1086,7 +1086,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                 localStorage.setItem('percentage', JSON.stringify(percentage))
             }
 
-            if ((sessionDetails?.sessionCutoffTime && Date.now() <= sessionDetails?.sessionCutoffTime) || !validateEmail(savedEmail)) {
+            if (sessionDetails?.sessionCutoffTime && Date.now() <= sessionDetails?.sessionCutoffTime) {
                 isSessionExpired = true
             }
 
