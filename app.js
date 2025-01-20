@@ -692,8 +692,10 @@ const validateSearch = async () => {
                 localStorage.setItem('percentage', JSON.stringify(percentage))
             }
 
+            let logout = false
+
             if ((sessionDetails?.sessionCutoffTime && Date.now() <= sessionDetails?.sessionCutoffTime) || !validateEmail(savedEmail)) {
-                isSessionExpired = true
+                logout = true
             }
 
             if (groupName?.length && isPlus) {
@@ -969,7 +971,7 @@ const validateSearch = async () => {
                                             </svg> </div> <a href="" class="product-reviews-link">84 Reviews</a>
                                     </div>`
 
-                    if (!isSessionExpired) {
+                    if (!logout) {
                         htmlData += `<span class="product-item-price "><a href="/safety-products-catalog/${v?.url}">From&nbsp;$${calculateDiscountedPrice(v?.variants?.[0]?.price, percentage)}</a></span>
                                 </div>
                             </div>
