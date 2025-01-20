@@ -636,16 +636,6 @@ const validateSearch = async () => {
                    top: 0px;
                    
                    ">
-                   <div class="grid-row search-results-title">
-                        <div class="grid-content">
-                            <div class="grid-column col20">
-                                <div class="widget-row">
-                                    <h1>Search results:</h1>
-                                    <span>${searchQuery}</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
 
                         <div class="widget-row ">
                             <div class="widget widgetResponsive spacer col20" id="spacer-widget-1736449832576"
@@ -731,16 +721,7 @@ const validateSearch = async () => {
                    top: 0px;
                    
                    ">
-                   <div class="grid-row search-results-title">
-                        <div class="grid-content">
-                            <div class="grid-column col20">
-                                <div class="widget-row">
-                                    <h1>Search results:</h1>
-                                    <span>${searchQuery}</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+
                         <div class="widget-row ">
                             <div class="widget widgetResponsive spacer col20" id="spacer-widget-1736449832576"
                                 data-type="Spacer" style="margin-top: 0px; margin-left: 0px;">
@@ -763,6 +744,13 @@ const validateSearch = async () => {
                                 </form>
                             </div>
                         </div>
+                        <div class="widget-row no-results-wrapper" style="margin-left: 10px; margin-top: 10px;">
+                            <h1></h1>
+                            <span></span>
+                                <h1>Nothing found</h1>
+                                <span>Sorry but we couldn't find any matches for your search terms. Please try with a different
+                                    keyword.</span>
+                            </div>
                     </div>
                 </div>
                         </div>
