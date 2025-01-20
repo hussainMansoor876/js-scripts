@@ -743,7 +743,7 @@ const validateSearch = async () => {
                     <div class="widget-row">
                         <div class="widget widgetResponsive storeWidget col20" id="store-search-results">
                             <div
-                                class="product-list-wrapper full-width-layout col20 f-left products-per-row-3 style-2 center-align quick-view-1  image-positioned">
+                                class="product-list-wrapper full-width-layout col20 f-left products-per-row-4 style-1 center-align quick-view-2 image-positioned">
                                 <div class="products-list">`
 
                 for (var v of items) {
@@ -897,14 +897,12 @@ const validateSearch = async () => {
                                 </div>
                             </div>
                         </div>
-                        <div class="quick-view-btn" data-role="viewProduct"><a>Quick View</a></div>
                     </div>`
                     }
                     else {
                         htmlData += `</div>
                             </div>
                         </div>
-                        <div class="quick-view-btn" data-role="viewProduct"><a>Quick View</a></div>
                     </div>`
                     }
                 }
