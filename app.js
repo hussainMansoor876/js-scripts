@@ -658,6 +658,8 @@ const validateSearch = async () => {
                                     <button class="search-widget-icon" style="color:#6B6B6B;"></button>
                                 </form>
                             </div>
+                            <div class="widget-row no-results-wrapper" style="margin-left: 10px; margin-top: 20px;">
+                        </div>
                         </div>
                     </div>
                 </div>`
