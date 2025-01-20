@@ -636,6 +636,16 @@ const validateSearch = async () => {
                    top: 0px;
                    
                    ">
+                   <div class="grid-row search-results-title">
+                        <div class="grid-content">
+                            <div class="grid-column col20">
+                                <div class="widget-row">
+                                    <h1>Search results:</h1>
+                                    <span>${searchQuery}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
                         <div class="widget-row ">
                             <div class="widget widgetResponsive spacer col20" id="spacer-widget-1736449832576"
@@ -721,7 +731,16 @@ const validateSearch = async () => {
                    top: 0px;
                    
                    ">
-
+                   <div class="grid-row search-results-title">
+                        <div class="grid-content">
+                            <div class="grid-column col20">
+                                <div class="widget-row">
+                                    <h1>Search results:</h1>
+                                    <span>${searchQuery}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                         <div class="widget-row ">
                             <div class="widget widgetResponsive spacer col20" id="spacer-widget-1736449832576"
                                 data-type="Spacer" style="margin-top: 0px; margin-left: 0px;">
