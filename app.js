@@ -615,7 +615,7 @@ const validateSearch = async () => {
             var searchQuery = new URLSearchParams(location?.search)?.get('q')
 
             var searchHtml = `<div class="content-wrapper">
-            <div class="content">
+        <div class="content">
             <div id="container-widget-1734371250200" data-type="Container" class="grid-row
                 stretched-mobile stretched-tablet" data-delay="" style="padding-bottom:0%;
                 padding-top: 0px; padding-left: 0;
@@ -649,17 +649,15 @@ const validateSearch = async () => {
                             <div class="widget widgetResponsive col20" id="widgetb-1735848049108" data-type="Search"
                                 data-delay="" data-animation-duration="" data-animation-delay=""
                                 data-animation="lazyAnimation-" style="margin-top: 0%; margin-left: 0px;">
-                                <form role="search" method="GET" enctype="application/x-www-form-urlencoded"
+                                <form role="search" method="GET" enctype="application/x-www-form-urlencoded" value="${searchQuery}"
                                     action="/search" class="search-form style-1">
                                     <input type="hidden" value="5" name="m">
-                                    <input type="text" name="q" class="search-input border-type-all" value="${searchQuery}"
+                                    <input type="text" name="q" class="search-input border-type-all   "
                                         placeholder="Search for..."
                                         style="font-size: 15px; background-color: #ffffff;font-family:'Open Sans';color:#6B6B6B;border-color:#E6E6E6;padding: 18px 25.2px;border-width: 1px;border-radius: 40px;">
                                     <button class="search-widget-icon" style="color:#6B6B6B;"></button>
                                 </form>
                             </div>
-                            <div class="widget-row no-results-wrapper" style="margin-left: 10px; margin-top: 20px;">
-                        </div>
                         </div>
                     </div>
                 </div>`
