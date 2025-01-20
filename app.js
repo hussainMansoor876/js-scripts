@@ -701,57 +701,66 @@ const validateSearch = async () => {
             }
 
             if (!items?.length) {
-                divData.innerHTML = `${searchHtml}
+                divData.innerHTML = `<div class="content-wrapper">
+            <div class="content">
+            <div id="container-widget-1734371250200" data-type="Container" class="grid-row
+                stretched-mobile stretched-tablet" data-delay="" style="padding-bottom:0%;
+                padding-top: 0px; padding-left: 0;
+                background-color: transparent;
+                background-position: center center;
+                background-repeat: no-repeat;
+                background-size: auto;
+                background-image: none;">
+                <div class="grid-content ">
+                    <div class="grid-column    " style="width: 100%;
+                   padding-left:0px;padding-right:0px;
+                   background-image: none;
+                   
+                     background-size: cover;
+                     background-repeat: no-repeat;
+                     background-position: center center;
+                   
+                   top: 0px;
+                   
+                   ">
+
+                        <div class="widget-row ">
+                            <div class="widget widgetResponsive spacer col20" id="spacer-widget-1736449832576"
+                                data-type="Spacer" style="margin-top: 0px; margin-left: 0px;">
+                                <div class="widget-preserving-ratio-outer" style="padding-bottom: 7.6923076923076925% ">
+                                    <div class="widget-preserving-ratio-inner"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="widget-row with-centered-content">
+                            <div class="widget widgetResponsive col20" id="widgetb-1735848049108" data-type="Search"
+                                data-delay="" data-animation-duration="" data-animation-delay=""
+                                data-animation="lazyAnimation-" style="margin-top: 0%; margin-left: 0px;">
+                                <form role="search" method="GET" enctype="application/x-www-form-urlencoded"
+                                    action="/search" class="search-form style-1">
+                                    <input type="hidden" value="5" name="m">
+                                    <input type="text" name="q" class="search-input border-type-all" value="${searchQuery}"
+                                        placeholder="Search for..."
+                                        style="font-size: 15px; background-color: #ffffff;font-family:'Open Sans';color:#6B6B6B;border-color:#E6E6E6;padding: 18px 25.2px;border-width: 1px;border-radius: 40px;">
+                                    <button class="search-widget-icon" style="color:#6B6B6B;"></button>
+                                </form>
+                            </div>
+                        </div>
                         <div class="widget-row no-results-wrapper" style="margin-left: 10px; margin-top: 20px;">
                             <h1></h1>
                             <span></span>
                                 <h1>Nothing found</h1>
                                 <span>Sorry but we couldn't find any matches for your search terms. Please try with a different
                                     keyword.</span>
-                            </div>
+                        </div>
+                    </div>
+                </div>
                         </div>
                     </div>
                 </div>`
             }
             else {
-                let htmlData = `
-                <div class="content">
-                    <div class="grid-row search-results-title">
-                        <div class="grid-content">
-                            <div class="grid-column col20">
-                                <div class="widget-row">
-                                    <h1>Search results:</h1>
-                                    <span>${searchQuery}</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="widget-row with-centered-content">
-                    <div class="widget 
-                widgetResponsive col20" id="widgetb-1735848049108" data-type="Search" data-delay="" data-animation-duration=""
-                            data-animation-delay="" data-animation="lazyAnimation-" style="margin-top: 0%; margin-left: 0px;">
-                            <form role="search" method="GET" enctype="application/x-www-form-urlencoded" action="/search"
-                                class="search-form style-1">
-                                <input type="hidden" value="5" name="m">
-                                <input type="text" name="q" class="search-input border-type-all   " placeholder="Search for..." style="
-                    font-size: 15px; 
-                    background-color: #ffffff;font-family:'Open Sans';color:#6B6B6B;border-color:#E6E6E6;
-                    padding: 18px 25.2px;
-                    border-width: 1px;
-                    border-radius: 40px;
-                    ">
-                                <button class="search-widget-icon 
-                    " style="color:#6B6B6B;"></button>
-                            </form>
-                        </div>
-                    </div>
-                <div class="grid-row">
-                <div class="grid-column col20">
-                    <div class="widget-row">
-                        <div class="widget widgetResponsive storeWidget col20" id="store-search-results">
-                            <div
-                                class="product-list-wrapper full-width-layout col20 f-left products-per-row-4 style-1 center-align quick-view-2 image-positioned">
-                                <div class="products-list">`
+                let htmlData = `${searchHtml}`
 
                 for (var v of items) {
                     // htmlData += `<div class="product-item fit-height " data-slide="" data-idx="0" data-id="207"
