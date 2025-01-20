@@ -613,6 +613,7 @@ const validateSearch = async () => {
         if (location?.pathname === '/search') {
             var divData = document.querySelector('.content-wrapper')
             var searchQuery = new URLSearchParams(location?.search)?.get('q')
+            const script = document.createElement('script')
 
             var searchHtml = `<div class="content-wrapper">
         <div class="content">
@@ -762,6 +763,53 @@ const validateSearch = async () => {
                 </div>`
             }
             else {
+                script.textContent = `
+                        WebPlatform.onReady(function () {
+                                            try {
+                                                WebPlatform.Widgets.Store({
+                                                    maxItemsCount: WebPlatform.parse('350', 10, true),
+                                                    exclude: -1,
+                                                    root: $('#store-widget-1734370863531'),
+                                                    labelFrom: 'From&nbsp;',
+                                                    labelSale: 'Sale',
+                                                    labelQuickView: 'Quick View',
+                                                    labelSoldOut: 'Sold Out',
+                                                    baseUrl: '/safety-products-catalog/',
+                                                    itemsPerRow: WebPlatform.parse('4', 3),
+                                                    itemGap: WebPlatform.parse('2', 0),
+                                                    showProductName: true,
+                                                    showProductPrice: true,
+                                                    hasProductQuickView: true,
+                                                    autoChangeSlides: true,
+                                                    autoChangeSlidesTimeout: WebPlatform.parse('4000', 3000),
+                                                    layout: 'grid',
+                                                    productLayout: 'style-1',
+                                                    productAlign: 'center' || 'left',
+                                                    quickViewBtnStyle: 'quick-view-2' || 'quick-view-1',
+                                                    imageBorderRadius: 10,
+                                                    itemsType: 'products',
+                                                    storeItems: [472, 469, 470, 465, 464, 467, 466, 394],
+                                                    discountBadgeType: 'text',
+                                                    storeProcess: 'cart' || 'cart',
+                                                    includeAddToCartButton: 'false' === 'true',
+                                                    imageSize: 80,
+                                                    imageSizeType: 'fit-image',
+                                                    sort: 'price',
+                                                    imageBgColor: 'transparent',
+                                                    boxBg: 'transparent',
+                                                    boxPadding: 25,
+                                                    boxRadius: 0,
+                                                    showingInventory: false,
+                                                    leftInStockThreshold: 10,
+                                                    textClass: '',
+                                                    priceTextClass: '',
+                                                    shadow: ''
+                                                });
+                                            } catch (e) {
+                                                Log.error(e);
+                                            }
+                                        })`
+                document.body.appendChild(script)
                 let htmlData = `<div class="content-wrapper">
         <div class="content">
             <div id="container-widget-1734371250200" data-type="Container" class="grid-row
