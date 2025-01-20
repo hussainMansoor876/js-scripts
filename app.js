@@ -1031,7 +1031,7 @@ const filterData = async () => {
     console.log('filteredData', filteredData)
 }
 
-filterData()
+// filterData()
 
 document.addEventListener('DOMContentLoaded', async () => {
     // try {
