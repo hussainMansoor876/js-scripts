@@ -687,6 +687,25 @@ const validateSearch = async () => {
                         </div>
                     </div>
                 </div>
+                <div class="widget-row with-centered-content">
+                <div class="widget 
+        widgetResponsive col20" id="widgetb-1735848049108" data-type="Search" data-delay="" data-animation-duration=""
+                    data-animation-delay="" data-animation="lazyAnimation-" style="margin-top: 0%; margin-left: 0px;">
+                    <form role="search" method="GET" enctype="application/x-www-form-urlencoded" action="/search"
+                        class="search-form style-1">
+                        <input type="hidden" value="5" name="m">
+                        <input type="text" name="q" class="search-input border-type-all   " placeholder="Search for..." style="
+            font-size: 15px; 
+            background-color: #ffffff;font-family:'Open Sans';color:#6B6B6B;border-color:#E6E6E6;
+            padding: 18px 25.2px;
+            border-width: 1px;
+            border-radius: 40px;
+            ">
+                        <button class="search-widget-icon 
+            " style="color:#6B6B6B;"></button>
+                    </form>
+                </div>
+            </div>
                 <div class="grid-row">
                     <div class="grid-content">
                         <div class="grid-column col20">
@@ -722,19 +741,23 @@ const validateSearch = async () => {
                             </div>
                         </div>
                     </div>
-                    <div class="grid-row">
-                        <div class="grid-content">
-                            <div class="grid-column col20">
-                                <div class="widget-row no-results-wrapper">
-                                    <form role="search" method="GET" enctype="application/x-www-form-urlencoded" action="/search"
-                                        class="search-form search-results-form style-1">
-                                        <input type="hidden" value="5" name="m">
-                                        <input type="text" name="q" value="${searchQuery}" class="search-input border-type-all"
-                                            placeholder="Search for...">
-                                        <button class="search-widget-icon"></button>
-                                    </form>
-                                </div>
-                            </div>
+                    <div class="widget-row with-centered-content">
+                    <div class="widget 
+                widgetResponsive col20" id="widgetb-1735848049108" data-type="Search" data-delay="" data-animation-duration=""
+                            data-animation-delay="" data-animation="lazyAnimation-" style="margin-top: 0%; margin-left: 0px;">
+                            <form role="search" method="GET" enctype="application/x-www-form-urlencoded" action="/search"
+                                class="search-form style-1">
+                                <input type="hidden" value="5" name="m">
+                                <input type="text" name="q" class="search-input border-type-all   " placeholder="Search for..." style="
+                    font-size: 15px; 
+                    background-color: #ffffff;font-family:'Open Sans';color:#6B6B6B;border-color:#E6E6E6;
+                    padding: 18px 25.2px;
+                    border-width: 1px;
+                    border-radius: 40px;
+                    ">
+                                <button class="search-widget-icon 
+                    " style="color:#6B6B6B;"></button>
+                            </form>
                         </div>
                     </div>
                 <div class="grid-row">
@@ -920,7 +943,879 @@ const validateSearch = async () => {
 
                 // divData.appendChild(newElement)
 
-                divData.innerHTML = htmlData
+                divData.innerHTML = `<div class="content-wrapper">
+        <div class="content">
+            <div id="container-widget-1734371250200" data-type="Container" class="grid-row
+         stretched-mobile stretched-tablet" data-delay="" style="padding-bottom:0%;
+        padding-top: 0px; padding-left: 0;
+        background-color: transparent;
+          background-position: center center;
+          background-repeat: no-repeat;
+          background-size: auto;
+        
+        background-image: none;">
+                <div class="grid-content ">
+                    <div class="grid-column    " style="width: 100%;
+                   padding-left:0px;padding-right:0px;
+                   background-image: none;
+                   
+                     background-size: cover;
+                     background-repeat: no-repeat;
+                     background-position: center center;
+                   
+                   top: 0px;
+                   
+                   ">
+
+                        <div class="widget-row ">
+                            <div class="widget 
+            
+           widgetResponsive spacer col20" id="spacer-widget-1736449832576" data-type="Spacer"
+                                style="margin-top: 0px; margin-left: 0px;">
+                                <div class="widget-preserving-ratio-outer" style="padding-bottom: 7.6923076923076925% ">
+                                    <div class="widget-preserving-ratio-inner"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="widget-row with-centered-content">
+                            <div class="widget 
+            widgetResponsive col20" id="widgetb-1735848049108" data-type="Search" data-delay=""
+                                data-animation-duration="" data-animation-delay="" data-animation="lazyAnimation-"
+                                style="margin-top: 0%; margin-left: 0px;">
+                                <form role="search" method="GET" enctype="application/x-www-form-urlencoded"
+                                    action="/search" class="search-form style-1">
+                                    <input type="hidden" value="5" name="m">
+                                    <input type="text" name="q" class="search-input border-type-all   "
+                                        placeholder="Search for..." style="
+                 font-size: 15px; 
+                 background-color: #ffffff;font-family:'Open Sans';color:#6B6B6B;border-color:#E6E6E6;
+                 padding: 18px 25.2px;
+                 border-width: 1px;
+                 border-radius: 40px;
+                 ">
+                                    <button class="search-widget-icon 
+                   " style="color:#6B6B6B;"></button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="grid-content ">
+                    <div class="grid-column    " style="width: 100%;
+                   padding-left:0px;padding-right:0px;
+                   background-image: none;
+                   
+                     background-size: cover;
+                     background-repeat: no-repeat;
+                     background-position: center center;
+                   
+                   top: 0px;
+                   
+                   ">
+
+                        <div class="widget-row ">
+                            <div class="widget
+            widgetResponsive storeWidget col20" id="store-widget-1734370863531" data-type="StoreWidget" data-delay=""
+                                data-animation-duration="" data-animation-delay="" data-animation="lazyAnimation-"
+                                style="margin-top: 2.61538%; margin-left: 0px;">
+                                <div class="col20 f-left main-widget-content">
+                                    <style type="text/css">
+                                        #store-widget-1734370863531 .product-item h3 {
+
+                                            color: rgba(21, 81, 52, 1);
+
+                                            font-family: 'Boton Bold';
+
+                                            font-size: 14px;
+                                            letter-spacing: normal;
+                                        }
+
+                                        #store-widget-1734370863531 .product-item .product-item-price {
+
+                                            color: rgba(0, 0, 0, 1);
+
+                                            font-family: 'Arial';
+
+                                            font-size: 13px;
+                                            letter-spacing: normal;
+                                        }
+                                    </style>
+                                    <script type="text/javascript">
+                                        WebPlatform.onReady(function () {
+                                            try {
+                                                WebPlatform.Widgets.Store({
+                                                    maxItemsCount: WebPlatform.parse('350', 10, true),
+                                                    exclude: -1,
+                                                    root: $('#store-widget-1734370863531'),
+                                                    labelFrom: 'From&nbsp;',
+                                                    labelSale: 'Sale',
+                                                    labelQuickView: 'Quick View',
+                                                    labelSoldOut: 'Sold Out',
+                                                    baseUrl: '/safety-products-catalog/',
+                                                    itemsPerRow: WebPlatform.parse('4', 3),
+                                                    itemGap: WebPlatform.parse('2', 0),
+                                                    showProductName: true,
+                                                    showProductPrice: true,
+                                                    hasProductQuickView: true,
+                                                    autoChangeSlides: true,
+                                                    autoChangeSlidesTimeout: WebPlatform.parse('4000', 3000),
+                                                    layout: 'grid',
+                                                    productLayout: 'style-1',
+                                                    productAlign: 'center' || 'left',
+                                                    quickViewBtnStyle: 'quick-view-2' || 'quick-view-1',
+                                                    imageBorderRadius: 10,
+                                                    itemsType: 'products',
+                                                    storeItems: [472, 469, 470, 465, 464, 467, 466, 394],
+                                                    discountBadgeType: 'text',
+                                                    storeProcess: 'cart' || 'cart',
+                                                    includeAddToCartButton: 'false' === 'true',
+                                                    imageSize: 80,
+                                                    imageSizeType: 'fit-image',
+                                                    sort: 'price',
+                                                    imageBgColor: 'transparent',
+                                                    boxBg: 'transparent',
+                                                    boxPadding: 25,
+                                                    boxRadius: 0,
+                                                    showingInventory: false,
+                                                    leftInStockThreshold: 10,
+                                                    textClass: '',
+                                                    priceTextClass: '',
+                                                    shadow: ''
+                                                });
+                                            } catch (e) {
+                                                Log.error(e);
+                                            }
+                                        });
+                                    </script>
+                                    <div
+                                        class="product-list-wrapper full-width-layout col20 f-left products-per-row-4 style-1 center-align quick-view-2  image-positioned">
+                                        <div class="products-list">
+                                            <div class="product-item fit-image  with-quick-view " data-slide=""
+                                                data-idx="0" data-id="470"
+                                                style="background: transparent; padding: 25px 25px; border-radius: 0px; width: 23.5%; margin: 0 2% 0 0; ">
+                                                <div class="product-main-photo has-badge"
+                                                    style="padding-bottom: 80%;background-color: transparent;">
+                                                    <div class="product-photo-inner-wrapper">
+                                                        <div
+                                                            class="quick-buttons-wrapper flex align-center justify-center">
+                                                            <div
+                                                                class="quick-buttons-wrapper-inner flex align-center justify-center">
+                                                                <a class="quick-store-button flex align-center"
+                                                                    data-role="addToCart" data-process="cart"><svg
+                                                                        xmlns="http://www.w3.org/2000/svg"
+                                                                        enable-background="new 0 0 24 24" height="24px"
+                                                                        viewBox="0 0 24 24" width="24px" fill="#000000">
+                                                                        <g>
+                                                                            <rect fill="none" height="24" width="24">
+                                                                            </rect>
+                                                                            <path
+                                                                                d="M18,6h-2c0-2.21-1.79-4-4-4S8,3.79,8,6H6C4.9,6,4,6.9,4,8v12c0,1.1,0.9,2,2,2h12c1.1,0,2-0.9,2-2V8C20,6.9,19.1,6,18,6z M12,4c1.1,0,2,0.9,2,2h-4C10,4.9,10.9,4,12,4z M18,20H6V8h2v2c0,0.55,0.45,1,1,1s1-0.45,1-1V8h4v2c0,0.55,0.45,1,1,1s1-0.45,1-1V8 h2V20z">
+                                                                            </path>
+                                                                        </g>
+                                                                    </svg></a> <a
+                                                                    class="quick-store-button flex align-center"
+                                                                    data-role="viewProduct"><svg
+                                                                        xmlns="http://www.w3.org/2000/svg"
+                                                                        enable-background="new 0 0 24 24" height="24px"
+                                                                        viewBox="0 0 24 24" width="18px" fill="#000000">
+                                                                        <rect fill="none" height="24" width="24"></rect>
+                                                                        <polygon
+                                                                            points="21,11 21,3 13,3 16.29,6.29 6.29,16.29 3,13 3,21 11,21 7.71,17.71 17.71,7.71">
+                                                                        </polygon>
+                                                                    </svg></a> </div>
+                                                        </div><a href="/safety-products-catalog/BK01MOT-LM"><img
+                                                                src="https://content.app-sources.com/s/535524365072486201/thumbnails/640x480/Accessories_Wands_Tape_Signs/BK01MOT-LM-9258846.jpg?format=webp"
+                                                                alt="" style="border-radius: 10px;"></a>
+                                                    </div>
+                                                </div>
+                                                <div class="product-item-description">
+                                                    <div>
+                                                        <div class="title-price-wrapper-1">
+                                                            <h3 class=""><a href="/safety-products-catalog/BK01MOT-LM"
+                                                                    class="highlightColor">BK01MOT-LM</a></h3>
+                                                            <div class="col20 f-left product-stars flex align-center">
+                                                                <div class="product-stars-inner"> <svg
+                                                                        xmlns="http://www.w3.org/2000/svg"
+                                                                        viewBox="0 0 24 24" fill="black" width="18px"
+                                                                        height="18px" class="full-star">
+                                                                        <path d="M0 0h24v24H0z" fill="none"></path>
+                                                                        <path
+                                                                            d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z">
+                                                                        </path>
+                                                                    </svg> <svg xmlns="http://www.w3.org/2000/svg"
+                                                                        viewBox="0 0 24 24" fill="black" width="18px"
+                                                                        height="18px" class="full-star">
+                                                                        <path d="M0 0h24v24H0z" fill="none"></path>
+                                                                        <path
+                                                                            d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z">
+                                                                        </path>
+                                                                    </svg> <svg xmlns="http://www.w3.org/2000/svg"
+                                                                        viewBox="0 0 24 24" fill="black" width="18px"
+                                                                        height="18px" class="full-star">
+                                                                        <path d="M0 0h24v24H0z" fill="none"></path>
+                                                                        <path
+                                                                            d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z">
+                                                                        </path>
+                                                                    </svg> <svg xmlns="http://www.w3.org/2000/svg"
+                                                                        viewBox="0 0 24 24" fill="black" width="18px"
+                                                                        height="18px" class="full-star">
+                                                                        <path d="M0 0h24v24H0z" fill="none"></path>
+                                                                        <path
+                                                                            d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z">
+                                                                        </path>
+                                                                    </svg> <svg xmlns="http://www.w3.org/2000/svg"
+                                                                        viewBox="0 0 24 24" fill="black" width="18px"
+                                                                        height="18px">
+                                                                        <path d="M0 0h24v24H0V0z" fill="none"></path>
+                                                                        <path
+                                                                            d="M12 7.13l.97 2.29.47 1.11 1.2.1 2.47.21-1.88 1.63-.91.79.27 1.18.56 2.41-2.12-1.28-1.03-.64-1.03.62-2.12 1.28.56-2.41.27-1.18-.91-.79-1.88-1.63 2.47-.21 1.2-.1.47-1.11.97-2.27M12 2L9.19 8.63 2 9.24l5.46 4.73L5.82 21 12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2z">
+                                                                        </path>
+                                                                    </svg> </div> <a href=""
+                                                                    class="product-reviews-link">84 Reviews</a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="quick-view-btn" data-role="viewProduct"><a>Quick View</a>
+                                                </div>
+                                            </div>
+                                            <div class="product-item fit-image  with-quick-view " data-slide=""
+                                                data-idx="1" data-id="469"
+                                                style="background: transparent; padding: 25px 25px; border-radius: 0px; width: 23.5%; margin: 0 2% 0 0; ">
+                                                <div class="product-main-photo has-badge"
+                                                    style="padding-bottom: 80%;background-color: transparent;">
+                                                    <div class="product-photo-inner-wrapper">
+                                                        <div
+                                                            class="quick-buttons-wrapper flex align-center justify-center">
+                                                            <div
+                                                                class="quick-buttons-wrapper-inner flex align-center justify-center">
+                                                                <a class="quick-store-button flex align-center"
+                                                                    data-role="addToCart" data-process="cart"><svg
+                                                                        xmlns="http://www.w3.org/2000/svg"
+                                                                        enable-background="new 0 0 24 24" height="24px"
+                                                                        viewBox="0 0 24 24" width="24px" fill="#000000">
+                                                                        <g>
+                                                                            <rect fill="none" height="24" width="24">
+                                                                            </rect>
+                                                                            <path
+                                                                                d="M18,6h-2c0-2.21-1.79-4-4-4S8,3.79,8,6H6C4.9,6,4,6.9,4,8v12c0,1.1,0.9,2,2,2h12c1.1,0,2-0.9,2-2V8C20,6.9,19.1,6,18,6z M12,4c1.1,0,2,0.9,2,2h-4C10,4.9,10.9,4,12,4z M18,20H6V8h2v2c0,0.55,0.45,1,1,1s1-0.45,1-1V8h4v2c0,0.55,0.45,1,1,1s1-0.45,1-1V8 h2V20z">
+                                                                            </path>
+                                                                        </g>
+                                                                    </svg></a> <a
+                                                                    class="quick-store-button flex align-center"
+                                                                    data-role="viewProduct"><svg
+                                                                        xmlns="http://www.w3.org/2000/svg"
+                                                                        enable-background="new 0 0 24 24" height="24px"
+                                                                        viewBox="0 0 24 24" width="18px" fill="#000000">
+                                                                        <rect fill="none" height="24" width="24"></rect>
+                                                                        <polygon
+                                                                            points="21,11 21,3 13,3 16.29,6.29 6.29,16.29 3,13 3,21 11,21 7.71,17.71 17.71,7.71">
+                                                                        </polygon>
+                                                                    </svg></a> </div>
+                                                        </div><a href="/safety-products-catalog/BK01MOT-ORG"><img
+                                                                src="https://content.app-sources.com/s/535524365072486201/thumbnails/640x480/Accessories_Wands_Tape_Signs/BK01MOT-ORG-9258624.jpg?format=webp"
+                                                                alt="" style="border-radius: 10px;"></a>
+                                                    </div>
+                                                </div>
+                                                <div class="product-item-description">
+                                                    <div>
+                                                        <div class="title-price-wrapper-1">
+                                                            <h3 class=""><a href="/safety-products-catalog/BK01MOT-ORG"
+                                                                    class="highlightColor">BK01MOT-ORG</a></h3>
+                                                            <div class="col20 f-left product-stars flex align-center">
+                                                                <div class="product-stars-inner"> <svg
+                                                                        xmlns="http://www.w3.org/2000/svg"
+                                                                        viewBox="0 0 24 24" fill="black" width="18px"
+                                                                        height="18px" class="full-star">
+                                                                        <path d="M0 0h24v24H0z" fill="none"></path>
+                                                                        <path
+                                                                            d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z">
+                                                                        </path>
+                                                                    </svg> <svg xmlns="http://www.w3.org/2000/svg"
+                                                                        viewBox="0 0 24 24" fill="black" width="18px"
+                                                                        height="18px" class="full-star">
+                                                                        <path d="M0 0h24v24H0z" fill="none"></path>
+                                                                        <path
+                                                                            d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z">
+                                                                        </path>
+                                                                    </svg> <svg xmlns="http://www.w3.org/2000/svg"
+                                                                        viewBox="0 0 24 24" fill="black" width="18px"
+                                                                        height="18px" class="full-star">
+                                                                        <path d="M0 0h24v24H0z" fill="none"></path>
+                                                                        <path
+                                                                            d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z">
+                                                                        </path>
+                                                                    </svg> <svg xmlns="http://www.w3.org/2000/svg"
+                                                                        viewBox="0 0 24 24" fill="black" width="18px"
+                                                                        height="18px" class="full-star">
+                                                                        <path d="M0 0h24v24H0z" fill="none"></path>
+                                                                        <path
+                                                                            d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z">
+                                                                        </path>
+                                                                    </svg> <svg xmlns="http://www.w3.org/2000/svg"
+                                                                        viewBox="0 0 24 24" fill="black" width="18px"
+                                                                        height="18px">
+                                                                        <path d="M0 0h24v24H0V0z" fill="none"></path>
+                                                                        <path
+                                                                            d="M12 7.13l.97 2.29.47 1.11 1.2.1 2.47.21-1.88 1.63-.91.79.27 1.18.56 2.41-2.12-1.28-1.03-.64-1.03.62-2.12 1.28.56-2.41.27-1.18-.91-.79-1.88-1.63 2.47-.21 1.2-.1.47-1.11.97-2.27M12 2L9.19 8.63 2 9.24l5.46 4.73L5.82 21 12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2z">
+                                                                        </path>
+                                                                    </svg> </div> <a href=""
+                                                                    class="product-reviews-link">84 Reviews</a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="quick-view-btn" data-role="viewProduct"><a>Quick View</a>
+                                                </div>
+                                            </div>
+                                            <div class="product-item fit-image  with-quick-view " data-slide=""
+                                                data-idx="2" data-id="472"
+                                                style="background: transparent; padding: 25px 25px; border-radius: 0px; width: 23.5%; margin: 0 2% 0 0; ">
+                                                <div class="product-main-photo has-badge"
+                                                    style="padding-bottom: 80%;background-color: transparent;">
+                                                    <div class="product-photo-inner-wrapper">
+                                                        <div
+                                                            class="quick-buttons-wrapper flex align-center justify-center">
+                                                            <div
+                                                                class="quick-buttons-wrapper-inner flex align-center justify-center">
+                                                                <a class="quick-store-button flex align-center"
+                                                                    data-role="addToCart" data-process="cart"><svg
+                                                                        xmlns="http://www.w3.org/2000/svg"
+                                                                        enable-background="new 0 0 24 24" height="24px"
+                                                                        viewBox="0 0 24 24" width="24px" fill="#000000">
+                                                                        <g>
+                                                                            <rect fill="none" height="24" width="24">
+                                                                            </rect>
+                                                                            <path
+                                                                                d="M18,6h-2c0-2.21-1.79-4-4-4S8,3.79,8,6H6C4.9,6,4,6.9,4,8v12c0,1.1,0.9,2,2,2h12c1.1,0,2-0.9,2-2V8C20,6.9,19.1,6,18,6z M12,4c1.1,0,2,0.9,2,2h-4C10,4.9,10.9,4,12,4z M18,20H6V8h2v2c0,0.55,0.45,1,1,1s1-0.45,1-1V8h4v2c0,0.55,0.45,1,1,1s1-0.45,1-1V8 h2V20z">
+                                                                            </path>
+                                                                        </g>
+                                                                    </svg></a> <a
+                                                                    class="quick-store-button flex align-center"
+                                                                    data-role="viewProduct"><svg
+                                                                        xmlns="http://www.w3.org/2000/svg"
+                                                                        enable-background="new 0 0 24 24" height="24px"
+                                                                        viewBox="0 0 24 24" width="18px" fill="#000000">
+                                                                        <rect fill="none" height="24" width="24"></rect>
+                                                                        <polygon
+                                                                            points="21,11 21,3 13,3 16.29,6.29 6.29,16.29 3,13 3,21 11,21 7.71,17.71 17.71,7.71">
+                                                                        </polygon>
+                                                                    </svg></a> </div>
+                                                        </div><a href="/safety-products-catalog/BK02MOT-LM"><img
+                                                                src="https://content.app-sources.com/s/535524365072486201/thumbnails/640x480/Accessories_Wands_Tape_Signs/BK02MOT-LM-9259200.jpg?format=webp"
+                                                                alt="" style="border-radius: 10px;"></a>
+                                                    </div>
+                                                </div>
+                                                <div class="product-item-description">
+                                                    <div>
+                                                        <div class="title-price-wrapper-1">
+                                                            <h3 class=""><a href="/safety-products-catalog/BK02MOT-LM"
+                                                                    class="highlightColor">BK02MOT-LM</a></h3>
+                                                            <div class="col20 f-left product-stars flex align-center">
+                                                                <div class="product-stars-inner"> <svg
+                                                                        xmlns="http://www.w3.org/2000/svg"
+                                                                        viewBox="0 0 24 24" fill="black" width="18px"
+                                                                        height="18px" class="full-star">
+                                                                        <path d="M0 0h24v24H0z" fill="none"></path>
+                                                                        <path
+                                                                            d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z">
+                                                                        </path>
+                                                                    </svg> <svg xmlns="http://www.w3.org/2000/svg"
+                                                                        viewBox="0 0 24 24" fill="black" width="18px"
+                                                                        height="18px" class="full-star">
+                                                                        <path d="M0 0h24v24H0z" fill="none"></path>
+                                                                        <path
+                                                                            d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z">
+                                                                        </path>
+                                                                    </svg> <svg xmlns="http://www.w3.org/2000/svg"
+                                                                        viewBox="0 0 24 24" fill="black" width="18px"
+                                                                        height="18px" class="full-star">
+                                                                        <path d="M0 0h24v24H0z" fill="none"></path>
+                                                                        <path
+                                                                            d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z">
+                                                                        </path>
+                                                                    </svg> <svg xmlns="http://www.w3.org/2000/svg"
+                                                                        viewBox="0 0 24 24" fill="black" width="18px"
+                                                                        height="18px" class="full-star">
+                                                                        <path d="M0 0h24v24H0z" fill="none"></path>
+                                                                        <path
+                                                                            d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z">
+                                                                        </path>
+                                                                    </svg> <svg xmlns="http://www.w3.org/2000/svg"
+                                                                        viewBox="0 0 24 24" fill="black" width="18px"
+                                                                        height="18px">
+                                                                        <path d="M0 0h24v24H0V0z" fill="none"></path>
+                                                                        <path
+                                                                            d="M12 7.13l.97 2.29.47 1.11 1.2.1 2.47.21-1.88 1.63-.91.79.27 1.18.56 2.41-2.12-1.28-1.03-.64-1.03.62-2.12 1.28.56-2.41.27-1.18-.91-.79-1.88-1.63 2.47-.21 1.2-.1.47-1.11.97-2.27M12 2L9.19 8.63 2 9.24l5.46 4.73L5.82 21 12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2z">
+                                                                        </path>
+                                                                    </svg> </div> <a href=""
+                                                                    class="product-reviews-link">84 Reviews</a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="quick-view-btn" data-role="viewProduct"><a>Quick View</a>
+                                                </div>
+                                            </div>
+                                            <div class="product-item fit-image  with-quick-view " data-slide=""
+                                                data-idx="3" data-id="467"
+                                                style="background: transparent; padding: 25px 25px; border-radius: 0px; width: 23.5%; margin: 0 0 0 0; ">
+                                                <div class="product-main-photo has-badge"
+                                                    style="padding-bottom: 80%;background-color: transparent;">
+                                                    <div class="product-photo-inner-wrapper">
+                                                        <div
+                                                            class="quick-buttons-wrapper flex align-center justify-center">
+                                                            <div
+                                                                class="quick-buttons-wrapper-inner flex align-center justify-center">
+                                                                <a class="quick-store-button flex align-center"
+                                                                    data-role="addToCart" data-process="cart"><svg
+                                                                        xmlns="http://www.w3.org/2000/svg"
+                                                                        enable-background="new 0 0 24 24" height="24px"
+                                                                        viewBox="0 0 24 24" width="24px" fill="#000000">
+                                                                        <g>
+                                                                            <rect fill="none" height="24" width="24">
+                                                                            </rect>
+                                                                            <path
+                                                                                d="M18,6h-2c0-2.21-1.79-4-4-4S8,3.79,8,6H6C4.9,6,4,6.9,4,8v12c0,1.1,0.9,2,2,2h12c1.1,0,2-0.9,2-2V8C20,6.9,19.1,6,18,6z M12,4c1.1,0,2,0.9,2,2h-4C10,4.9,10.9,4,12,4z M18,20H6V8h2v2c0,0.55,0.45,1,1,1s1-0.45,1-1V8h4v2c0,0.55,0.45,1,1,1s1-0.45,1-1V8 h2V20z">
+                                                                            </path>
+                                                                        </g>
+                                                                    </svg></a> <a
+                                                                    class="quick-store-button flex align-center"
+                                                                    data-role="viewProduct"><svg
+                                                                        xmlns="http://www.w3.org/2000/svg"
+                                                                        enable-background="new 0 0 24 24" height="24px"
+                                                                        viewBox="0 0 24 24" width="18px" fill="#000000">
+                                                                        <rect fill="none" height="24" width="24"></rect>
+                                                                        <polygon
+                                                                            points="21,11 21,3 13,3 16.29,6.29 6.29,16.29 3,13 3,21 11,21 7.71,17.71 17.71,7.71">
+                                                                        </polygon>
+                                                                    </svg></a> </div>
+                                                        </div><a href="/safety-products-catalog/BK-SUS-BUTTON-ORG"><img
+                                                                src="https://content.app-sources.com/s/535524365072486201/thumbnails/640x480/Accessories_Wands_Tape_Signs/BK-SUS-ORG-BUTTON-9254609.jpg?format=webp"
+                                                                alt="" style="border-radius: 10px;"></a>
+                                                    </div>
+                                                </div>
+                                                <div class="product-item-description">
+                                                    <div>
+                                                        <div class="title-price-wrapper-1">
+                                                            <h3 class=""><a
+                                                                    href="/safety-products-catalog/BK-SUS-BUTTON-ORG"
+                                                                    class="highlightColor">BK-SUS-BUTTON-ORG</a></h3>
+                                                            <div class="col20 f-left product-stars flex align-center">
+                                                                <div class="product-stars-inner"> <svg
+                                                                        xmlns="http://www.w3.org/2000/svg"
+                                                                        viewBox="0 0 24 24" fill="black" width="18px"
+                                                                        height="18px" class="full-star">
+                                                                        <path d="M0 0h24v24H0z" fill="none"></path>
+                                                                        <path
+                                                                            d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z">
+                                                                        </path>
+                                                                    </svg> <svg xmlns="http://www.w3.org/2000/svg"
+                                                                        viewBox="0 0 24 24" fill="black" width="18px"
+                                                                        height="18px" class="full-star">
+                                                                        <path d="M0 0h24v24H0z" fill="none"></path>
+                                                                        <path
+                                                                            d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z">
+                                                                        </path>
+                                                                    </svg> <svg xmlns="http://www.w3.org/2000/svg"
+                                                                        viewBox="0 0 24 24" fill="black" width="18px"
+                                                                        height="18px" class="full-star">
+                                                                        <path d="M0 0h24v24H0z" fill="none"></path>
+                                                                        <path
+                                                                            d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z">
+                                                                        </path>
+                                                                    </svg> <svg xmlns="http://www.w3.org/2000/svg"
+                                                                        viewBox="0 0 24 24" fill="black" width="18px"
+                                                                        height="18px" class="full-star">
+                                                                        <path d="M0 0h24v24H0z" fill="none"></path>
+                                                                        <path
+                                                                            d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z">
+                                                                        </path>
+                                                                    </svg> <svg xmlns="http://www.w3.org/2000/svg"
+                                                                        viewBox="0 0 24 24" fill="black" width="18px"
+                                                                        height="18px">
+                                                                        <path d="M0 0h24v24H0V0z" fill="none"></path>
+                                                                        <path
+                                                                            d="M12 7.13l.97 2.29.47 1.11 1.2.1 2.47.21-1.88 1.63-.91.79.27 1.18.56 2.41-2.12-1.28-1.03-.64-1.03.62-2.12 1.28.56-2.41.27-1.18-.91-.79-1.88-1.63 2.47-.21 1.2-.1.47-1.11.97-2.27M12 2L9.19 8.63 2 9.24l5.46 4.73L5.82 21 12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2z">
+                                                                        </path>
+                                                                    </svg> </div> <a href=""
+                                                                    class="product-reviews-link">84 Reviews</a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="quick-view-btn" data-role="viewProduct"><a>Quick View</a>
+                                                </div>
+                                            </div>
+                                            <div class="product-item fit-image  with-quick-view " data-slide=""
+                                                data-idx="4" data-id="466"
+                                                style="background: transparent; padding: 25px 25px; border-radius: 0px; width: 23.5%; margin: 2% 2% 0 0; ">
+                                                <div class="product-main-photo has-badge"
+                                                    style="padding-bottom: 80%;background-color: transparent;">
+                                                    <div class="product-photo-inner-wrapper">
+                                                        <div
+                                                            class="quick-buttons-wrapper flex align-center justify-center">
+                                                            <div
+                                                                class="quick-buttons-wrapper-inner flex align-center justify-center">
+                                                                <a class="quick-store-button flex align-center"
+                                                                    data-role="addToCart" data-process="cart"><svg
+                                                                        xmlns="http://www.w3.org/2000/svg"
+                                                                        enable-background="new 0 0 24 24" height="24px"
+                                                                        viewBox="0 0 24 24" width="24px" fill="#000000">
+                                                                        <g>
+                                                                            <rect fill="none" height="24" width="24">
+                                                                            </rect>
+                                                                            <path
+                                                                                d="M18,6h-2c0-2.21-1.79-4-4-4S8,3.79,8,6H6C4.9,6,4,6.9,4,8v12c0,1.1,0.9,2,2,2h12c1.1,0,2-0.9,2-2V8C20,6.9,19.1,6,18,6z M12,4c1.1,0,2,0.9,2,2h-4C10,4.9,10.9,4,12,4z M18,20H6V8h2v2c0,0.55,0.45,1,1,1s1-0.45,1-1V8h4v2c0,0.55,0.45,1,1,1s1-0.45,1-1V8 h2V20z">
+                                                                            </path>
+                                                                        </g>
+                                                                    </svg></a> <a
+                                                                    class="quick-store-button flex align-center"
+                                                                    data-role="viewProduct"><svg
+                                                                        xmlns="http://www.w3.org/2000/svg"
+                                                                        enable-background="new 0 0 24 24" height="24px"
+                                                                        viewBox="0 0 24 24" width="18px" fill="#000000">
+                                                                        <rect fill="none" height="24" width="24"></rect>
+                                                                        <polygon
+                                                                            points="21,11 21,3 13,3 16.29,6.29 6.29,16.29 3,13 3,21 11,21 7.71,17.71 17.71,7.71">
+                                                                        </polygon>
+                                                                    </svg></a> </div>
+                                                        </div><a href="/safety-products-catalog/BK-SUS-BUTTON-LM"><img
+                                                                src="https://content.app-sources.com/s/535524365072486201/thumbnails/640x480/Accessories_Wands_Tape_Signs/BK-SUS-LM-BUTTON-9254378.jpg?format=webp"
+                                                                alt="" style="border-radius: 10px;"></a>
+                                                    </div>
+                                                </div>
+                                                <div class="product-item-description">
+                                                    <div>
+                                                        <div class="title-price-wrapper-1">
+                                                            <h3 class=""><a
+                                                                    href="/safety-products-catalog/BK-SUS-BUTTON-LM"
+                                                                    class="highlightColor">BK-SUS-BUTTON-LM</a></h3>
+                                                            <div class="col20 f-left product-stars flex align-center">
+                                                                <div class="product-stars-inner"> <svg
+                                                                        xmlns="http://www.w3.org/2000/svg"
+                                                                        viewBox="0 0 24 24" fill="black" width="18px"
+                                                                        height="18px" class="full-star">
+                                                                        <path d="M0 0h24v24H0z" fill="none"></path>
+                                                                        <path
+                                                                            d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z">
+                                                                        </path>
+                                                                    </svg> <svg xmlns="http://www.w3.org/2000/svg"
+                                                                        viewBox="0 0 24 24" fill="black" width="18px"
+                                                                        height="18px" class="full-star">
+                                                                        <path d="M0 0h24v24H0z" fill="none"></path>
+                                                                        <path
+                                                                            d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z">
+                                                                        </path>
+                                                                    </svg> <svg xmlns="http://www.w3.org/2000/svg"
+                                                                        viewBox="0 0 24 24" fill="black" width="18px"
+                                                                        height="18px" class="full-star">
+                                                                        <path d="M0 0h24v24H0z" fill="none"></path>
+                                                                        <path
+                                                                            d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z">
+                                                                        </path>
+                                                                    </svg> <svg xmlns="http://www.w3.org/2000/svg"
+                                                                        viewBox="0 0 24 24" fill="black" width="18px"
+                                                                        height="18px" class="full-star">
+                                                                        <path d="M0 0h24v24H0z" fill="none"></path>
+                                                                        <path
+                                                                            d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z">
+                                                                        </path>
+                                                                    </svg> <svg xmlns="http://www.w3.org/2000/svg"
+                                                                        viewBox="0 0 24 24" fill="black" width="18px"
+                                                                        height="18px">
+                                                                        <path d="M0 0h24v24H0V0z" fill="none"></path>
+                                                                        <path
+                                                                            d="M12 7.13l.97 2.29.47 1.11 1.2.1 2.47.21-1.88 1.63-.91.79.27 1.18.56 2.41-2.12-1.28-1.03-.64-1.03.62-2.12 1.28.56-2.41.27-1.18-.91-.79-1.88-1.63 2.47-.21 1.2-.1.47-1.11.97-2.27M12 2L9.19 8.63 2 9.24l5.46 4.73L5.82 21 12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2z">
+                                                                        </path>
+                                                                    </svg> </div> <a href=""
+                                                                    class="product-reviews-link">84 Reviews</a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="quick-view-btn" data-role="viewProduct"><a>Quick View</a>
+                                                </div>
+                                            </div>
+                                            <div class="product-item fit-image  with-quick-view " data-slide=""
+                                                data-idx="5" data-id="465"
+                                                style="background: transparent; padding: 25px 25px; border-radius: 0px; width: 23.5%; margin: 2% 2% 0 0; ">
+                                                <div class="product-main-photo has-badge"
+                                                    style="padding-bottom: 80%;background-color: transparent;">
+                                                    <div class="product-photo-inner-wrapper">
+                                                        <div
+                                                            class="quick-buttons-wrapper flex align-center justify-center">
+                                                            <div
+                                                                class="quick-buttons-wrapper-inner flex align-center justify-center">
+                                                                <a class="quick-store-button flex align-center"
+                                                                    data-role="addToCart" data-process="cart"><svg
+                                                                        xmlns="http://www.w3.org/2000/svg"
+                                                                        enable-background="new 0 0 24 24" height="24px"
+                                                                        viewBox="0 0 24 24" width="24px" fill="#000000">
+                                                                        <g>
+                                                                            <rect fill="none" height="24" width="24">
+                                                                            </rect>
+                                                                            <path
+                                                                                d="M18,6h-2c0-2.21-1.79-4-4-4S8,3.79,8,6H6C4.9,6,4,6.9,4,8v12c0,1.1,0.9,2,2,2h12c1.1,0,2-0.9,2-2V8C20,6.9,19.1,6,18,6z M12,4c1.1,0,2,0.9,2,2h-4C10,4.9,10.9,4,12,4z M18,20H6V8h2v2c0,0.55,0.45,1,1,1s1-0.45,1-1V8h4v2c0,0.55,0.45,1,1,1s1-0.45,1-1V8 h2V20z">
+                                                                            </path>
+                                                                        </g>
+                                                                    </svg></a> <a
+                                                                    class="quick-store-button flex align-center"
+                                                                    data-role="viewProduct"><svg
+                                                                        xmlns="http://www.w3.org/2000/svg"
+                                                                        enable-background="new 0 0 24 24" height="24px"
+                                                                        viewBox="0 0 24 24" width="18px" fill="#000000">
+                                                                        <rect fill="none" height="24" width="24"></rect>
+                                                                        <polygon
+                                                                            points="21,11 21,3 13,3 16.29,6.29 6.29,16.29 3,13 3,21 11,21 7.71,17.71 17.71,7.71">
+                                                                        </polygon>
+                                                                    </svg></a> </div>
+                                                        </div><a href="/safety-products-catalog/BK-SUS-SNAP-ORG"><img
+                                                                src="https://content.app-sources.com/s/535524365072486201/thumbnails/640x480/Accessories_Wands_Tape_Signs/BK-SUS-ORG-SNAP-9254150.jpg?format=webp"
+                                                                alt="" style="border-radius: 10px;"></a>
+                                                    </div>
+                                                </div>
+                                                <div class="product-item-description">
+                                                    <div>
+                                                        <div class="title-price-wrapper-1">
+                                                            <h3 class=""><a
+                                                                    href="/safety-products-catalog/BK-SUS-SNAP-ORG"
+                                                                    class="highlightColor">BK-SUS-SNAP-ORG</a></h3>
+                                                            <div class="col20 f-left product-stars flex align-center">
+                                                                <div class="product-stars-inner"> <svg
+                                                                        xmlns="http://www.w3.org/2000/svg"
+                                                                        viewBox="0 0 24 24" fill="black" width="18px"
+                                                                        height="18px" class="full-star">
+                                                                        <path d="M0 0h24v24H0z" fill="none"></path>
+                                                                        <path
+                                                                            d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z">
+                                                                        </path>
+                                                                    </svg> <svg xmlns="http://www.w3.org/2000/svg"
+                                                                        viewBox="0 0 24 24" fill="black" width="18px"
+                                                                        height="18px" class="full-star">
+                                                                        <path d="M0 0h24v24H0z" fill="none"></path>
+                                                                        <path
+                                                                            d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z">
+                                                                        </path>
+                                                                    </svg> <svg xmlns="http://www.w3.org/2000/svg"
+                                                                        viewBox="0 0 24 24" fill="black" width="18px"
+                                                                        height="18px" class="full-star">
+                                                                        <path d="M0 0h24v24H0z" fill="none"></path>
+                                                                        <path
+                                                                            d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z">
+                                                                        </path>
+                                                                    </svg> <svg xmlns="http://www.w3.org/2000/svg"
+                                                                        viewBox="0 0 24 24" fill="black" width="18px"
+                                                                        height="18px" class="full-star">
+                                                                        <path d="M0 0h24v24H0z" fill="none"></path>
+                                                                        <path
+                                                                            d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z">
+                                                                        </path>
+                                                                    </svg> <svg xmlns="http://www.w3.org/2000/svg"
+                                                                        viewBox="0 0 24 24" fill="black" width="18px"
+                                                                        height="18px">
+                                                                        <path d="M0 0h24v24H0V0z" fill="none"></path>
+                                                                        <path
+                                                                            d="M12 7.13l.97 2.29.47 1.11 1.2.1 2.47.21-1.88 1.63-.91.79.27 1.18.56 2.41-2.12-1.28-1.03-.64-1.03.62-2.12 1.28.56-2.41.27-1.18-.91-.79-1.88-1.63 2.47-.21 1.2-.1.47-1.11.97-2.27M12 2L9.19 8.63 2 9.24l5.46 4.73L5.82 21 12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2z">
+                                                                        </path>
+                                                                    </svg> </div> <a href=""
+                                                                    class="product-reviews-link">84 Reviews</a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="quick-view-btn" data-role="viewProduct"><a>Quick View</a>
+                                                </div>
+                                            </div>
+                                            <div class="product-item fit-image  with-quick-view " data-slide=""
+                                                data-idx="6" data-id="464"
+                                                style="background: transparent; padding: 25px 25px; border-radius: 0px; width: 23.5%; margin: 2% 2% 0 0; ">
+                                                <div class="product-main-photo has-badge"
+                                                    style="padding-bottom: 80%;background-color: transparent;">
+                                                    <div class="product-photo-inner-wrapper">
+                                                        <div
+                                                            class="quick-buttons-wrapper flex align-center justify-center">
+                                                            <div
+                                                                class="quick-buttons-wrapper-inner flex align-center justify-center">
+                                                                <a class="quick-store-button flex align-center"
+                                                                    data-role="addToCart" data-process="cart"><svg
+                                                                        xmlns="http://www.w3.org/2000/svg"
+                                                                        enable-background="new 0 0 24 24" height="24px"
+                                                                        viewBox="0 0 24 24" width="24px" fill="#000000">
+                                                                        <g>
+                                                                            <rect fill="none" height="24" width="24">
+                                                                            </rect>
+                                                                            <path
+                                                                                d="M18,6h-2c0-2.21-1.79-4-4-4S8,3.79,8,6H6C4.9,6,4,6.9,4,8v12c0,1.1,0.9,2,2,2h12c1.1,0,2-0.9,2-2V8C20,6.9,19.1,6,18,6z M12,4c1.1,0,2,0.9,2,2h-4C10,4.9,10.9,4,12,4z M18,20H6V8h2v2c0,0.55,0.45,1,1,1s1-0.45,1-1V8h4v2c0,0.55,0.45,1,1,1s1-0.45,1-1V8 h2V20z">
+                                                                            </path>
+                                                                        </g>
+                                                                    </svg></a> <a
+                                                                    class="quick-store-button flex align-center"
+                                                                    data-role="viewProduct"><svg
+                                                                        xmlns="http://www.w3.org/2000/svg"
+                                                                        enable-background="new 0 0 24 24" height="24px"
+                                                                        viewBox="0 0 24 24" width="18px" fill="#000000">
+                                                                        <rect fill="none" height="24" width="24"></rect>
+                                                                        <polygon
+                                                                            points="21,11 21,3 13,3 16.29,6.29 6.29,16.29 3,13 3,21 11,21 7.71,17.71 17.71,7.71">
+                                                                        </polygon>
+                                                                    </svg></a> </div>
+                                                        </div><a href="/safety-products-catalog/BK-SUS-SNAP-LM"><img
+                                                                src="https://content.app-sources.com/s/535524365072486201/thumbnails/640x480/Accessories_Wands_Tape_Signs/BK-SUS-LM-SNAP-9253971.jpg?format=webp"
+                                                                alt="" style="border-radius: 10px;"></a>
+                                                    </div>
+                                                </div>
+                                                <div class="product-item-description">
+                                                    <div>
+                                                        <div class="title-price-wrapper-1">
+                                                            <h3 class=""><a
+                                                                    href="/safety-products-catalog/BK-SUS-SNAP-LM"
+                                                                    class="highlightColor">BK-SUS-SNAP-LM</a></h3>
+                                                            <div class="col20 f-left product-stars flex align-center">
+                                                                <div class="product-stars-inner"> <svg
+                                                                        xmlns="http://www.w3.org/2000/svg"
+                                                                        viewBox="0 0 24 24" fill="black" width="18px"
+                                                                        height="18px" class="full-star">
+                                                                        <path d="M0 0h24v24H0z" fill="none"></path>
+                                                                        <path
+                                                                            d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z">
+                                                                        </path>
+                                                                    </svg> <svg xmlns="http://www.w3.org/2000/svg"
+                                                                        viewBox="0 0 24 24" fill="black" width="18px"
+                                                                        height="18px" class="full-star">
+                                                                        <path d="M0 0h24v24H0z" fill="none"></path>
+                                                                        <path
+                                                                            d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z">
+                                                                        </path>
+                                                                    </svg> <svg xmlns="http://www.w3.org/2000/svg"
+                                                                        viewBox="0 0 24 24" fill="black" width="18px"
+                                                                        height="18px" class="full-star">
+                                                                        <path d="M0 0h24v24H0z" fill="none"></path>
+                                                                        <path
+                                                                            d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z">
+                                                                        </path>
+                                                                    </svg> <svg xmlns="http://www.w3.org/2000/svg"
+                                                                        viewBox="0 0 24 24" fill="black" width="18px"
+                                                                        height="18px" class="full-star">
+                                                                        <path d="M0 0h24v24H0z" fill="none"></path>
+                                                                        <path
+                                                                            d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z">
+                                                                        </path>
+                                                                    </svg> <svg xmlns="http://www.w3.org/2000/svg"
+                                                                        viewBox="0 0 24 24" fill="black" width="18px"
+                                                                        height="18px">
+                                                                        <path d="M0 0h24v24H0V0z" fill="none"></path>
+                                                                        <path
+                                                                            d="M12 7.13l.97 2.29.47 1.11 1.2.1 2.47.21-1.88 1.63-.91.79.27 1.18.56 2.41-2.12-1.28-1.03-.64-1.03.62-2.12 1.28.56-2.41.27-1.18-.91-.79-1.88-1.63 2.47-.21 1.2-.1.47-1.11.97-2.27M12 2L9.19 8.63 2 9.24l5.46 4.73L5.82 21 12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2z">
+                                                                        </path>
+                                                                    </svg> </div> <a href=""
+                                                                    class="product-reviews-link">84 Reviews</a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="quick-view-btn" data-role="viewProduct"><a>Quick View</a>
+                                                </div>
+                                            </div>
+                                            <div class="product-item fit-image  with-quick-view " data-slide=""
+                                                data-idx="7" data-id="394"
+                                                style="background: transparent; padding: 25px 25px; border-radius: 0px; width: 23.5%; margin: 2% 0 0 0; ">
+                                                <div class="product-main-photo has-badge"
+                                                    style="padding-bottom: 80%;background-color: transparent;">
+                                                    <div class="product-photo-inner-wrapper">
+                                                        <div
+                                                            class="quick-buttons-wrapper flex align-center justify-center">
+                                                            <div
+                                                                class="quick-buttons-wrapper-inner flex align-center justify-center">
+                                                                <a class="quick-store-button flex align-center"
+                                                                    data-role="addToCart" data-process="cart"><svg
+                                                                        xmlns="http://www.w3.org/2000/svg"
+                                                                        enable-background="new 0 0 24 24" height="24px"
+                                                                        viewBox="0 0 24 24" width="24px" fill="#000000">
+                                                                        <g>
+                                                                            <rect fill="none" height="24" width="24">
+                                                                            </rect>
+                                                                            <path
+                                                                                d="M18,6h-2c0-2.21-1.79-4-4-4S8,3.79,8,6H6C4.9,6,4,6.9,4,8v12c0,1.1,0.9,2,2,2h12c1.1,0,2-0.9,2-2V8C20,6.9,19.1,6,18,6z M12,4c1.1,0,2,0.9,2,2h-4C10,4.9,10.9,4,12,4z M18,20H6V8h2v2c0,0.55,0.45,1,1,1s1-0.45,1-1V8h4v2c0,0.55,0.45,1,1,1s1-0.45,1-1V8 h2V20z">
+                                                                            </path>
+                                                                        </g>
+                                                                    </svg></a> <a
+                                                                    class="quick-store-button flex align-center"
+                                                                    data-role="viewProduct"><svg
+                                                                        xmlns="http://www.w3.org/2000/svg"
+                                                                        enable-background="new 0 0 24 24" height="24px"
+                                                                        viewBox="0 0 24 24" width="18px" fill="#000000">
+                                                                        <rect fill="none" height="24" width="24"></rect>
+                                                                        <polygon
+                                                                            points="21,11 21,3 13,3 16.29,6.29 6.29,16.29 3,13 3,21 11,21 7.71,17.71 17.71,7.71">
+                                                                        </polygon>
+                                                                    </svg></a> </div>
+                                                        </div><a href="/safety-products-catalog/BK-KSOLE"><img
+                                                                src="https://content.app-sources.com/s/535524365072486201/thumbnails/640x480/Accessories_-_Work_Boots_and_Insoles/BK-KSOLE-8661726.png?format=webp"
+                                                                alt="" style="border-radius: 10px;"></a>
+                                                    </div>
+                                                </div>
+                                                <div class="product-item-description">
+                                                    <div>
+                                                        <div class="title-price-wrapper-1">
+                                                            <h3 class=""><a href="/safety-products-catalog/BK-KSOLE"
+                                                                    class="highlightColor">BK-KSOLE</a></h3>
+                                                            <div class="col20 f-left product-stars flex align-center">
+                                                                <div class="product-stars-inner"> <svg
+                                                                        xmlns="http://www.w3.org/2000/svg"
+                                                                        viewBox="0 0 24 24" fill="black" width="18px"
+                                                                        height="18px" class="full-star">
+                                                                        <path d="M0 0h24v24H0z" fill="none"></path>
+                                                                        <path
+                                                                            d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z">
+                                                                        </path>
+                                                                    </svg> <svg xmlns="http://www.w3.org/2000/svg"
+                                                                        viewBox="0 0 24 24" fill="black" width="18px"
+                                                                        height="18px" class="full-star">
+                                                                        <path d="M0 0h24v24H0z" fill="none"></path>
+                                                                        <path
+                                                                            d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z">
+                                                                        </path>
+                                                                    </svg> <svg xmlns="http://www.w3.org/2000/svg"
+                                                                        viewBox="0 0 24 24" fill="black" width="18px"
+                                                                        height="18px" class="full-star">
+                                                                        <path d="M0 0h24v24H0z" fill="none"></path>
+                                                                        <path
+                                                                            d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z">
+                                                                        </path>
+                                                                    </svg> <svg xmlns="http://www.w3.org/2000/svg"
+                                                                        viewBox="0 0 24 24" fill="black" width="18px"
+                                                                        height="18px" class="full-star">
+                                                                        <path d="M0 0h24v24H0z" fill="none"></path>
+                                                                        <path
+                                                                            d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z">
+                                                                        </path>
+                                                                    </svg> <svg xmlns="http://www.w3.org/2000/svg"
+                                                                        viewBox="0 0 24 24" fill="black" width="18px"
+                                                                        height="18px">
+                                                                        <path d="M0 0h24v24H0V0z" fill="none"></path>
+                                                                        <path
+                                                                            d="M12 7.13l.97 2.29.47 1.11 1.2.1 2.47.21-1.88 1.63-.91.79.27 1.18.56 2.41-2.12-1.28-1.03-.64-1.03.62-2.12 1.28.56-2.41.27-1.18-.91-.79-1.88-1.63 2.47-.21 1.2-.1.47-1.11.97-2.27M12 2L9.19 8.63 2 9.24l5.46 4.73L5.82 21 12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2z">
+                                                                        </path>
+                                                                    </svg> </div> <a href=""
+                                                                    class="product-reviews-link">84 Reviews</a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="quick-view-btn" data-role="viewProduct"><a>Quick View</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>`
             }
 
         }
