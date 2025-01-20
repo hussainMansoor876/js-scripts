@@ -1009,30 +1009,6 @@ const validateSearch = async () => {
 
 validateSearch()
 
-const filterData = async () => {
-    let arr = []
-    let skip = 0
-    while (true) {
-        var data = await sendRequest(`${apiUrl}/${productRoute}?limit=50&skip=${skip}`, 'GET', null)
-
-        if (data?.totalCount <= skip) {
-            break
-        }
-
-        skip += 50
-        if (data?.items?.length) {
-            arr.push(...data?.items)
-        }
-    }
-
-    let validStrings = ['plus-5-plus-5', 'plus-10-plus-10', 'plus-10-plus-5', 'plus-5-plus-10']
-    let filteredData = arr?.filter((v) => validStrings.some((str) => v?.url?.toLowerCase()?.includes(str)))
-
-    console.log('filteredData', filteredData)
-}
-
-// filterData()
-
 document.addEventListener('DOMContentLoaded', async () => {
     // try {
     //     console.log('routeURL', routeURL)
