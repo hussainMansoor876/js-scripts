@@ -1013,7 +1013,7 @@ const filterData = async () => {
     let arr = []
     let skip = 0
     while (true) {
-        var data = await sendRequest(`${apiUrl}/${productRoute}limit=50&skip=${skip}`, 'GET', null)
+        var data = await sendRequest(`${apiUrl}/${productRoute}?limit=50&skip=${skip}`, 'GET', null)
 
         if (data?.totalCount <= skip) {
             break
