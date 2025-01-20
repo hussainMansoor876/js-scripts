@@ -744,7 +744,7 @@ const validateSearch = async () => {
                                 </form>
                             </div>
                         </div>
-                        <div class="widget-row no-results-wrapper">
+                        <div class="widget-row no-results-wrapper" style="margin-left: 10px;">
                             <h1></h1>
                             <span></span>
                             <br/>
