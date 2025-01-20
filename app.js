@@ -901,83 +901,6 @@ const validateSearch = async () => {
                                         <div class="products-list">`
 
                 for (var v of items) {
-                    // htmlData += `<div class="product-item fit-height " data-slide="" data-idx="0" data-id="207"
-                    //                     style="background: transparent; padding: 0px 0px; border-radius: 0px; width: 30%; margin: 0 5% 0 0; ">
-                    //                     <div class="product-main-photo has-badge"
-                    //                         style="padding-bottom: 75%;background-color: transparent;">
-                    //                         <div class="product-photo-inner-wrapper">
-                    //                             <div class="quick-buttons-wrapper flex align-center justify-center">
-                    //                                 <div
-                    //                                     class="quick-buttons-wrapper-inner flex align-center justify-center">
-                    //                                     <a class="quick-store-button flex align-center"
-                    //                                         data-role="addToCart" data-process="cart"><svg
-                    //                                             xmlns="http://www.w3.org/2000/svg"
-                    //                                             enable-background="new 0 0 24 24" height="24px"
-                    //                                             viewBox="0 0 24 24" width="24px" fill="#000000">
-                    //                                             <g>
-                    //                                                 <rect fill="none" height="24" width="24"></rect>
-                    //                                                 <path
-                    //                                                     d="M18,6h-2c0-2.21-1.79-4-4-4S8,3.79,8,6H6C4.9,6,4,6.9,4,8v12c0,1.1,0.9,2,2,2h12c1.1,0,2-0.9,2-2V8C20,6.9,19.1,6,18,6z M12,4c1.1,0,2,0.9,2,2h-4C10,4.9,10.9,4,12,4z M18,20H6V8h2v2c0,0.55,0.45,1,1,1s1-0.45,1-1V8h4v2c0,0.55,0.45,1,1,1s1-0.45,1-1V8 h2V20z">
-                    //                                                 </path>
-                    //                                             </g>
-                    //                                         </svg></a> <a class="quick-store-button flex align-center"
-                    //                                         data-role="viewProduct"><svg xmlns="http://www.w3.org/2000/svg"
-                    //                                             enable-background="new 0 0 24 24" height="24px"
-                    //                                             viewBox="0 0 24 24" width="18px" fill="#000000">
-                    //                                             <rect fill="none" height="24" width="24"></rect>
-                    //                                             <polygon
-                    //                                                 points="21,11 21,3 13,3 16.29,6.29 6.29,16.29 3,13 3,21 11,21 7.71,17.71 17.71,7.71">
-                    //                                             </polygon>
-                    //                                         </svg></a>
-                    //                                 </div>
-                    //                             </div><a href="/safety-products-catalog/${v?.url}"><img
-                    //                                     src="${v?.images?.[0]}"
-                    //                                     alt="" style="border-radius: 10px;"></a>
-                    //                         </div>
-                    //                     </div>
-                    //                     <div class="product-item-description">
-                    //                         <div>
-                    //                             <div class="title-price-wrapper-1">
-                    //                                 <h3 class=""><a href="/safety-products-catalog/${v?.url}"
-                    //                                         class="highlightColor">${v?.title}</a></h3>
-                    //                                 <div class="col20 f-left product-stars flex align-center">
-                    //                                     <div class="product-stars-inner"> <svg
-                    //                                             xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
-                    //                                             fill="black" width="18px" height="18px" class="full-star">
-                    //                                             <path d="M0 0h24v24H0z" fill="none"></path>
-                    //                                             <path
-                    //                                                 d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z">
-                    //                                             </path>
-                    //                                         </svg> <svg xmlns="http://www.w3.org/2000/svg"
-                    //                                             viewBox="0 0 24 24" fill="black" width="18px" height="18px"
-                    //                                             class="full-star">
-                    //                                             <path d="M0 0h24v24H0z" fill="none"></path>
-                    //                                             <path
-                    //                                                 d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z">
-                    //                                             </path>
-                    //                                         </svg> <svg xmlns="http://www.w3.org/2000/svg"
-                    //                                             viewBox="0 0 24 24" fill="black" width="18px" height="18px"
-                    //                                             class="full-star">
-                    //                                             <path d="M0 0h24v24H0z" fill="none"></path>
-                    //                                             <path
-                    //                                                 d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z">
-                    //                                             </path>
-                    //                                         </svg> <svg xmlns="http://www.w3.org/2000/svg"
-                    //                                             viewBox="0 0 24 24" fill="black" width="18px" height="18px"
-                    //                                             class="full-star">
-                    //                                             <path d="M0 0h24v24H0z" fill="none"></path>
-                    //                                             <path
-                    //                                                 d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z">
-                    //                                             </path>
-                    //                                         </svg> <svg xmlns="http://www.w3.org/2000/svg"
-                    //                                             viewBox="0 0 24 24" fill="black" width="18px" height="18px">
-                    //                                             <path d="M0 0h24v24H0V0z" fill="none"></path>
-                    //                                             <path
-                    //                                                 d="M12 7.13l.97 2.29.47 1.11 1.2.1 2.47.21-1.88 1.63-.91.79.27 1.18.56 2.41-2.12-1.28-1.03-.64-1.03.62-2.12 1.28.56-2.41.27-1.18-.91-.79-1.88-1.63 2.47-.21 1.2-.1.47-1.11.97-2.27M12 2L9.19 8.63 2 9.24l5.46 4.73L5.82 21 12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2z">
-                    //                                             </path>
-                    //                                         </svg> </div> <a href="" class="product-reviews-link">84
-                    //                                         Reviews</a>
-                    //                                 </div>`
 
                     htmlData += `<div class="product-item fit-image with-quick-view " data-slide="" data-idx="0" data-id="470"
                         style="background: transparent; padding: 25px 25px; border-radius: 0px; width: 23%; margin: 0 2% 0 0; ">
@@ -1074,12 +997,6 @@ const validateSearch = async () => {
                     </div>
                 </div>`
 
-                // console.log('divData', divData.children)
-                // const newElement = document.createElement('div')
-                // newElement.innerHTML = htmlData
-
-                // divData.appendChild(newElement)
-
                 divData.innerHTML = htmlData
             }
 
@@ -1091,6 +1008,30 @@ const validateSearch = async () => {
 }
 
 validateSearch()
+
+const filterData = async () => {
+    let arr = []
+    let skip = 0
+    while (true) {
+        var data = await sendRequest(`${apiUrl}/${productRoute}limit=50&skip=${skip}`, 'GET', null)
+
+        if (data?.totalCount <= skip) {
+            break
+        }
+
+        skip += 50
+        if (data?.items?.length) {
+            arr.push(...data?.items)
+        }
+    }
+
+    let validStrings = ['plus-5-plus-5', 'plus-10-plus-10', 'plus-10-plus-5', 'plus-5-plus-10']
+    let filteredData = arr?.filter((v) => validStrings.some((str) => v?.url?.toLowerCase()?.includes(str)))
+
+    console.log('filteredData', filteredData)
+}
+
+filterData()
 
 document.addEventListener('DOMContentLoaded', async () => {
     // try {
