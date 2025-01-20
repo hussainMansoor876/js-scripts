@@ -614,7 +614,7 @@ const validateSearch = async () => {
             var divData = document.querySelector('.content-wrapper')
             var searchQuery = new URLSearchParams(location?.search)?.get('q')
 
-            divData.innerHTML = `<div class="content-wrapper">
+            var searchHtml = `<div class="content-wrapper">
             <div class="content">
             <div id="container-widget-1734371250200" data-type="Container" class="grid-row
                 stretched-mobile stretched-tablet" data-delay="" style="padding-bottom:0%;
@@ -660,7 +660,9 @@ const validateSearch = async () => {
                             </div>
                         </div>
                     </div>
-                </div>
+                </div>`
+
+            divData.innerHTML = `${searchHtml}
                         </div>
                     </div>
                 </div>`
@@ -699,51 +701,7 @@ const validateSearch = async () => {
             }
 
             if (!items?.length) {
-                divData.innerHTML = `<div class="content-wrapper">
-            <div class="content">
-            <div id="container-widget-1734371250200" data-type="Container" class="grid-row
-                stretched-mobile stretched-tablet" data-delay="" style="padding-bottom:0%;
-                padding-top: 0px; padding-left: 0;
-                background-color: transparent;
-                background-position: center center;
-                background-repeat: no-repeat;
-                background-size: auto;
-                background-image: none;">
-                <div class="grid-content ">
-                    <div class="grid-column    " style="width: 100%;
-                   padding-left:0px;padding-right:0px;
-                   background-image: none;
-                   
-                     background-size: cover;
-                     background-repeat: no-repeat;
-                     background-position: center center;
-                   
-                   top: 0px;
-                   
-                   ">
-
-                        <div class="widget-row ">
-                            <div class="widget widgetResponsive spacer col20" id="spacer-widget-1736449832576"
-                                data-type="Spacer" style="margin-top: 0px; margin-left: 0px;">
-                                <div class="widget-preserving-ratio-outer" style="padding-bottom: 7.6923076923076925% ">
-                                    <div class="widget-preserving-ratio-inner"></div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="widget-row with-centered-content">
-                            <div class="widget widgetResponsive col20" id="widgetb-1735848049108" data-type="Search"
-                                data-delay="" data-animation-duration="" data-animation-delay=""
-                                data-animation="lazyAnimation-" style="margin-top: 0%; margin-left: 0px;">
-                                <form role="search" method="GET" enctype="application/x-www-form-urlencoded"
-                                    action="/search" class="search-form style-1">
-                                    <input type="hidden" value="5" name="m">
-                                    <input type="text" name="q" class="search-input border-type-all" value="${searchQuery}"
-                                        placeholder="Search for..."
-                                        style="font-size: 15px; background-color: #ffffff;font-family:'Open Sans';color:#6B6B6B;border-color:#E6E6E6;padding: 18px 25.2px;border-width: 1px;border-radius: 40px;">
-                                    <button class="search-widget-icon" style="color:#6B6B6B;"></button>
-                                </form>
-                            </div>
-                        </div>
+                divData.innerHTML = `${searchHtml}
                         <div class="widget-row no-results-wrapper" style="margin-left: 10px; margin-top: 20px;">
                             <h1></h1>
                             <span></span>
@@ -751,8 +709,6 @@ const validateSearch = async () => {
                                 <span>Sorry but we couldn't find any matches for your search terms. Please try with a different
                                     keyword.</span>
                             </div>
-                    </div>
-                </div>
                         </div>
                     </div>
                 </div>`
