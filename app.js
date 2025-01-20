@@ -762,7 +762,95 @@ const validateSearch = async () => {
                 </div>`
             }
             else {
-                let htmlData = `${searchHtml}`
+                let htmlData = `<div class="content-wrapper">
+        <div class="content">
+            <div id="container-widget-1734371250200" data-type="Container" class="grid-row
+                stretched-mobile stretched-tablet" data-delay="" style="padding-bottom:0%;
+                padding-top: 0px; padding-left: 0;
+                background-color: transparent;
+                background-position: center center;
+                background-repeat: no-repeat;
+                background-size: auto;
+                background-image: none;">
+                <div class="grid-content ">
+                    <div class="grid-column    " style="width: 100%;
+                   padding-left:0px;padding-right:0px;
+                   background-image: none;
+                   
+                     background-size: cover;
+                     background-repeat: no-repeat;
+                     background-position: center center;
+                   
+                   top: 0px;
+                   
+                   ">
+
+                        <div class="widget-row ">
+                            <div class="widget widgetResponsive spacer col20" id="spacer-widget-1736449832576"
+                                data-type="Spacer" style="margin-top: 0px; margin-left: 0px;">
+                                <div class="widget-preserving-ratio-outer" style="padding-bottom: 7.6923076923076925% ">
+                                    <div class="widget-preserving-ratio-inner"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="widget-row with-centered-content">
+                            <div class="widget widgetResponsive col20" id="widgetb-1735848049108" data-type="Search"
+                                data-delay="" data-animation-duration="" data-animation-delay=""
+                                data-animation="lazyAnimation-" style="margin-top: 0%; margin-left: 0px;">
+                                <form role="search" method="GET" enctype="application/x-www-form-urlencoded" value="${searchQuery}"
+                                    action="/search" class="search-form style-1">
+                                    <input type="hidden" value="5" name="m">
+                                    <input type="text" name="q" class="search-input border-type-all   "
+                                        placeholder="Search for..."
+                                        style="font-size: 15px; background-color: #ffffff;font-family:'Open Sans';color:#6B6B6B;border-color:#E6E6E6;padding: 18px 25.2px;border-width: 1px;border-radius: 40px;">
+                                    <button class="search-widget-icon" style="color:#6B6B6B;"></button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="grid-content ">
+                    <div class="grid-column    " style="width: 100%;
+                   padding-left:0px;padding-right:0px;
+                   background-image: none;
+                   
+                     background-size: cover;
+                     background-repeat: no-repeat;
+                     background-position: center center;
+                   
+                   top: 0px;
+                   
+                   ">
+
+                        <div class="widget-row ">
+                            <div class="widget widgetResponsive storeWidget col20" id="store-widget-1734370863531" data-type="StoreWidget" data-delay=""
+                                data-animation-duration="" data-animation-delay="" data-animation="lazyAnimation-"
+                                style="margin-top: 2.61538%; margin-left: 0px;">
+                                <div class="col20 f-left main-widget-content">
+                                    <style type="text/css">
+                                        #store-widget-1734370863531 .product-item h3 {
+
+                                            color: rgba(21, 81, 52, 1);
+
+                                            font-family: 'Boton Bold';
+
+                                            font-size: 14px;
+                                            letter-spacing: normal;
+                                        }
+
+                                        #store-widget-1734370863531 .product-item .product-item-price {
+
+                                            color: rgba(0, 0, 0, 1);
+
+                                            font-family: 'Arial';
+
+                                            font-size: 13px;
+                                            letter-spacing: normal;
+                                        }
+                                    </style>
+                                    <div
+                                        class="product-list-wrapper full-width-layout col20 f-left products-per-row-4 style-1 center-align quick-view-2  image-positioned">
+                                        <div class="products-list">`
 
                 for (var v of items) {
                     // htmlData += `<div class="product-item fit-height " data-slide="" data-idx="0" data-id="207"
@@ -843,7 +931,7 @@ const validateSearch = async () => {
                     //                                         Reviews</a>
                     //                                 </div>`
 
-                    htmlData += `<div class="product-item fit-image  with-quick-view " data-slide="" data-idx="0" data-id="470"
+                    htmlData += `<div class="product-item fit-image with-quick-view " data-slide="" data-idx="0" data-id="470"
                         style="background: transparent; padding: 25px 25px; border-radius: 0px; width: 23.5%; margin: 0 2% 0 0; ">
                         <div class="product-main-photo has-badge" style="padding-bottom: 80%;background-color: transparent;">
                             <div class="product-photo-inner-wrapper">
@@ -915,12 +1003,16 @@ const validateSearch = async () => {
                                 </div>
                             </div>
                         </div>
+                        <div class="quick-view-btn" data-role="viewProduct"><a>Quick View</a>
+                            </div>
                     </div>`
                     }
                     else {
                         htmlData += `</div>
                             </div>
                         </div>
+                        <div class="quick-view-btn" data-role="viewProduct"><a>Quick View</a>
+                            </div>
                     </div>`
                     }
                 }
