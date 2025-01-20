@@ -927,7 +927,7 @@ const validateSearch = async () => {
                                                     points="21,11 21,3 13,3 16.29,6.29 6.29,16.29 3,13 3,21 11,21 7.71,17.71 17.71,7.71">
                                                 </polygon>
                                             </svg></a> </div>
-                                </div><a href="/safety-products-catalog/${v?.url}"><img
+                                </div><a href="/safety-products-catalog/${v?.url?.replace(/-plus-(10|5)/g, "")}"><img
                                         src="${v?.images?.[0]}"
                                         alt="" style="border-radius: 10px;"></a>
                             </div>
@@ -935,7 +935,7 @@ const validateSearch = async () => {
                         <div class="product-item-description">
                             <div>
                                 <div class="title-price-wrapper-1">
-                                    <h3 class=""><a href="/safety-products-catalog/${v?.url}" class="highlightColor">${v?.title}</a>
+                                    <h3 class=""><a href="/safety-products-catalog/${v?.url?.replace(/-plus-(10|5)/g, "")}" class="highlightColor">${v?.title}</a>
                                     </h3>
                                     <div class="col20 f-left product-stars flex align-center">
                                         <div class="product-stars-inner"> <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
@@ -972,7 +972,7 @@ const validateSearch = async () => {
                                     </div>`
 
                     if (!logout) {
-                        htmlData += `<span class="product-item-price "><a href="/safety-products-catalog/${v?.url}">From&nbsp;$${calculateDiscountedPrice(v?.variants?.[0]?.price, percentage)}</a></span>
+                        htmlData += `<span class="product-item-price "><a href="/safety-products-catalog/${v?.url?.replace(/-plus-(10|5)/g, "")}">From&nbsp;$${calculateDiscountedPrice(v?.variants?.[0]?.price, percentage)}</a></span>
                                 </div>
                             </div>
                         </div>
