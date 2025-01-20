@@ -795,10 +795,10 @@ const validateSearch = async () => {
                             <div class="widget widgetResponsive col20" id="widgetb-1735848049108" data-type="Search"
                                 data-delay="" data-animation-duration="" data-animation-delay=""
                                 data-animation="lazyAnimation-" style="margin-top: 0%; margin-left: 0px;">
-                                <form role="search" method="GET" enctype="application/x-www-form-urlencoded" value="${searchQuery}"
+                                <form role="search" method="GET" enctype="application/x-www-form-urlencoded"
                                     action="/search" class="search-form style-1">
                                     <input type="hidden" value="5" name="m">
-                                    <input type="text" name="q" class="search-input border-type-all   "
+                                    <input type="text" name="q" class="search-input border-type-all" value="${searchQuery}"
                                         placeholder="Search for..."
                                         style="font-size: 15px; background-color: #ffffff;font-family:'Open Sans';color:#6B6B6B;border-color:#E6E6E6;padding: 18px 25.2px;border-width: 1px;border-radius: 40px;">
                                     <button class="search-widget-icon" style="color:#6B6B6B;"></button>
