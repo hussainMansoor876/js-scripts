@@ -1302,7 +1302,10 @@ document.addEventListener('DOMContentLoaded', async () => {
                 }
                 else {
                     localStorage.setItem('plus', JSON.stringify(false))
-                    localStorage.removeItem('groupName')
+                    var groupName = idData?.name?.toLowerCase()?.replace(/ /g, '-')
+                    var percentage = groupName === 'minus-5' ? 0.05 : 0.1
+                    localStorage.setItem('percentage', JSON.stringify(percentage))
+                    localStorage.setItem('groupName', groupName)
                 }
             }
         }
