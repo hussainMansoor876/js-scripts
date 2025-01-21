@@ -1087,7 +1087,11 @@ document.addEventListener('DOMContentLoaded', async () => {
             else {
                 var savedEmail = localStorage.getItem('email')
                 var sessionEmail = WebPlatform?._sessionDetails?.member?.email
-                if (!validateEmail(savedEmail) && validateEmail(sessionEmail)) {
+
+                if (!validateEmail(sessionEmail)) {
+                    localStorage.clear()
+                }
+                else if (!validateEmail(savedEmail) && validateEmail(sessionEmail)) {
                     await fetchUserByEmail(sessionEmail)
                 }
             }
