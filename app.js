@@ -1295,7 +1295,10 @@ document.addEventListener('DOMContentLoaded', async () => {
 
                 if (idData?.name && idData?.name?.toLowerCase()?.includes('plus')) {
                     localStorage.setItem('plus', JSON.stringify(true))
-                    localStorage.setItem('groupName', idData?.name?.toLowerCase()?.replace(/ /g, '-'))
+                    var groupName = idData?.name?.toLowerCase()?.replace(/ /g, '-')
+                    var percentage = groupName === 'plus-5' ? 0.05 : 0.1
+                    localStorage.setItem('percentage', JSON.stringify(percentage))
+                    localStorage.setItem('groupName', groupName)
                 }
                 else {
                     localStorage.setItem('plus', JSON.stringify(false))
