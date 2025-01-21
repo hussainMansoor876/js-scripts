@@ -444,6 +444,12 @@ function increasePrice(price, percentage) {
     return parseFloat(increasedPrice.toFixed(2))
 }
 
+function discountPrice(price, percentage) {
+    // Calculate the discounted price
+    const discountedPrice = price * (1 - percentage)
+    return parseFloat(discountedPrice.toFixed(2))
+}
+
 function calculateDiscountedPrice(price, discount) {
     // Check if the inputs are valid
     if (price < 0 || discount < 0 || discount > 100) {
@@ -982,7 +988,7 @@ const validateSearch = async () => {
                                     </div>`
 
                     if (!logout) {
-                        htmlData += `<span class="product-item-price "><a href="/safety-products-catalog/${v?.url?.replace(/-plus-(10|5)/g, "")}">From&nbsp;$${isPlus && groupName?.length ? increasePrice(v?.variants?.[0]?.price, percentage) : v?.variants?.[0]?.price}</a></span>
+                        htmlData += `<span class="product-item-price "><a href="/safety-products-catalog/${v?.url?.replace(/-plus-(10|5)/g, "")}">From&nbsp;$${isPlus && groupName?.length ? increasePrice(v?.variants?.[0]?.price, percentage) : groupName?.includes('minus') ? discountPrice(v?.variants?.[0]?.price, percentage) : v?.variants?.[0]?.price}</a></span>
                                 </div>
                             </div>
                         </div>
