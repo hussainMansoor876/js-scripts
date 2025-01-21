@@ -447,7 +447,9 @@ function increasePrice(price, percentage) {
 function discountPrice(price, percentage) {
     // Calculate the discounted price
     const discountedPrice = price * (1 - percentage)
-    return parseFloat(discountedPrice.toFixed(2))
+
+    // Round the third decimal before fixing to two decimals
+    return parseFloat((Math.round(discountedPrice * 1000) / 1000).toFixed(2))
 }
 
 function calculateDiscountedPrice(price, discount) {
