@@ -982,7 +982,7 @@ const validateSearch = async () => {
                                     </div>`
 
                     if (!logout) {
-                        htmlData += `<span class="product-item-price "><a href="/safety-products-catalog/${v?.url?.replace(/-plus-(10|5)/g, "")}">From&nbsp;$${increasePrice(v?.variants?.[0]?.price, percentage)}</a></span>
+                        htmlData += `<span class="product-item-price "><a href="/safety-products-catalog/${v?.url?.replace(/-plus-(10|5)/g, "")}">From&nbsp;$${isPlus && groupName?.length ? increasePrice(v?.variants?.[0]?.price, percentage) : v?.variants?.[0]?.price}</a></span>
                                 </div>
                             </div>
                         </div>
