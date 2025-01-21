@@ -481,7 +481,7 @@ const updateProduct = async (e) => {
         return selectedProduct
     }
     else {
-        return
+        return e
     }
 }
 
@@ -1310,14 +1310,13 @@ document.addEventListener('DOMContentLoaded', async () => {
                     var percentage = groupName === 'plus-5' ? 0.05 : 0.1
                     localStorage.setItem('percentage', JSON.stringify(percentage))
                     localStorage.setItem('groupName', groupName)
-                    localStorage.setItem('plus', JSON.stringify(false))
                 }
                 else {
                     localStorage.setItem('plus', JSON.stringify(false))
                     var groupName = idData?.name?.toLowerCase()?.replace(/ /g, '-')
                     var percentage = groupName === 'minus-5' ? 0.05 : 0.1
                     localStorage.setItem('percentage', JSON.stringify(percentage))
-                    localStorage.setItem('minus', JSON.stringify(true))
+                    localStorage.setItem('groupName', groupName)
                 }
             }
         }
