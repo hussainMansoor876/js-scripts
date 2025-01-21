@@ -909,8 +909,8 @@ const validateSearch = async () => {
                         <div class="product-main-photo has-badge" style="padding-bottom: 80%;background-color: transparent;">
                             <div class="product-photo-inner-wrapper">
                                 <div class="quick-buttons-wrapper flex align-center justify-center">
-                                <div class="quick-buttons-wrapper-inner flex align-center justify-center"> 
-                                <a class="quick-store-button flex align-center" data-role="addToCart" data-process="cart" onclick="() => ${WebPlatform.Store.showProductInQuickView(v?.id)}"><svg
+                                <div class="quick-buttons-wrapper-inner flex align-center justify-center" onclick="() => ${WebPlatform.Store.showProductInQuickView(v?.id)}"> 
+                                <a class="quick-store-button flex align-center" data-role="addToCart" data-process="cart"><svg
                                             xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 24 24" height="24px"
                                             viewBox="0 0 24 24" width="24px" fill="#000000">
                                             <g>
@@ -920,7 +920,7 @@ const validateSearch = async () => {
                                                 </path>
                                             </g>
                                         </svg></a> 
-                                        <a class="quick-store-button flex align-center" data-role="viewProduct" onclick="() => ${WebPlatform.Store.showProductInQuickView(v?.id)}"><svg
+                                        <a class="quick-store-button flex align-center" data-role="viewProduct"><svg
                                             xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 24 24" height="24px"
                                             viewBox="0 0 24 24" width="18px" fill="#000000">
                                             <rect fill="none" height="24" width="24"></rect>
