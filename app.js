@@ -446,7 +446,6 @@ function increasePrice(price, percentage) {
 
 function discountPrice(price, percentage) {
     // Calculate the discounted price
-    console.log('price', price)
     const discountedPrice = price * (1 - percentage)
     return parseFloat(discountedPrice.toFixed(2))
 }
