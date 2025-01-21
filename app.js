@@ -457,7 +457,7 @@ const updateProduct = async (e) => {
     let roundedDiscountInPercent = e?.roundedDiscountInPercent || (percentage * 100)
     for (var y of data?.variants) {
         if (y?.price) {
-            y.price = calculateIncreasedPrice(y?.price * ((100 + roundedDiscountInPercent) / 100), roundedDiscountInPercent)
+            y.price = calculateIncreasedPrice(y?.price * ((100 + roundedDiscountInPercent) / 100), roundedDiscountInPercent) - 0.01
         }
     }
 
