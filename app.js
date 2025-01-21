@@ -438,6 +438,12 @@ function calculateIncreasedPrice(targetPriceAfterDiscount, discountPercentage) {
     return parseFloat(increasedPrice.toFixed(2))
 }
 
+function increasePrice(price, percentage) {
+    // Calculate the increased price
+    const increasedPrice = price * (1 + percentage)
+    return parseFloat(increasedPrice.toFixed(2))
+}
+
 function calculateDiscountedPrice(price, discount) {
     // Check if the inputs are valid
     if (price < 0 || discount < 0 || discount > 100) {
@@ -698,12 +704,13 @@ const validateSearch = async () => {
                 logout = true
             }
 
-            if (groupName?.length && isPlus) {
-                items = items?.filter((v) => v?.url?.toLowerCase()?.includes(groupName))
-            }
-            else {
-                items = items?.filter((v) => !v?.url?.toLowerCase()?.includes('plus'))
-            }
+            // if (groupName?.length && isPlus) {
+            //     items = items?.filter((v) => v?.url?.toLowerCase()?.includes(groupName))
+            // }
+            // else {
+            //     items = items?.filter((v) => !v?.url?.toLowerCase()?.includes('plus'))
+            // }
+            items = items?.filter((v) => !v?.url?.toLowerCase()?.includes('plus'))
 
             if (!items?.length) {
                 divData.innerHTML = `<div class="content-wrapper">
@@ -975,7 +982,7 @@ const validateSearch = async () => {
                                     </div>`
 
                     if (!logout) {
-                        htmlData += `<span class="product-item-price "><a href="/safety-products-catalog/${v?.url?.replace(/-plus-(10|5)/g, "")}">From&nbsp;$${calculateDiscountedPrice(v?.variants?.[0]?.price, percentage)}</a></span>
+                        htmlData += `<span class="product-item-price "><a href="/safety-products-catalog/${v?.url?.replace(/-plus-(10|5)/g, "")}">From&nbsp;$${increasePrice(v?.variants?.[0]?.price, percentage)}</a></span>
                                 </div>
                             </div>
                         </div>
