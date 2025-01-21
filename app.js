@@ -438,6 +438,16 @@ function calculateIncreasedPrice(targetPriceAfterDiscount, discountPercentage) {
     return parseFloat(increasedPrice.toFixed(2))
 }
 
+function calculatePriceToSet(currentPrice, discountPercent) {
+    // Convert discount percent to decimal
+    const discountDecimal = discountPercent / 100;
+    // Calculate the target price (adding the percentage)
+    const targetPrice = currentPrice * (1 + discountDecimal)
+    // Calculate the price to set to achieve the target price after discount
+    const priceToSet = targetPrice / (1 - discountDecimal)
+    return priceToSet
+}
+
 function calculateDiscountedPrice(price, discount) {
     // Check if the inputs are valid
     if (price < 0 || discount < 0 || discount > 100) {
@@ -445,10 +455,10 @@ function calculateDiscountedPrice(price, discount) {
     }
 
     // Calculate the discounted price
-    const discountedPrice = price - (price * discount);
+    const discountedPrice = price - (price * discount)
 
     // Return the result rounded to two decimal places
-    return Math.round(discountedPrice * 100) / 100;
+    return Math.round(discountedPrice * 100) / 100
 }
 
 const updateProduct = async (e) => {
@@ -457,7 +467,14 @@ const updateProduct = async (e) => {
     let roundedDiscountInPercent = e?.roundedDiscountInPercent || (percentage * 100)
     for (var y of data?.variants) {
         if (y?.price) {
-            y.price = calculateIncreasedPrice(y?.price * ((100 + roundedDiscountInPercent) / 100), roundedDiscountInPercent) - 0.01
+            y.price = calculateIncreasedPrice(y?.price, roundedDiscountInPercent)
+
+            // if (y.price < 10) {
+            //     y.price -= 0.01
+            // }
+            // else {
+            //     y.price -= 0.01
+            // }
         }
     }
 
