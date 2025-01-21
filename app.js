@@ -907,10 +907,10 @@ const validateSearch = async () => {
                     htmlData += `<div class="product-item fit-image with-quick-view " data-slide="" data-idx="0" data-id="470"
                         style="background: transparent; padding: 25px 25px; border-radius: 0px; width: 23%; margin: 0 2% 0 0; ">
                         <div class="product-main-photo has-badge" style="padding-bottom: 80%;background-color: transparent;">
-                            <div class="product-photo-inner-wrapper">
+                            <div class="product-photo-inner-wrapper" onclick="${WebPlatform.Store.showProductInQuickView(e)}">
                                 <div class="quick-buttons-wrapper flex align-center justify-center">
-                                <div class="quick-buttons-wrapper-inner flex align-center justify-center"> <a
-                                        class="quick-store-button flex align-center" data-role="addToCart" data-process="cart"><svg
+                                <div class="quick-buttons-wrapper-inner flex align-center justify-center"> 
+                                <a class="quick-store-button flex align-center" data-role="addToCart" data-process="cart" onclick="${WebPlatform.Store.showProductInQuickView(e)}"><svg
                                             xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 24 24" height="24px"
                                             viewBox="0 0 24 24" width="24px" fill="#000000">
                                             <g>
@@ -919,7 +919,8 @@ const validateSearch = async () => {
                                                     d="M18,6h-2c0-2.21-1.79-4-4-4S8,3.79,8,6H6C4.9,6,4,6.9,4,8v12c0,1.1,0.9,2,2,2h12c1.1,0,2-0.9,2-2V8C20,6.9,19.1,6,18,6z M12,4c1.1,0,2,0.9,2,2h-4C10,4.9,10.9,4,12,4z M18,20H6V8h2v2c0,0.55,0.45,1,1,1s1-0.45,1-1V8h4v2c0,0.55,0.45,1,1,1s1-0.45,1-1V8 h2V20z">
                                                 </path>
                                             </g>
-                                        </svg></a> <a class="quick-store-button flex align-center" data-role="viewProduct"><svg
+                                        </svg></a> 
+                                        <a class="quick-store-button flex align-center" data-role="viewProduct" onclick="${WebPlatform.Store.showProductInQuickView(e)}"><svg
                                             xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 24 24" height="24px"
                                             viewBox="0 0 24 24" width="18px" fill="#000000">
                                             <rect fill="none" height="24" width="24"></rect>
