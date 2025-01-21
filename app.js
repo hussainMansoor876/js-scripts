@@ -464,20 +464,25 @@ function calculateDiscountedPrice(price, discount) {
 }
 
 const updateProduct = async (e) => {
-    let data = await sendRequest(`${apiUrl}/${productRoute}/${e?.id}`, 'GET', null)
-    var percentage = JSON.parse(localStorage.getItem('percentage')) || 0
-    let roundedDiscountInPercent = e?.roundedDiscountInPercent || (percentage * 100)
-    for (var y of data?.variants) {
-        if (y?.price) {
-            y.price = calculateIncreasedPrice(y?.price * ((100 + roundedDiscountInPercent) / 100), roundedDiscountInPercent)
+    if (isPlus && groupName?.length && groupName?.includes('plus')) {
+        let data = await sendRequest(`${apiUrl}/${productRoute}/${e?.id}`, 'GET', null)
+        var percentage = JSON.parse(localStorage.getItem('percentage')) || 0
+        let roundedDiscountInPercent = e?.roundedDiscountInPercent || (percentage * 100)
+        for (var y of data?.variants) {
+            if (y?.price) {
+                y.price = calculateIncreasedPrice(y?.price * ((100 + roundedDiscountInPercent) / 100), roundedDiscountInPercent)
+            }
         }
+
+        data.url = `${data?.url}-${groupName}`
+        data.hidden = true
+        selectedProduct = await sendRequest(`${apiUrl}/${productRoute}`, 'POST', data, [{ update_existing_product_by_url: true }])
+
+        return selectedProduct
     }
-
-    data.url = `${data?.url}-${groupName}`
-    data.hidden = true
-    selectedProduct = await sendRequest(`${apiUrl}/${productRoute}`, 'POST', data, [{ update_existing_product_by_url: true }])
-
-    return selectedProduct
+    else {
+        return
+    }
 }
 
 function validateEmail(email) {
@@ -1305,13 +1310,14 @@ document.addEventListener('DOMContentLoaded', async () => {
                     var percentage = groupName === 'plus-5' ? 0.05 : 0.1
                     localStorage.setItem('percentage', JSON.stringify(percentage))
                     localStorage.setItem('groupName', groupName)
+                    localStorage.setItem('plus', JSON.stringify(false))
                 }
                 else {
                     localStorage.setItem('plus', JSON.stringify(false))
                     var groupName = idData?.name?.toLowerCase()?.replace(/ /g, '-')
                     var percentage = groupName === 'minus-5' ? 0.05 : 0.1
                     localStorage.setItem('percentage', JSON.stringify(percentage))
-                    localStorage.setItem('groupName', groupName)
+                    localStorage.setItem('minus', JSON.stringify(true))
                 }
             }
         }
