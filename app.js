@@ -1208,6 +1208,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                     console.log('price', price)
 
                     if (isPlus) {
+                        console.log('if')
                         if (selectedProductData?.price) {
                             spanElement.innerHTML = `$${((selectedProductData?.price + (selectedProductData?.price * percentage)).toFixed(2))}`
                             productPriceDiv.appendChild(spanElement)
@@ -1227,6 +1228,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                         selectedProductData = { ...selectedProductData, id: data?.id }
                     }
                     else {
+                        console.log('else', selectedProductData)
                         if (selectedProductData?.price) {
                             spanElement.innerHTML = `$${((selectedProductData?.price - (selectedProductData?.price * percentage)).toFixed(2))}`
                             productPriceDiv.appendChild(spanElement)
