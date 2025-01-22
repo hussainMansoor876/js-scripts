@@ -1238,6 +1238,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                             })
                         }
                         else {
+                            console.log('else', price)
                             let p = parseFloat(parseFloat(price?.innerHTML?.split('$')?.slice(-1,)[0]).toFixed(2))
                             price.innerHTML = `$${(p - (p * percentage)).toFixed(2)}`
                         }
