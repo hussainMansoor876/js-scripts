@@ -1205,8 +1205,6 @@ document.addEventListener('DOMContentLoaded', async () => {
                         price.style.display = 'none'
                     }
 
-                    console.log('price', price)
-
                     if (isPlus) {
                         console.log('if')
                         if (selectedProductData?.price) {
@@ -1228,10 +1226,9 @@ document.addEventListener('DOMContentLoaded', async () => {
                         selectedProductData = { ...selectedProductData, id: data?.id }
                     }
                     else {
-                        console.log('else', selectedProductData)
                         if (selectedProductData?.price) {
                             if (groupName === 'regular') {
-                                spanElement.innerHTML = selectedProductData?.price
+                                spanElement.innerHTML = `$${selectedProductData?.price}`
                                 productPriceDiv.appendChild(spanElement)
                             }
                             else {
@@ -1246,9 +1243,8 @@ document.addEventListener('DOMContentLoaded', async () => {
                             }
                         }
                         else {
-                            console.log('else', price)
                             let p = parseFloat(parseFloat(price?.innerHTML?.split('$')?.slice(-1,)[0]).toFixed(2))
-                            price.innerHTML = `$${(p - (p * percentage)).toFixed(2)}`
+                            price.innerHTML =groupName === 'regular' ? `$${p}`: `$${(p - (p * percentage)).toFixed(2)}`
                         }
                     }
                 }
