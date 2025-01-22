@@ -1205,7 +1205,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                         price.style.display = 'none'
                     }
 
-                    console.log('selectedProduct', selectedProduct)
+                    console.log('price', price)
 
                     if (isPlus) {
                         if (selectedProductData?.price) {
