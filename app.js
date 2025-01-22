@@ -441,7 +441,7 @@ function calculateIncreasedPrice(targetPriceAfterDiscount, discountPercentage) {
 function increasePrice(price, percentage) {
     // Calculate the increased price
     const increasedPrice = price * (1 + percentage)
-    
+
     // Round the third decimal before fixing to two decimals
     return parseFloat((Math.round(increasedPrice * 1000) / 1000).toFixed(2))
 }
@@ -1230,14 +1230,20 @@ document.addEventListener('DOMContentLoaded', async () => {
                     else {
                         console.log('else', selectedProductData)
                         if (selectedProductData?.price) {
-                            spanElement.innerHTML = `$${((selectedProductData?.price - (selectedProductData?.price * percentage)).toFixed(2))}`
-                            productPriceDiv.appendChild(spanElement)
-                            selectedProductData.combinations = selectedProductData?.combinations?.map((v) => {
-                                return {
-                                    ...v,
-                                    price: parseFloat((v?.price - (v?.price * percentage) || v?.price).toFixed(2))
-                                }
-                            })
+                            if (groupName === 'regular') {
+                                spanElement.innerHTML = selectedProductData?.price
+                                productPriceDiv.appendChild(spanElement)
+                            }
+                            else {
+                                spanElement.innerHTML = `$${((selectedProductData?.price - (selectedProductData?.price * percentage)).toFixed(2))}`
+                                productPriceDiv.appendChild(spanElement)
+                                selectedProductData.combinations = selectedProductData?.combinations?.map((v) => {
+                                    return {
+                                        ...v,
+                                        price: parseFloat((v?.price - (v?.price * percentage) || v?.price).toFixed(2))
+                                    }
+                                })
+                            }
                         }
                         else {
                             console.log('else', price)
