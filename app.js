@@ -728,6 +728,7 @@ const validateSearch = async () => {
             // else {
             //     items = items?.filter((v) => !v?.url?.toLowerCase()?.includes('plus'))
             // }
+            console.log('items', items)
             items = items?.filter((v) => !v?.url?.toLowerCase()?.includes('plus'))
 
             console.log('items', items)
