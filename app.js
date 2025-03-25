@@ -713,13 +713,6 @@ const validateSearch = async () => {
                 skip += limit
             }
 
-            console.log('allItems', allItems)
-
-            let data = await sendRequest(`${apiUrl}/${productRoute}?title=${searchQuery}&limit=50&skip=50`, 'GET', null)
-            let items = data?.items
-
-            console.log('items', items, items?.length)
-
             var savedEmail = localStorage.getItem('email')
             var sessionEmail = WebPlatform?._sessionDetails?.member?.email
             if (!validateEmail(savedEmail) && validateEmail(sessionEmail)) {
@@ -749,12 +742,11 @@ const validateSearch = async () => {
             // else {
             //     items = items?.filter((v) => !v?.url?.toLowerCase()?.includes('plus'))
             // }
-            console.log('items', items?.map((v) => v?.url))
-            items = items?.filter((v) => !v?.url?.toLowerCase()?.includes('plus'))
+            allItems = allItems?.filter((v) => !v?.url?.toLowerCase()?.includes('plus'))
 
-            console.log('items', items)
+            console.log('allItems', allItems)
 
-            if (!items?.length) {
+            if (!allItems?.length) {
                 divData.innerHTML = `<div class="content-wrapper">
             <div class="content">
             <div id="container-widget-1734371250200" data-type="Container" class="grid-row
@@ -951,7 +943,7 @@ const validateSearch = async () => {
                                         class="product-list-wrapper full-width-layout col20 f-left products-per-row-4 style-1 center-align quick-view-2  image-positioned">
                                         <div class="products-list">`
 
-                for (var v of items) {
+                for (var v of allItems) {
 
                     htmlData += `<div class="product-item fit-image with-quick-view " data-slide="" data-idx="0" data-id="470"
                         style="background: transparent; padding: 25px 25px; border-radius: 0px; width: 23%; margin: 0 2% 0 0; ">
