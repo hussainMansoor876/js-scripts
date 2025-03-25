@@ -715,8 +715,10 @@ const validateSearch = async () => {
 
             // console.log('allItems', allItems)
 
-            let data = await sendRequest(`${apiUrl}/${productRoute}?title=${searchQuery}&limit=50`, 'GET', null)
+            let data = await sendRequest(`${apiUrl}/${productRoute}?title=${searchQuery}&limit=50&skip=50`, 'GET', null)
             let items = data?.items
+
+            console.log('items', items, items?.length)
 
             var savedEmail = localStorage.getItem('email')
             var sessionEmail = WebPlatform?._sessionDetails?.member?.email
