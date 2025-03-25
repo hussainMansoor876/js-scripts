@@ -744,8 +744,6 @@ const validateSearch = async () => {
             // }
             allItems = allItems?.filter((v) => !v?.url?.toLowerCase()?.includes('plus'))
 
-            console.log('allItems', allItems)
-
             if (!allItems?.length) {
                 divData.innerHTML = `<div class="content-wrapper">
             <div class="content">
