@@ -696,24 +696,24 @@ const validateSearch = async () => {
 
             var searchInput = document.querySelector('input.search-input.border-type-all')
 
-            // let skip = 0
-            // let limit = 50
-            // let allItems = []
+            let skip = 0
+            let limit = 50
+            let allItems = []
 
-            // while (true) {
-            //     let data = await sendRequest(`${apiUrl}/${productRoute}?title=${searchQuery}&limit=${limit}&skip=${skip}`, 'GET', null);
+            while (true) {
+                let data = await sendRequest(`${apiUrl}/${productRoute}?title=${searchQuery}&limit=${limit}&skip=${skip}`, 'GET', null);
 
-            //     let items = data?.items || [];
+                let items = data?.items || []
+                let totalCount = data?.totalCount || 0
 
-            //     if (items.length === 0) {
-            //         break
-            //     }
+                allItems.push(...items)
+                if (allItems.length >= totalCount) {
+                    break
+                }
+                skip += limit
+            }
 
-            //     allItems.push(...items)
-            //     skip += limit
-            // }
-
-            // console.log('allItems', allItems)
+            console.log('allItems', allItems)
 
             let data = await sendRequest(`${apiUrl}/${productRoute}?title=${searchQuery}&limit=50&skip=50`, 'GET', null)
             let items = data?.items
