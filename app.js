@@ -5,7 +5,7 @@
 // Redirecting that to /search only made the platform bounce back, so the
 // results are rendered straight onto this url instead - no reload, no flash
 // of the category page - even if anything further down in this file fails.
-var APP_JS_BUILD = '2026-08-31-search-6'
+var APP_JS_BUILD = '2026-08-31-search-7'
 
 var getStoreSearchTerm = (pathname, search) => {
     let path = String(pathname ?? '')
@@ -40,12 +40,80 @@ var getStoreSearchTerm = (pathname, search) => {
     return ''
 }
 
+// Keeps the category listing this url normally renders from ever being seen:
+// its content is hidden by css from the moment this file runs and a spinner
+// takes its place until the search results are on screen.
+var searchLoadingCss = `
+.content-wrapper > *:not(.bk-search-loading) { visibility: hidden !important; }
+.bk-search-loading { display: flex; align-items: center; justify-content: center; min-height: 55vh; padding: 60px 0; }
+.bk-search-loading .bk-search-spinner { width: 46px; height: 46px; border: 3px solid rgba(21, 81, 52, 0.15); border-top-color: rgba(21, 81, 52, 1); border-radius: 50%; animation: bk-search-spin 0.8s linear infinite; }
+@keyframes bk-search-spin { to { transform: rotate(360deg); } }
+`
+
+var searchLoadingShown = false
+
+const showSearchLoading = (container) => {
+    try {
+        searchLoadingShown = true
+
+        if (!document.getElementById('bk-search-loading-style')) {
+            let style = document.createElement('style')
+            style.id = 'bk-search-loading-style'
+            style.textContent = searchLoadingCss
+            ;(document.head || document.documentElement).appendChild(style)
+        }
+
+        let wrapper = container || document.querySelector('.content-wrapper')
+
+        if (wrapper && !wrapper.querySelector(':scope > .bk-search-loading')) {
+            let loader = document.createElement('div')
+            loader.className = 'bk-search-loading'
+            loader.innerHTML = '<div class="bk-search-spinner"></div>'
+            wrapper.appendChild(loader)
+        }
+    }
+    catch (e) {
+        console.log('e', e)
+    }
+}
+
+const hideSearchLoading = () => {
+    try {
+        searchLoadingShown = false
+        document.getElementById('bk-search-loading-style')?.remove()
+        document.querySelectorAll('.bk-search-loading').forEach((v) => v.remove())
+    }
+    catch (e) {
+        console.log('e', e)
+    }
+}
+
+const startSearchLoading = () => {
+    showSearchLoading()
+
+    // the wrapper is not always parsed yet when this file runs
+    if (!document.querySelector('.content-wrapper')) {
+        document.addEventListener('DOMContentLoaded', () => {
+            if (searchLoadingShown) {
+                showSearchLoading()
+            }
+        })
+    }
+
+    // never leave a page hidden behind the spinner
+    setTimeout(hideSearchLoading, 10000)
+}
+
 // term of the store search url we are on, rendered in place by validateSearch
 var searchInPageTerm = (function () {
     try {
         let term = getStoreSearchTerm(location?.pathname, location?.search)
 
         console.log('[search] app.js build', APP_JS_BUILD, location.pathname, term ? `(in page search: ${term})` : '')
+
+        if (term.length || location?.pathname === '/search') {
+            startSearchLoading()
+        }
 
         // the widget can also swap the url in without loading a page
         const rerender = () => {
@@ -54,6 +122,7 @@ var searchInPageTerm = (function () {
 
                 if (next.length && next !== searchInPageTerm) {
                     searchInPageTerm = next
+                    startSearchLoading()
                     validateSearch(next)
                 }
             }
@@ -1126,12 +1195,14 @@ const validateSearch = async (queryOverride) => {
         var divData = document.querySelector('.content-wrapper')
 
         if (!divData) {
+            hideSearchLoading()
             return
         }
 
         var searchQuery = renderInPage ? queryOverride : new URLSearchParams(location?.search)?.get('q')
 
         divData.innerHTML = buildSearchShell(searchQuery)
+        showSearchLoading(divData)
 
         let productsList = divData.querySelector('.products-list')
         let statusRow = divData.querySelector('.search-status')
@@ -1149,6 +1220,7 @@ const validateSearch = async (queryOverride) => {
         let searchTokens = normalizedQuery.split(' ').filter(Boolean)
 
         const showNoResults = () => {
+            hideSearchLoading()
             setStatus('')
             if (noResultsRow) {
                 noResultsRow.innerHTML = noResultsHtml
@@ -1179,6 +1251,9 @@ const validateSearch = async (queryOverride) => {
             // pages come in
             results.sort((a, b) => searchRank(a, normalizedQuery) - searchRank(b, normalizedQuery))
             productsList.innerHTML = results.map((v) => cards.get(v.__key)).join('')
+
+            // first products on screen, the spinner has done its job
+            hideSearchLoading()
 
             if (noResultsRow) {
                 noResultsRow.innerHTML = ''
@@ -1238,6 +1313,7 @@ const validateSearch = async (queryOverride) => {
         }
     }
     catch (e) {
+        hideSearchLoading()
         console.log('e', e)
     }
 }
