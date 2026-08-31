@@ -1,3 +1,110 @@
+// Search redirect bootstrap
+// This has to be the first thing that runs in this file. The theme's own
+// search boxes navigate to /<catalog>/search/<term>, a url that is handled by
+// the store widget and never matches a product code, so those searches have
+// to reach /search?q=<term> - even if anything further down in this file
+// fails on the page.
+var APP_JS_BUILD = '2026-08-31-search-4'
+
+var searchRedirectDone = (function () {
+    const readStoreSearchTerm = (pathname) => {
+        let match = String(pathname ?? '').match(/^\/(?:[^/]+\/)*search\/(.+)$/)
+
+        if (!match) {
+            return ''
+        }
+
+        let term = match[1].replace(/\/+$/, '').replace(/\+/g, ' ')
+
+        try {
+            term = decodeURIComponent(term)
+        }
+        catch (e) {
+            // keep the raw term if it is not valid percent-encoding
+        }
+
+        return term.trim()
+    }
+
+    const goToSearch = (term, replace) => {
+        let target = `/search?q=${encodeURIComponent(term)}`
+
+        console.log('[search] redirecting to', target)
+
+        if (replace) {
+            window.location.replace(target)
+        }
+        else {
+            window.location.assign(target)
+        }
+    }
+
+    try {
+        console.log('[search] app.js build', APP_JS_BUILD, location.pathname)
+
+        const redirectFromUrl = () => {
+            let term = readStoreSearchTerm(location?.pathname)
+
+            if (term.length) {
+                goToSearch(term, true)
+                return true
+            }
+            return false
+        }
+
+        // take the submit over so the catalog search url is never reached
+        document.addEventListener('submit', (event) => {
+            try {
+                let form = event?.target
+
+                if (!form?.matches?.('form')) {
+                    return
+                }
+
+                let input = form.querySelector('input[name="q"], input.search-input')
+                let term = String(input?.value ?? '').trim()
+
+                if (!term.length) {
+                    return
+                }
+
+                event.preventDefault()
+                goToSearch(term, false)
+            }
+            catch (e) {
+                console.log('e', e)
+            }
+        }, true)
+
+        // and catch a url the widget swaps in without loading a page
+        window.addEventListener('popstate', redirectFromUrl)
+
+        let pushState = history.pushState
+
+        history.pushState = function () {
+            let result = pushState.apply(this, arguments)
+            redirectFromUrl()
+            return result
+        }
+
+        return redirectFromUrl()
+    }
+    catch (e) {
+        console.log('e', e)
+    }
+
+    return false
+})()
+
+const parseJson = (value, fallback) => {
+    try {
+        return JSON.parse(value) ?? fallback
+    }
+    catch (e) {
+        return fallback
+    }
+}
+
 const categories = [
     {
         id: 11,
@@ -324,7 +431,7 @@ routeURL = routeURL?.[0]
 
 var savedEmail = localStorage.getItem('email')
 var isPlus = localStorage.getItem('plus')
-isPlus = JSON.parse(isPlus) || false
+isPlus = parseJson(isPlus, false) || false
 var groupName = localStorage.getItem('groupName')
 var isSessionExpired = false
 let selectedProduct = null
@@ -744,92 +851,6 @@ const fetchProductsStreamed = async (queries = {}, onPage = () => { }) => {
     await Promise.all(Array.from({ length: Math.min(5, offsets.length) }, () => worker()))
 }
 
-const getStoreSearchTerm = (pathname) => {
-    // the store widget submits its own searches as a path, e.g.
-    // /safety-products-catalog/search/BK461-LM - that page does not match
-    // product codes at all, it just falls back to the category listing
-    let match = String(pathname ?? '').match(/^\/(?:[^/]+\/)*search\/(.+)$/)
-
-    if (!match) {
-        return ''
-    }
-
-    let term = match[1].replace(/\/+$/, '').replace(/\+/g, ' ')
-
-    try {
-        term = decodeURIComponent(term)
-    }
-    catch (e) {
-        // keep the raw term if it is not valid percent-encoding
-    }
-
-    return term.trim()
-}
-
-const goToSearchPage = (term) => {
-    window.location.replace(`/search?q=${encodeURIComponent(term)}`)
-}
-
-// the theme's own search boxes post to <catalog>/search/<term> when they are
-// used from inside a catalog page, and that page never matches product codes,
-// so take the submit over and go straight to the search page
-const initSearchRedirects = () => {
-    try {
-        const redirectFromUrl = () => {
-            let term = getStoreSearchTerm(location?.pathname)
-
-            if (term.length) {
-                goToSearchPage(term)
-                return true
-            }
-            return false
-        }
-
-        if (redirectFromUrl()) {
-            return true
-        }
-
-        document.addEventListener('submit', (event) => {
-            try {
-                let form = event?.target
-
-                if (!form?.matches?.('form')) {
-                    return
-                }
-
-                let input = form.querySelector('input[name="q"], input.search-input')
-                let term = String(input?.value ?? '').trim()
-
-                if (!term.length) {
-                    return
-                }
-
-                event.preventDefault()
-                window.location.assign(`/search?q=${encodeURIComponent(term)}`)
-            }
-            catch (e) {
-                console.log('e', e)
-            }
-        }, true)
-
-        // the widget can also swap the url in place instead of loading a page
-        window.addEventListener('popstate', redirectFromUrl)
-
-        let pushState = history.pushState
-
-        history.pushState = function () {
-            let result = pushState.apply(this, arguments)
-            redirectFromUrl()
-            return result
-        }
-    }
-    catch (e) {
-        console.log('e', e)
-    }
-
-    return false
-}
-
 const buildSearchShell = (searchQuery) => `<div class="content-wrapper">
         <div class="content">
             <div id="container-widget-1734371250200" data-type="Container" class="grid-row
@@ -1229,7 +1250,7 @@ const validateSearch = async () => {
     }
 }
 
-if (!initSearchRedirects()) {
+if (!searchRedirectDone) {
     validateSearch()
 }
 
