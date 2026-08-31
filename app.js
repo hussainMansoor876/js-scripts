@@ -697,31 +697,51 @@ const searchRank = (product, normalizedQuery) => {
     return 2
 }
 
-const fetchProducts = async (queries = {}) => {
-    let limit = 50
-    let skip = 0
-    let guard = 0
-    let items = []
+const PRODUCTS_PAGE_SIZE = 50
 
-    while (guard++ < 200) {
-        let params = new URLSearchParams({ ...queries, limit: limit, skip: skip })
+// hands every page to `onPage` as soon as it arrives, so results can be
+// rendered while the rest is still loading
+const fetchProductsStreamed = async (queries = {}, onPage = () => { }) => {
+    const loadPage = async (skip) => {
+        let params = new URLSearchParams({ ...queries, limit: PRODUCTS_PAGE_SIZE, skip: skip })
         let query = params.toString().replace(/\+/g, '%20')
         let data = await sendRequest(`${apiUrl}/${productRoute}?${query}`, 'GET', null)
 
-        let page = data?.items || []
-        let totalCount = Number(data?.totalCount) || 0
-
-        items.push(...page)
-
-        // never advance by more than what the API actually returned, otherwise
-        // whole pages get skipped whenever it hands back less than `limit`
-        if (!page.length || (totalCount && items.length >= totalCount)) {
-            break
-        }
-        skip += page.length
+        return { items: data?.items || [], totalCount: Number(data?.totalCount) || 0 }
     }
 
-    return items
+    let first = await loadPage(0)
+    onPage(first.items)
+
+    // on a filtered query the api still reports the size of the whole
+    // catalogue, so a short page is the real end of the results
+    if (first.items.length < PRODUCTS_PAGE_SIZE || first.items.length >= first.totalCount) {
+        return
+    }
+
+    let offsets = []
+    for (let skip = first.items.length; skip < first.totalCount; skip += PRODUCTS_PAGE_SIZE) {
+        offsets.push(skip)
+    }
+
+    let next = 0
+    let finished = false
+
+    const worker = async () => {
+        while (!finished && next < offsets.length) {
+            let page = await loadPage(offsets[next++])
+
+            if (!page.items.length) {
+                finished = true
+                break
+            }
+            onPage(page.items)
+        }
+    }
+
+    // a few pages at a time keeps the whole catalogue scan seconds instead of
+    // a request-after-request crawl
+    await Promise.all(Array.from({ length: Math.min(5, offsets.length) }, () => worker()))
 }
 
 const getStoreSearchTerm = (pathname) => {
@@ -746,23 +766,7 @@ const getStoreSearchTerm = (pathname) => {
     return term.trim()
 }
 
-const validateSearch = async () => {
-    try {
-        // send the store widget's own /<catalog>/search/<term> urls to the
-        // search page, so every search goes through the same lookup
-        let storeSearchTerm = getStoreSearchTerm(location?.pathname)
-
-        if (storeSearchTerm.length) {
-            window.location.replace(`/search?q=${encodeURIComponent(storeSearchTerm)}`)
-            return
-        }
-
-        if (location?.pathname === '/search') {
-            var divData = document.querySelector('.content-wrapper')
-            var searchQuery = new URLSearchParams(location?.search)?.get('q')
-            const script = document.createElement('script')
-
-            var searchHtml = `<div class="content-wrapper">
+const buildSearchShell = (searchQuery) => `<div class="content-wrapper">
         <div class="content">
             <div id="container-widget-1734371250200" data-type="Container" class="grid-row
                 stretched-mobile stretched-tablet" data-delay="" style="padding-bottom:0%;
@@ -807,88 +811,13 @@ const validateSearch = async () => {
                                 </form>
                             </div>
                         </div>
+                        <div class="widget-row search-status" style="margin-left: 10px; margin-top: 20px; display: none;">
+                            <span style="font-family:'Open Sans';color:#6B6B6B;"></span>
+                        </div>
                         <div class="widget-row no-results-wrapper" style="margin-left: 10px; margin-top: 20px;">
                         </div>
                     </div>
-                </div>`
-
-            divData.innerHTML = `${searchHtml}
-                        </div>
-                    </div>
-                </div>`
-
-            var searchInput = document.querySelector('input.search-input.border-type-all')
-
-            let normalizedQuery = normalizeSearchText(searchQuery)
-            let searchTokens = normalizedQuery.split(' ').filter(Boolean)
-            let allItems = []
-
-            if (searchTokens.length) {
-                // the API only looks at the title, the catalogue scan is what
-                // makes product codes (BK461-ORG, ...) findable
-                let [titleMatches, catalogue] = await Promise.all([
-                    fetchProducts({ title: searchQuery }),
-                    fetchProducts()
-                ])
-
-                let localMatches = catalogue.filter((v) => matchesSearchQuery(v, searchTokens))
-
-                let seen = new Set()
-                for (let product of [...titleMatches, ...localMatches]) {
-                    let key = product?.id ?? product?.url
-                    if (key === undefined || key === null || seen.has(key)) {
-                        continue
-                    }
-                    seen.add(key)
-                    allItems.push(product)
-                }
-
-                // exact code / title matches first
-                allItems.sort((a, b) => searchRank(a, normalizedQuery) - searchRank(b, normalizedQuery))
-            }
-
-            var savedEmail = localStorage.getItem('email')
-            var sessionEmail = WebPlatform?._sessionDetails?.member?.email
-            if (!validateEmail(savedEmail) && validateEmail(sessionEmail)) {
-                await fetchUserByEmail(sessionEmail)
-            }
-
-            savedEmail = localStorage.getItem('email')
-            let isPlus = JSON.parse(localStorage.getItem('plus')) || false
-            var groupName = localStorage.getItem('groupName')
-            var percentage = JSON.parse(localStorage.getItem('percentage')) || 0
-            var sessionDetails = JSON.parse(localStorage.getItem('session-details')) || {}
-
-            if (!percentage && groupName?.length) {
-                percentage = groupName === 'plus-5' ? 0.05 : 0.1
-                localStorage.setItem('percentage', JSON.stringify(percentage))
-            }
-
-            let logout = false
-
-            if ((sessionDetails?.sessionCutoffTime && Date.now() <= sessionDetails?.sessionCutoffTime) || !validateEmail(savedEmail)) {
-                logout = true
-            }
-
-            // if (groupName?.length && isPlus) {
-            //     items = items?.filter((v) => v?.url?.toLowerCase()?.includes(groupName))
-            // }
-            // else {
-            //     items = items?.filter((v) => !v?.url?.toLowerCase()?.includes('plus'))
-            // }
-            allItems = allItems?.filter((v) => !v?.url?.toLowerCase()?.includes('plus'))
-
-            if (!allItems?.length) {
-                divData.innerHTML = `<div class="content-wrapper">
-            <div class="content">
-            <div id="container-widget-1734371250200" data-type="Container" class="grid-row
-                stretched-mobile stretched-tablet" data-delay="" style="padding-bottom:0%;
-                padding-top: 0px; padding-left: 0;
-                background-color: transparent;
-                background-position: center center;
-                background-repeat: no-repeat;
-                background-size: auto;
-                background-image: none;">
+                </div>
                 <div class="grid-content ">
                     <div class="grid-column    " style="width: 100%;
                    padding-left:0px;padding-right:0px;
@@ -903,42 +832,51 @@ const validateSearch = async () => {
                    ">
 
                         <div class="widget-row ">
-                            <div class="widget widgetResponsive spacer col20" id="spacer-widget-1736449832576"
-                                data-type="Spacer" style="margin-top: 0px; margin-left: 0px;">
-                                <div class="widget-preserving-ratio-outer" style="padding-bottom: 7.6923076923076925% ">
-                                    <div class="widget-preserving-ratio-inner"></div>
+                            <div class="widget widgetResponsive storeWidget col20" id="store-widget-1734370863531" data-type="StoreWidget" data-delay=""
+                                data-animation-duration="" data-animation-delay="" data-animation="lazyAnimation-"
+                                style="margin-top: 2.61538%; margin-left: 0px;">
+                                <div class="col20 f-left main-widget-content">
+                                    <style type="text/css">
+                                        #store-widget-1734370863531 .product-item h3 {
+
+                                            color: rgba(21, 81, 52, 1);
+
+                                            font-family: 'Boton Bold';
+
+                                            font-size: 14px;
+                                            letter-spacing: normal;
+                                        }
+
+                                        #store-widget-1734370863531 .product-item .product-item-price {
+
+                                            color: rgba(0, 0, 0, 1);
+
+                                            font-family: 'Arial';
+
+                                            font-size: 13px;
+                                            letter-spacing: normal;
+                                        }
+                                    </style>
+                                    <div
+                                        class="product-list-wrapper full-width-layout col20 f-left products-per-row-4 style-1 center-align quick-view-2  image-positioned">
+                                        <div class="products-list"></div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="widget-row with-centered-content">
-                            <div class="widget widgetResponsive col20" id="widgetb-1735848049108" data-type="Search"
-                                data-delay="" data-animation-duration="" data-animation-delay=""
-                                data-animation="lazyAnimation-" style="margin-top: 0%; margin-left: 0px;">
-                                <form role="search" method="GET" enctype="application/x-www-form-urlencoded"
-                                    action="/search" class="search-form style-1">
-                                    <input type="hidden" value="5" name="m">
-                                    <input type="text" name="q" class="search-input border-type-all" value="${escapeHtml(searchQuery)}"
-                                        placeholder="Search for..."
-                                        style="font-size: 15px; background-color: #ffffff;font-family:'Open Sans';color:#6B6B6B;border-color:#E6E6E6;padding: 18px 25.2px;border-width: 1px;border-radius: 40px;">
-                                    <button class="search-widget-icon" style="color:#6B6B6B;"></button>
-                                </form>
-                            </div>
-                        </div>
-                        <div class="widget-row no-results-wrapper" style="margin-left: 10px; margin-top: 20px;">
-                            <h1></h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>`
+
+const noResultsHtml = `<h1></h1>
                             <span></span>
                                 <h1>Nothing found</h1>
                                 <span>Sorry but we couldn't find any matches for your search terms. Please try with a different
-                                    keyword.</span>
-                        </div>
-                    </div>
-                </div>
-                        </div>
-                    </div>
-                </div>`
-            }
-            else {
-                script.textContent = `
+                                    keyword.</span>`
+
+const storeWidgetScript = `
                         WebPlatform.onReady(function () {
                                             try {
                                                 WebPlatform.Widgets.Store({
@@ -984,100 +922,11 @@ const validateSearch = async () => {
                                                 Log.error(e);
                                             }
                                         })`
-                document.body.appendChild(script)
-                let htmlData = `<div class="content-wrapper">
-        <div class="content">
-            <div id="container-widget-1734371250200" data-type="Container" class="grid-row
-                stretched-mobile stretched-tablet" data-delay="" style="padding-bottom:0%;
-                padding-top: 0px; padding-left: 0;
-                background-color: transparent;
-                background-position: center center;
-                background-repeat: no-repeat;
-                background-size: auto;
-                background-image: none;">
-                <div class="grid-content ">
-                    <div class="grid-column    " style="width: 100%;
-                   padding-left:0px;padding-right:0px;
-                   background-image: none;
-                   
-                     background-size: cover;
-                     background-repeat: no-repeat;
-                     background-position: center center;
-                   
-                   top: 0px;
-                   
-                   ">
 
-                        <div class="widget-row ">
-                            <div class="widget widgetResponsive spacer col20" id="spacer-widget-1736449832576"
-                                data-type="Spacer" style="margin-top: 0px; margin-left: 0px;">
-                                <div class="widget-preserving-ratio-outer" style="padding-bottom: 7.6923076923076925% ">
-                                    <div class="widget-preserving-ratio-inner"></div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="widget-row with-centered-content">
-                            <div class="widget widgetResponsive col20" id="widgetb-1735848049108" data-type="Search"
-                                data-delay="" data-animation-duration="" data-animation-delay=""
-                                data-animation="lazyAnimation-" style="margin-top: 0%; margin-left: 0px;">
-                                <form role="search" method="GET" enctype="application/x-www-form-urlencoded"
-                                    action="/search" class="search-form style-1">
-                                    <input type="hidden" value="5" name="m">
-                                    <input type="text" name="q" class="search-input border-type-all" value="${escapeHtml(searchQuery)}"
-                                        placeholder="Search for..."
-                                        style="font-size: 15px; background-color: #ffffff;font-family:'Open Sans';color:#6B6B6B;border-color:#E6E6E6;padding: 18px 25.2px;border-width: 1px;border-radius: 40px;">
-                                    <button class="search-widget-icon" style="color:#6B6B6B;"></button>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="grid-content ">
-                    <div class="grid-column    " style="width: 100%;
-                   padding-left:0px;padding-right:0px;
-                   background-image: none;
-                   
-                     background-size: cover;
-                     background-repeat: no-repeat;
-                     background-position: center center;
-                   
-                   top: 0px;
-                   
-                   ">
+const buildProductCard = (v, pricing) => {
+    let productUrl = `/safety-products-catalog/${v?.url?.replace(/-plus-(10|5)/g, "")}`
 
-                        <div class="widget-row ">
-                            <div class="widget widgetResponsive storeWidget col20" id="store-widget-1734370863531" data-type="StoreWidget" data-delay=""
-                                data-animation-duration="" data-animation-delay="" data-animation="lazyAnimation-"
-                                style="margin-top: 2.61538%; margin-left: 0px;">
-                                <div class="col20 f-left main-widget-content">
-                                    <style type="text/css">
-                                        #store-widget-1734370863531 .product-item h3 {
-
-                                            color: rgba(21, 81, 52, 1);
-
-                                            font-family: 'Boton Bold';
-
-                                            font-size: 14px;
-                                            letter-spacing: normal;
-                                        }
-
-                                        #store-widget-1734370863531 .product-item .product-item-price {
-
-                                            color: rgba(0, 0, 0, 1);
-
-                                            font-family: 'Arial';
-
-                                            font-size: 13px;
-                                            letter-spacing: normal;
-                                        }
-                                    </style>
-                                    <div
-                                        class="product-list-wrapper full-width-layout col20 f-left products-per-row-4 style-1 center-align quick-view-2  image-positioned">
-                                        <div class="products-list">`
-
-                for (var v of allItems) {
-
-                    htmlData += `<div class="product-item fit-image with-quick-view " data-slide="" data-idx="0" data-id="470"
+    let card = `<div class="product-item fit-image with-quick-view " data-slide="" data-idx="0" data-id="470"
                         style="background: transparent; padding: 25px 25px; border-radius: 0px; width: 23%; margin: 0 2% 0 0; ">
                         <div class="product-main-photo has-badge" style="padding-bottom: 80%;background-color: transparent;">
                             <div class="product-photo-inner-wrapper">
@@ -1103,7 +952,7 @@ const validateSearch = async () => {
                                     </a>
                                 </div>
                             </div>
-                                <a href="/safety-products-catalog/${v?.url?.replace(/-plus-(10|5)/g, "")}"><img
+                                <a href="${productUrl}"><img
                                         src="${v?.images?.[0]}"
                                         alt="" style="border-radius: 10px;"></a>
                             </div>
@@ -1111,7 +960,7 @@ const validateSearch = async () => {
                         <div class="product-item-description">
                             <div>
                                 <div class="title-price-wrapper-1">
-                                    <h3 class=""><a href="/safety-products-catalog/${v?.url?.replace(/-plus-(10|5)/g, "")}" class="highlightColor">${v?.title}</a>
+                                    <h3 class=""><a href="${productUrl}" class="highlightColor">${v?.title}</a>
                                     </h3>
                                     <div class="col20 f-left product-stars flex align-center">
                                         <div class="product-stars-inner"> <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
@@ -1147,37 +996,177 @@ const validateSearch = async () => {
                                             </svg> </div> <a href="" class="product-reviews-link">84 Reviews</a>
                                     </div>`
 
-                    if (!logout) {
-                        htmlData += `<span class="product-item-price "><a href="/safety-products-catalog/${v?.url?.replace(/-plus-(10|5)/g, "")}">From&nbsp;$${isPlus && groupName?.length ? increasePrice(v?.variants?.[0]?.price, percentage) : groupName?.includes('minus') ? discountPrice(v?.variants?.[0]?.price, percentage) : v?.variants?.[0]?.price}</a></span>
+    if (!pricing?.logout) {
+        card += `<span class="product-item-price "><a href="${productUrl}">From&nbsp;$${pricing?.isPlus && pricing?.groupName?.length ? increasePrice(v?.variants?.[0]?.price, pricing?.percentage) : pricing?.groupName?.includes('minus') ? discountPrice(v?.variants?.[0]?.price, pricing?.percentage) : v?.variants?.[0]?.price}</a></span>
                                 </div>
                             </div>
                         </div>
                         <div class="quick-view-btn" data-role="viewProduct"><a>Quick View</a>
                             </div>
                     </div>`
-                    }
-                    else {
-                        htmlData += `</div>
+    }
+    else {
+        card += `</div>
                             </div>
                         </div>
                         <div class="quick-view-btn" data-role="viewProduct"><a>Quick View</a>
                             </div>
                     </div>`
-                    }
-                }
+    }
 
-                htmlData += `               </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>`
+    return card
+}
 
-                divData.innerHTML = htmlData
+const getSearchPricing = async () => {
+    var savedEmail = localStorage.getItem('email')
+    var sessionEmail = WebPlatform?._sessionDetails?.member?.email
+
+    if (!validateEmail(savedEmail) && validateEmail(sessionEmail)) {
+        await fetchUserByEmail(sessionEmail)
+    }
+
+    savedEmail = localStorage.getItem('email')
+    let isPlus = JSON.parse(localStorage.getItem('plus')) || false
+    var groupName = localStorage.getItem('groupName')
+    var percentage = JSON.parse(localStorage.getItem('percentage')) || 0
+    var sessionDetails = JSON.parse(localStorage.getItem('session-details')) || {}
+
+    if (!percentage && groupName?.length) {
+        percentage = groupName === 'plus-5' ? 0.05 : 0.1
+        localStorage.setItem('percentage', JSON.stringify(percentage))
+    }
+
+    let logout = false
+
+    if ((sessionDetails?.sessionCutoffTime && Date.now() <= sessionDetails?.sessionCutoffTime) || !validateEmail(savedEmail)) {
+        logout = true
+    }
+
+    return { isPlus: isPlus, groupName: groupName, percentage: percentage, logout: logout }
+}
+
+const validateSearch = async () => {
+    try {
+        // send the store widget's own /<catalog>/search/<term> urls to the
+        // search page, so every search goes through the same lookup
+        let storeSearchTerm = getStoreSearchTerm(location?.pathname)
+
+        if (storeSearchTerm.length) {
+            window.location.replace(`/search?q=${encodeURIComponent(storeSearchTerm)}`)
+            return
+        }
+
+        if (location?.pathname !== '/search') {
+            return
+        }
+
+        var divData = document.querySelector('.content-wrapper')
+        var searchQuery = new URLSearchParams(location?.search)?.get('q')
+
+        divData.innerHTML = buildSearchShell(searchQuery)
+
+        let productsList = divData.querySelector('.products-list')
+        let statusRow = divData.querySelector('.search-status')
+        let noResultsRow = divData.querySelector('.no-results-wrapper')
+
+        const setStatus = (text) => {
+            if (!statusRow) {
+                return
+            }
+            statusRow.style.display = text ? '' : 'none'
+            statusRow.querySelector('span').textContent = text
+        }
+
+        let normalizedQuery = normalizeSearchText(searchQuery)
+        let searchTokens = normalizedQuery.split(' ').filter(Boolean)
+
+        const showNoResults = () => {
+            setStatus('')
+            if (noResultsRow) {
+                noResultsRow.innerHTML = noResultsHtml
+            }
+        }
+
+        if (!searchTokens.length) {
+            showNoResults()
+            return
+        }
+
+        setStatus('Searching...')
+
+        // pricing has to be known before the first card is drawn
+        let pricing = await getSearchPricing()
+
+        let results = []
+        let seen = new Set()
+        let cards = new Map()
+        let widgetReady = false
+
+        const render = () => {
+            if (!productsList) {
+                return
             }
 
+            // strongest matches (exact code or title) stay on top as later
+            // pages come in
+            results.sort((a, b) => searchRank(a, normalizedQuery) - searchRank(b, normalizedQuery))
+            productsList.innerHTML = results.map((v) => cards.get(v.__key)).join('')
+
+            if (noResultsRow) {
+                noResultsRow.innerHTML = ''
+            }
+
+            if (!widgetReady) {
+                widgetReady = true
+                const script = document.createElement('script')
+                script.textContent = storeWidgetScript
+                document.body.appendChild(script)
+            }
+        }
+
+        // renders whatever matched so far, the search never waits for the
+        // whole catalogue before showing anything
+        const addItems = (items) => {
+            let added = false
+
+            for (let product of items || []) {
+                if (product?.url?.toLowerCase()?.includes('plus')) {
+                    continue
+                }
+
+                let key = product?.id ?? product?.url
+                if (key === undefined || key === null || seen.has(key)) {
+                    continue
+                }
+
+                seen.add(key)
+                product.__key = key
+                cards.set(key, buildProductCard(product, pricing))
+                results.push(product)
+                added = true
+            }
+
+            if (added) {
+                render()
+            }
+        }
+
+        // the api matches the title, this is the fast path and normally the
+        // only request the page makes
+        await fetchProductsStreamed({ title: searchQuery }, addItems)
+
+        if (!results.length) {
+            // nothing matched by title, scan the catalogue for a product code
+            // (BK461-ORG, ...) and show matches as the pages arrive
+            setStatus('Searching all products...')
+            await fetchProductsStreamed({}, (items) => addItems(items.filter((v) => matchesSearchQuery(v, searchTokens))))
+        }
+
+        if (!results.length) {
+            showNoResults()
+        }
+        else {
+            setStatus('')
         }
     }
     catch (e) {
