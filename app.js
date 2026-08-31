@@ -766,6 +766,70 @@ const getStoreSearchTerm = (pathname) => {
     return term.trim()
 }
 
+const goToSearchPage = (term) => {
+    window.location.replace(`/search?q=${encodeURIComponent(term)}`)
+}
+
+// the theme's own search boxes post to <catalog>/search/<term> when they are
+// used from inside a catalog page, and that page never matches product codes,
+// so take the submit over and go straight to the search page
+const initSearchRedirects = () => {
+    try {
+        const redirectFromUrl = () => {
+            let term = getStoreSearchTerm(location?.pathname)
+
+            if (term.length) {
+                goToSearchPage(term)
+                return true
+            }
+            return false
+        }
+
+        if (redirectFromUrl()) {
+            return true
+        }
+
+        document.addEventListener('submit', (event) => {
+            try {
+                let form = event?.target
+
+                if (!form?.matches?.('form')) {
+                    return
+                }
+
+                let input = form.querySelector('input[name="q"], input.search-input')
+                let term = String(input?.value ?? '').trim()
+
+                if (!term.length) {
+                    return
+                }
+
+                event.preventDefault()
+                window.location.assign(`/search?q=${encodeURIComponent(term)}`)
+            }
+            catch (e) {
+                console.log('e', e)
+            }
+        }, true)
+
+        // the widget can also swap the url in place instead of loading a page
+        window.addEventListener('popstate', redirectFromUrl)
+
+        let pushState = history.pushState
+
+        history.pushState = function () {
+            let result = pushState.apply(this, arguments)
+            redirectFromUrl()
+            return result
+        }
+    }
+    catch (e) {
+        console.log('e', e)
+    }
+
+    return false
+}
+
 const buildSearchShell = (searchQuery) => `<div class="content-wrapper">
         <div class="content">
             <div id="container-widget-1734371250200" data-type="Container" class="grid-row
@@ -1047,15 +1111,6 @@ const getSearchPricing = async () => {
 
 const validateSearch = async () => {
     try {
-        // send the store widget's own /<catalog>/search/<term> urls to the
-        // search page, so every search goes through the same lookup
-        let storeSearchTerm = getStoreSearchTerm(location?.pathname)
-
-        if (storeSearchTerm.length) {
-            window.location.replace(`/search?q=${encodeURIComponent(storeSearchTerm)}`)
-            return
-        }
-
         if (location?.pathname !== '/search') {
             return
         }
@@ -1174,7 +1229,9 @@ const validateSearch = async () => {
     }
 }
 
-validateSearch()
+if (!initSearchRedirects()) {
+    validateSearch()
+}
 
 const filterData = async () => {
     let arr = []
