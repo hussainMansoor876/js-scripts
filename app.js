@@ -2,9 +2,12 @@
 // This has to be the first thing that runs in this file. The theme's own
 // search boxes navigate to /<catalog>/search/<term>, a url that is handled by
 // the store widget and never matches a product code, so those searches have
-// to reach /search?q=<term> - even if anything further down in this file
+// to reach the /search page - even if anything further down in this file
 // fails on the page.
-var APP_JS_BUILD = '2026-08-31-search-4'
+var APP_JS_BUILD = '2026-08-31-search-5'
+
+// term to render right here instead of redirecting, see the loop guard below
+var searchInPageTerm = ''
 
 var searchRedirectDone = (function () {
     const readStoreSearchTerm = (pathname) => {
@@ -26,9 +29,34 @@ var searchRedirectDone = (function () {
         return term.trim()
     }
 
-    const goToSearch = (term, replace) => {
-        let target = `/search?q=${encodeURIComponent(term)}`
+    // `m=5` is what the theme's own search form sends and what the platform
+    // needs to open the product search page - without it /search bounces
+    // straight back to the catalog search url
+    const buildSearchUrl = (term, form) => {
+        let params = new URLSearchParams()
 
+        try {
+            if (form) {
+                for (let entry of new FormData(form).entries()) {
+                    if (entry[0] !== 'q' && typeof entry[1] === 'string') {
+                        params.append(entry[0], entry[1])
+                    }
+                }
+            }
+        }
+        catch (e) {
+            console.log('e', e)
+        }
+
+        if (!params.has('m')) {
+            params.set('m', '5')
+        }
+        params.set('q', term)
+
+        return `/search?${params.toString()}`
+    }
+
+    const goToSearch = (target, replace) => {
         console.log('[search] redirecting to', target)
 
         if (replace) {
@@ -39,17 +67,44 @@ var searchRedirectDone = (function () {
         }
     }
 
+    // if the platform sends us back to the catalog search url anyway, stop
+    // bouncing and render the results on this page instead
+    const shouldRedirect = (term) => {
+        try {
+            let key = 'bk-search-redirect'
+            let last = JSON.parse(sessionStorage.getItem(key) || 'null')
+
+            sessionStorage.setItem(key, JSON.stringify({ term: term, at: Date.now() }))
+
+            if (last?.term === term && Date.now() - Number(last?.at) < 15000) {
+                return false
+            }
+        }
+        catch (e) {
+            // no session storage, redirecting once is still the right call
+        }
+
+        return true
+    }
+
     try {
         console.log('[search] app.js build', APP_JS_BUILD, location.pathname)
 
         const redirectFromUrl = () => {
             let term = readStoreSearchTerm(location?.pathname)
 
-            if (term.length) {
-                goToSearch(term, true)
-                return true
+            if (!term.length) {
+                return false
             }
-            return false
+
+            if (!shouldRedirect(term)) {
+                console.log('[search] already redirected for', term, '- rendering results here')
+                searchInPageTerm = term
+                return false
+            }
+
+            goToSearch(buildSearchUrl(term), true)
+            return true
         }
 
         // take the submit over so the catalog search url is never reached
@@ -69,7 +124,7 @@ var searchRedirectDone = (function () {
                 }
 
                 event.preventDefault()
-                goToSearch(term, false)
+                goToSearch(buildSearchUrl(term, form), false)
             }
             catch (e) {
                 console.log('e', e)
@@ -1130,14 +1185,21 @@ const getSearchPricing = async () => {
     return { isPlus: isPlus, groupName: groupName, percentage: percentage, logout: logout }
 }
 
-const validateSearch = async () => {
+const validateSearch = async (queryOverride) => {
     try {
-        if (location?.pathname !== '/search') {
+        let renderInPage = Boolean(queryOverride?.length)
+
+        if (!renderInPage && location?.pathname !== '/search') {
             return
         }
 
         var divData = document.querySelector('.content-wrapper')
-        var searchQuery = new URLSearchParams(location?.search)?.get('q')
+
+        if (!divData) {
+            return
+        }
+
+        var searchQuery = renderInPage ? queryOverride : new URLSearchParams(location?.search)?.get('q')
 
         divData.innerHTML = buildSearchShell(searchQuery)
 
@@ -1251,7 +1313,7 @@ const validateSearch = async () => {
 }
 
 if (!searchRedirectDone) {
-    validateSearch()
+    validateSearch(searchInPageTerm)
 }
 
 const filterData = async () => {
