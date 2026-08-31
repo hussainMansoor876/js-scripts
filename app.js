@@ -5,7 +5,7 @@
 // Redirecting that to /search only made the platform bounce back, so the
 // results are rendered straight onto this url instead - no reload, no flash
 // of the category page - even if anything further down in this file fails.
-var APP_JS_BUILD = '2026-08-31-search-7'
+var APP_JS_BUILD = '2026-08-31-search-8'
 
 var getStoreSearchTerm = (pathname, search) => {
     let path = String(pathname ?? '')
@@ -905,7 +905,16 @@ const fetchProductsStreamed = async (queries = {}, onPage = () => { }) => {
     await Promise.all(Array.from({ length: Math.min(5, offsets.length) }, () => worker()))
 }
 
-const buildSearchShell = (searchQuery) => `<div class="content-wrapper">
+const buildSearchShell = (searchQuery) => `<style>
+        /* keeps the results sitting just under the search bar */
+        #store-widget-1734370863531 { margin-top: 24px !important; }
+        #store-widget-1734370863531 .product-list-wrapper,
+        #store-widget-1734370863531 .products-list { margin-top: 0 !important; padding-top: 0 !important; }
+        #store-widget-1734370863531 .product-item { padding-top: 0 !important; }
+        #widgetb-1735848049108 { margin-bottom: 0 !important; }
+        .content-wrapper .widget-row.no-results-wrapper:empty { display: none !important; margin: 0 !important; }
+    </style>
+    <div class="content-wrapper">
         <div class="content">
             <div id="container-widget-1734371250200" data-type="Container" class="grid-row
                 stretched-mobile stretched-tablet" data-delay="" style="padding-bottom:0%;
@@ -953,8 +962,7 @@ const buildSearchShell = (searchQuery) => `<div class="content-wrapper">
                         <div class="widget-row search-status" style="margin-left: 10px; margin-top: 20px; display: none;">
                             <span style="font-family:'Open Sans';color:#6B6B6B;"></span>
                         </div>
-                        <div class="widget-row no-results-wrapper" style="margin-left: 10px; margin-top: 20px;">
-                        </div>
+                        <div class="widget-row no-results-wrapper" style="margin-left: 10px; margin-top: 20px;"></div>
                     </div>
                 </div>
                 <div class="grid-content ">
@@ -973,7 +981,7 @@ const buildSearchShell = (searchQuery) => `<div class="content-wrapper">
                         <div class="widget-row ">
                             <div class="widget widgetResponsive storeWidget col20" id="store-widget-1734370863531" data-type="StoreWidget" data-delay=""
                                 data-animation-duration="" data-animation-delay="" data-animation="lazyAnimation-"
-                                style="margin-top: 2.61538%; margin-left: 0px;">
+                                style="margin-top: 0; margin-left: 0px;">
                                 <div class="col20 f-left main-widget-content">
                                     <style type="text/css">
                                         #store-widget-1734370863531 .product-item h3 {
