@@ -5,7 +5,7 @@
 // Redirecting that to /search only made the platform bounce back, so the
 // results are rendered straight onto this url instead - no reload, no flash
 // of the category page - even if anything further down in this file fails.
-var APP_JS_BUILD = '2026-08-31-search-8'
+var APP_JS_BUILD = '2026-09-01-search-9'
 
 var getStoreSearchTerm = (pathname, search) => {
     let path = String(pathname ?? '')
@@ -56,6 +56,11 @@ const showSearchLoading = (container) => {
     try {
         searchLoadingShown = true
 
+        // the inline snippet on the site may already be showing one
+        if (document.querySelector('.bk-search-preload')) {
+            return
+        }
+
         if (!document.getElementById('bk-search-loading-style')) {
             let style = document.createElement('style')
             style.id = 'bk-search-loading-style'
@@ -81,6 +86,7 @@ const hideSearchLoading = () => {
     try {
         searchLoadingShown = false
         document.getElementById('bk-search-loading-style')?.remove()
+        document.getElementById('bk-search-preload-hide')?.remove()
         document.querySelectorAll('.bk-search-loading').forEach((v) => v.remove())
     }
     catch (e) {

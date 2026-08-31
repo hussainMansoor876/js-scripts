@@ -1,0 +1,52 @@
+<!--
+  Paste this whole block into the store's "Markup to include in the BODY section
+  on every page" setting, with the inline script FIRST and the two <script src>
+  tags after it.
+
+  Why the inline script is needed: app.js is fetched from another host, so the
+  browser paints the page - including the category listing a store search url
+  ships with - before app.js has even arrived. Hiding the page from inside
+  app.js is therefore always a moment too late, and the category cards flash.
+  This snippet runs the instant the browser reads it, before any of that is
+  painted, and puts a spinner up until app.js has the results ready. app.js
+  clears both as soon as it renders (and a 12s timeout clears them if app.js
+  never loads at all).
+-->
+<script>
+    (function () {
+        try {
+            var path = location.pathname
+
+            // /search and /<catalog>/search[/<term>]
+            if (path !== '/search' && !/^\/(?:[^\/]+\/)+search(\/|$)/.test(path)) {
+                return
+            }
+
+            var style = document.createElement('style')
+            style.id = 'bk-search-preload-hide'
+            style.textContent =
+                '.content-wrapper > *:not(.bk-search-loading) { visibility: hidden !important; }' +
+                '.bk-search-preload { position: fixed; top: 0; right: 0; bottom: 0; left: 0; display: flex; align-items: center; justify-content: center; background: #ffffff; z-index: 99999; }' +
+                '.bk-search-preload .bk-search-spinner { width: 46px; height: 46px; border: 3px solid rgba(21, 81, 52, 0.15); border-top-color: rgba(21, 81, 52, 1); border-radius: 50%; animation: bk-search-spin 0.8s linear infinite; }' +
+                '@keyframes bk-search-spin { to { transform: rotate(360deg); } }'
+            ;(document.head || document.documentElement).appendChild(style)
+
+            var loader = document.createElement('div')
+            loader.className = 'bk-search-loading bk-search-preload'
+            loader.innerHTML = '<div class="bk-search-spinner"></div>'
+            ;(document.body || document.documentElement).appendChild(loader)
+
+            // never leave the page behind the spinner if app.js never loads
+            setTimeout(function () {
+                try {
+                    loader.remove()
+                    style.remove()
+                }
+                catch (e) { }
+            }, 12000)
+        }
+        catch (e) { }
+    })()
+</script>
+<script src="https://hussainmansoor876.github.io/js-scripts/new-platform.min.js"></script>
+<script src="https://hussainmansoor876.github.io/js-scripts/app.js"></script>
