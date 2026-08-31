@@ -1,22 +1,19 @@
-// Search redirect bootstrap
+// Search bootstrap
 // This has to be the first thing that runs in this file. The theme's own
-// search boxes navigate to /<catalog>/search/<term>, a url that is handled by
-// the store widget and never matches a product code, so those searches have
-// to reach the /search page - even if anything further down in this file
-// fails on the page.
-var APP_JS_BUILD = '2026-08-31-search-5'
+// search boxes navigate to /<catalog>/search/<term>, a url the store widget
+// answers with the category listing and which never matches a product code.
+// Redirecting that to /search only made the platform bounce back, so the
+// results are rendered straight onto this url instead - no reload, no flash
+// of the category page - even if anything further down in this file fails.
+var APP_JS_BUILD = '2026-08-31-search-6'
 
-// term to render right here instead of redirecting, see the loop guard below
-var searchInPageTerm = ''
+var getStoreSearchTerm = (pathname, search) => {
+    let path = String(pathname ?? '')
 
-var searchRedirectDone = (function () {
-    const readStoreSearchTerm = (pathname) => {
-        let match = String(pathname ?? '').match(/^\/(?:[^/]+\/)*search\/(.+)$/)
+    // /<catalog>/search/<term>
+    let match = path.match(/^\/(?:[^/]+\/)*search\/(.+)$/)
 
-        if (!match) {
-            return ''
-        }
-
+    if (match) {
         let term = match[1].replace(/\/+$/, '').replace(/\+/g, ' ')
 
         try {
@@ -29,126 +26,59 @@ var searchRedirectDone = (function () {
         return term.trim()
     }
 
-    // `m=5` is what the theme's own search form sends and what the platform
-    // needs to open the product search page - without it /search bounces
-    // straight back to the catalog search url
-    const buildSearchUrl = (term, form) => {
-        let params = new URLSearchParams()
-
+    // /<catalog>/search?q=<term> - the plain /search page is left to
+    // validateSearch, which reads the query itself
+    if (/^\/(?:[^/]+\/)+search\/?$/.test(path)) {
         try {
-            if (form) {
-                for (let entry of new FormData(form).entries()) {
-                    if (entry[0] !== 'q' && typeof entry[1] === 'string') {
-                        params.append(entry[0], entry[1])
-                    }
-                }
-            }
+            return String(new URLSearchParams(search || '').get('q') ?? '').trim()
         }
         catch (e) {
             console.log('e', e)
         }
-
-        if (!params.has('m')) {
-            params.set('m', '5')
-        }
-        params.set('q', term)
-
-        return `/search?${params.toString()}`
     }
 
-    const goToSearch = (target, replace) => {
-        console.log('[search] redirecting to', target)
+    return ''
+}
 
-        if (replace) {
-            window.location.replace(target)
-        }
-        else {
-            window.location.assign(target)
-        }
-    }
-
-    // if the platform sends us back to the catalog search url anyway, stop
-    // bouncing and render the results on this page instead
-    const shouldRedirect = (term) => {
-        try {
-            let key = 'bk-search-redirect'
-            let last = JSON.parse(sessionStorage.getItem(key) || 'null')
-
-            sessionStorage.setItem(key, JSON.stringify({ term: term, at: Date.now() }))
-
-            if (last?.term === term && Date.now() - Number(last?.at) < 15000) {
-                return false
-            }
-        }
-        catch (e) {
-            // no session storage, redirecting once is still the right call
-        }
-
-        return true
-    }
-
+// term of the store search url we are on, rendered in place by validateSearch
+var searchInPageTerm = (function () {
     try {
-        console.log('[search] app.js build', APP_JS_BUILD, location.pathname)
+        let term = getStoreSearchTerm(location?.pathname, location?.search)
 
-        const redirectFromUrl = () => {
-            let term = readStoreSearchTerm(location?.pathname)
+        console.log('[search] app.js build', APP_JS_BUILD, location.pathname, term ? `(in page search: ${term})` : '')
 
-            if (!term.length) {
-                return false
-            }
-
-            if (!shouldRedirect(term)) {
-                console.log('[search] already redirected for', term, '- rendering results here')
-                searchInPageTerm = term
-                return false
-            }
-
-            goToSearch(buildSearchUrl(term), true)
-            return true
-        }
-
-        // take the submit over so the catalog search url is never reached
-        document.addEventListener('submit', (event) => {
+        // the widget can also swap the url in without loading a page
+        const rerender = () => {
             try {
-                let form = event?.target
+                let next = getStoreSearchTerm(location?.pathname, location?.search)
 
-                if (!form?.matches?.('form')) {
-                    return
+                if (next.length && next !== searchInPageTerm) {
+                    searchInPageTerm = next
+                    validateSearch(next)
                 }
-
-                let input = form.querySelector('input[name="q"], input.search-input')
-                let term = String(input?.value ?? '').trim()
-
-                if (!term.length) {
-                    return
-                }
-
-                event.preventDefault()
-                goToSearch(buildSearchUrl(term, form), false)
             }
             catch (e) {
                 console.log('e', e)
             }
-        }, true)
+        }
 
-        // and catch a url the widget swaps in without loading a page
-        window.addEventListener('popstate', redirectFromUrl)
+        window.addEventListener('popstate', rerender)
 
         let pushState = history.pushState
 
         history.pushState = function () {
             let result = pushState.apply(this, arguments)
-            redirectFromUrl()
+            rerender()
             return result
         }
 
-        return redirectFromUrl()
+        return term
     }
     catch (e) {
         console.log('e', e)
     }
 
-    return false
+    return ''
 })()
 
 const parseJson = (value, fallback) => {
@@ -1159,7 +1089,7 @@ const buildProductCard = (v, pricing) => {
 
 const getSearchPricing = async () => {
     var savedEmail = localStorage.getItem('email')
-    var sessionEmail = WebPlatform?._sessionDetails?.member?.email
+    var sessionEmail = window.WebPlatform?._sessionDetails?.member?.email
 
     if (!validateEmail(savedEmail) && validateEmail(sessionEmail)) {
         await fetchUserByEmail(sessionEmail)
@@ -1312,9 +1242,7 @@ const validateSearch = async (queryOverride) => {
     }
 }
 
-if (!searchRedirectDone) {
-    validateSearch(searchInPageTerm)
-}
+validateSearch(searchInPageTerm)
 
 const filterData = async () => {
     let arr = []
@@ -1388,7 +1316,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             }
             else {
                 var savedEmail = localStorage.getItem('email')
-                var sessionEmail = WebPlatform?._sessionDetails?.member?.email
+                var sessionEmail = window.WebPlatform?._sessionDetails?.member?.email
 
                 if (!validateEmail(sessionEmail)) {
                     localStorage.clear()
@@ -1522,7 +1450,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                                 })
                             }
                         }
-                        else {
+                        else if (price) {
                             let p = parseFloat(parseFloat(price?.innerHTML?.split('$')?.slice(-1,)[0]).toFixed(2))
                             price.innerHTML = groupName === 'regular' ? `$${p}` : `$${(p - (p * percentage)).toFixed(2)}`
                         }
