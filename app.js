@@ -724,8 +724,39 @@ const fetchProducts = async (queries = {}) => {
     return items
 }
 
+const getStoreSearchTerm = (pathname) => {
+    // the store widget submits its own searches as a path, e.g.
+    // /safety-products-catalog/search/BK461-LM - that page does not match
+    // product codes at all, it just falls back to the category listing
+    let match = String(pathname ?? '').match(/^\/(?:[^/]+\/)*search\/(.+)$/)
+
+    if (!match) {
+        return ''
+    }
+
+    let term = match[1].replace(/\/+$/, '').replace(/\+/g, ' ')
+
+    try {
+        term = decodeURIComponent(term)
+    }
+    catch (e) {
+        // keep the raw term if it is not valid percent-encoding
+    }
+
+    return term.trim()
+}
+
 const validateSearch = async () => {
     try {
+        // send the store widget's own /<catalog>/search/<term> urls to the
+        // search page, so every search goes through the same lookup
+        let storeSearchTerm = getStoreSearchTerm(location?.pathname)
+
+        if (storeSearchTerm.length) {
+            window.location.replace(`/search?q=${encodeURIComponent(storeSearchTerm)}`)
+            return
+        }
+
         if (location?.pathname === '/search') {
             var divData = document.querySelector('.content-wrapper')
             var searchQuery = new URLSearchParams(location?.search)?.get('q')
