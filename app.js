@@ -632,6 +632,98 @@ catch (e) {
     console.log('e', e)
 }
 
+// Search helpers
+// The store API only filters on the `title` field, so products that customers
+// look up by their product code (BK461-ORG, BK461-LM, BK461-BLK, ...) were
+// never returned by the search page. Besides the API call we now also scan the
+// catalogue locally and match the query against the code fields (url/slug,
+// sku, variant skus) as well as the title.
+
+const escapeHtml = (value) => String(value ?? '')
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;')
+
+const normalizeSearchText = (value) => String(value ?? '')
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, ' ')
+    .trim()
+
+const getProductSearchText = (product) => {
+    let variants = Array.isArray(product?.variants) ? product.variants : []
+    let categories = Array.isArray(product?.categories) ? product.categories : []
+    let tags = Array.isArray(product?.tags) ? product.tags : []
+
+    let parts = [
+        product?.title,
+        product?.url,
+        product?.sku,
+        product?.code,
+        product?.model,
+        product?.brand,
+        product?.subtitle,
+        ...tags,
+        ...categories.map((c) => c?.name || c),
+        ...variants.map((v) => [v?.sku, v?.title, v?.name, v?.code].filter(Boolean).join(' '))
+    ]
+
+    return normalizeSearchText(parts.filter(Boolean).join(' '))
+}
+
+const matchesSearchQuery = (product, tokens) => {
+    if (!tokens?.length) {
+        return false
+    }
+
+    let haystack = getProductSearchText(product)
+    let condensed = haystack.replace(/ /g, '')
+
+    // every word of the query has to be found somewhere on the product, the
+    // condensed check makes `bk461org` match `BK461-ORG` as well
+    return tokens.every((token) => haystack.includes(token) || condensed.includes(token.replace(/ /g, '')))
+}
+
+const searchRank = (product, normalizedQuery) => {
+    let fields = [product?.title, product?.url, product?.sku].map(normalizeSearchText).filter(Boolean)
+
+    if (fields.some((v) => v === normalizedQuery)) {
+        return 0
+    }
+    if (fields.some((v) => v.startsWith(normalizedQuery))) {
+        return 1
+    }
+    return 2
+}
+
+const fetchProducts = async (queries = {}) => {
+    let limit = 50
+    let skip = 0
+    let guard = 0
+    let items = []
+
+    while (guard++ < 200) {
+        let params = new URLSearchParams({ ...queries, limit: limit, skip: skip })
+        let query = params.toString().replace(/\+/g, '%20')
+        let data = await sendRequest(`${apiUrl}/${productRoute}?${query}`, 'GET', null)
+
+        let page = data?.items || []
+        let totalCount = Number(data?.totalCount) || 0
+
+        items.push(...page)
+
+        // never advance by more than what the API actually returned, otherwise
+        // whole pages get skipped whenever it hands back less than `limit`
+        if (!page.length || (totalCount && items.length >= totalCount)) {
+            break
+        }
+        skip += page.length
+    }
+
+    return items
+}
+
 const validateSearch = async () => {
     try {
         if (location?.pathname === '/search') {
@@ -677,7 +769,7 @@ const validateSearch = async () => {
                                 <form role="search" method="GET" enctype="application/x-www-form-urlencoded"
                                     action="/search" class="search-form style-1">
                                     <input type="hidden" value="5" name="m">
-                                    <input type="text" name="q" class="search-input border-type-all" value="${searchQuery}"
+                                    <input type="text" name="q" class="search-input border-type-all" value="${escapeHtml(searchQuery)}"
                                         placeholder="Search for..."
                                         style="font-size: 15px; background-color: #ffffff;font-family:'Open Sans';color:#6B6B6B;border-color:#E6E6E6;padding: 18px 25.2px;border-width: 1px;border-radius: 40px;">
                                     <button class="search-widget-icon" style="color:#6B6B6B;"></button>
@@ -696,21 +788,32 @@ const validateSearch = async () => {
 
             var searchInput = document.querySelector('input.search-input.border-type-all')
 
-            let skip = 0
-            let limit = 50
+            let normalizedQuery = normalizeSearchText(searchQuery)
+            let searchTokens = normalizedQuery.split(' ').filter(Boolean)
             let allItems = []
 
-            while (true) {
-                let data = await sendRequest(`${apiUrl}/${productRoute}?title=${searchQuery}&limit=${limit}&skip=${skip}`, 'GET', null);
+            if (searchTokens.length) {
+                // the API only looks at the title, the catalogue scan is what
+                // makes product codes (BK461-ORG, ...) findable
+                let [titleMatches, catalogue] = await Promise.all([
+                    fetchProducts({ title: searchQuery }),
+                    fetchProducts()
+                ])
 
-                let items = data?.items || []
-                let totalCount = data?.totalCount || 0
+                let localMatches = catalogue.filter((v) => matchesSearchQuery(v, searchTokens))
 
-                allItems.push(...items)
-                if (allItems.length >= totalCount) {
-                    break
+                let seen = new Set()
+                for (let product of [...titleMatches, ...localMatches]) {
+                    let key = product?.id ?? product?.url
+                    if (key === undefined || key === null || seen.has(key)) {
+                        continue
+                    }
+                    seen.add(key)
+                    allItems.push(product)
                 }
-                skip += limit
+
+                // exact code / title matches first
+                allItems.sort((a, b) => searchRank(a, normalizedQuery) - searchRank(b, normalizedQuery))
             }
 
             var savedEmail = localStorage.getItem('email')
@@ -783,7 +886,7 @@ const validateSearch = async () => {
                                 <form role="search" method="GET" enctype="application/x-www-form-urlencoded"
                                     action="/search" class="search-form style-1">
                                     <input type="hidden" value="5" name="m">
-                                    <input type="text" name="q" class="search-input border-type-all" value="${searchQuery}"
+                                    <input type="text" name="q" class="search-input border-type-all" value="${escapeHtml(searchQuery)}"
                                         placeholder="Search for..."
                                         style="font-size: 15px; background-color: #ffffff;font-family:'Open Sans';color:#6B6B6B;border-color:#E6E6E6;padding: 18px 25.2px;border-width: 1px;border-radius: 40px;">
                                     <button class="search-widget-icon" style="color:#6B6B6B;"></button>
@@ -889,7 +992,7 @@ const validateSearch = async () => {
                                 <form role="search" method="GET" enctype="application/x-www-form-urlencoded"
                                     action="/search" class="search-form style-1">
                                     <input type="hidden" value="5" name="m">
-                                    <input type="text" name="q" class="search-input border-type-all" value="${searchQuery}"
+                                    <input type="text" name="q" class="search-input border-type-all" value="${escapeHtml(searchQuery)}"
                                         placeholder="Search for..."
                                         style="font-size: 15px; background-color: #ffffff;font-family:'Open Sans';color:#6B6B6B;border-color:#E6E6E6;padding: 18px 25.2px;border-width: 1px;border-radius: 40px;">
                                     <button class="search-widget-icon" style="color:#6B6B6B;"></button>
